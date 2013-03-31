@@ -11,6 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130331111445) do
+
+  create_table "flashcards", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "front_text"
+    t.text     "back_text"
+    t.integer  "consecutive_successful_repetitions", :default => 0
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  create_table "repetitions", :force => true do |t|
+    t.integer  "flashcard_id"
+    t.date     "planned_date"
+    t.date     "actual_date"
+    t.boolean  "run",          :default => false
+    t.boolean  "successful"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name",            :limit => 25
+    t.string   "email",           :limit => 100
+    t.string   "hashed_password", :limit => 40
+    t.string   "salt",            :limit => 40
+    t.boolean  "is_admin",                       :default => false
+    t.integer  "daily_limit",                    :default => 10
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
 
 end
