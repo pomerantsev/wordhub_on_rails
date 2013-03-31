@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WhRails</title>
+  <title><%= "#{@page_title} &mdash; " if @page_title %>Вордхаб</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class = "container">
+        <%= render :partial => 'layouts/menu' %>
+        <div class = "row">
+            <div class = "span12">
+                <% if !flash[:notice].blank? %>
+                    <div class = "alert alert-error">
+                        <%= flash[:notice] %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
 
-<%= yield %>
-
+        <%= yield %>
+        
+        <div class = "push"></div>
+    </div>
+    <footer class = "footer">
+        <div class = "container">
+            <div class = "row">
+                <div class = "span12">
+                    <p class = "copyright">2013, <%= link_to "Павел Померанцев", "http://pomerantsev.moikrug.ru/" %></p>
+                    <p class = "email"><%= mail_to "pomerantsevp@gmail.com" %></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <%= javascript_include_tag "menu_transform_script" %>
 </body>
 </html>

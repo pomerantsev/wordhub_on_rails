@@ -1,0 +1,25 @@
+<div class="navbar">
+    <div class="navbar-inner">      
+        <%= link_to "Вордхаб", {:controller => "application"}, :class => "brand" %>
+        <% if session[:user_id] %>
+        <ul class="nav pull-right">
+            <li>
+                <%= link_to "Меню залогиненного пользователя", "#" %>
+            </li>
+        </ul>
+        <% else %>
+        <ul class="nav pull-right">
+            <li>
+                <%= link_to "О сайте", "#" %>
+            </li>
+            <li>
+                <%= link_to "Вход", :controller => "application", :action => "index", :anchor => "login" %>
+            </li>
+        </ul>
+        <% end %>
+    </div>
+</div>
+
+
+
+
