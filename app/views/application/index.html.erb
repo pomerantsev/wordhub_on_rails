@@ -7,16 +7,7 @@
     </div>
     <div class = "span3">
         <a id = "login"></a>
-        <h4 class = "no-margin-top">Вход на сайт</h4>
-        <%= form_tag "attempt_login", :html => {:id => "loginForm"} do %>
-            <%= label_tag :email, "Email:", :required => true %>
-            <%= email_field_tag :email %>
-            <%= label_tag :password, "Пароль:", :required => true %>
-            <%= password_field_tag :password %>
-            <span class="help-block"></span>
-            <%= submit_tag "Войти", :class => "btn" %>
-            <%= link_to "Зарегистрироваться", "#", :class => "btn btn-link registerLink" %>
-        <% end %>
+        <%= render :partial => "login_form" %>
     </div>
 </div>
 <div class = "row">
