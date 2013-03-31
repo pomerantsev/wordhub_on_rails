@@ -1,21 +1,66 @@
 <div class="navbar">
-    <div class="navbar-inner">      
-        <%= link_to "Вордхаб", {:controller => "application"}, :class => "brand" %>
+    <div class="navbar-inner">
         <% if session[:user_id] %>
-        <ul class="nav pull-right">
-            <li>
-                <%= link_to "Меню залогиненного пользователя", "#" %>
-            </li>
-        </ul>
+            <a class="btn btn-navbar fat-menu-center no-js-hide" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            
+            <ul id = "elementBeforeDropdown" class = "nav pull-left">
+                <li class = "">
+                    <%= link_to new_flashcard_path, :class => "" do %>
+                        <span>Создать</span>
+                        <span><small>0 из 10</small></span>
+                    <% end %>
+                </li>
+                
+            </ul>
+            
+            <!-- Этот ul Яваскриптом обрамляется в div, чтобы в случае, если Яваскрипт не работает, меню работало, хоть и выглядело бы некрасиво. -->
+                <ul id = "dropdownMenu" class="fat-menu-center nav pull-right"> <!-- Класс fat-menu-center - чтобы пункты меню в "толстом" меню не были приклеены к верху, а появлялись посередине. -->
+                    <li class = "<?php echo getMenuItemClass($activePage, STATS_PAGE); ?>">
+                        <a href="<?php echo getLink(STATS_PAGE); ?>">Статистика и все карточки</a>
+                    </li>
+                    <li class = "">
+                        <a href="<?php echo getLink(INTRO_PAGE); ?>">О сайте</a>
+                    </li>
+                    
+                    <!-- Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него. -->
+                    <li id = "userDropdownMenu" class="no-js-hide dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Имя пользователя <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class = "<?php echo getMenuItemClass($activePage, SETTINGS_PAGE); ?>">
+                                <a href="<?php echo getLink(SETTINGS_PAGE); ?>">Настройки</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <%= link_to "Выйти", "/logout" %>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id = "userMenuNoDropdown">
+                        <ul class = "nav">
+                            <li class = "<?php echo getMenuItemClass($activePage, SETTINGS_PAGE); ?>">
+                                <a href="<?php echo getLink(SETTINGS_PAGE); ?>">Настройки</a>
+                            </li>
+                            <li class = "divider"></li>
+                            <li>
+                                <%= link_to "Выйти", "/logout" %>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
         <% else %>
-        <ul class="nav pull-right">
-            <li>
-                <%= link_to "О сайте", "#" %>
-            </li>
-            <li>
-                <%= link_to "Вход", :controller => "application", :action => "index", :anchor => "login" %>
-            </li>
-        </ul>
+            <%= link_to "Вордхаб", {:controller => "application"}, :class => "brand" %>
+            <ul class="nav pull-right">
+                <li>
+                    <%= link_to "О сайте", "#" %>
+                </li>
+                <li>
+                    <%= link_to "Вход", :controller => "application", :action => "index", :anchor => "login" %>
+                </li>
+            </ul>
         <% end %>
     </div>
 </div>
