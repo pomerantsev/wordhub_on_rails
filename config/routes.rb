@@ -17,6 +17,8 @@ WhRails::Application.routes.draw do
   #   resources :products
   
   resources :flashcards
+  
+  resources :repetitions, :only => [:index, :update]
 
   # Sample resource route with options:
   #   resources :products do
