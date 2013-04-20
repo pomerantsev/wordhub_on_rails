@@ -11,7 +11,13 @@
                 <li class = "">
                     <%= link_to new_flashcard_path, :class => "" do %>
                         <span>Создать</span>
-                        <span><small><%= current_user.flashcard_count(Time.now.to_date) %> из 10</small></span>
+                        <span><small><%= current_user.flashcard_count(Time.now.to_date) %> из <%= current_user.daily_limit %></small></span>
+                    <% end %>
+                </li>
+                <li class = "">
+                    <%= link_to repetitions_path, :class => "" do %>
+                        <span>Повторить</span>
+                        <span><small>X из <%= current_user.repetitions_for_today.size %></small></span>
                     <% end %>
                 </li>
                 
@@ -19,8 +25,8 @@
             
             <!-- Этот ul Яваскриптом обрамляется в div, чтобы в случае, если Яваскрипт не работает, меню работало, хоть и выглядело бы некрасиво. -->
                 <ul id = "dropdownMenu" class="fat-menu-center nav pull-right"> <!-- Класс fat-menu-center - чтобы пункты меню в "толстом" меню не были приклеены к верху, а появлялись посередине. -->
-                    <li class = "<?php echo getMenuItemClass($activePage, STATS_PAGE); ?>">
-                        <a href="<?php echo getLink(STATS_PAGE); ?>">Статистика и все карточки</a>
+                    <li class = "">
+                        <%= link_to "Все карточки", flashcards_path %>
                     </li>
                     <li class = "">
                         <a href="<?php echo getLink(INTRO_PAGE); ?>">О сайте</a>
