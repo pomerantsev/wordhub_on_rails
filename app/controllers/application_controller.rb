@@ -1,11 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  helper_method :current_user
+  
   def index
     if logged_in
       redirect_to flashcards_path
     end
   end
+  
+
   
   protected
   
@@ -24,8 +28,6 @@ class ApplicationController < ActionController::Base
   
   def current_user
     User.find session[:user_id]
-  end
-  
-  
+  end  
   
 end

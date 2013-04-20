@@ -41,7 +41,18 @@ class User < ActiveRecord::Base
   def self.hash_with_salt(password = "", salt = "")
     Digest::SHA1.hexdigest("Put #{salt} on the #{password}")
   end
-  
+
+  def flashcard_count(date = nil)
+    if !date
+      return self.flashcards.size
+    else
+      if (date.class != Date)
+        date = date.to_date
+      end
+      return self.flashcards.where("created_at > ? AND created_at < ?", date.beginning_of_day, date.end_of_day).size
+    end
+  end
+    
   private
   
   def create_hashed_password
@@ -57,6 +68,10 @@ class User < ActiveRecord::Base
     # for security and b/c hashing is not needed
     self.password = nil
   end
+  
+  
+  
+
   
   
 end

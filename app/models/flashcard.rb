@@ -13,7 +13,7 @@ class Flashcard < ActiveRecord::Base
   after_create :set_first_repetition
   
   def set_first_repetition
-    first_repetition_date = rand(1..3).days.from_now
+    first_repetition_date = rand(1..3).days.from_now.to_date
     repetitions.create :planned_date => first_repetition_date, :actual_date => first_repetition_date
   end
   

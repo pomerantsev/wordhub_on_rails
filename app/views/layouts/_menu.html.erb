@@ -11,7 +11,7 @@
                 <li class = "">
                     <%= link_to new_flashcard_path, :class => "" do %>
                         <span>Создать</span>
-                        <span><small>0 из 10</small></span>
+                        <span><small><%= current_user.flashcard_count(Time.now.to_date) %> из 10</small></span>
                     <% end %>
                 </li>
                 
