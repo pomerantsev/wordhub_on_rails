@@ -1,11 +1,21 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  def index
+    if logged_in
+      redirect_to flashcards_path
+    end
+  end
+  
   protected
   
+  def logged_in
+    return session[:user_id]
+  end
+  
   def confirm_logged_in
-    unless session[:user_id]
-      redirect_to :controller => "application", :action => "index"
+    unless logged_in
+      redirect_to root_url
       return false # halts the before_filter
     else
       return true
