@@ -5,7 +5,7 @@ class Flashcard < ActiveRecord::Base
   attr_accessible :front_text, :back_text
   
   belongs_to :user
-  has_many :repetitions
+  has_many :repetitions, :dependent => :destroy
   
   validates :front_text, :presence => true
   validates :back_text, :presence => true
