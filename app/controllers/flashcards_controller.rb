@@ -2,56 +2,63 @@
 
 class FlashcardsController < ApplicationController
   
+  before_filter :confirm_logged_in
+  before_filter :get_flashcard, :only => [:show, :edit, :update, :destroy]
+  
   def index
-    list
-    render "list"
-  end
-  
-  
-  def list
     @flashcards = current_user.flashcards
   end
   
   
   def new
     @flashcard = current_user.flashcards.new
+    render :form
   end
   
   
   def create
-    @flashcard = current_user.flashcards.new params[:flashcard]
+    @flashcard = current_user.flashcards.new(params[:flashcard])
     if @flashcard.save
-      logger.debug("Front text:" + @flashcard.front_text)
       redirect_to flashcards_path
     else
       flash[:notice] = "Не получилось сохранить карточку. Проверьте правильность ввода."
-      render "new"
+      render :new
     end
   end
   
   
   def show
-    @flashcard = Flashcard.find params[:id]
+    
   end
   
   
   def edit
-    
+    render :form
   end
   
   
   def update
-    
+    if @flashcard.update_attributes(params[:flashcard])
+      redirect_to @flashcard
+    else
+      flash[:notice] = "Не получилось сохранить карточку. Проверьте правильность ввода."
+    end
   end
-  
-  
-  def delete
-    
-  end
-  
   
   def destroy
-    
+    @flashcard.destroy
+    redirect_to flashcards_path
+  end
+  
+  
+  protected
+  
+  def get_flashcard
+    @flashcard = Flashcard.find_by_id(params[:id])
+    if @flashcard.nil? || @flashcard.user != current_user
+      flash[:notice] = "У вас нет доступа к этой карточке."
+      redirect_to flashcards_path
+    end
   end
   
 end

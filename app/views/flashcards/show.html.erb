@@ -3,3 +3,5 @@
     <hr />
     <%= simple_format(@flashcard.back_text) %>
 </div>
+<%= link_to "Редактировать", edit_flashcard_path(@flashcard) %>
+<%= link_to "Удалить", @flashcard, :confirm => "Вы уверены?", :method => :delete %>
