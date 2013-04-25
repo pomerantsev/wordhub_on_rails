@@ -11,13 +11,14 @@
                 <li class = "">
                     <%= link_to new_flashcard_path, :class => "" do %>
                         <span>Создать</span>
-                        <span><small><%= current_user.flashcard_count(Time.now.to_date) %> из <%= current_user.daily_limit %></small></span>
+                         <!-- Пока flashcard_count выводит неправильное значение, потому что Date.today возвращает значение, установленное на компьютере, а в базу записывается время по гринвичу -->
+                        <span><small><%= current_user.flashcard_count(Date.today) %> из <%= current_user.daily_limit %></small></span>
                     <% end %>
                 </li>
                 <li class = "">
                     <%= link_to repetitions_path, :class => "" do %>
                         <span>Повторить</span>
-                        <span><small>X из <%= current_user.repetitions_for_today.size %></small></span>
+                        <span><small><%= current_user.repetitions_run_today(session[:date]).size %> из <%= current_user.total_repetitions_for_today_count(session[:date]) %></small></span>
                     <% end %>
                 </li>
                 

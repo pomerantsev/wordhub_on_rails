@@ -174,10 +174,22 @@ ol li {
 
 /* Карточка. */
 
+
 a.hero-unit {
     display: block;
     text-decoration: none;
     min-height: 120px;
+}
+
+.form-left {
+    display: inline-block;
+    width: 50%;
+}
+
+.form-right {
+    display: inline-block;
+    width: 30%;
+    float: right;
 }
 
 
@@ -244,4 +256,10 @@ a.hero-unit {
 .flashcard {
     white-space: pre;
     white-space: pre-wrap;
+}
+
+.flashcard-learned {
+    color: #468847;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
 }

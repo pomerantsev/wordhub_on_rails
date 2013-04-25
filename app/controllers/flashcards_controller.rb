@@ -6,7 +6,10 @@ class FlashcardsController < ApplicationController
   before_filter :get_flashcard, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @flashcards = current_user.flashcards
+    @flashcards = current_user.flashcards.order("created_at DESC")
+    
+    # TODO убрать это информационное сообщение.
+    flash[:notice] = current_user.planned_repetitions_count_by_date
   end
   
   

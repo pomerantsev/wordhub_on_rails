@@ -53,8 +53,41 @@ class User < ActiveRecord::Base
     end
   end
   
-  def repetitions_for_today
-    Repetition.joins(:flashcard).where("flashcards.user_id = ?", self.id).where(:actual_date => Time.now.to_date)
+  def repetitions_left_for_today(date = nil)
+    if date.nil?
+      date = Date.today
+    end
+    Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:actual_date => date, :run => false)
+  end
+  
+  def repetitions_run_today(date = nil)
+    if date.nil?
+      date = Date.today
+    end
+    Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:actual_date => date, :run => true)
+  end
+  
+  def total_repetitions_for_today_count(date = nil)
+    if date.nil?
+      date = Date.today
+    end
+    repetitions_run_today(date).size + repetitions_left_for_today(date).size
+  end
+  
+  # Это для статистики
+  # Здесь нужно убрать повторяющийся кусок запроса.
+  def planned_repetitions_count_by_date
+    repetition_with_greatest_date = Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:run => false).order("actual_date ASC").last
+    if !repetition_with_greatest_date.nil?
+      final_date = repetition_with_greatest_date.actual_date
+      return_value = {}
+      for date in Date.today..final_date
+        return_value[date] = repetitions_left_for_today(date).size
+      end
+      return return_value
+    else
+      return nil
+    end
   end
     
   private

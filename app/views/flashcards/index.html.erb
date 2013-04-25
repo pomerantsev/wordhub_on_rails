@@ -1,3 +1,4 @@
 <% @flashcards.each do |flashcard| %>
-    <%= link_to simple_format(flashcard.front_text), flashcard_path(flashcard), :class => "hero-unit flashcard" %>
+    <% added_class = flashcard.learned? ? " flashcard-learned" : "" %>
+    <%= link_to simple_format(flashcard.front_text), flashcard_path(flashcard), :class => "hero-unit flashcard" + added_class %>
 <% end %>
