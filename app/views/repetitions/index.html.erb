@@ -6,7 +6,10 @@
 <%= submit_tag "Сменить дату" %>
 <% end %>
 
+
 <% if !@repetitions.empty? %>
+
+<div class = "wrapper">
 
     <%= form_for(@current_repetition, :html => {:class => "form-actions form-left"}) do |f| %>
     
@@ -16,13 +19,15 @@
     
     <% end %>
     
-    <%= form_for(@current_repetition, :html => {:class => "form-actions form-right"}) do |f| %>
+    <%= form_for(@current_repetition, :html => {:class => "form-actions pull-right"}) do |f| %>
     
     <%= f.hidden_field :id %>
     <%= hidden_field_tag :successful, true %>
-    <%= submit_tag "Помню", :class => "btn btn-link" %>
+    <%= submit_tag "Помню", :class => "btn btn-link pull-right" %>
     
     <% end %>
+    
+</div>    
     
     
     <%= link_to simple_format(@text), repetitions_path(:repetition_id => @current_repetition.id, :view => @reverse_view), :class => "hero-unit flashcard" %>

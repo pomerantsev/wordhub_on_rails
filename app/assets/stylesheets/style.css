@@ -213,7 +213,10 @@ a.hero-unit {
     
     .form-actions {
         padding: 10px;
-        margin-top: 10px;
+    }
+    
+    .wrapper {
+        border-top: 10px solid white;
     }
     
     
@@ -262,4 +265,15 @@ a.hero-unit {
     color: #468847;
     background-color: #dff0d8;
     border-color: #d6e9c6;
+}
+
+.wrapper {
+    background-color: #f5f5f5;
+    border-top: 20px solid white;
+    border-bottom: 20px solid white;
+}
+
+.form-actions {
+    margin: 0;
+    border-top: none;
 }
