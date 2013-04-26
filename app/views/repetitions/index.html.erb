@@ -1,12 +1,3 @@
-<!-- Эта форма - временная, чтобы выставлять произвольную дату, в которую ведётся повтор. Только повтор: запись - на сегодня. Когда все функции будут оттестированы, эта форма уберётся. -->
-
-<%= form_tag repetitions_path, :method => :get do %>
-<%= select_date(session[:date].nil? ? Date.today : session[:date]) %>
-<br />
-<%= submit_tag "Сменить дату" %>
-<% end %>
-
-
 <% if !@repetitions.empty? %>
 
 <div class = "wrapper">

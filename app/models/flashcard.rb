@@ -26,13 +26,6 @@ class Flashcard < ActiveRecord::Base
       repetitions.first.planned_date - repetitions.first.created_at.to_date
     else
       last_two_repetitions = repetitions.order("actual_date ASC").offset(repetitions.size - 2)
-      
-      # TODO от этого избавиться
-      logger.debug "Последняя дата: " + last_two_repetitions.last.planned_date.to_s
-      logger.debug "Предпоследняя дата: " + last_two_repetitions.first.planned_date.to_s
-      logger.debug "Разница между последними датами: " + (last_two_repetitions.last.planned_date - last_two_repetitions.first.planned_date).to_s
-      logger.debug "Все повторы карточки: " + repetitions.inspect
-      
       last_two_repetitions.last.planned_date - last_two_repetitions.first.planned_date
     end
   end

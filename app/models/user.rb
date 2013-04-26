@@ -53,25 +53,16 @@ class User < ActiveRecord::Base
     end
   end
   
-  def repetitions_left_for_today(date = nil)
-    if date.nil?
-      date = Date.today
-    end
-    Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:actual_date => date, :run => false)
+  def repetitions_left_for_today
+    Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:actual_date => Date.today, :run => false)
   end
   
-  def repetitions_run_today(date = nil)
-    if date.nil?
-      date = Date.today
-    end
-    Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:actual_date => date, :run => true)
+  def repetitions_run_today
+    Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:actual_date => Date.today, :run => true)
   end
   
-  def total_repetitions_for_today_count(date = nil)
-    if date.nil?
-      date = Date.today
-    end
-    repetitions_run_today(date).size + repetitions_left_for_today(date).size
+  def total_repetitions_for_today_count
+    repetitions_run_today.size + repetitions_left_for_today.size
   end
   
   # Это для статистики

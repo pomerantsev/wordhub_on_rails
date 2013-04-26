@@ -18,7 +18,7 @@
                 <li class = "">
                     <%= link_to repetitions_path, :class => "" do %>
                         <span>Повторить</span>
-                        <span><small><%= current_user.repetitions_run_today(session[:date]).size %> из <%= current_user.total_repetitions_for_today_count(session[:date]) %></small></span>
+                        <span><small><%= current_user.repetitions_run_today.size %> из <%= current_user.total_repetitions_for_today_count %></small></span>
                     <% end %>
                 </li>
                 
