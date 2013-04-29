@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
       return false # halts the before_filter
     else
+      if session[:date]
+        current_user.adjust_repetition_dates(session[:date])
+      else
+        current_user.adjust_repetition_dates
+      end
       return true
     end
   end

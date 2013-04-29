@@ -14,10 +14,10 @@ class RepetitionsController < ApplicationController
     
     # Это для статистики
     @planned_repetitions_count_by_date = current_user.planned_repetitions_count_by_date
-    flash[:notice] = @planned_repetitions_count_by_date
+    flash[:notice] = @planned_repetitions_count_by_date.inspect
     
     # session[:date] - тоже уберётся потом. Сейчас нужна, чтобы выставлять "текущую" дату.
-    @repetitions = current_user.repetitions_left_for_today(session[:date])
+    @repetitions = current_user.planned_repetitions_for_date(session[:date])
     if params[:view] && params[:repetition_id]
       @current_repetition = Repetition.find_by_id(params[:repetition_id])
       if @repetitions.include?(@current_repetition)
@@ -69,7 +69,7 @@ class RepetitionsController < ApplicationController
   def confirm_repetition_validity
     @current_repetition = Repetition.find(params[:id])
     
-    if @current_repetition.flashcard.user != current_user || !current_user.repetitions_left_for_today(session[:date]).include?(@current_repetition)
+    if @current_repetition.flashcard.user != current_user || !current_user.planned_repetitions_for_date(session[:date]).include?(@current_repetition)
       redirect_to repetitions_path
     end
     
