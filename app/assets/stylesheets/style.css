@@ -261,6 +261,10 @@ a.hero-unit {
     white-space: pre-wrap;
 }
 
+a.hero-unit.flashcard-hidden {
+    display: none;
+}
+
 .flashcard-learned {
     color: #468847;
     background-color: #dff0d8;

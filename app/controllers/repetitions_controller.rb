@@ -22,10 +22,14 @@ class RepetitionsController < ApplicationController
       @current_repetition = Repetition.find_by_id(params[:repetition_id])
       if @repetitions.include?(@current_repetition)
         if params[:view] == "front"
-          @text = @current_repetition.flashcard.front_text
+          @current_text = @current_repetition.flashcard.front_text
+          @current_view = "front"
+          @reverse_text = @current_repetition.flashcard.back_text
           @reverse_view = "back"
         else
-          @text = @current_repetition.flashcard.back_text
+          @current_text = @current_repetition.flashcard.back_text
+          @current_view = "back"
+          @reverse_text = @current_repetition.flashcard.front_text
           @reverse_view = "front"
         end
       else
@@ -55,7 +59,9 @@ class RepetitionsController < ApplicationController
   def init_default_view
     if (!@repetitions.empty?)
       @current_repetition = @repetitions[rand(0...@repetitions.size)]
-      @text = @current_repetition.flashcard.front_text
+      @current_text = @current_repetition.flashcard.front_text
+      @current_view = "front"
+      @reverse_text = @current_repetition.flashcard.back_text
       @reverse_view = "back"
     else
       
