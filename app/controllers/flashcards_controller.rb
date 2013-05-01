@@ -19,7 +19,7 @@ class FlashcardsController < ApplicationController
   def create
     @flashcard = current_user.flashcards.new(params[:flashcard])
     if @flashcard.save
-      redirect_to flashcards_path
+      redirect_to new_flashcard_path
     else
       flash[:notice] = "Не получилось сохранить карточку. Проверьте правильность ввода."
       render :new
