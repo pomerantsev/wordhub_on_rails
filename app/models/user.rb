@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
 
 
-  has_many :flashcards do
+  has_many :flashcards, :dependent => :destroy do
     
     def created_on(date)
       where(:created_at => date.beginning_of_day..date.end_of_day)
