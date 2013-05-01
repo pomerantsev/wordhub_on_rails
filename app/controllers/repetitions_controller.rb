@@ -18,7 +18,6 @@ class RepetitionsController < ApplicationController
     @planned_repetitions_count_by_date = current_user.repetitions.planned_count_by_date
     flash[:notice] = @planned_repetitions_count_by_date.inspect
     
-    # session[:date] - тоже уберётся потом. Сейчас нужна, чтобы выставлять "текущую" дату.
     @repetitions = current_user.repetitions.planned.for(session[:date])
     if params[:view] && params[:repetition_id]
       @current_repetition = Repetition.find_by_id(params[:repetition_id])
@@ -66,21 +65,16 @@ class RepetitionsController < ApplicationController
       @reverse_text = @current_repetition.flashcard.back_text
       @reverse_view = "back"
     else
-      
-      # Вообще-то здесь должен быть редирект.
-      #redirect_to flashcards_path
-      flash[:notice] = "На эту дату повторов нет."
+      redirect_to flashcards_path
     end
   end
   
   
   def confirm_repetition_validity
     @current_repetition = Repetition.find(params[:id])
-    
-    if @current_repetition.flashcard.user != current_user || !current_user.repetitions.planned.for(session[:date]).include?(@current_repetition)
+    unless current_user.repetitions.planned.for(session[:date]).include?(@current_repetition)
       redirect_to repetitions_path
     end
-    
   end
 
   
