@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     
     def adjust_dates(date)
       first_date = planned.minimum(:actual_date)
-      if first_date < date
+      if first_date && first_date < date
         gap = date - first_date
         planned.each do |repetition|
           repetition.increment!(:actual_date, gap)
