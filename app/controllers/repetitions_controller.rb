@@ -59,9 +59,9 @@ class RepetitionsController < ApplicationController
   
   def confirm_repetition_validity
     @current_repetition = Repetition.find(params[:id])
-    if @current_repetition.flashcard.user != current_user || !current_user.repetitions.planned.for(session[:date]).include?(@current_repetition)
+    unless current_user.repetitions.planned.for(session[:date]).include?(@current_repetition)
       redirect_to repetitions_path
-    end    
+    end
   end
 
   
