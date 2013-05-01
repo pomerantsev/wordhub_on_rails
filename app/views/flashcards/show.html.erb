@@ -1,7 +1,3 @@
-<div class = "hero-unit flashcard">
-    <%= simple_format(@flashcard.front_text) %>
-    <hr />
-    <%= simple_format(@flashcard.back_text) %>
-</div>
+<div class = "hero-unit flashcard"><%= html_escape(@flashcard.front_text) %><hr /><%= html_escape(@flashcard.back_text) %></div>
 <%= link_to "Редактировать", edit_flashcard_path(@flashcard) %>
 <%= link_to "Удалить", @flashcard, :confirm => "Вы уверены?", :method => :delete %>
