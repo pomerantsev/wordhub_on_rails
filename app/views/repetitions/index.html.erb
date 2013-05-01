@@ -37,7 +37,7 @@
 </div>    
     
     
-    <%= link_to html_escape(@current_text), repetitions_path(:repetition_id => @current_repetition.id, :view => @reverse_view), :class => "hero-unit flashcard" %>
-    <%= link_to html_escape(@reverse_text), repetitions_path(:repetition_id => @current_repetition.id, :view => @current_view), :class => "hero-unit flashcard-hidden" %>
+    <%= link_to @current_text, repetitions_path(:repetition_id => @current_repetition.id, :view => @reverse_view), :class => "hero-unit flashcard" %>
+    <%= link_to @reverse_text, repetitions_path(:repetition_id => @current_repetition.id, :view => @current_view), :class => "hero-unit flashcard-hidden" %>
     
 <% end %>
