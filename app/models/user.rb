@@ -3,8 +3,52 @@
 class User < ActiveRecord::Base
   
   attr_accessible :name, :email, :password, :daily_limit
-  
-  has_many :flashcards
+
+
+
+  has_many :flashcards, :dependent => :destroy do
+    
+    def created_on(date)
+      where(:created_at => date.beginning_of_day..date.end_of_day)
+    end
+    
+  end
+
+
+
+  has_many :repetitions, :through => :flashcards do
+    
+    def planned
+      where(:run => false)
+    end
+    
+    def run
+      where(:run => true)
+    end
+    
+    def for(date)
+      where(:actual_date => date)
+    end
+    
+    def on(date)
+      where(:actual_date => date)
+    end
+    
+    def planned_count_by_date
+      planned.group(:actual_date).count
+    end
+    
+    def adjust_dates(date)
+      first_date = planned.minimum(:actual_date)
+      if first_date < date
+        gap = date - first_date
+        planned.each do |repetition|
+          repetition.increment!(:actual_date, gap)
+        end
+      end 
+    end
+    
+  end
   
   attr_accessor :password
   
@@ -21,6 +65,7 @@ class User < ActiveRecord::Base
   after_save :clear_password
   
   
+
   def password_match?(password = "")
     hashed_password == User.hash_with_salt(password, salt)
   end
@@ -41,45 +86,6 @@ class User < ActiveRecord::Base
   def self.hash_with_salt(password = "", salt = "")
     Digest::SHA1.hexdigest("Put #{salt} on the #{password}")
   end
-
-  def flashcard_count(date = nil)
-    if !date
-      self.flashcards.size
-    else
-      if (date.class != Date)
-        date = date.to_date
-      end
-      self.flashcards.where("created_at > ? AND created_at < ?", date.beginning_of_day, date.end_of_day).size
-    end
-  end
-  
-  def repetitions_left_for_today
-    Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:actual_date => Date.today, :run => false)
-  end
-  
-  def repetitions_run_today
-    Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:actual_date => Date.today, :run => true)
-  end
-  
-  def total_repetitions_for_today_count
-    repetitions_run_today.size + repetitions_left_for_today.size
-  end
-  
-  # Это для статистики
-  # Здесь нужно убрать повторяющийся кусок запроса.
-  def planned_repetitions_count_by_date
-    repetition_with_greatest_date = Repetition.where("flashcards.user_id = ?", self.id).joins(:flashcard).where(:run => false).order("actual_date ASC").last
-    if !repetition_with_greatest_date.nil?
-      final_date = repetition_with_greatest_date.actual_date
-      return_value = {}
-      for date in Date.today..final_date
-        return_value[date] = repetitions_left_for_today(date).size
-      end
-      return return_value
-    else
-      return nil
-    end
-  end
     
   private
   
@@ -96,10 +102,5 @@ class User < ActiveRecord::Base
     # for security and b/c hashing is not needed
     self.password = nil
   end
-  
-  
-  
-
-  
-  
+   
 end

@@ -11,14 +11,14 @@
                 <li class = "">
                     <%= link_to new_flashcard_path, :class => "" do %>
                         <span>Создать</span>
-                         <!-- Пока flashcard_count выводит неправильное значение, потому что Date.today возвращает значение, установленное на компьютере, а в базу записывается время по гринвичу -->
-                        <span><small><%= current_user.flashcard_count(Date.today) %> из <%= current_user.daily_limit %></small></span>
+                         <!-- Пока до конца не понял, выводит ли created_on правильное значение, потому что Date.today в общем случае возвращает одно значение, а в базе сохраняется другое (связано с часовыми поясами) -->
+                        <span><small><%= current_user.flashcards.created_on(session[:date]).size %> из <%= current_user.daily_limit %></small></span>
                     <% end %>
                 </li>
                 <li class = "">
                     <%= link_to repetitions_path, :class => "" do %>
                         <span>Повторить</span>
-                        <span><small><%= current_user.repetitions_run_today.size %> из <%= current_user.total_repetitions_for_today_count %></small></span>
+                        <span><small><%= current_user.repetitions.run.on(session[:date]).size %> из <%= current_user.repetitions.for(session[:date]).size %></small></span>
                     <% end %>
                 </li>
                 
@@ -35,7 +35,7 @@
                     
                     <!-- Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него. -->
                     <li id = "userDropdownMenu" class="no-js-hide dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Имя пользователя <b class="caret"></b></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.name %> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class = "<?php echo getMenuItemClass($activePage, SETTINGS_PAGE); ?>">
                                 <a href="<?php echo getLink(SETTINGS_PAGE); ?>">Настройки</a>
@@ -48,8 +48,8 @@
                     </li>
                     <li id = "userMenuNoDropdown">
                         <ul class = "nav">
-                            <li class = "<?php echo getMenuItemClass($activePage, SETTINGS_PAGE); ?>">
-                                <a href="<?php echo getLink(SETTINGS_PAGE); ?>">Настройки</a>
+                            <li class = "">
+                                <a href="#">Настройки</a>
                             </li>
                             <li class = "divider"></li>
                             <li>

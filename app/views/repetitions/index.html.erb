@@ -1,3 +1,10 @@
+<% content_for :page_specific_javascripts do %>
+
+<%= javascript_include_tag "page_specific/toggle_flashcard_side_script" %>
+
+<% end %>
+
+
 <% if !@repetitions.empty? %>
 
 <div class = "wrapper">
@@ -21,6 +28,7 @@
 </div>    
     
     
-    <%= link_to simple_format(@text), repetitions_path(:repetition_id => @current_repetition.id, :view => @reverse_view), :class => "hero-unit flashcard" %>
+    <%= link_to simple_format(@current_text), repetitions_path(:repetition_id => @current_repetition.id, :view => @reverse_view), :class => "hero-unit flashcard" %>
+    <%= link_to simple_format(@reverse_text), repetitions_path(:repetition_id => @current_repetition.id, :view => @current_view), :class => "hero-unit flashcard-hidden" %>
     
 <% end %>
