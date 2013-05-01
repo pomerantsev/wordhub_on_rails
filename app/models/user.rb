@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :flashcards do
     
     def created_on(date)
-      where("created_at > ? AND created_at < ?", date.beginning_of_day, date.end_of_day)
+      where(:created_at => date.beginning_of_day..date.end_of_day)
     end
     
   end
