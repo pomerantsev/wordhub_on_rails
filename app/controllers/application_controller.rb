@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
       return false # halts the before_filter
     else
-      session[:date] = Date.today if !session[:date]
+      session[:date] = Date.today if !session[:date] || session[:date] < Date.today
       current_user.repetitions.adjust_dates(session[:date])
       return true
     end
