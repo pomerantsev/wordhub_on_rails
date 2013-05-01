@@ -35,7 +35,7 @@
                     
                     <!-- Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него. -->
                     <li id = "userDropdownMenu" class="no-js-hide dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Имя пользователя <b class="caret"></b></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.name %> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class = "<?php echo getMenuItemClass($activePage, SETTINGS_PAGE); ?>">
                                 <a href="<?php echo getLink(SETTINGS_PAGE); ?>">Настройки</a>
