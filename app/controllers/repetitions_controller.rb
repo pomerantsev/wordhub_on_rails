@@ -8,9 +8,11 @@ class RepetitionsController < ApplicationController
   def index
     
     # Это для тестирования даты
+=begin
     if !params[:date].nil?
       session[:date] = Date.civil(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
     end
+=end
     
     # Это для статистики
     @planned_repetitions_count_by_date = current_user.repetitions.planned_count_by_date
