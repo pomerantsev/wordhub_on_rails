@@ -9,7 +9,7 @@ class FlashcardsController < ApplicationController
     @flashcards = current_user.flashcards.order("created_at DESC")
     
     # TODO убрать это информационное сообщение.
-    flash[:notice] = current_user.planned_repetitions_count_by_date
+    flash[:notice] = current_user.repetitions.planned_count_by_date
   end
   
   
