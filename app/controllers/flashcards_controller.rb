@@ -25,7 +25,7 @@ class FlashcardsController < ApplicationController
       redirect_to new_flashcard_path
     else
       flash[:notice] = "Не получилось сохранить карточку. Проверьте правильность ввода."
-      render :new
+      render :form
     end
   end
   
@@ -45,6 +45,7 @@ class FlashcardsController < ApplicationController
       redirect_to @flashcard
     else
       flash[:notice] = "Не получилось сохранить карточку. Проверьте правильность ввода."
+      render :form
     end
   end
   
