@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   has_many :flashcards, :dependent => :destroy do
     
     def created_on(date)
-      where(:created_at => date.beginning_of_day..date.end_of_day)
+      beginning_of_day = date.to_time   # Так можно вычислить полночь в текущем часовом поясе.
+      where(:created_at => beginning_of_day..(beginning_of_day + 1.day))
     end
     
   end
