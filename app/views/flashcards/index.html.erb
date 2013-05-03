@@ -1,4 +1,10 @@
-<% @flashcards.each do |flashcard| %>
-    <% added_class = flashcard.learned? ? " flashcard-learned" : "" %>
-    <%= link_to flashcard.front_text, flashcard_path(flashcard), :class => "hero-unit flashcard" + added_class %>
+<% @dates.each do |date| %>
+
+    <p class = "lead"><%= date %>:</p>
+
+    <% @flashcards[date].each do |flashcard| %>
+        <% added_class = flashcard.learned? ? " flashcard-learned" : "" %>
+        <%= link_to flashcard.front_text, flashcard_path(flashcard), :class => "hero-unit flashcard" + added_class %>
+    <% end %>
+
 <% end %>
