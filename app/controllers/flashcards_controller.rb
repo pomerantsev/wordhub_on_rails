@@ -6,11 +6,7 @@ class FlashcardsController < ApplicationController
   before_filter :get_flashcard, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @dates = current_user.flashcards.all_dates_when_flashcards_were_created.reverse
-    @flashcards = {}
-    @dates.each do |date|
-      @flashcards[date] = current_user.flashcards.created_on(date).reverse
-    end
+    @flashcards_grouped_by_date = current_user.flashcards.grouped_by_date
   end
   
   

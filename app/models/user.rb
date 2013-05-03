@@ -13,13 +13,14 @@ class User < ActiveRecord::Base
       where(:created_at => beginning_of_day..(beginning_of_day + 1.day))
     end
     
-    def all_dates_when_flashcards_were_created
-      dates = []
+    def grouped_by_date
+      flashcards_by_date = {}
       all.each do |flashcard|
         date = flashcard.created_at.localtime.to_date
-        dates << date unless dates.include?(date)
+        flashcards_by_date[date] = [] if flashcards_by_date[date].nil?
+        flashcards_by_date[date] << flashcard
       end
-      return dates
+      return flashcards_by_date
     end
     
   end
@@ -77,7 +78,11 @@ class User < ActiveRecord::Base
   
 
   def password_match?(password = "")
-    hashed_password == User.hash_with_salt(password, salt)
+    if salt != nil
+      hashed_password == User.hash_with_salt(password, salt)
+    else # Для учётных записей, перекочевавших из старого PHP-шного сайта
+      hashed_password == User.hash_without_salt(password)
+    end
   end
   
   def self.authenticate(email, password)
@@ -95,6 +100,10 @@ class User < ActiveRecord::Base
   
   def self.hash_with_salt(password = "", salt = "")
     Digest::SHA1.hexdigest("Put #{salt} on the #{password}")
+  end
+  
+  def self.hash_without_salt(password = "")
+    Digest::SHA1.hexdigest(password)
   end
     
   private
