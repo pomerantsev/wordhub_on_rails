@@ -78,7 +78,11 @@ class User < ActiveRecord::Base
   
 
   def password_match?(password = "")
-    hashed_password == User.hash_with_salt(password, salt)
+    if salt != nil
+      hashed_password == User.hash_with_salt(password, salt)
+    else # Для учётных записей, перекочевавших из старого PHP-шного сайта
+      hashed_password == User.hash_without_salt(password)
+    end
   end
   
   def self.authenticate(email, password)
@@ -96,6 +100,10 @@ class User < ActiveRecord::Base
   
   def self.hash_with_salt(password = "", salt = "")
     Digest::SHA1.hexdigest("Put #{salt} on the #{password}")
+  end
+  
+  def self.hash_without_salt(password = "")
+    Digest::SHA1.hexdigest(password)
   end
     
   private
