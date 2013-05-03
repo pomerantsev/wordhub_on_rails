@@ -11,7 +11,6 @@ class FlashcardsController < ApplicationController
     @dates.each do |date|
       @flashcards[date] = current_user.flashcards.created_on(date).reverse
     end
-    # @flashcards = current_user.flashcards.order("created_at DESC")
     
     # TODO убрать это информационное сообщение.
     flash[:notice] = current_user.repetitions.planned_count_by_date
