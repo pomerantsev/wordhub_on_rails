@@ -13,13 +13,14 @@ class User < ActiveRecord::Base
       where(:created_at => beginning_of_day..(beginning_of_day + 1.day))
     end
     
-    def all_dates_when_flashcards_were_created
-      dates = []
+    def grouped_by_date
+      flashcards_by_date = {}
       all.each do |flashcard|
         date = flashcard.created_at.localtime.to_date
-        dates << date unless dates.include?(date)
+        flashcards_by_date[date] = [] if flashcards_by_date[date].nil?
+        flashcards_by_date[date] << flashcard
       end
-      return dates
+      return flashcards_by_date
     end
     
   end
