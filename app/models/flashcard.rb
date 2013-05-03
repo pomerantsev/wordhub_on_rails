@@ -51,7 +51,7 @@ class Flashcard < ActiveRecord::Base
   end
   
   def learned?
-    return repetitions.where(:run => false).empty?
+    consecutive_successful_repetitions >= 3
   end
   
 end
