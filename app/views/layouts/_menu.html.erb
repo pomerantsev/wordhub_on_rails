@@ -30,7 +30,7 @@
                         <%= link_to "Все карточки", flashcards_path %>
                     </li>
                     <li class = "">
-                        <a href="<?php echo getLink(INTRO_PAGE); ?>">О сайте</a>
+                        <%= link_to "О сайте", :controller => "static_pages", :action => "intro" %>
                     </li>
                     
                     <!-- Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него. -->
@@ -62,7 +62,7 @@
             <%= link_to "Вордхаб", {:controller => "application"}, :class => "brand" %>
             <ul class="nav pull-right">
                 <li>
-                    <%= link_to "О сайте", "#" %>
+                    <%= link_to "О сайте", :controller => "static_pages", :action => "intro" %>
                 </li>
                 <li>
                     <%= link_to "Вход", :controller => "application", :action => "index", :anchor => "login" %>
