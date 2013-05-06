@@ -45,6 +45,11 @@ class User < ActiveRecord::Base
       where(:actual_date => date)
     end
     
+    def progress_today
+      today = Date.today
+      run.on(today).size.to_f / on(today).size
+    end
+    
     def planned_count_by_date
       planned.group(:actual_date).count
     end

@@ -8,6 +8,8 @@ WhRails::Application.routes.draw do
   
   match "attempt_login", :to => "access#attempt_login"
   match "logout", :to => "access#logout"
+  match "intro", :to => "static_pages#intro"
+  match "about", :to => "static_pages#about"
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
