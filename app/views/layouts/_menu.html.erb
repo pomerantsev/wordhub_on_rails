@@ -8,15 +8,15 @@
             </a>
             
             <ul id = "elementBeforeDropdown" class = "nav pull-left">
-                <li class = "">
-                    <%= link_to new_flashcard_path, :class => "" do %>
+                <li class = "<%= active_class(:controller => "flashcards", :action => "new") %>">
+                    <%= link_to new_flashcard_path, :class => create_class do %>
                         <span>Создать</span>
                          <!-- Пока до конца не понял, выводит ли created_on правильное значение, потому что Date.today в общем случае возвращает одно значение, а в базе сохраняется другое (связано с часовыми поясами) -->
                         <span><small><%= current_user.flashcards.created_on(session[:date]).size %> из <%= current_user.daily_limit %></small></span>
                     <% end %>
                 </li>
-                <li class = "">
-                    <%= link_to repetitions_path, :class => "" do %>
+                <li class = "<%= active_class(:controller => "repetitions", :action => "index") %>">
+                    <%= link_to repetitions_path, :class => repeat_class do %>
                         <span>Повторить</span>
                         <span><small><%= current_user.repetitions.run.on(session[:date]).size %> из <%= current_user.repetitions.for(session[:date]).size %></small></span>
                     <% end %>
@@ -26,10 +26,10 @@
             
             <!-- Этот ul Яваскриптом обрамляется в div, чтобы в случае, если Яваскрипт не работает, меню работало, хоть и выглядело бы некрасиво. -->
                 <ul id = "dropdownMenu" class="fat-menu-center nav pull-right"> <!-- Класс fat-menu-center - чтобы пункты меню в "толстом" меню не были приклеены к верху, а появлялись посередине. -->
-                    <li class = "">
+                    <li class = "<%= active_class(:controller => "flashcards", :action => "index") %>">
                         <%= link_to "Все карточки", flashcards_path %>
                     </li>
-                    <li class = "">
+                    <li class = "<%= active_class(:controller => "static_pages", :action => ["intro", "about"]) %>">
                         <%= link_to "О сайте", :controller => "static_pages", :action => "intro" %>
                     </li>
                     
@@ -61,7 +61,7 @@
         <% else %>
             <%= link_to "Вордхаб", {:controller => "application"}, :class => "brand" %>
             <ul class="nav pull-right">
-                <li>
+                <li class = "<%= active_class(:controller => "static_pages", :action => ["intro", "about"]) %>">
                     <%= link_to "О сайте", :controller => "static_pages", :action => "intro" %>
                 </li>
                 <li>
