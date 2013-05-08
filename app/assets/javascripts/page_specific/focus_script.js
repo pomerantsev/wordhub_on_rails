@@ -1,5 +1,3 @@
-function positionCursorInInput() {
+$(function() {
 	$("#frontTextInput").focus();
-}
-
-$(positionCursorInInput);
+});

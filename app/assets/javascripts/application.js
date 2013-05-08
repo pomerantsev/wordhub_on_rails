@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require bootstrap.min.js
 //= require modernizr.min.js
-//= require_directory .
+//= require_tree .
