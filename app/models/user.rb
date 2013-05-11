@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     
     def grouped_by_date
       flashcards_by_date = {}
-      all.each do |flashcard|
+      order("id ASC").each do |flashcard|
         date = flashcard.created_at.localtime.to_date
         flashcards_by_date[date] = [] if flashcards_by_date[date].nil?
         flashcards_by_date[date] << flashcard
@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   validates :name, :length => {:maximum => 25}
   validates :email, :presence => true,
                     :length => {:maximum => 100},
-                    :uniqueness => true,
+                    :uniqueness => { :case_sensitive => false },
                     :format => EMAIL_REGEX
   validates :password, :length => {:within => 6..25}
   
