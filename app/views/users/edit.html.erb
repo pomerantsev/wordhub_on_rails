@@ -1,0 +1,12 @@
+<h2>Настройки</h2>
+
+<%= form_for @user do |f| %>
+	<h4>Дневной лимит на создание карточек</h4>
+	<p>Его необязательно соблюдать, но это <%= link_to "очень подстёгивает", "about#everyDay" %>.</p>
+	<%= f.number_field :daily_limit %>
+
+	<span class="help-block"></span>
+	
+	<%= f.submit "Сохранить", :class => "btn btn-primary btnSaveSettings" %>
+
+<% end %>

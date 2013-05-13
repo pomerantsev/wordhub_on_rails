@@ -37,8 +37,8 @@
                     <li id = "userDropdownMenu" class="no-js-hide dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.name %> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class = "<%= active_class(:controller => "users", :action => "settings") %>">
-                                <%= link_to "Настройки", "#" %>
+                            <li class = "<%= active_class(:controller => "users", :action => "edit") %>">
+                                <%= link_to "Настройки", "/settings" %>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -48,8 +48,8 @@
                     </li>
                     <li id = "userMenuNoDropdown">
                         <ul class = "nav">
-                            <li class = "">
-                                <a href="#">Настройки</a>
+                            <li class = "<%= active_class(:controller => "users", :action => "edit") %>">
+                                <%= link_to "Настройки", "/settings" %>
                             </li>
                             <li class = "divider"></li>
                             <li>

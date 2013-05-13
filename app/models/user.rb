@@ -75,7 +75,8 @@ class User < ActiveRecord::Base
                     :length => {:maximum => 100},
                     :uniqueness => { :case_sensitive => false },
                     :format => EMAIL_REGEX
-  validates :password, :length => {:within => 6..25}
+  validates :password, :length => {:within => 6..25}, :on => :create
+  validates :daily_limit, :inclusion => { :in => 1..100 }
   
   before_save :create_hashed_password
   after_save :clear_password

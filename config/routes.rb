@@ -11,6 +11,9 @@ WhRails::Application.routes.draw do
   match "intro", :to => "static_pages#intro"
   match "about", :to => "static_pages#about"
 
+  match "signup", :to => "users#new"
+  match "settings", :to => "users#edit"
+
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
@@ -18,6 +21,8 @@ WhRails::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   
+  resources :users, :only => [:new, :create, :edit, :update]
+
   resources :flashcards
   
   resources :repetitions, :only => [:index, :update]
