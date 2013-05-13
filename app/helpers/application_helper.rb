@@ -17,6 +17,6 @@ module ApplicationHelper
   end
 
   def planned_repetitions_count_by_date
-      current_user.repetitions.planned_count_by_date unless current_user.nil?
+    Hash[current_user.repetitions.planned_count_by_date.sort] if current_user.present?
   end
 end
