@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
       flashcards_by_date = {}
       order("id ASC").each do |flashcard|
         date = flashcard.created_at.localtime.to_date
-        flashcards_by_date[date] = [] if flashcards_by_date[date].nil?
+        flashcards_by_date[date] ||= []
         flashcards_by_date[date] << flashcard
       end
       return flashcards_by_date
