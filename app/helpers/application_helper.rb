@@ -15,4 +15,8 @@ module ApplicationHelper
     return "toDo" if current_user.repetitions.planned.for(session[:date]).size > 0
     return "inactive"
   end
+
+  def planned_repetitions_count_by_date
+      current_user.repetitions.planned_count_by_date unless current_user.nil?
+  end
 end
