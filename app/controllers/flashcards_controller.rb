@@ -12,6 +12,7 @@ class FlashcardsController < ApplicationController
   
   def new
     @flashcard = current_user.flashcards.new
+    @page_title = "Новая карточка"
     render :form
   end
   
@@ -33,6 +34,7 @@ class FlashcardsController < ApplicationController
   
   
   def edit
+    @page_title = "Редактирование карточки"
     render :form
   end
   

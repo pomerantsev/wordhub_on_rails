@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class = "no-js">
 <head>
-  <title><%= "#{@page_title} &mdash; " if @page_title %>Вордхаб</title>
+  <title><%= "#{@page_title} &mdash; ".html_safe if @page_title %>Вордхаб</title>
   <meta name="Viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <!--<link href = "/stylesheets/invisible_menu.css" rel = "stylesheet" media = "all">-->
