@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
 
-	before_filter :confirm_logged_in
+	before_filter :confirm_logged_in, except: [:new, :create]
 
 	def new
 		@user = User.new
