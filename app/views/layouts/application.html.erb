@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html class = "no-js">
 <head>
   <title><%= "#{@page_title} &mdash; " if @page_title %>Вордхаб</title>
   <meta name="Viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <!--<link href = "/stylesheets/invisible_menu.css" rel = "stylesheet" media = "all">-->
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
