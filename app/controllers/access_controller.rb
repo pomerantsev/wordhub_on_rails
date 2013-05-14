@@ -8,7 +8,7 @@ class AccessController < ApplicationController
       session[:user_id] = authorized_user.id
       redirect_to flashcards_path
     else
-      flash[:notice] = "Неверный логин / пароль."
+      flash[:error] = "Неверный логин / пароль."
       redirect_to root_url
     end
   end

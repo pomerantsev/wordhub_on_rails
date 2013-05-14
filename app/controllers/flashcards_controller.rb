@@ -21,7 +21,7 @@ class FlashcardsController < ApplicationController
     if @flashcard.save
       redirect_to new_flashcard_path
     else
-      flash[:notice] = "Не получилось сохранить карточку. Проверьте правильность ввода."
+      flash.now[:error] = "Не получилось сохранить карточку. Проверьте правильность ввода."
       render :form
     end
   end
@@ -41,7 +41,7 @@ class FlashcardsController < ApplicationController
     if @flashcard.update_attributes(params[:flashcard])
       redirect_to @flashcard
     else
-      flash[:notice] = "Не получилось сохранить карточку. Проверьте правильность ввода."
+      flash.now[:error] = "Не получилось сохранить карточку. Проверьте правильность ввода."
       render :form
     end
   end
@@ -57,7 +57,7 @@ class FlashcardsController < ApplicationController
   def get_flashcard
     @flashcard = Flashcard.find_by_id(params[:id])
     if @flashcard.nil? || @flashcard.user != current_user
-      flash[:notice] = "У вас нет доступа к этой карточке."
+      flash[:error] = "У вас нет доступа к этой карточке."
       redirect_to flashcards_path
     end
   end

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 			session[:user_id] = @user.id
 			redirect_to flashcards_path
 		else
-			flash[:notice] = @user.errors.full_messages.inspect
+			flash.now[:error] = @user.errors.full_messages.inspect
 			render :new
 		end
 	end
@@ -26,14 +26,14 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find_by_id(params[:id])
 		if @user != current_user
-			flash[:notice] = "Вы пытаетесь изменить настройки для чужой учётной записи."
+			flash[:error] = "Вы пытаетесь изменить настройки для чужой учётной записи."
 			redirect_to edit_user_path
 		else
 			if @user.update_attributes(params[:user])
-				flash[:notice] = "Настройки сохранены."
+				flash[:success] = "Настройки сохранены."
 				redirect_to edit_user_path
 			else
-				flash[:notice] = @user.errors.full_messages.inspect
+				flash.now[:error] = @user.errors.full_messages.inspect
 				render :edit
 			end
 		end

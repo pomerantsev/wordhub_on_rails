@@ -35,7 +35,7 @@ class RepetitionsController < ApplicationController
     if @current_repetition.save
       
     else
-      flash[:notice] = "Не получилось записать результат повтора. Попробуйте ещё раз."
+      flash[:error] = "Не получилось записать результат повтора. Попробуйте ещё раз."
     end
     redirect_to repetitions_path
   end

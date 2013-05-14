@@ -9,15 +9,7 @@
 <body>
     <div class = "container">
         <%= render :partial => 'layouts/menu' %>
-        <div class = "row">
-            <div class = "span12">
-                <% if !flash[:notice].blank? %>
-                    <div class = "alert alert-error">
-                        <%= flash[:notice] %>
-                    </div>
-                <% end %>
-            </div>
-        </div>
+        <%= render :partial => 'layouts/alerts' %>
 
         <%= yield %>
         
