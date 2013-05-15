@@ -1,3 +1,5 @@
+$('html').removeClass('no-js').addClass('js');
+
 $('head').append('<link rel="stylesheet" media="all" href="/stylesheets/invisible_menu.css">');
 
 $(function() {
