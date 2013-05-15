@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::Base
   
+  # Чтобы хелперы были доступны во всех контроллерах.
   include ApplicationHelper
 
   protect_from_forgery
 
   before_filter :adjust_current_date
   
+  # Для использования этих методов внутри view.
   helper_method :current_user
   helper_method :logged_in
   
@@ -41,7 +43,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # Чтобы всё приложение вычисляло дату единым образом, используется одна переменная сессии.
+  # Чтобы всё приложение вычисляло дату единым образом, используется одна переменная сессии, которая обновляется перед каждым действием.
   def adjust_current_date
       session[:date] = Date.today
   end
