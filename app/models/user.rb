@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
   validates :daily_limit, :inclusion => { :in => 1..100 }
   
   before_save :create_hashed_password
+  before_save { email.downcase! }
   after_save :clear_password
   
   
