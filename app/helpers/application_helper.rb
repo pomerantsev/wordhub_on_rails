@@ -19,4 +19,8 @@ module ApplicationHelper
   def planned_repetitions_count_by_date
     Hash[current_user.repetitions.planned_count_by_date.sort] if current_user.present?
   end
+
+  def errors(object)
+    object.errors.full_messages.inspect if object.present?
+  end
 end

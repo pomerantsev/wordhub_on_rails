@@ -3,7 +3,7 @@
 class FlashcardsController < ApplicationController
   
   before_filter :confirm_logged_in
-  before_filter :get_flashcard, :only => [:show, :edit, :update, :destroy]
+  before_filter :get_flashcard, only: [:show, :edit, :update, :destroy]
   
   def index
     @flashcards_grouped_by_date = current_user.flashcards.grouped_by_date
@@ -22,31 +22,31 @@ class FlashcardsController < ApplicationController
     if @flashcard.save
       redirect_to new_flashcard_path
     else
-      flash.now[:error] = "Не получилось сохранить карточку. Проверьте правильность ввода."
+      flash.now[:error] = errors(@flashcard)
       render :form
     end
   end
   
-  
+
   def show
-    
   end
-  
-  
+    
+
   def edit
     @page_title = "Редактирование карточки"
     render :form
   end
   
-  
+
   def update
     if @flashcard.update_attributes(params[:flashcard])
       redirect_to @flashcard
     else
-      flash.now[:error] = "Не получилось сохранить карточку. Проверьте правильность ввода."
+      flash.now[:error] = errors(@flashcard)
       render :form
     end
   end
+  
   
   def destroy
     @flashcard.destroy
