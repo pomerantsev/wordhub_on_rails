@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   # Для использования этих методов внутри view.
   helper_method :current_user
   helper_method :logged_in
+  helper_method :current_date
   
   def index
     if logged_in
@@ -21,13 +22,18 @@ class ApplicationController < ActionController::Base
     session[:user_id]
   end
 
+  def current_date
+    session[:date]
+  end
+
 
   
   protected
   
   def confirm_logged_in
     if logged_in
-      current_user.repetitions.adjust_dates(session[:date])
+      # При каждом действии, если пользователь залогинен, сдвигаем все повторы, если хоть один остался с предыдущих дат.
+      current_user.repetitions.adjust_dates(current_date)
       return true
     else
       redirect_to root_url

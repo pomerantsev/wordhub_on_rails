@@ -7,12 +7,12 @@ module ApplicationHelper
   end
   
   def create_class
-    return "toDo" if current_user.flashcards.created_on(session[:date]).size < current_user.daily_limit
+    return "toDo" if current_user.flashcards.created_on(current_date).size < current_user.daily_limit
     return ""
   end
   
   def repeat_class
-    return "toDo" if current_user.repetitions.planned.for(session[:date]).size > 0
+    return "toDo" if current_user.repetitions.planned.for(current_date).size > 0
     return "inactive"
   end
 

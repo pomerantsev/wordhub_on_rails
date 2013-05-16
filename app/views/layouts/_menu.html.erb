@@ -12,13 +12,13 @@
                     <%= link_to new_flashcard_path, :class => create_class do %>
                         <span>Создать</span>
                          <!-- Пока до конца не понял, выводит ли created_on правильное значение, потому что Date.today в общем случае возвращает одно значение, а в базе сохраняется другое (связано с часовыми поясами) -->
-                        <span><small><%= current_user.flashcards.created_on(session[:date]).size %> из <%= current_user.daily_limit %></small></span>
+                        <span><small><%= current_user.flashcards.created_on(current_date).size %> из <%= current_user.daily_limit %></small></span>
                     <% end %>
                 </li>
                 <li class = "<%= active_class(:controller => "repetitions", :action => "index") %>">
                     <%= link_to repetitions_path, :class => repeat_class do %>
                         <span>Повторить</span>
-                        <span><small><%= current_user.repetitions.run.on(session[:date]).size %> из <%= current_user.repetitions.for(session[:date]).size %></small></span>
+                        <span><small><%= current_user.repetitions.run.on(current_date).size %> из <%= current_user.repetitions.for(current_date).size %></small></span>
                     <% end %>
                 </li>
                 

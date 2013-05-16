@@ -6,7 +6,7 @@ class RepetitionsController < ApplicationController
   before_filter :confirm_repetition_validity, :only => :update
   
   def index
-    @repetitions = current_user.repetitions.planned.for(session[:date])
+    @repetitions = current_user.repetitions.planned.for(current_date)
     if params[:view] && params[:repetition_id]
       @current_repetition = Repetition.find_by_id(params[:repetition_id])
       if @repetitions.include?(@current_repetition)
@@ -59,7 +59,7 @@ class RepetitionsController < ApplicationController
   
   def confirm_repetition_validity
     @current_repetition = Repetition.find(params[:id])
-    unless current_user.repetitions.planned.for(session[:date]).include?(@current_repetition)
+    unless current_user.repetitions.planned.for(current_date).include?(@current_repetition)
       redirect_to repetitions_path
     end
   end
