@@ -61,7 +61,9 @@ class FlashcardsController < ApplicationController
     if @flashcard.nil? || @flashcard.user != current_user
       flash[:error] = "У вас нет доступа к этой карточке."
       redirect_to flashcards_path
+      return false
     end
+    return true
   end
   
 end

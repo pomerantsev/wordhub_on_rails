@@ -52,6 +52,7 @@ class ApplicationController < ActionController::Base
   # Чтобы всё приложение вычисляло дату единым образом, используется одна переменная сессии, которая обновляется перед каждым действием.
   def adjust_current_date
       session[:date] = Date.today
+      return true
   end
   
 end

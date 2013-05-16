@@ -58,10 +58,12 @@ class RepetitionsController < ApplicationController
   
   
   def confirm_repetition_validity
-    @current_repetition = Repetition.find(params[:id])
+    @current_repetition = Repetition.find_by_id(params[:id])
     unless current_user.repetitions.planned.for(current_date).include?(@current_repetition)
       redirect_to repetitions_path
+      return false
     end
+    return true
   end
 
   
