@@ -4,13 +4,17 @@ class Repetition < ActiveRecord::Base
   
   belongs_to :flashcard
   
+  before_update :mark_as_run
+
   after_update :set_next
   
+
+  def mark_as_run
+  	self.run = true
+  end
   
   def set_next
-    if run
-      flashcard.set_next_repetition
-    end
+    flashcard.set_next_repetition
   end
   
 end
