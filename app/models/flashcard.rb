@@ -4,14 +4,23 @@ class Flashcard < ActiveRecord::Base
   
   attr_accessible :front_text, :back_text
   
+  validates :front_text, presence: true
+  validates :back_text, presence: true
+
   belongs_to :user
-  has_many :repetitions, :dependent => :destroy do
+  has_many :repetitions, dependent: :destroy do
     
+    # Высчитывается интервал между двумя последними повторами. 
+    # Используется при планировании даты следующего повтора.
+    # planned_date - устанавливается один раз, при создании повтора.
+    # actual_date - может отличаться: если пользователь пропускает день повтора, все повторы переносятся вперёд, и actual_date вместе с ними.
+    # Таким образом, следующий интервал зависит от запланированного предыдущего, а не реального.
+    # Это помогает избежать слишком больших интервалов между следующими повторами, если между предыдущими много дней было пропущено.
     def last_planned_interval
       if size == 0
         0
       elsif size == 1
-        first.planned_date - first.created_at.to_date
+        first.planned_date - first.created_at.localtime.to_date
       else
         last_two_repetitions = offset(size - 2)
         last_two_repetitions.last.planned_date - last_two_repetitions.first.actual_date
@@ -20,21 +29,22 @@ class Flashcard < ActiveRecord::Base
   
   end
   
-  
-  
-  validates :front_text, :presence => true
-  validates :back_text, :presence => true
+
   
   after_create :set_first_repetition
   
   
-  
+
+  # Первый повтор - через 1-3 дня после создания карточки.
   def set_first_repetition
     first_repetition_date = Date.today + rand(1..3).days
     self.consecutive_successful_repetitions = 0
-    repetitions.create :planned_date => first_repetition_date, :actual_date => first_repetition_date
+    repetitions.create planned_date: first_repetition_date, actual_date: first_repetition_date
   end
   
+
+  # Если последний повтор был удачным - следующий запланировать с интервалом, в 2-3 раза превышающим предыдущий.
+  # Если нет, то следующий, как и первый, должен быть через 1-3 дня после текущего.
   def set_next_repetition
     if repetitions.last.successful
       self.consecutive_successful_repetitions += 1
@@ -45,11 +55,14 @@ class Flashcard < ActiveRecord::Base
     end
     save
     if consecutive_successful_repetitions < 3
+      # repetitions.last.actual_date будет всегда равен сегодняшнему дню.
       next_repetition_date = repetitions.last.actual_date + next_planned_interval.days
-      repetitions.create :planned_date => next_repetition_date, :actual_date => next_repetition_date
+      repetitions.create planned_date: next_repetition_date, actual_date: next_repetition_date
     end
   end
   
+
+  # Если карточку повторили 3 раза (больше - это на всякий случай), то она считается выученной.
   def learned?
     consecutive_successful_repetitions >= 3
   end
