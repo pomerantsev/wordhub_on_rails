@@ -56,7 +56,7 @@ class Flashcard < ActiveRecord::Base
     save
     if consecutive_successful_repetitions < 3
       # repetitions.last.actual_date будет всегда равен сегодняшнему дню.
-      next_repetition_date = repetitions.last.actual_date + next_planned_interval.days
+      next_repetition_date = repetitions.order("id ASC").last.actual_date + next_planned_interval.days
       repetitions.create planned_date: next_repetition_date, actual_date: next_repetition_date
     end
   end
