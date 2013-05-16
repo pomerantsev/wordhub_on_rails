@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 			session[:user_id] = @user.id
 			redirect_to flashcards_path
 		else
-			flash.now[:error] = @user.errors.full_messages.inspect
+			flash.now[:error] = errors(@user)
 			render :new
 		end
 	end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 				flash[:success] = "Настройки сохранены."
 				redirect_to edit_user_path
 			else
-				flash.now[:error] = @user.errors.full_messages.inspect
+				flash.now[:error] = errors(@user)
 				render :edit
 			end
 		end
