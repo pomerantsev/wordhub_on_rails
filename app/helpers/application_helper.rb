@@ -2,6 +2,7 @@ module ApplicationHelper
 
   # Хелпер для определения, активен ли определённый пункт меню.
   def active_class(paths = [])
+    # На случай, если пользователь передал не массив, а строку.
     paths = [paths] if paths.class != Array
     return "active" if paths.include?(request.fullpath)
     return ""

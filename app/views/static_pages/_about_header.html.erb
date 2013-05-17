@@ -1,5 +1,9 @@
 <h2>О сайте</h2>
 <ul class = "nav nav-pills">
-    <li class = "<%= active_class(intro_path) %>"><%= link_to "Коротко", intro_path %></li>
-    <li class = "<%= active_class(about_path) %>"><%= link_to "Подробно", about_path %></li>
+    <%= content_tag :li, :class => active_class(intro_path) do %>
+    	<%= link_to "Коротко", intro_path %>
+    <% end %>
+    <%= content_tag :li, :class => active_class(about_path) do %>
+    	<%= link_to "Подробно", about_path %>
+    <% end %>
 </ul>

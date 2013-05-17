@@ -1,6 +1,6 @@
-<li class = "<%= active_class(settings_path) %>">
+<%= content_tag :li, :class => active_class(settings_path) do %>
     <%= link_to "Настройки", settings_path %>
-</li>
+<% end %>
 <li class = "divider"></li>
 <li>
     <%= link_to "Выйти", logout_path %>
