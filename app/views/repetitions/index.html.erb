@@ -27,7 +27,7 @@
 <%= link_to @reverse_text, repetitions_path(:repetition_id => @current_repetition.id, :view => @current_view), :class => "hero-unit flashcard flashcard-hidden" %>
     
 <div class = "progress">
-    <div class = "bar" style = "width: <%= current_user.repetitions.progress_today * 100 %>%"></div>
+    <%= content_tag :div, nil, :class => "bar", style: "width: #{current_user.repetitions.progress_today * 100}%" %>
 </div>
     
 <% end %>

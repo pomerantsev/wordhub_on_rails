@@ -4,14 +4,13 @@
   <title><%= "#{@page_title} &mdash; ".html_safe if @page_title %>Вордхаб</title>
   <meta name="Viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <!--<link href = "/stylesheets/invisible_menu.css" rel = "stylesheet" media = "all">-->
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
     <div class = "container">
-        <%= render :partial => 'layouts/menu' %>
-        <%= render :partial => 'layouts/alerts' %>
+        <%= render 'layouts/menu' %>
+        <%= render 'layouts/alerts' %>
 
         <%= yield %>
         
