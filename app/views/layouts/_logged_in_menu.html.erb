@@ -1,0 +1,44 @@
+<a class="btn btn-navbar fat-menu-center no-js-hide" data-toggle="collapse" data-target=".nav-collapse">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</a>
+
+<ul id = "elementBeforeDropdown" class = "nav pull-left">
+    <li class = "<%= active_class(:controller => "flashcards", :action => "new") %>">
+        <%= link_to new_flashcard_path, :class => create_class do %>
+            <span>Создать</span>
+            <span><small><%= current_user.flashcards.created_on(current_date).size %> из <%= current_user.daily_limit %></small></span>
+        <% end %>
+    </li>
+    <li class = "<%= active_class(:controller => "repetitions", :action => "index") %>">
+        <%= link_to repetitions_path, :class => repeat_class do %>
+            <span>Повторить</span>
+            <span><small><%= current_user.repetitions.run.on(current_date).size %> из <%= current_user.repetitions.for(current_date).size %></small></span>
+        <% end %>
+    </li>
+    
+</ul>
+
+<!-- Этот ul Яваскриптом обрамляется в div, чтобы в случае, если Яваскрипт не работает, меню работало, хоть и выглядело бы некрасиво. -->
+<ul id = "dropdownMenu" class="fat-menu-center nav pull-right"> <!-- Класс fat-menu-center - чтобы пункты меню в "толстом" меню не были приклеены к верху, а появлялись посередине. -->
+    <li class = "<%= active_class(:controller => "flashcards", :action => "index") %>">
+        <%= link_to "Все карточки", flashcards_path %>
+    </li>
+    <%= render "layouts/about" %>
+    <!-- Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него. -->
+    <li id = "userDropdownMenu" class="no-js-hide dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= current_user.name.blank? ? current_user.email : current_user.name%>
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <%= render "layouts/dropdown" %>
+        </ul>
+    </li>
+    <li id = "userMenuNoDropdown">
+        <ul class = "nav">
+            <%= render "layouts/dropdown" %>
+        </ul>
+    </li>
+</ul>
