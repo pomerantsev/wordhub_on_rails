@@ -1,10 +1,8 @@
 module ApplicationHelper
 
   # Хелпер для определения, активен ли определённый пункт меню.
-  def active_class(page = {})
-    current_controller = true if params[:controller] == page[:controller] || page[:controller].nil?
-    current_action = true if page[:action].include?(params[:action]) || page[:action].nil?
-    return "active" if current_controller && current_action
+  def active_class(paths = [])
+    return "active" if paths.include?(request.fullpath)
     return ""
   end
 
