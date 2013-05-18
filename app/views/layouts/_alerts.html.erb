@@ -1,7 +1,17 @@
 <div class = "row">
     <div class = "span12">
         <% flash.each do |key, value| %>
-            <%= content_tag :div, value, class: "alert alert-#{key}" %>
+            <% if value.class == Array && value.size > 1 %>
+            	<%= content_tag :div, class: "alert alert-#{key}" do %>
+	            	<% value.each do |li| %>
+	            		<%= content_tag :li, li %>
+	            	<% end %>
+	            <% end %>
+	        <% elsif value.class == Array && value.size == 1 %>
+	        	<%= content_tag :div, value[0], class: "alert alert-#{key}" %>
+            <% else %>
+            	<%= content_tag :div, value, class: "alert alert-#{key}" %>
+            <% end %>
         <% end %>
     </div>
 </div>

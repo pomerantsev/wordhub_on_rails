@@ -32,11 +32,8 @@ module ApplicationHelper
   # Хелпер для вывода сообщения об ошибке сохранения в базу.
   def errors(object)
     if object.present?
-      message = "<ul>".html_safe
-      object.errors.full_messages.each do |msg|
-        message += "<li>#{msg}</li>".html_safe
-      end
-      return message + "</ul>".html_safe
+      object.errors.full_messages
     end
   end
+  
 end
