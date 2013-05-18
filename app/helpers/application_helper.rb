@@ -11,14 +11,14 @@ module ApplicationHelper
   
   # Класс для выделения цветом пункта меню "Создать", если на сегодня ещё не все карточки созданы.
   def create_class
-    return "toDo" if current_user.flashcards.created_on(current_date).size < current_user.daily_limit
+    return "to-do" if current_user.flashcards.created_on(current_date).size < current_user.daily_limit
     return ""
   end
 
   
   # Класс для выделения цветом пункта меню "Повторить" в зависимости от того, всё ли запланированное на сегодня повторено.
   def repeat_class
-    return "toDo" if current_user.repetitions.planned.for(current_date).size > 0
+    return "to-do" if current_user.repetitions.planned.for(current_date).size > 0
     return "inactive"
   end
 
