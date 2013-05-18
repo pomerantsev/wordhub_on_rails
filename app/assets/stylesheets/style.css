@@ -287,3 +287,10 @@ a.hero-unit.flashcard-hidden {
     margin: 0;
     border-top: none;
 }
+
+
+
+/* Ссылка на удаление в форме редактирования карточки. */
+.destroy-link {
+    line-height: 30px;
+}

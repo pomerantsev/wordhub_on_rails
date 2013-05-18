@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :adjust_current_date
+  before_filter :wipe_deleted_flashcards
   
   # Для использования этих методов внутри view.
   helper_method :current_user
@@ -51,8 +52,15 @@ class ApplicationController < ActionController::Base
 
   # Чтобы всё приложение вычисляло дату единым образом, используется одна переменная сессии, которая обновляется перед каждым действием.
   def adjust_current_date
-      session[:date] = Date.today
-      return true
+    session[:date] = Date.today
+    return true
+  end
+
+  def wipe_deleted_flashcards
+    if current_user
+      flashcards_deleted_before_today = current_user.flashcards.deleted_before(current_date)
+      flashcards_deleted_before_today.each { |flashcard| flashcard.destroy }
+    end
   end
   
 end

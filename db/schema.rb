@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515110040) do
+ActiveRecord::Schema.define(:version => 20130518084244) do
 
   create_table "flashcards", :force => true do |t|
     t.integer  "user_id"
     t.text     "front_text"
     t.text     "back_text"
     t.integer  "consecutive_successful_repetitions", :default => 0
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
+    t.boolean  "deleted",                            :default => false
   end
 
   create_table "repetitions", :force => true do |t|

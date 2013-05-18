@@ -3,10 +3,11 @@
 class FlashcardsController < ApplicationController
   
   before_filter :confirm_logged_in
-  before_filter :get_flashcard, only: [:show, :edit, :update, :destroy]
+  before_filter :get_flashcard, only: [:edit, :update, :destroy]
   
   def index
     @flashcards_grouped_by_date = current_user.flashcards.grouped_by_date
+    @deleted_flashcards = current_user.flashcards.deleted
   end
   
   
@@ -26,10 +27,6 @@ class FlashcardsController < ApplicationController
       render :form
     end
   end
-  
-
-  def show
-  end
     
 
   def edit
@@ -40,7 +37,7 @@ class FlashcardsController < ApplicationController
 
   def update
     if @flashcard.update_attributes(params[:flashcard])
-      redirect_to @flashcard
+      redirect_to flashcards_path(anchor: @flashcard.id)
     else
       flash.now[:error] = errors(@flashcard)
       render :form
@@ -49,7 +46,21 @@ class FlashcardsController < ApplicationController
   
   
   def destroy
-    @flashcard.destroy
+    @flashcard.update_attribute(:deleted, true)
+    flash[:success] = "Карточка удалена. Но сегодня её ещё можно восстановить."
+    redirect_to flashcards_path
+  end
+
+
+  def undelete
+    if params[:flashcards].present?
+      params[:flashcards].each do |id|
+        flashcard = current_user.flashcards.deleted.find_by_id(id)
+        unless flashcard.nil?
+          flashcard.update_attribute(:deleted, false)
+        end
+      end
+    end
     redirect_to flashcards_path
   end
   

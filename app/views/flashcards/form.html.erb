@@ -11,6 +11,13 @@
         </div>
     </div>
     
-    <%= submit_tag "Сохранить", :class => "btn btn-block" %>
+    <% if request.fullpath == new_flashcard_path %>
+        <%= submit_tag "Создать", :class => "btn btn-block" %>
+    <% elsif request.fullpath.include? edit_flashcard_path %>
+        <%= submit_tag "Сохранить", :class => "btn span10" %>
+        <div class = "span2 pull-right">
+            <%= link_to "Удалить", @flashcard, method: :delete, class: "destroy-link" %>
+        </div>
+    <% end %>
 
 <% end %>

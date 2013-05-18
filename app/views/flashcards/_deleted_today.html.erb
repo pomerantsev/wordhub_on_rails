@@ -1,0 +1,12 @@
+<% unless @deleted_flashcards.empty? %>
+	<p>Удалённые сегодня:</p>
+	<%= form_tag undelete_flashcards_path do %>
+		<% @deleted_flashcards.each do |flashcard| %>
+			<%= label_tag flashcard.id, class: "checkbox" do %>
+				<%= check_box_tag "flashcards[]", flashcard.id %>
+				<%= first_line(flashcard.front_text) %>
+			<% end %>
+		<% end %>
+		<%= submit_tag "Восстановить", :class => "btn btn-primary" %>
+	<% end %>
+<% end %>

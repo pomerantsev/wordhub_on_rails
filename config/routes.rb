@@ -23,7 +23,9 @@ WhRails::Application.routes.draw do
   
   resources :users, :only => [:new, :create, :edit, :update]
 
-  resources :flashcards
+  resources :flashcards, except: :show do
+    collection { post :undelete }
+  end
   
   resources :repetitions, :only => [:index, :update]
 

@@ -24,6 +24,14 @@ class User < ActiveRecord::Base
       end
       return flashcards_by_date
     end
+
+    def deleted
+      Flashcard.unscoped { where deleted: true }
+    end
+
+    def deleted_before(date)
+      deleted.where("updated_at < ?", date.to_time)
+    end
     
   end
 
