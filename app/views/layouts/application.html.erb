@@ -8,27 +8,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <div class = "container">
-        <%= render 'layouts/menu' %>
-        <%= render 'layouts/alerts' %>
+  <div class = "container">
+    <%= render 'layouts/menu' %>
+    <%= render 'layouts/alerts' %>
 
-        <%= yield %>
-        
-        <div class = "push"></div>
+    <%= yield %>
+    
+    <div class = "push"></div>
+  </div>
+  <footer class = "footer">
+    <div class = "container">
+      <p class = "copyright">2013, <%= link_to "Павел Померанцев", "http://pomerantsev.moikrug.ru/" %></p>
+      <p class = "email"><%= mail_to "pomerantsevp@gmail.com" %></p>
     </div>
-    <footer class = "footer">
-        <div class = "container">
-            <div class = "row">
-                <div class = "span12">
-                    <p class = "copyright">2013, <%= link_to "Павел Померанцев", "http://pomerantsev.moikrug.ru/" %></p>
-                    <p class = "email"><%= mail_to "pomerantsevp@gmail.com" %></p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <% if Rails.env.development? %>
-      <%= debug(params) %>
-      <%= planned_repetitions_count_by_date %>
-    <% end %>
+  </footer>
+  <% if Rails.env.development? %>
+    <%= debug(params) %>
+    <%= planned_repetitions_count_by_date %>
+  <% end %>
 </body>
 </html>
