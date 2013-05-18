@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   
   def index
     if logged_in
-      redirect_to flashcards_path
+      redirect_to new_flashcard_path
     end
   end
   
