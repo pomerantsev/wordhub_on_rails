@@ -12,7 +12,7 @@ body {
     display: block;
 }
 
-.navbar .nav > li > a.toDo {
+.navbar .nav > li > a.to-do {
     color: #468847;
     text-shadow: 0 1px 0 #f0fff1; /* Поменял цвет тени с белого, чтобы лучше гармонировало с зелёным цветом шрифта. */
     font-weight: bold;
@@ -39,21 +39,21 @@ body {
 
 /* Этот огород нагорожен из-за IE8. Сначала считываются стили для высокого разрешения, затем они переопределяются для маленьких (только в браузерах, поддерживающих media queries). */
 
-.navbar .nav.fat-menu-center, #userMenuNoDropdown {
+.navbar .nav.fat-menu-center, #user-menu-no-dropdown {
     height: 61px;
 }
 
-.navbar .nav.fat-menu-center > li > a, #userMenuNoDropdown li > a {
+.navbar .nav.fat-menu-center > li > a, #user-menu-no-dropdown li > a {
     padding-top: 20px;
     padding-bottom: 21px;
 }
 
 @media (max-width: 979px) {
-    .navbar .nav.fat-menu-center, #userMenuNoDropdown {
+    .navbar .nav.fat-menu-center, #user-menu-no-dropdown {
         height: auto;
     }
     
-    .navbar .nav.fat-menu-center > li > a, #userMenuNoDropdown li > a {
+    .navbar .nav.fat-menu-center > li > a, #user-menu-no-dropdown li > a {
         padding-top: 9px;
         padding-bottom: 9px;
     }
@@ -135,7 +135,7 @@ ol li {
 }
 
 @media (max-width: 979px) {
-    #userDropdownMenu {
+    #user-dropdown-menu {
         display: none;
     }
 }
@@ -144,20 +144,20 @@ ol li {
 
 /* Четыре селектора ниже - комбинация, которая, помимо современных браузеров, будет работать в старых IE. */
 
-#userMenuNoDropdown {
+#user-menu-no-dropdown {
     display: none;
 }
 
-.no-js #userMenuNoDropdown {
+.no-js #user-menu-no-dropdown {
     display: block;
 }
 
 @media (max-width: 979px) {
-    #userMenuNoDropdown {
+    #user-menu-no-dropdown {
         display: none;
     }
     
-    .js #userMenuNoDropdown {
+    .js #user-menu-no-dropdown {
         display: block;
     }
 }
@@ -167,7 +167,7 @@ ol li {
 /* Форма входа на главной странице. Хак для формы, помещённой в span3. */
 
 @media (min-width: 768px) and (max-width: 980px) {
-    #loginForm input {
+    #login-form input {
         width: 152px;
     }
 }
@@ -247,7 +247,7 @@ a.hero-unit {
 /* Это чтобы ссылка "Регистрация" на некоторых разрешениях правильно отображалась. */
 
 @media (min-width: 768px) and (max-width: 1199px) {
-    .registerLink {
+    .register-link {
         padding-left: 0;
         margin-top: 10px;
     }
@@ -256,7 +256,7 @@ a.hero-unit {
 
 
 /* Чтобы кнопка на странице настроек была с таким же margin-ом сверху, как и заголовки. */
-.btnSaveSettings {
+.btn-save-settings {
     margin-top: 30px;
 }
 

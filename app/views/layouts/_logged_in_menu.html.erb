@@ -29,7 +29,7 @@
     <% end %>
     <%= render "layouts/about" %>
     <!-- Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него. -->
-    <li id = "userDropdownMenu" class="no-js-hide dropdown">
+    <li id = "user-dropdown-menu" class="no-js-hide dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <%= current_user.name.blank? ? current_user.email : current_user.name %>
             <b class="caret"></b>
@@ -38,7 +38,7 @@
             <%= render "layouts/dropdown" %>
         </ul>
     </li>
-    <li id = "userMenuNoDropdown">
+    <li id = "user-menu-no-dropdown">
         <ul class = "nav">
             <%= render "layouts/dropdown" %>
         </ul>
