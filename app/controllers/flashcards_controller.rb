@@ -7,7 +7,7 @@ class FlashcardsController < ApplicationController
   
   def index
     @flashcards_grouped_by_date = current_user.flashcards.grouped_by_date
-    @deleted_flashcards = current_user.flashcards.deleted
+    @deleted_flashcards = current_user.flashcards.deleted.order("updated_at ASC")
   end
   
   
