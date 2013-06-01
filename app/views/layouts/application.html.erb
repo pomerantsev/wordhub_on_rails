@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class = "no-js">
 <head>
-  <title><%= "#{@page_title} &mdash; ".html_safe if @page_title %>Вордхаб</title>
+  <title><%= full_title(@page_title) %></title>
   <meta name="Viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -22,9 +22,10 @@
       <p class = "email"><%= mail_to "pomerantsevp@gmail.com" %></p>
     </div>
   </footer>
-  <% if Rails.env.development? %>
+  <% if Rails.env.development? or Rails.env.test? %>
     <%= debug(params) %>
     <%= planned_repetitions_count_by_date %>
+    <%= User.all.inspect %>
   <% end %>
 </body>
 </html>

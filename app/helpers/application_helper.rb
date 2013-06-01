@@ -1,4 +1,15 @@
+# coding: UTF-8
+
 module ApplicationHelper
+
+  def full_title(title = nil)
+    base_title = "Вордхаб"
+    if title.nil? or title.blank?
+      base_title
+    else
+      "#{title} &mdash; #{base_title}".html_safe
+    end
+  end
 
   # Хелпер для определения, активен ли определённый пункт меню.
   def active_class(paths = [])
