@@ -70,7 +70,7 @@ class Flashcard < ActiveRecord::Base
       next_planned_interval = rand(1..3)
     end
     save
-    if consecutive_successful_repetitions < 3
+    if consecutive_successful_repetitions < WhRails::Application.config.max_consecutive_successful_repetitions
       # repetitions.last.actual_date будет всегда равен сегодняшнему дню.
       next_repetition_date = repetitions.order("id ASC").last.actual_date + next_planned_interval.days
       repetitions.create planned_date: next_repetition_date, actual_date: next_repetition_date
@@ -80,7 +80,7 @@ class Flashcard < ActiveRecord::Base
 
   # Если карточку повторили 3 раза (больше - это на всякий случай), то она считается выученной.
   def learned?
-    consecutive_successful_repetitions >= 3
+    consecutive_successful_repetitions >= WhRails::Application.config.max_consecutive_successful_repetitions
   end
   
 end

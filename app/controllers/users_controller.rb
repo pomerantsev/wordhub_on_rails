@@ -19,6 +19,12 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def show
+		@total_stats = current_user.total_stats
+		@stats_for_today = current_user.stats_for_period(1.day)
+		@stats_for_last_month = current_user.stats_for_period(30.days)
+	end
+
 	def edit
 		@user = current_user
 	end

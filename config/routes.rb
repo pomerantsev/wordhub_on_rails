@@ -6,13 +6,15 @@ WhRails::Application.routes.draw do
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
   
-  match "attempt_login", :to => "access#attempt_login"
-  match "logout", :to => "access#logout"
-  match "intro", :to => "static_pages#intro"
-  match "about", :to => "static_pages#about"
+  match "attempt_login", to: "access#attempt_login"
+  match "logout", to: "access#logout"
+  match "intro", to: "static_pages#intro"
+  match "about", to: "static_pages#about"
 
-  match "signup", :to => "users#new"
-  match "settings", :to => "users#edit"
+  match "signup", to: "users#new"
+  match "settings", to: "users#edit"
+
+  match "stats", to: "users#show"
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
@@ -21,13 +23,13 @@ WhRails::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   
-  resources :users, :only => [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :show, :edit, :update]
 
   resources :flashcards, except: :show do
     collection { post :undelete }
   end
   
-  resources :repetitions, :only => [:index, :update]
+  resources :repetitions, only: [:index, :update]
 
   # Sample resource route with options:
   #   resources :products do
@@ -64,7 +66,7 @@ WhRails::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'application#index'
+  root to: 'application#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -58,5 +58,8 @@ module WhRails
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Сколько повторов нужно для того, чтобы карточка считалась выученной.
+    config.max_consecutive_successful_repetitions = 3
   end
 end

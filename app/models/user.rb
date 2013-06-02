@@ -25,8 +25,12 @@ class User < ActiveRecord::Base
     
     # Карточки пользователя, созданные в определённую дату (пока - по времени сервера).
     def created_on(date)
-      beginning_of_day = date.to_time   # Так можно вычислить полночь в часовом поясе сервера.
-      where(created_at: beginning_of_day..(beginning_of_day + 1.day))
+      created_between(date, date)
+    end
+
+    def created_between(start_date, end_date)
+      # date.to_time - так можно вычислить полночь в часовом поясе сервера.
+      where(created_at: start_date.to_time..(end_date.to_time + 1.day))
     end
     
 
@@ -39,6 +43,24 @@ class User < ActiveRecord::Base
       end
       return flashcards_by_date
     end
+
+
+    def learned
+      where("consecutive_successful_repetitions >= ?", WhRails::Application.config.max_consecutive_successful_repetitions)
+    end
+
+
+    def learned_between_count(start_date, end_date)
+      repetitions_for_learned_flashcards = learned.joins(:repetitions).select("flashcards.id AS id, repetitions.actual_date AS actual_date").order("actual_date DESC")
+      ids = []
+      repetitions_for_learned_flashcards.each do |r|
+        if !ids.include?(r.id.to_i) and r.actual_date.to_date.between?(start_date, end_date)
+          ids += [r.id.to_i]
+        end
+      end
+      return ids.size
+    end
+
 
     def deleted
       Flashcard.unscoped { where deleted: true }
@@ -125,6 +147,27 @@ class User < ActiveRecord::Base
   after_save :clear_password
   
   
+  def total_stats
+    nearest_date = repetitions.planned.minimum(:actual_date)
+    { total_flashcards: flashcards.count,
+      learned_flashcards: flashcards.learned.count,
+      total_planned_repetitions: repetitions.planned.count,
+      nearest_date: nearest_date,
+      planned_repetitions_for_nearest_date: repetitions.planned.for(nearest_date).count,
+      last_date_with_planned_repetitions: repetitions.planned.maximum(:actual_date) }
+  end
+
+
+  def stats_for_period(period)
+    return {} unless period > 0
+    end_date = Date.today
+    # На случай, если в функцию будет передан период, не кратный дню.
+    # Тогда всё равно произойдёт округление до дня в бОльшую сторону.
+    start_date = (end_date.to_time - period + 1.day).to_date
+    { created: flashcards.created_between(start_date, end_date).count,
+      learned: flashcards.learned_between_count(start_date, end_date) }
+  end
+
 
   def password_match?(password = "")
     if salt.present?
