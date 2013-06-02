@@ -294,3 +294,21 @@ a.hero-unit.flashcard-hidden {
 .destroy-link {
     line-height: 30px;
 }
+
+/* Блок для восстановления удалённых карточек. */
+.deleted-today-oneline {
+    display: none;
+    margin: 20px 0;
+}
+
+.deleted-today-oneline a {
+    color: gray;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.deleted-today-oneline a.just-deleted {
+    color: white;
+    background-color: #468847;
+}

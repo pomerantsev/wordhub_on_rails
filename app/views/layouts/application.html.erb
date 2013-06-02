@@ -25,6 +25,7 @@
   <% if Rails.env.development? or Rails.env.test? %>
     <%= debug(params) %>
     <%= planned_repetitions_count_by_date %>
+    <!-- Это для дебага тестов. -->
     <%= User.all.inspect %>
   <% end %>
 </body>

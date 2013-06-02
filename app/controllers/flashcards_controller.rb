@@ -8,6 +8,8 @@ class FlashcardsController < ApplicationController
   def index
     @flashcards_grouped_by_date = current_user.flashcards.grouped_by_date
     @deleted_flashcards = current_user.flashcards.deleted.order("updated_at ASC")
+    @just_deleted = session[:just_deleted]
+    session[:just_deleted] = nil
   end
   
   
@@ -47,7 +49,7 @@ class FlashcardsController < ApplicationController
   
   def destroy
     @flashcard.update_attribute(:deleted, true)
-    flash[:success] = "Карточка удалена. Но сегодня её ещё можно восстановить."
+    session[:just_deleted] = true
     redirect_to flashcards_path
   end
 

@@ -16,7 +16,7 @@
     <% elsif request.fullpath.include? edit_flashcard_path %>
         <%= submit_tag "Сохранить", :class => "btn span10" %>
         <div class = "span2 pull-right">
-            <%= link_to "Удалить", @flashcard, method: :delete, class: "destroy-link" %>
+            <%= button_to "Удалить", @flashcard, method: :delete, class: "btn btn-link destroy-link" %>
         </div>
     <% end %>
 

@@ -6,4 +6,9 @@ FactoryGirl.define do
 		email "ivan@example.com"
 		password "secretpassword"
 	end
+
+	factory :flashcard do
+    sequence(:front_text)  { |n| "Lorem ipsum #{n}" }
+    sequence(:back_text) { |n| "Лорем ипсум #{n}" }   
+  end
 end
