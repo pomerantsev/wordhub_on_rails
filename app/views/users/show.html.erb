@@ -7,70 +7,53 @@
 	<div class = "span4">
 		<h3>Общая</h3>
 		<table class = "table">
-			<tr>
-				<td>Всего карточек:</td>
-				<td><%= render partial: "stats_element", locals: { value: @total_stats[:total_flashcards] } %></td>
-			</tr>
-			<tr>
-				<td>Из них выучено:</td>
-				<td><%= render partial: "stats_element", locals: { value: @total_stats[:learned_flashcards] } %></td>
-			</tr>
-			<tr>
-				<td>Всего запланировано повторов:</td>
-				<td><%= render partial: "stats_element", locals: { value: @total_stats[:total_planned_repetitions] } %></td>
-			</tr>
-			<tr>
-				<td>Ближайшие повторы:</td>
-				<td><%= render partial: "stats_element", locals: { value: "#{@total_stats[:planned_repetitions_for_nearest_date]} (#{@total_stats[:nearest_date]})" } %></td>
-			</tr>
-			<tr>
-				<td>Запланировано повторов до:</td>
-				<td><%= render partial: "stats_element", locals: { value: @total_stats[:last_date_with_planned_repetitions] } %></td>
-			</tr>
-		</table>
-	</div>
-
-	<div class = "span4">
-		<h3>Сегодня</h3>
-		<table class = "table">
-			<tr>
-				<td>Создано:</td>
-				<td><%= render partial: "stats_element", locals: { value: @stats_for_today[:created] } %></td>
-			</tr>
-			<tr>
-				<td>Выучено:</td>
-				<td><%= render partial: "stats_element", locals: { value: @stats_for_today[:learned] } %></td>
-			</tr>
-			<tr>
-				<td>Всего повторов:</td>
-				<td><%= render partial: "stats_element", locals: { value: @stats_for_today[:repetitions_run] } %></td>
-			</tr>
-			<tr>
-				<td>Из них успешных:</td>
-				<td><%= render partial: "stats_element", locals: { value: "#{@stats_for_today[:successful_repetitions]} (#{@stats_for_today[:successful_repetitions_percentage]}%)" } %></td>
-			</tr>
+			<% [{ name: "Всего карточек:",
+						value: @total_stats[:total_flashcards] },
+					{ name: "Из них выучено:",
+						value: @total_stats[:learned_flashcards] },
+					{ name: "Всего запланировано повторов:",
+						value: @total_stats[:total_planned_repetitions] },
+					{ name: "Ближайшие повторы:",
+						value: "#{@total_stats[:planned_repetitions_for_nearest_date]} (#{@total_stats[:nearest_date]})" },
+					{ name: "Запланировано повторов до:",
+						value: @total_stats[:last_date_with_planned_repetitions] }
+				 ].each do |row| %>
+				<%= render partial: "stats_element", locals: { name: row[:name], value: row[:value] } %>	
+			<% end %>
 		</table>
 	</div>
 
 	<div class = "span4">
 		<h3>За месяц</h3>
 		<table class = "table">
-			<tr>
-				<td>Создано:</td>
-				<td><%= render partial: "stats_element", locals: { value: @stats_for_last_month[:created] } %></td>
-			</tr>
-			<tr>
-				<td>Выучено:</td>
-				<td><%= render partial: "stats_element", locals: { value: @stats_for_last_month[:learned] } %></td>
-			</tr>
-			<tr>
-				<td>Всего повторов:</td>
-				<td><%= render partial: "stats_element", locals: { value: @stats_for_last_month[:repetitions_run] } %></td>
-			</tr>
-			<tr>
-				<td>Из них успешных:</td>
-				<td><%= render partial: "stats_element", locals: { value: "#{@stats_for_last_month[:successful_repetitions]} (#{@stats_for_last_month[:successful_repetitions_percentage]}%)" } %></td>
-			</tr>
+			<% [{ name: "Создано:",
+						value: @stats_for_last_month[:created] },
+					{ name: "Выучено:",
+						value: @stats_for_last_month[:learned] },
+					{ name: "Всего повторов:",
+						value: @stats_for_last_month[:repetitions_run] },
+					{ name: "Из них успешных:",
+						value: "#{@stats_for_last_month[:successful_repetitions]} (#{@stats_for_last_month[:successful_repetitions_percentage]}%)" }
+				 ].each do |row| %>
+				<%= render partial: "stats_element", locals: { name: row[:name], value: row[:value] } %>	
+			<% end %>
+		</table>
+	</div>
+
+	<div class = "span4">
+		<h3>Сегодня</h3>
+		<table class = "table">
+			<% [{ name: "Создано:",
+						value: @stats_for_today[:created] },
+					{ name: "Выучено:",
+						value: @stats_for_today[:learned] },
+					{ name: "Всего повторов:",
+						value: @stats_for_today[:repetitions_run] },
+					{ name: "Из них успешных:",
+						value: "#{@stats_for_today[:successful_repetitions]} (#{@stats_for_today[:successful_repetitions_percentage]}%)" }
+				 ].each do |row| %>
+				<%= render partial: "stats_element", locals: { name: row[:name], value: row[:value] } %>	
+			<% end %>
 		</table>
 	</div>
 
