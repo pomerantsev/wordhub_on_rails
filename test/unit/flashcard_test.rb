@@ -10,6 +10,7 @@
 #  created_at                         :datetime         not null
 #  updated_at                         :datetime         not null
 #  deleted                            :boolean          default(FALSE)
+#  learned_on                         :date
 #
 
 require 'test_helper'

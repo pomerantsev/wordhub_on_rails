@@ -50,15 +50,8 @@ class User < ActiveRecord::Base
     end
 
 
-    def learned_between_count(start_date, end_date)
-      repetitions_for_learned_flashcards = learned.joins(:repetitions).select("flashcards.id AS id, repetitions.actual_date AS actual_date").order("actual_date DESC")
-      ids = []
-      repetitions_for_learned_flashcards.each do |r|
-        if !ids.include?(r.id.to_i) and r.actual_date.to_date.between?(start_date, end_date)
-          ids += [r.id.to_i]
-        end
-      end
-      return ids.size
+    def learned_between(start_date, end_date)
+      where(learned_on: start_date..end_date)
     end
 
 
@@ -165,7 +158,7 @@ class User < ActiveRecord::Base
     # Тогда всё равно произойдёт округление до дня в бОльшую сторону.
     start_date = (end_date.to_time - period + 1.day).to_date
     { created: flashcards.created_between(start_date, end_date).count,
-      learned: flashcards.learned_between_count(start_date, end_date) }
+      learned: flashcards.learned_between(start_date, end_date).count }
   end
 
 

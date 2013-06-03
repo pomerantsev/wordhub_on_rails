@@ -11,6 +11,7 @@
 #  created_at                         :datetime         not null
 #  updated_at                         :datetime         not null
 #  deleted                            :boolean          default(FALSE)
+#  learned_on                         :date
 #
 
 
@@ -74,6 +75,8 @@ class Flashcard < ActiveRecord::Base
       # repetitions.last.actual_date будет всегда равен сегодняшнему дню.
       next_repetition_date = repetitions.order("id ASC").last.actual_date + next_planned_interval.days
       repetitions.create planned_date: next_repetition_date, actual_date: next_repetition_date
+    else
+      learned_on = Date.today
     end
   end
   
@@ -82,5 +85,8 @@ class Flashcard < ActiveRecord::Base
   def learned?
     consecutive_successful_repetitions >= WhRails::Application.config.max_consecutive_successful_repetitions
   end
+
+  # TODO: убрать дублирование (то же самое в виде метода - на ассоциации в user.rb). Используется только в миграции.
+  scope :learned, where("consecutive_successful_repetitions >= ?", WhRails::Application.config.max_consecutive_successful_repetitions)
   
 end
