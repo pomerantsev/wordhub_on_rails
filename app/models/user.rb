@@ -89,6 +89,10 @@ class User < ActiveRecord::Base
     def on(date)
       where(actual_date: date)
     end
+
+    def between(start_date, end_date)
+      where(actual_date: start_date..end_date)
+    end
     
 
     # Доля выученных сегодня карточек, от запланированных. Нужна, чтобы показывать прогресс-бар.
@@ -157,8 +161,13 @@ class User < ActiveRecord::Base
     # На случай, если в функцию будет передан период, не кратный дню.
     # Тогда всё равно произойдёт округление до дня в бОльшую сторону.
     start_date = (end_date.to_time - period + 1.day).to_date
+    repetitions_run = repetitions.run.between(start_date, end_date)
+    successful_repetitions = repetitions_run.where(successful: true)
     { created: flashcards.created_between(start_date, end_date).count,
-      learned: flashcards.learned_between(start_date, end_date).count }
+      learned: flashcards.learned_between(start_date, end_date).count,
+      repetitions_run: repetitions_run.count,
+      successful_repetitions: successful_repetitions.count,
+      successful_repetitions_percentage: (successful_repetitions.count.to_f / repetitions_run.count * 100).round }
   end
 
 

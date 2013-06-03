@@ -41,6 +41,14 @@
 				<td>Выучено:</td>
 				<td><%= render partial: "stats_element", locals: { value: @stats_for_today[:learned] } %></td>
 			</tr>
+			<tr>
+				<td>Всего повторов:</td>
+				<td><%= render partial: "stats_element", locals: { value: @stats_for_today[:repetitions_run] } %></td>
+			</tr>
+			<tr>
+				<td>Из них успешных:</td>
+				<td><%= render partial: "stats_element", locals: { value: "#{@stats_for_today[:successful_repetitions]} (#{@stats_for_today[:successful_repetitions_percentage]}%)" } %></td>
+			</tr>
 		</table>
 	</div>
 
@@ -54,6 +62,14 @@
 			<tr>
 				<td>Выучено:</td>
 				<td><%= render partial: "stats_element", locals: { value: @stats_for_last_month[:learned] } %></td>
+			</tr>
+			<tr>
+				<td>Всего повторов:</td>
+				<td><%= render partial: "stats_element", locals: { value: @stats_for_last_month[:repetitions_run] } %></td>
+			</tr>
+			<tr>
+				<td>Из них успешных:</td>
+				<td><%= render partial: "stats_element", locals: { value: "#{@stats_for_last_month[:successful_repetitions]} (#{@stats_for_last_month[:successful_repetitions_percentage]}%)" } %></td>
 			</tr>
 		</table>
 	</div>
