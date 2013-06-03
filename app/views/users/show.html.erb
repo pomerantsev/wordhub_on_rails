@@ -6,23 +6,56 @@
 
 	<div class = "span4">
 		<h3>Общая</h3>
-		<p>Всего карточек: <%= render partial: "stats_element", locals: { value: @total_stats[:total_flashcards] } %></p>
-		<p>Из них выучено: <%= render partial: "stats_element", locals: { value: @total_stats[:learned_flashcards] } %></p>
-		<p>Всего запланировано повторов: <%= render partial: "stats_element", locals: { value: @total_stats[:total_planned_repetitions] } %></p>
-		<p>Ближайшие повторы: <%= render partial: "stats_element", locals: { value: "#{@total_stats[:planned_repetitions_for_nearest_date]} (#{@total_stats[:nearest_date]})" } %></p>
-		<p>Запланировано повторов до: <%= render partial: "stats_element", locals: { value: @total_stats[:last_date_with_planned_repetitions] } %></p>
+		<table class = "table">
+			<tr>
+				<td>Всего карточек:</td>
+				<td><%= render partial: "stats_element", locals: { value: @total_stats[:total_flashcards] } %></td>
+			</tr>
+			<tr>
+				<td>Из них выучено:</td>
+				<td><%= render partial: "stats_element", locals: { value: @total_stats[:learned_flashcards] } %></td>
+			</tr>
+			<tr>
+				<td>Всего запланировано повторов:</td>
+				<td><%= render partial: "stats_element", locals: { value: @total_stats[:total_planned_repetitions] } %></td>
+			</tr>
+			<tr>
+				<td>Ближайшие повторы:</td>
+				<td><%= render partial: "stats_element", locals: { value: "#{@total_stats[:planned_repetitions_for_nearest_date]} (#{@total_stats[:nearest_date]})" } %></td>
+			</tr>
+			<tr>
+				<td>Запланировано повторов до:</td>
+				<td><%= render partial: "stats_element", locals: { value: @total_stats[:last_date_with_planned_repetitions] } %></td>
+			</tr>
+		</table>
 	</div>
 
 	<div class = "span4">
 		<h3>Сегодня</h3>
-		<p>Создано: <%= render partial: "stats_element", locals: { value: @stats_for_today[:created] } %></p>
-		<p>Выучено: <%= render partial: "stats_element", locals: { value: @stats_for_today[:learned] } %></p>
+		<table class = "table">
+			<tr>
+				<td>Создано:</td>
+				<td><%= render partial: "stats_element", locals: { value: @stats_for_today[:created] } %></td>
+			</tr>
+			<tr>
+				<td>Выучено:</td>
+				<td><%= render partial: "stats_element", locals: { value: @stats_for_today[:learned] } %></td>
+			</tr>
+		</table>
 	</div>
 
 	<div class = "span4">
 		<h3>За месяц</h3>
-		<p>Создано: <%= render partial: "stats_element", locals: { value: @stats_for_last_month[:created] } %></p>
-		<p>Выучено: <%= render partial: "stats_element", locals: { value: @stats_for_last_month[:learned] } %></p>
-	</div>	
+		<table class = "table">
+			<tr>
+				<td>Создано:</td>
+				<td><%= render partial: "stats_element", locals: { value: @stats_for_last_month[:created] } %></td>
+			</tr>
+			<tr>
+				<td>Выучено:</td>
+				<td><%= render partial: "stats_element", locals: { value: @stats_for_last_month[:learned] } %></td>
+			</tr>
+		</table>
+	</div>
 
 </div>
