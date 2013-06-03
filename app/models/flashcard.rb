@@ -39,7 +39,7 @@ class Flashcard < ActiveRecord::Base
       elsif size == 1
         first.planned_date - first.created_at.localtime.to_date
       else
-        last_two_repetitions = offset(size - 2)
+        last_two_repetitions = order("id ASC").offset(size - 2)
         last_two_repetitions.last.planned_date - last_two_repetitions.first.actual_date
       end
     end
@@ -62,8 +62,9 @@ class Flashcard < ActiveRecord::Base
 
   # Если последний повтор был удачным - следующий запланировать с интервалом, в 2-3 раза превышающим предыдущий.
   # Если нет, то следующий, как и первый, должен быть через 1-3 дня после текущего.
+  # TODO: правильнее было бы передавать id повтора, потому что last может стать и другим, когда начнётся выполнение метода.
   def set_next_repetition
-    if repetitions.last.successful
+    if repetitions.order("id ASC").last.successful
       self.consecutive_successful_repetitions += 1
       next_planned_interval = rand((repetitions.last_planned_interval * 2)..(repetitions.last_planned_interval * 3))
     else
@@ -76,7 +77,8 @@ class Flashcard < ActiveRecord::Base
       next_repetition_date = repetitions.order("id ASC").last.actual_date + next_planned_interval.days
       repetitions.create planned_date: next_repetition_date, actual_date: next_repetition_date
     else
-      learned_on = Date.today
+      self.learned_on = Date.today
+      save
     end
   end
   
