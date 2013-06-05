@@ -11,6 +11,9 @@ gem 'mysql2'
 
 gem 'pg'
 
+gem 'validates_existence', '~> 0.5.3'
+gem 'validates_timeliness', '~> 3.0'
+
 group :development do
 	gem 'annotate'
 end

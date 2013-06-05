@@ -19,12 +19,19 @@ class Flashcard < ActiveRecord::Base
   
   default_scope where(deleted: false)
 
-  attr_accessible :front_text, :back_text
+  attr_accessible :front_text, :back_text, :deleted
   
   validates :front_text, presence: true
   validates :back_text, presence: true
+  validates :user_id, presence: true,
+                      existence: true
+  validates :deleted, inclusion: { in: [true, false] }
+  validates :learned_on, timeliness: { on_or_before: lambda { Date.today } },
+                         allow_nil: true
 
   belongs_to :user
+  validates_associated :user
+
   has_many :repetitions, dependent: :destroy do
     
     # Высчитывается интервал между двумя последними повторами. 
