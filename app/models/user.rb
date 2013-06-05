@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
       learned: flashcards.learned_between(start_date, end_date).count,
       repetitions_run: repetitions_run.count,
       successful_repetitions: successful_repetitions.count,
-      successful_repetitions_percentage: (successful_repetitions.count.to_f / repetitions_run.count * 100).round }
+      successful_repetitions_percentage: repetitions_run.empty? ? 0 : (successful_repetitions.count.to_f / repetitions_run.count * 100).round }
   end
 
 

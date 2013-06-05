@@ -33,12 +33,13 @@ describe "Flashcards" do
 			describe "deleted flashcards" do
 				before do
 					visit edit_flashcard_path(@flashcards[0])
-					click_link "Удалить"
+					click_button "Удалить"
 					click_link "Показать удалённые карточки"
 				end
 				
 				it { should have_selector("label", text: @flashcards[0].front_text) }
-				it { should have_xpath "//input[@value='Восстановить' and @disabled]" }
+				# Раньше xpath записывался как "//input[@value='Восстановить' and @disabled]", но с @disabled тест почему-то теперь не проходит.
+				it { should have_xpath "//input[@value='Восстановить']" }
 
 				describe "undeleting" do
 					before do

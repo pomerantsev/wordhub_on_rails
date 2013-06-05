@@ -68,4 +68,12 @@ describe User do
 
 		it { should_not be_valid }
 	end
+
+	describe "stats" do
+		describe "successful repetitions percentage should be 0 if no repetitions have been run today" do
+			subject { user.stats_for_period(1.day)[:successful_repetitions_percentage] }
+
+			it { should be_zero }
+		end
+	end
 end
