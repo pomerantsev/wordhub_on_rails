@@ -18,7 +18,7 @@
 require 'spec_helper'
 
 describe User do
-	let(:user) { FactoryGirl.create(:user) }
+	let(:user) { create(:user) }
 
 	subject { user }
 

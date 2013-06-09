@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Flashcard do
 	before :each do
-		@user = FactoryGirl.create(:user)
-		@flashcard = FactoryGirl.build(:flashcard, user: @user)
+		@user = create(:user)
+		@flashcard = build(:flashcard, user: @user)
 	end
 
 	it "is valid with front text, back text, a user id and 'deleted' set to false" do
@@ -73,7 +73,7 @@ describe Flashcard do
 	describe "querying" do
 		before :each do
 			@flashcard.save
-			@deleted_flashcard = FactoryGirl.create(:flashcard, user: @user, deleted: true)
+			@deleted_flashcard = create(:flashcard, user: @user, deleted: true)
 		end
 
 		context "in default scope" do

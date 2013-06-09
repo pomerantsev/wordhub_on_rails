@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Repetition do
 	before :each do
-		@user = FactoryGirl.create(:user)
-		@flashcard = FactoryGirl.create(:flashcard, user: @user)
+		@user = create(:user)
+		@flashcard = create(:flashcard, user: @user)
 		@repetition = @flashcard.repetitions.build(
 			planned_date: Date.today + 1.day,
 			actual_date: Date.today + 1.day)
