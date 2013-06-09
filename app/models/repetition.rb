@@ -15,6 +15,14 @@
 class Repetition < ActiveRecord::Base
   
   attr_accessible :planned_date, :actual_date
+
+  validates :planned_date, presence: true
+  validates :actual_date, presence: true,
+  												timeliness: { on_or_after: lambda { |r| r.planned_date } }
+ 	validates :flashcard_id, presence: true,
+ 													 existence: true
+ 	validates :run, inclusion: { in: [false] },
+ 									if: lambda { |r| r.actual_date.present? and r.actual_date > Date.today }
   
   belongs_to :flashcard
   

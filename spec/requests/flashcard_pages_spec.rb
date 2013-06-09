@@ -1,6 +1,9 @@
 # coding: UTF-8
 
 require 'spec_helper'
+require 'flashcards_helper'
+
+include FlashcardsHelper
 
 describe "Flashcards" do
   describe "Index page" do
@@ -37,13 +40,13 @@ describe "Flashcards" do
 					click_link "Показать удалённые карточки"
 				end
 				
-				it { should have_selector("label", text: @flashcards[0].front_text) }
+				it { should have_selector("label", text: first_line(@flashcards[0].front_text)) }
 				# Раньше xpath записывался как "//input[@value='Восстановить' and @disabled]", но с @disabled тест почему-то теперь не проходит.
 				it { should have_xpath "//input[@value='Восстановить']" }
 
 				describe "undeleting" do
 					before do
-						check @flashcards[0].front_text
+						check first_line(@flashcards[0].front_text)
 						click_button "Восстановить"
 					end
 

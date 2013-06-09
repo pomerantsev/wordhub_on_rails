@@ -2,13 +2,8 @@ require 'spec_helper'
 
 describe Flashcard do
 	before :each do
-		@user = User.create(
-			email: "foo@bar.com",
-			password: "secretpassword")
-		@flashcard = @user.flashcards.build(
-			front_text: "foo",
-			back_text: "bar",
-			deleted: false)
+		@user = FactoryGirl.create(:user)
+		@flashcard = FactoryGirl.build(:flashcard, user: @user)
 	end
 
 	it "is valid with front text, back text, a user id and 'deleted' set to false" do
@@ -21,7 +16,7 @@ describe Flashcard do
 	end
 
 	it "is invalid with blank front text" do
-		# TODO: а как сделать, чтобы этот тест ломался?
+		# Чтобы этот тест ломался, нужно писать не presence: true, а length: { minimum: 1 }
 		@flashcard.front_text = "   "
 		expect(@flashcard).to have(1).errors_on(:front_text)
 	end
@@ -74,4 +69,104 @@ describe Flashcard do
 			expect(@flashcard).to have(1).errors_on(:learned_on)
 		end
 	end
+
+	describe "querying" do
+		before :each do
+			@flashcard.save
+			@deleted_flashcard = FactoryGirl.create(:flashcard, user: @user, deleted: true)
+		end
+
+		context "in default scope" do
+			it "should not find a deleted flashcard" do
+				expect(Flashcard.all).to eq [@flashcard]
+			end
+		end
+
+		context "unscoped" do
+			it "should find the deleted flashcard" do
+				expect(Flashcard.unscoped { Flashcard.order("id ASC") }).to eq [@flashcard, @deleted_flashcard]
+			end
+		end
+	end
+
+	describe "repetitions" do
+		context "first repetition" do
+			before :each do
+				@flashcard.save
+			end
+
+			it "should be set for no more than three days from now" do
+				expect(@flashcard.repetitions.first.planned_date).to be_in((Date.today + 1.day)..(Date.today + 3.days))
+			end
+			
+			context "consecutive successful repetitions" do
+				it "should be initially set to 0" do
+					expect(@flashcard.consecutive_successful_repetitions).to be_zero
+				end
+			end
+		end
+
+		context "running a successful repetition" do
+			before :each do
+				@flashcard.save
+				@first_repetition = @flashcard.repetitions.first
+				@first_repetition.successful = true
+				@first_repetition.save
+			end
+
+			it "should have two repetitions" do
+				expect(@flashcard.repetitions.count).to eq 2
+			end
+			
+			context "second repetition" do
+				it "should be set 2 to 9 days from the first repetition's actual date" do
+					@second_repetition = @flashcard.repetitions.second
+					expect(@second_repetition.planned_date).to be_in((@first_repetition.actual_date + 2.days)..(@first_repetition.actual_date + 9.days))
+				end
+			end
+
+			context "consecutive successful repetitions" do
+				it "should equal 1" do
+					expect(@flashcard.reload.consecutive_successful_repetitions).to eq 1
+				end
+			end
+		end
+
+		context "faking the last repetition" do
+			before :each do
+				@flashcard.consecutive_successful_repetitions = 2
+				@flashcard.save
+				@last_repetition = @flashcard.repetitions.first
+				@last_repetition.successful = true
+				@last_repetition.save
+			end
+
+			it "should become learned" do
+				expect(@flashcard.reload).to be_learned
+			end
+
+			context "repetition count" do
+				it "should not increase" do
+					expect(@flashcard.repetitions.count).to eq 1
+				end
+			end
+
+		end
+	end
+
+	context "learned" do
+		it "should not be learned if it has two consecutive successful repetitions" do
+			@flashcard.consecutive_successful_repetitions = 2
+			expect(@flashcard).to_not be_learned
+		end
+		it "should be learned if it has three consecutive successful repetitions" do
+			@flashcard.consecutive_successful_repetitions = 3
+			expect(@flashcard).to be_learned
+		end
+		it "should be learned if it has four consecutive successful repetitions" do
+			@flashcard.consecutive_successful_repetitions = 4
+			expect(@flashcard).to be_learned
+		end
+	end
+
 end

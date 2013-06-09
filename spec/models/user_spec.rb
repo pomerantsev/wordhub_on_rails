@@ -18,10 +18,6 @@
 require 'spec_helper'
 
 describe User do
-#	before { @user = User.new(name: "Иван Иванов",
-#														email: "ivan@example.com",
-#														password: "secretpassword") }
-
 	let(:user) { FactoryGirl.create(:user) }
 
 	subject { user }
@@ -31,45 +27,39 @@ describe User do
 
 	it { should be_valid }
 
-	describe "when name is too long" do
-		before { user.name = "a" * 26 }
-		it { should_not be_valid }
+	it "is invalid when name is too long" do
+		user.name = "a" * 26
+		expect(user).to_not be_valid
 	end
 
-	describe "when email is not present" do
-		before { user.email = "" }
-		it { should_not be_valid }
+	it "is invalid when email is not present" do
+		user.email = ""
+		expect(user).to_not be_valid
 	end
 
-	describe "when email format is invalid" do
-		it "should be invalid" do
-			addresses = %w(user@foo,com user.org user@user@foo.com)
-			addresses.each do |invalid_address|
-				user.email = invalid_address
-				user.should_not be_valid
-			end
+	it "is invalid when email format is invalid" do
+		addresses = %w(user@foo,com user.org user@user@foo.com)
+		addresses.each do |invalid_address|
+			user.email = invalid_address
+			expect(user).to_not be_valid
 		end
 	end
 
-	describe "when email format is valid" do
-		it "should be valid" do
-			addresses = %w(UseR@eXampLE.org a_user+ANOther-user@user.user.user)
-			addresses.each do |valid_address|
-				user.email = valid_address
-				user.should be_valid
-			end
+
+	it "is valid when email format is valid" do
+		addresses = %w(UseR@eXampLE.org a_user+ANOther-user@user.user.user)
+		addresses.each do |valid_address|
+			user.email = valid_address
+			expect(user).to be_valid
 		end
 	end
 
-	describe "when email address is already taken" do
-		let(:user_with_same_email) { user.dup }
-
-		subject { user_with_same_email }
-
-		it { should_not be_valid }
+	it "is invalid when email address is already taken" do
+		user_with_same_email = user.dup
+		expect(user_with_same_email).to_not be_valid
 	end
 
-	describe "stats" do
+	context "stats" do
 		describe "successful repetitions percentage should be 0 if no repetitions have been run today" do
 			subject { user.stats_for_period(1.day)[:successful_repetitions_percentage] }
 

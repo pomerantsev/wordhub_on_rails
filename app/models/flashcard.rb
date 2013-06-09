@@ -30,7 +30,6 @@ class Flashcard < ActiveRecord::Base
                          allow_nil: true
 
   belongs_to :user
-  validates_associated :user
 
   has_many :repetitions, dependent: :destroy do
     
@@ -62,7 +61,6 @@ class Flashcard < ActiveRecord::Base
   # Первый повтор - через 1-3 дня после создания карточки.
   def set_first_repetition
     first_repetition_date = Date.today + rand(1..3).days
-    self.consecutive_successful_repetitions = 0
     repetitions.create planned_date: first_repetition_date, actual_date: first_repetition_date
   end
   

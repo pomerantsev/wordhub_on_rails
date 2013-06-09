@@ -1,4 +1,8 @@
 module FlashcardsHelper
+
+	# Без этой строчки RSpec ругается, что не знает метода truncate.
+	include ActionView::Helpers::TextHelper
+
 	def first_line(string)
 		eol = string.index("\r")
 		return string if eol.nil?
