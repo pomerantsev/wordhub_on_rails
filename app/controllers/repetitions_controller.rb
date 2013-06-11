@@ -59,7 +59,7 @@ class RepetitionsController < ApplicationController
       @current_repetition = @repetitions[rand(0...@repetitions.size)]
       set_texts_and_views("front")
     else
-      redirect_to flashcards_path
+      redirect_to stats_path
     end
   end
   
