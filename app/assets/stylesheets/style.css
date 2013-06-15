@@ -185,6 +185,8 @@ a.hero-unit {
     display: block;
     text-decoration: none;
     min-height: 120px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .form-left {
@@ -219,10 +221,6 @@ a.hero-unit {
     
     .form-actions {
         padding: 10px;
-    }
-    
-    .wrapper {
-        border-top: 10px solid white;
     }
     
     
@@ -279,7 +277,6 @@ a.hero-unit.flashcard-hidden {
 
 .wrapper {
     background-color: #f5f5f5;
-    border-top: 20px solid white;
     border-bottom: 20px solid white;
 }
 
