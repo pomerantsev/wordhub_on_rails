@@ -10,21 +10,26 @@ class ApplicationController < ActionController::Base
   
   # Для использования этих методов внутри view.
   helper_method :current_user
-  helper_method :logged_in
+  helper_method :logged_in?
   helper_method :current_date
+  helper_method :home_page
   
   def index
-    if logged_in
+    if logged_in?
       redirect_to new_flashcard_path
     end
   end
   
-  def logged_in
-    session[:user_id]
+  def logged_in?
+    not session[:user_id].nil?
   end
 
   def current_date
     session[:date]
+  end
+
+  def home_page
+    new_flashcard_url
   end
 
 
@@ -32,7 +37,7 @@ class ApplicationController < ActionController::Base
   protected
   
   def confirm_logged_in
-    if logged_in
+    if logged_in?
       # При каждом действии, если пользователь залогинен, сдвигаем все повторы, если хоть один остался с предыдущих дат.
       current_user.repetitions.adjust_dates(current_date)
       return true

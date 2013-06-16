@@ -1,6 +1,6 @@
 <div class="navbar">
     <div class="navbar-inner">
-        <% if logged_in %>
+        <% if logged_in? %>
             <%= render "layouts/logged_in_menu" %>
         <% else %>
             <%= render "layouts/guest_menu" %>

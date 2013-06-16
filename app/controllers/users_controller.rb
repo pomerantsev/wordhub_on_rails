@@ -5,36 +5,66 @@ class UsersController < ApplicationController
 	before_filter :confirm_logged_in, except: [:new, :create]
 
 	def new
-		@user = User.new
+		if logged_in?
+			redirect_to home_page
+		else
+			@user = User.new
+		end
 	end
 
 	def create
-		@user = User.new(params[:user])
-		if @user.save
-			session[:user_id] = @user.id
-			redirect_to flashcards_path
+		if logged_in?
+			redirect_to home_page
 		else
-			flash.now[:error] = errors(@user)
-			render :new
+			@user = User.new(params[:user])
+			if @user.save
+				session[:user_id] = @user.id
+				redirect_to home_page
+			else
+				flash.now[:error] = errors(@user)
+				render :new
+			end
 		end
 	end
 
 	def show
-		@total_stats = current_user.total_stats
-		@stats_for_today = current_user.stats_for_period(1.day)
-		@stats_for_last_month = current_user.stats_for_period(30.days)
+		if params[:id].nil?
+			@user = current_user
+		else
+			@user = User.find_by_id(params[:id])
+			if @user != current_user
+				flash[:error] = "Вы не можете просматривать статистику других пользователей."
+				redirect_to home_page
+			end
+		end
+		@total_stats = @user.total_stats
+		@stats_for_last_month = @user.stats_for_period(30.days)
+		@stats_for_today = @user.stats_for_period(1.day)
 	end
 
 	def edit
-		@user = current_user
+		if params[:id].nil?
+			@user = current_user
+		else
+			@user = User.find_by_id(params[:id])
+			if @user != current_user
+				flash[:error] = "Вы не можете менять настройки для чужой учётной записи."
+				redirect_to home_page
+			end
+		end
 	end
 
 	def update
-		@user = User.find_by_id(params[:id])
-		if @user != current_user
-			flash[:error] = "Вы пытаетесь изменить настройки для чужой учётной записи."
-			redirect_to edit_user_path
+		if params[:id].nil?
+			@user = current_user
 		else
+			@user = User.find_by_id(params[:id])
+			if @user != current_user
+				flash[:error] = "Вы не можете менять настройки для чужой учётной записи."
+				redirect_to home_page
+			end
+		end
+		if @user == current_user
 			if @user.update_attributes(params[:user])
 				flash[:success] = "Настройки сохранены."
 				redirect_to edit_user_path

@@ -38,4 +38,5 @@ RSpec.configure do |config|
 
   # Include FactoryGirl syntax to simplify calls to factories.
   config.include FactoryGirl::Syntax::Methods
+  config.include UserMacros
 end
