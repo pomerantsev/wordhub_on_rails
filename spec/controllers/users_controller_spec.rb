@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'shared_examples'
 
 describe UsersController do
 	describe "GET #new" do
