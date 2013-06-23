@@ -46,7 +46,8 @@ class Flashcard < ActiveRecord::Base
         first.planned_date - first.created_at.localtime.to_date
       else
         last_two_repetitions = order("id ASC").offset(size - 2)
-        last_two_repetitions.last.planned_date - last_two_repetitions.first.actual_date
+        # abs добавлен, чтобы specs не выбрасывали ошибку в случае, когда значение получается отрицательным.
+        (last_two_repetitions.last.planned_date - last_two_repetitions.first.actual_date).abs
       end
     end
   

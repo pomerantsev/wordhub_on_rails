@@ -4,7 +4,7 @@
 	</div>
 	<div class = "deleted-today-full">
 		<p>Удалённые сегодня:</p>
-		<%= form_tag undelete_flashcards_path do %>
+		<%= form_tag undelete_flashcards_path, method: :put do %>
 			<% @deleted_flashcards.each do |flashcard| %>
 				<%= label_tag flashcard.id, class: "checkbox" do %>
 					<%= check_box_tag "flashcards[]", flashcard.id, false, class: "checkbox-undelete" %>

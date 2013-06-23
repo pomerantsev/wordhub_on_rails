@@ -23,6 +23,8 @@ class Repetition < ActiveRecord::Base
  													 existence: true
  	validates :run, inclusion: { in: [false] },
  									if: lambda { |r| r.actual_date.present? and r.actual_date > Date.today }
+
+ 	validates :successful, inclusion: { in: [true, false, nil] }
   
   belongs_to :flashcard
   

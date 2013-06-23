@@ -9,10 +9,11 @@ class RepetitionsController < ApplicationController
   # Индексный метод служит для получения одного случайного повтора.
   def index
     @repetitions = current_user.repetitions.planned.for(current_date)
-    if params[:view] && params[:repetition_id]
+    if params[:repetition_id].present?
       @current_repetition = Repetition.find_by_id(params[:repetition_id])
       if @repetitions.include?(@current_repetition)
-        set_texts_and_views(params[:view])
+        # На случай, если view не передано в params, передаём в метод дефолтное значение.
+        set_texts_and_views(params[:view] || "front")
       else
         init_default_view
       end
@@ -22,11 +23,13 @@ class RepetitionsController < ApplicationController
   end
   
 
-  # Сохраняет повтор как успешный или неуспешный. 
+  # Сохраняет повтор как успешный или неуспешный.
   def update
-    @current_repetition.successful = params[:successful]
-    unless @current_repetition.save
-      flash[:error] = errors(@current_repetition)
+    if [true, false].include?(params[:successful])
+      @current_repetition.successful = params[:successful]
+      @current_repetition.save
+    else
+      flash[:error] = "Вы передали неверный параметр."
     end
     redirect_to repetitions_path
   end

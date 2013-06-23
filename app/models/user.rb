@@ -56,7 +56,11 @@ class User < ActiveRecord::Base
 
 
     def deleted
-      Flashcard.unscoped { where deleted: true }
+      Flashcard.unscoped { where(deleted: true).order("updated_at ASC") }
+    end
+
+    def deleted_and_not_deleted
+      Flashcard.unscoped { scoped }
     end
 
     def deleted_before(date)

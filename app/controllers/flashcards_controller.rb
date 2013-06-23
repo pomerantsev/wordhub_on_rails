@@ -7,7 +7,9 @@ class FlashcardsController < ApplicationController
   
   def index
     @flashcards_grouped_by_date = current_user.flashcards.grouped_by_date
-    @deleted_flashcards = current_user.flashcards.deleted.order("updated_at ASC")
+    @deleted_flashcards = current_user.flashcards.deleted
+    # just_deleted - boolean-значение, используемое, чтобы определить,
+    # нужно ли подсвечивать блок удалённых карточек.
     @just_deleted = session[:just_deleted]
     session[:just_deleted] = nil
   end
@@ -56,14 +58,24 @@ class FlashcardsController < ApplicationController
 
   def undelete
     if params[:flashcards].present?
-      params[:flashcards].each do |id|
-        flashcard = current_user.flashcards.deleted.find_by_id(id)
-        unless flashcard.nil?
-          flashcard.update_attribute(:deleted, false)
-        end
+      all_flashcards_belong_to_current_user = params[:flashcards].all? do |id|
+        current_user.flashcards.deleted_and_not_deleted.find_by_id(id).present?
       end
+      if all_flashcards_belong_to_current_user
+        params[:flashcards].each do |id|
+          flashcard = current_user.flashcards.deleted.find_by_id(id)
+          unless flashcard.nil?
+            flashcard.update_attribute(:deleted, false)
+          end
+        end
+        redirect_to flashcards_path
+      else
+        flash[:error] = "У вас нет доступа к некоторым из карточек."
+        redirect_to home_page
+      end
+    else
+      redirect_to flashcards_path
     end
-    redirect_to flashcards_path
   end
   
   
@@ -73,7 +85,7 @@ class FlashcardsController < ApplicationController
     @flashcard = Flashcard.find_by_id(params[:id])
     if @flashcard.nil? || @flashcard.user != current_user
       flash[:error] = "У вас нет доступа к этой карточке."
-      redirect_to flashcards_path
+      redirect_to home_page
       return false
     end
     return true

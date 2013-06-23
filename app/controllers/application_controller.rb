@@ -1,3 +1,5 @@
+# coding: UTF-8
+
 class ApplicationController < ActionController::Base
   
   # Чтобы хелперы были доступны во всех контроллерах.
@@ -42,6 +44,7 @@ class ApplicationController < ActionController::Base
       current_user.repetitions.adjust_dates(current_date)
       return true
     else
+      flash[:error] = "Пожалуйста, авторизуйтесь."
       redirect_to root_url
       return false
     end
