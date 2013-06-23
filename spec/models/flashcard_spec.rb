@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: flashcards
+#
+#  id                                 :integer          not null, primary key
+#  user_id                            :integer
+#  front_text                         :text
+#  back_text                          :text
+#  consecutive_successful_repetitions :integer          default(0)
+#  created_at                         :datetime         not null
+#  updated_at                         :datetime         not null
+#  deleted                            :boolean          default(FALSE)
+#  learned_on                         :date
+#
+
 require 'spec_helper'
 
 describe Flashcard do
@@ -42,7 +57,7 @@ describe Flashcard do
 			expect(@flashcard).to have(1).errors_on(:user_id)
 		end
 
-		it "is invalid with non-existent user id" do
+		it "is invalid with a non-existent user id" do
 			@flashcard.user_id = 100
 			expect(@flashcard).to have(1).errors_on(:user)
 		end
@@ -84,7 +99,7 @@ describe Flashcard do
 
 		context "unscoped" do
 			it "should find the deleted flashcard" do
-				expect(Flashcard.unscoped { Flashcard.order("id ASC") }).to eq [@flashcard, @deleted_flashcard]
+				expect(Flashcard.unscoped).to match_array [@flashcard, @deleted_flashcard]
 			end
 		end
 	end
@@ -96,7 +111,8 @@ describe Flashcard do
 			end
 
 			it "should be set for no more than three days from now" do
-				expect(@flashcard.repetitions.first.planned_date).to be_in((Date.today + 1.day)..(Date.today + 3.days))
+				expect(@flashcard.repetitions.first.planned_date).to be_in(
+					(Date.today + 1.day)..(Date.today + 3.days))
 			end
 			
 			context "consecutive successful repetitions" do
@@ -110,8 +126,7 @@ describe Flashcard do
 			before :each do
 				@flashcard.save
 				@first_repetition = @flashcard.repetitions.first
-				@first_repetition.successful = true
-				@first_repetition.save
+				@first_repetition.update_attribute(:successful, true)
 			end
 
 			it "should have two repetitions" do
@@ -121,7 +136,9 @@ describe Flashcard do
 			context "second repetition" do
 				it "should be set 2 to 9 days from the first repetition's actual date" do
 					@second_repetition = @flashcard.repetitions.second
-					expect(@second_repetition.planned_date).to be_in((@first_repetition.actual_date + 2.days)..(@first_repetition.actual_date + 9.days))
+					expect(@second_repetition.planned_date).to be_in(
+						(@first_repetition.actual_date + 2.days)..
+						(@first_repetition.actual_date + 9.days))
 				end
 			end
 
@@ -134,11 +151,9 @@ describe Flashcard do
 
 		context "faking the last repetition" do
 			before :each do
-				@flashcard.consecutive_successful_repetitions = 2
-				@flashcard.save
+				@flashcard.update_attribute(:consecutive_successful_repetitions, 2)
 				@last_repetition = @flashcard.repetitions.first
-				@last_repetition.successful = true
-				@last_repetition.save
+				@last_repetition.update_attribute(:successful, true)
 			end
 
 			it "should become learned" do
