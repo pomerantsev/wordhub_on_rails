@@ -26,7 +26,8 @@ class RepetitionsController < ApplicationController
   # Сохраняет повтор как успешный или неуспешный.
   def update
     # Если передавать не в виде строк, а в виде boolean-значений, работать не будет.
-    if ["true", "false"].include?(params[:successful])
+    # Boolean-значения здесь сохранены для тестов.
+    if [true, false, 'true', 'false'].include?(params[:successful])
       @current_repetition.successful = params[:successful]
       @current_repetition.save
     else
