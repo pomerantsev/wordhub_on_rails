@@ -19,13 +19,13 @@ group :development do
 end
 
 group :development, :test do
-	gem 'rspec-rails'
+	gem 'rspec-rails', '~> 2.13'
 	gem 'factory_girl_rails'
 end
 
 group :test do
 	gem 'faker'
-	gem 'capybara'
+	gem 'capybara', '~> 2.0'
 	gem 'database_cleaner'
 	gem 'launchy'
 

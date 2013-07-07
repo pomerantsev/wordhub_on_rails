@@ -145,7 +145,8 @@ class User < ActiveRecord::Base
 
   before_save { email.downcase! }
   before_save :create_hashed_password
-  after_save :clear_password
+  # Выкинул для того, чтобы feature-тесты было легче писать.
+  # after_save :clear_password
   
   
   def total_stats
