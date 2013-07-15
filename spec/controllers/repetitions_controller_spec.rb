@@ -6,9 +6,22 @@ describe RepetitionsController do
 	let(:first_flashcard) { create(:flashcard, user: user) }
 	let(:second_flashcard) { create(:flashcard, user: user) }
 	let(:third_flashcard) { create(:flashcard, user: user) }
-	let!(:first_repetition_planned_for_today) { create(:repetition_planned_for_today, flashcard: first_flashcard) }
-	let!(:second_repetition_planned_for_today) { create(:repetition_planned_for_today, flashcard: second_flashcard) }
-	let!(:repetition_planned_for_tomorrow) { create(:repetition_planned_for_tomorrow, flashcard: third_flashcard) }
+	let!(:first_repetition) do
+		repetition = first_flashcard.repetitions.first
+		repetition.update_attributes(actual_date: Date.today + 4.days)
+		repetition
+	end
+	let!(:second_repetition) do
+		repetition = second_flashcard.repetitions.first
+		repetition.update_attributes(actual_date: Date.today + 4.days)
+		repetition
+	end
+	let!(:third_repetition) do
+		repetition = third_flashcard.repetitions.first
+		repetition.update_attributes(actual_date: Date.today + 5.days)
+		repetition
+	end
+
 
 	describe "guest access" do
 		describe "GET #index" do
@@ -17,43 +30,46 @@ describe RepetitionsController do
 		end
 
 		describe "PUT #update" do
-			before(:each) { put :update, id: first_repetition_planned_for_today, successful: true }
+			before(:each) { put :update, id: first_repetition, successful: true }
 			it_behaves_like "restricted pages"
 		end
 	end
 
 	describe "user access" do
+		# ??? Почему, если поставить :all вместо :each, тесты не выполняются?
 		before(:each) { login user }
 
 		describe "GET #index" do
 			context "when there are no repetitions for today" do
 				it "redirects to the #stats action" do
-					first_repetition_planned_for_today.update_attribute(:actual_date, Date.tomorrow)
-					second_repetition_planned_for_today.update_attribute(:actual_date, Date.tomorrow)
 					get :index
 					expect(response).to redirect_to stats_url
 				end
 			end
 
 			context "when there are some repetitions for today" do
+				before(:each) { Timecop.travel 4.days.from_now }
+				after(:each) { Timecop.return }
+				
 				it "populates the @repetitions array" do
 					get :index
 					expect(assigns(:repetitions)).to match_array [
-						first_repetition_planned_for_today,
-						second_repetition_planned_for_today]
+						first_repetition,
+						second_repetition
+					]
 				end
 
 				context "when a valid repetition id is supplied" do
 					it "assigns the @current_repetition variable" do
-						get :index, repetition_id: first_repetition_planned_for_today
-						expect(assigns(:current_repetition)).to eq first_repetition_planned_for_today
+						get :index, repetition_id: first_repetition
+						expect(assigns(:current_repetition)).to eq first_repetition
 					end
 				end
 
 				context "when an invalid repetition id is supplied" do
 					it "assigns a randomly selected value to the @current_repetition variable" do
-						get :index, repetition_id: first_repetition_planned_for_today.id + 100
-						expect([first_repetition_planned_for_today, second_repetition_planned_for_today]).
+						get :index, repetition_id: first_repetition.id + 100
+						expect([first_repetition, second_repetition]).
 							to include assigns(:current_repetition)
 					end
 				end
@@ -61,7 +77,7 @@ describe RepetitionsController do
 				context "when a repetition id is not supplied" do
 					it "assigns a randomly selected value to the @current_repetition variable" do
 						get :index
-						expect([first_repetition_planned_for_today, second_repetition_planned_for_today]).
+						expect([first_repetition, second_repetition]).
 							to include assigns(:current_repetition)
 					end
 				end
@@ -80,47 +96,50 @@ describe RepetitionsController do
 		end
 
 		describe "PUT #update" do
+			before(:each) { Timecop.travel 4.days.from_now }
+			after(:each) { Timecop.return }
+			
 			context "for a repetition that should be run today" do
 				context "with a valid :successful attribute" do
 					it "updates the requested repetition" do
-						put :update, id: first_repetition_planned_for_today, successful: true
-						first_repetition_planned_for_today.reload
-						expect(first_repetition_planned_for_today.successful).to be_true
-						expect(first_repetition_planned_for_today.run).to be_true
+						put :update, id: first_repetition, successful: true
+						first_repetition.reload
+						expect(first_repetition.successful).to be_true
+						expect(first_repetition.run).to be_true
 					end
 
 					it "creates another repetition" do
 						expect do
-							put :update, id: first_repetition_planned_for_today, successful: true
+							put :update, id: first_repetition, successful: true
 						end.to change(Repetition, :count).by(1)
 					end
 
 					it "redirects to the #index action" do
-						put :update, id: first_repetition_planned_for_today, successful: true
+						put :update, id: first_repetition, successful: true
 						expect(response).to redirect_to repetitions_url
 					end
 				end
 
 				context "without a :successful attribute" do
 					it "does not update the requested repetition" do
-						put :update, id: first_repetition_planned_for_today
-						expect(first_repetition_planned_for_today.successful).to be_nil
-						expect(first_repetition_planned_for_today.run).to be_false
+						put :update, id: first_repetition
+						expect(first_repetition.successful).to be_nil
+						expect(first_repetition.run).to be_false
 					end
 
 					it "does not create another repetition" do
 						expect do
-							put :update, id: first_repetition_planned_for_today
+							put :update, id: first_repetition
 						end.to_not change(Repetition, :count)
 					end
 
 					it "sets a flash[:error] message" do
-						put :update, id: first_repetition_planned_for_today
+						put :update, id: first_repetition
 						expect(flash.to_hash).to_not eq({ })
 					end
 
 					it "redirects to the #index action" do
-						put :update, id: first_repetition_planned_for_today
+						put :update, id: first_repetition
 						expect(response).to redirect_to repetitions_url
 					end
 				end
@@ -128,19 +147,19 @@ describe RepetitionsController do
 
 			context "for a repetition that should not be run today" do
 				it "does not update the requested repetition" do
-					put :update, id: repetition_planned_for_tomorrow, successful: true
-					expect(repetition_planned_for_tomorrow.successful).to be_nil
-					expect(repetition_planned_for_tomorrow.run).to be_false
+					put :update, id: third_repetition, successful: true
+					expect(third_repetition.successful).to be_nil
+					expect(third_repetition.run).to be_false
 				end
 
 				it "does not create another repetition" do
 					expect do
-						put :update, id: repetition_planned_for_tomorrow, successful: true
+						put :update, id: third_repetition, successful: true
 					end.to_not change(Repetition, :count)
 				end
 
 				it "redirects to the #index action" do
-					put :update, id: repetition_planned_for_tomorrow, successful: true
+					put :update, id: third_repetition, successful: true
 					expect(response).to redirect_to repetitions_url
 				end
 			end

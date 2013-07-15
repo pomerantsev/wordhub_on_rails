@@ -28,7 +28,7 @@ group :test do
 	gem 'capybara', '~> 2.0'
 	gem 'database_cleaner'
 	gem 'launchy'
-
+	gem 'timecop', '~> 0.6.2'
 end
 
 
