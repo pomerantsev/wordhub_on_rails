@@ -21,6 +21,9 @@ end
 group :development, :test do
 	gem 'rspec-rails', '~> 2.13'
 	gem 'factory_girl_rails'
+	gem 'guard-rspec', '~> 3.0.2'
+	gem 'spork-rails', '~> 3.2.1'
+	gem 'guard-spork', '~> 1.5.1'
 end
 
 group :test do
