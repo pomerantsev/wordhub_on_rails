@@ -11,6 +11,8 @@ gem 'protected_attributes'
 
 gem 'pg', '~> 0.15.1'
 
+gem 'unicorn', '~> 4.6.3'
+
 gem 'validates_existence', github: 'perfectline/validates_existence'
 gem 'validates_timeliness', '~> 3.0'
 
