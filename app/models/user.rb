@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
     end
 
     def deleted_and_not_deleted
-      Flashcard.unscoped { scoped }
+      Flashcard.unscoped { where(deleted: [true, false]) }
     end
 
     def deleted_before(date)
@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
   
-  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
   
   validates :name, length: { maximum: 25 }
   validates :email, presence: true,

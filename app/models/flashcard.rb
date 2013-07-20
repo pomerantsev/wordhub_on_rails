@@ -17,7 +17,7 @@
 
 class Flashcard < ActiveRecord::Base
   
-  default_scope where(deleted: false)
+  default_scope { where(deleted: false) }
 
   attr_accessible :front_text, :back_text, :deleted
   
@@ -95,6 +95,6 @@ class Flashcard < ActiveRecord::Base
   end
 
   # TODO: убрать дублирование (то же самое в виде метода - на ассоциации в user.rb). Используется только в миграции.
-  scope :learned, where("consecutive_successful_repetitions >= ?", WhRails::Application.config.max_consecutive_successful_repetitions)
+  scope :learned, -> { where("consecutive_successful_repetitions >= ?", WhRails::Application.config.max_consecutive_successful_repetitions) }
   
 end

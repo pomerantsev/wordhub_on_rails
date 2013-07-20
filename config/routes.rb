@@ -3,21 +3,21 @@ WhRails::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  #   get 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
   
-  match "attempt_login", to: "access#attempt_login"
-  match "logout", to: "access#logout"
-  match "intro", to: "static_pages#intro"
-  match "about", to: "static_pages#about"
+  post "attempt_login", to: "access#attempt_login"
+  get "logout", to: "access#logout"
+  get "intro", to: "static_pages#intro"
+  get "about", to: "static_pages#about"
 
-  match "signup", to: "users#new"
-  match "settings", to: "users#edit"
+  get "signup", to: "users#new"
+  get "settings", to: "users#edit"
 
-  match "stats", to: "users#show"
+  get "stats", to: "users#show"
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  #   get 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -72,5 +72,5 @@ WhRails::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  # get ':controller(/:action(/:id))(.:format)'
 end

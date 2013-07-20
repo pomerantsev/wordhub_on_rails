@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.0.0'
 
-gem 'rails', '3.2.12'
+gem 'rails', '~> 4.0.0'
+
+gem 'protected_attributes'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'pg', '~> 0.15.1'
 
-gem 'pg'
-
-gem 'validates_existence', '~> 0.5.3'
+gem 'validates_existence', github: 'perfectline/validates_existence'
 gem 'validates_timeliness', '~> 3.0'
 
 group :development do
@@ -22,30 +22,23 @@ group :development, :test do
 	gem 'rspec-rails', '~> 2.13'
 	gem 'factory_girl_rails'
 	gem 'guard-rspec', '~> 3.0.2'
-	gem 'spork-rails', '~> 3.2.1'
+	gem 'spork-rails', github: 'sporkrb/spork-rails'
 	gem 'guard-spork', '~> 1.5.1'
 end
 
 group :test do
 	gem 'faker'
-	gem 'capybara', '~> 2.0'
+	gem 'capybara', github: 'jnicklas/capybara'
+	gem 'selenium-webdriver', '~> 2.33.0'
 	gem 'database_cleaner'
 	gem 'launchy'
-	gem 'timecop', '~> 0.6.2'
+	gem 'timecop', '~> 0.6.2.2'
 end
 
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

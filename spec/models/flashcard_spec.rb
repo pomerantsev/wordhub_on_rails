@@ -54,7 +54,7 @@ describe Flashcard do
 	context "user" do
 		it "is invalid without a user id" do
 			@flashcard.user_id = nil
-			expect(@flashcard).to have(1).errors_on(:user_id)
+			expect(@flashcard).to have(2).errors_on(:user_id)
 		end
 
 		it "is invalid with a non-existent user id" do

@@ -47,7 +47,7 @@ describe Repetition do
 	context "flashcard" do
 		it "is invalid without a flashcard id" do
 			@repetition.flashcard_id = nil
-			expect(@repetition).to have(1).errors_on(:flashcard_id)
+			expect(@repetition).to have(2).errors_on(:flashcard_id)
 		end
 
 		it "is invalid with a nonexistent flashcard" do
