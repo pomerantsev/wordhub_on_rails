@@ -93,6 +93,8 @@ GEM
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
+    haml (4.0.3)
+      tilt
     hike (1.2.3)
     i18n (0.6.4)
     jquery-rails (3.0.4)
@@ -225,6 +227,7 @@ DEPENDENCIES
   faker
   guard-rspec (~> 3.0.2)
   guard-spork (~> 1.5.1)
+  haml (~> 4.0.3)
   jquery-rails
   jquery-ui-rails
   launchy
