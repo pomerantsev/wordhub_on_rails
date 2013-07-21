@@ -2,8 +2,8 @@
 
 class FlashcardsController < ApplicationController
   
-  before_filter :confirm_logged_in
-  before_filter :get_flashcard, only: [:edit, :update, :destroy]
+  before_action :confirm_logged_in
+  before_action :get_flashcard, only: [:edit, :update, :destroy]
   
   def index
     @flashcards_grouped_by_date = current_user.flashcards.grouped_by_date

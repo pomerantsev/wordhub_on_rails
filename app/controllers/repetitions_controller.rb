@@ -2,8 +2,8 @@
 
 class RepetitionsController < ApplicationController
   
-  before_filter :confirm_logged_in
-  before_filter :confirm_repetition_validity, only: :update
+  before_action :confirm_logged_in
+  before_action :confirm_repetition_validity, only: :update
   
 
   # Индексный метод служит для получения одного случайного повтора.

@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
 
-	before_filter :confirm_logged_in, except: [:new, :create]
+	before_action :confirm_logged_in, except: [:new, :create]
 
 	def new
 		if logged_in?

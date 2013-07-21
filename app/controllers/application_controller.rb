@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  before_filter :adjust_current_date
-  before_filter :wipe_deleted_flashcards
+  before_action :adjust_current_date
+  before_action :wipe_deleted_flashcards
   
   # Для использования этих методов внутри view.
   helper_method :current_user
