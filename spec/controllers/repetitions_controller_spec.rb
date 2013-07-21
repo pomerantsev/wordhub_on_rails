@@ -30,7 +30,7 @@ describe RepetitionsController do
 		end
 
 		describe "PUT #update" do
-			before(:each) { put :update, id: first_repetition, successful: true }
+			before(:each) { patch :update, id: first_repetition, successful: true }
 			it_behaves_like "restricted pages"
 		end
 	end
@@ -102,7 +102,7 @@ describe RepetitionsController do
 			context "for a repetition that should be run today" do
 				context "with a valid :successful attribute" do
 					it "updates the requested repetition" do
-						put :update, id: first_repetition, successful: true
+						patch :update, id: first_repetition, successful: true
 						first_repetition.reload
 						expect(first_repetition.successful).to be_true
 						expect(first_repetition.run).to be_true
@@ -110,36 +110,36 @@ describe RepetitionsController do
 
 					it "creates another repetition" do
 						expect do
-							put :update, id: first_repetition, successful: true
+							patch :update, id: first_repetition, successful: true
 						end.to change(Repetition, :count).by(1)
 					end
 
 					it "redirects to the #index action" do
-						put :update, id: first_repetition, successful: true
+						patch :update, id: first_repetition, successful: true
 						expect(response).to redirect_to repetitions_url
 					end
 				end
 
 				context "without a :successful attribute" do
 					it "does not update the requested repetition" do
-						put :update, id: first_repetition
+						patch :update, id: first_repetition
 						expect(first_repetition.successful).to be_nil
 						expect(first_repetition.run).to be_false
 					end
 
 					it "does not create another repetition" do
 						expect do
-							put :update, id: first_repetition
+							patch :update, id: first_repetition
 						end.to_not change(Repetition, :count)
 					end
 
 					it "sets a flash[:error] message" do
-						put :update, id: first_repetition
+						patch :update, id: first_repetition
 						expect(flash.to_hash).to_not eq({ })
 					end
 
 					it "redirects to the #index action" do
-						put :update, id: first_repetition
+						patch :update, id: first_repetition
 						expect(response).to redirect_to repetitions_url
 					end
 				end
@@ -147,19 +147,19 @@ describe RepetitionsController do
 
 			context "for a repetition that should not be run today" do
 				it "does not update the requested repetition" do
-					put :update, id: third_repetition, successful: true
+					patch :update, id: third_repetition, successful: true
 					expect(third_repetition.successful).to be_nil
 					expect(third_repetition.run).to be_false
 				end
 
 				it "does not create another repetition" do
 					expect do
-						put :update, id: third_repetition, successful: true
+						patch :update, id: third_repetition, successful: true
 					end.to_not change(Repetition, :count)
 				end
 
 				it "redirects to the #index action" do
-					put :update, id: third_repetition, successful: true
+					patch :update, id: third_repetition, successful: true
 					expect(response).to redirect_to repetitions_url
 				end
 			end

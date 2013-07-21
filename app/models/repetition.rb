@@ -13,8 +13,6 @@
 #
 
 class Repetition < ActiveRecord::Base
-  
-  attr_accessible :planned_date, :actual_date
 
   validates :planned_date, presence: true
   validates :actual_date, presence: true,

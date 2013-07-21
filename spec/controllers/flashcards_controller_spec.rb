@@ -28,7 +28,7 @@ describe FlashcardsController do
 		end
 
 		describe "PUT #update" do
-			before { put :update, id: flashcard, flashcard: attributes_for(:flashcard) }
+			before { patch :update, id: flashcard, flashcard: attributes_for(:flashcard) }
 			it_behaves_like "restricted pages"
 		end
 
@@ -38,7 +38,7 @@ describe FlashcardsController do
 		end
 
 		describe "PUT #undelete" do
-			before { put :undelete, flashcards: [flashcard] }
+			before { patch :undelete, flashcards: [flashcard] }
 			it_behaves_like "restricted pages"
 		end
 	end
@@ -161,19 +161,19 @@ describe FlashcardsController do
 
 		describe "PUT #update" do
 			context "when the flashcard doesn't exist" do
-				before { put :update, id: flashcard.id + 100, flashcard: attributes_for(:flashcard) }
+				before { patch :update, id: flashcard.id + 100, flashcard: attributes_for(:flashcard) }
 				it_behaves_like "unavailable flashcard"
 			end
 
 			context "when the flashcard belongs to another user" do
-				before { put :update, id: another_users_flashcard, flashcard: attributes_for(:flashcard) }
+				before { patch :update, id: another_users_flashcard, flashcard: attributes_for(:flashcard) }
 				it_behaves_like "unavailable flashcard"
 			end
 
 			context "when the flashcard belongs to the current user" do
 				context "with invalid attributes" do
 					let(:invalid_attributes) { attributes_for(:flashcard, front_text: "", back_text: "blah-blah") }
-					before(:each) { put :update, id: flashcard, flashcard: invalid_attributes }
+					before(:each) { patch :update, id: flashcard, flashcard: invalid_attributes }
 
 					it "sets a flash[:error] message" do
 						expect(flash.to_hash).to_not eq({ })
@@ -190,7 +190,7 @@ describe FlashcardsController do
 
 				context "with valid attributes" do
 					let(:valid_attributes) { attributes_for(:flashcard, front_text: "blah-blah") }
-					before(:each) { put :update, id: flashcard, flashcard: valid_attributes }
+					before(:each) { patch :update, id: flashcard, flashcard: valid_attributes }
 					
 					it "alters the requested flashcard" do
 						expect(flashcard.reload.front_text).to eq "blah-blah"
@@ -229,30 +229,30 @@ describe FlashcardsController do
 
 		describe "PUT #undelete" do
 			context "when any of the flashcards doesn't exist" do
-				before(:each) { put :undelete, flashcards: [deleted_flashcard, deleted_flashcard.id + 100] }
+				before(:each) { patch :undelete, flashcards: [deleted_flashcard, deleted_flashcard.id + 100] }
 				it_behaves_like "unavailable flashcard"
 			end
 
 			context "when any of the flashcards belongs to another user" do
-				before(:each) { put :undelete, flashcards: [deleted_flashcard, another_users_flashcard] }
+				before(:each) { patch :undelete, flashcards: [deleted_flashcard, another_users_flashcard] }
 				it_behaves_like "unavailable flashcard"
 			end
 
 			context "when all the flashcards belong to the current user" do
 				it "marks all listed deleted flashcards as not deleted" do
 					expect do
-						put :undelete, flashcards: [deleted_flashcard]
+						patch :undelete, flashcards: [deleted_flashcard]
 					end.to change{user.flashcards.deleted.count}.from(1).to(0)
 				end
 
 				it "doesn't do anything with listed flashcards that are not deleted" do
 					expect do
-						put :undelete, flashcards: [flashcard]
+						patch :undelete, flashcards: [flashcard]
 					end.to_not change{flashcard}
 				end
 
 				it "redirects to the #index page" do
-					put :undelete, flashcards: [deleted_flashcard, flashcard]
+					patch :undelete, flashcards: [deleted_flashcard, flashcard]
 					expect(response).to redirect_to flashcards_url
 				end
 			end

@@ -18,8 +18,6 @@
 class Flashcard < ActiveRecord::Base
   
   default_scope { where(deleted: false) }
-
-  attr_accessible :front_text, :back_text, :deleted
   
   validates :front_text, presence: true
   validates :back_text, presence: true

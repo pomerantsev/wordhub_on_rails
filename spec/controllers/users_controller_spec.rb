@@ -217,7 +217,7 @@ describe UsersController do
 	describe "PUT #update" do
 		context "when not logged in" do
 			it "redirects to the home page" do
-				put :update, id: create(:user), user: attributes_for(:user)
+				patch :update, id: create(:user), user: attributes_for(:user)
 				expect(response).to redirect_to root_url
 			end
 		end
@@ -231,13 +231,13 @@ describe UsersController do
 				first_repetition = flashcard.repetitions.first
 				first_repetition.actual_date = first_repetition.planned_date = Date.today - 3.days
 				first_repetition.save
-				put :update, id: user, user: attributes_for(:user)
+				patch :update, id: user, user: attributes_for(:user)
 				expect(first_repetition.reload.actual_date).to eq Date.today
 			end
 
 			it "changes the current date" do
 				session[:date] = Date.today - 1.day
-				put :update, id: user, user: attributes_for(:user)
+				patch :update, id: user, user: attributes_for(:user)
 				expect(session[:date]).to eq Date.today
 			end
 
@@ -245,7 +245,7 @@ describe UsersController do
 				
 
 				it "assigns the current user to @user" do
-					put :update,
+					patch :update,
 						id: user,
 						user: { name: "John Doe",
 							daily_limit: 20 }
@@ -254,7 +254,7 @@ describe UsersController do
 
 				context "with valid attributes" do
 					before(:each) {
-						put :update,
+						patch :update,
 						id: user,
 						user: { name: "John Doe",
 							daily_limit: 20 } }
@@ -276,7 +276,7 @@ describe UsersController do
 
 				context "with invalid attributes" do
 					before(:each) {
-						put :update,
+						patch :update,
 						id: user,
 						user: { email: "" } }
 					
@@ -296,7 +296,7 @@ describe UsersController do
 
 			context "when trying to #update a user with any other id" do
 				let(:another_user) { create(:user) }
-				before(:each) { put :update, id: another_user, user: attributes_for(:user) }
+				before(:each) { patch :update, id: another_user, user: attributes_for(:user) }
 
 				it "redirects to the user's home page" do
 					expect(response).to redirect_to home_page

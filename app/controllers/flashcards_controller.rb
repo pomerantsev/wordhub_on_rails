@@ -23,7 +23,7 @@ class FlashcardsController < ApplicationController
   
   
   def create
-    @flashcard = current_user.flashcards.new(params[:flashcard])
+    @flashcard = current_user.flashcards.new(flashcard_params)
     if @flashcard.save
       redirect_to new_flashcard_path
     else
@@ -40,7 +40,7 @@ class FlashcardsController < ApplicationController
   
 
   def update
-    if @flashcard.update_attributes(params[:flashcard])
+    if @flashcard.update_attributes(flashcard_params)
       redirect_to flashcards_path(anchor: @flashcard.id)
     else
       flash.now[:error] = errors(@flashcard)
@@ -79,7 +79,8 @@ class FlashcardsController < ApplicationController
   end
   
   
-  protected
+
+protected
   
   def get_flashcard
     @flashcard = Flashcard.find_by_id(params[:id])
@@ -89,6 +90,14 @@ class FlashcardsController < ApplicationController
       return false
     end
     return true
+  end
+
+
+
+private
+  
+  def flashcard_params
+    params.require(:flashcard).permit(:front_text, :back_text, :deleted)
   end
   
 end

@@ -16,10 +16,6 @@
 
 
 class User < ActiveRecord::Base
-  
-  attr_accessible :name, :email, :password, :daily_limit
-
-
 
   has_many :flashcards, dependent: :destroy do
     
