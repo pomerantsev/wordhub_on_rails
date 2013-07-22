@@ -1,7 +1,7 @@
-= content_tag :li, class: active_class(stats_path) do
+%li{ class: active_class(stats_path) }
   = link_to "Статистика",  stats_path
 %li.divider
-= content_tag :li, class: active_class(settings_path) do
+%li{ class: active_class(settings_path) }
   = link_to "Настройки", settings_path
 %li.divider
 %li
