@@ -4,8 +4,12 @@
   %p.lead #{date}:
   - @flashcards_grouped_by_date[date].reverse.each do |flashcard|
     %a{ id: flashcard.id }
-    - added_class = flashcard.learned? ? " flashcard-learned" : ""
-    = link_to edit_flashcard_path(flashcard), class: "hero-unit flashcard" + added_class do
-      %span<>= flashcard.front_text
+    = link_to edit_flashcard_path(flashcard),
+              class: ["hero-unit",
+                      "flashcard",
+                      flashcard.learned? && "flashcard-learned"] do
+      %span<>
+        = flashcard.front_text
       %hr/
-      %span<>= flashcard.back_text
+      %span<>
+        = flashcard.back_text
