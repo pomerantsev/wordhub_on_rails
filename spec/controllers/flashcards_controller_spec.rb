@@ -63,7 +63,7 @@ describe FlashcardsController do
 
 			it "populates the @flashcards_grouped_by_date array" do
 				expect(assigns(:flashcards_grouped_by_date)).to eq({
-					Date.yesterday => [yesterdays_flashcard],
+					1.day.ago.localtime.to_date => [yesterdays_flashcard],
 					Date.today => [flashcard] })
 			end
 
