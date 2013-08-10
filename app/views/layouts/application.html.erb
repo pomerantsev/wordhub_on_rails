@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <title><%= full_title(@page_title) %></title>
+    <meta name="Viewport" content="width=device-width, initial-scale=1.0" />
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <%= render "layouts/menu" %>
+      <%= render "layouts/alerts" %>
+      <%= yield %>
+      <div class="push" />
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="copyright">
+          2013,
+          <%= link_to "Павел Померанцев", "http://pomerantsev.moikrug.ru/" %>
+        </p>
+        <p class="email"><%= mail_to "pomerantsevp@gmail.com" %></p>
+      </div>
+    </footer>
+    <% if Rails.env.development? or Rails.env.test? %>
+      <%= debug(params) %>
+    <% end %>
+  </body>
+</html>
