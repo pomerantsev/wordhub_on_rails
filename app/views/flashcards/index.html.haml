@@ -8,8 +8,6 @@
               class: ["hero-unit",
                       "flashcard",
                       flashcard.learned? && "flashcard-learned"] do
-      %span<>
-        = flashcard.front_text
-      %hr/
-      %span<>
-        = flashcard.back_text
+      %span<>= flashcard.front_text
+      %hr
+      %span<>= flashcard.back_text
