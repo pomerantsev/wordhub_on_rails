@@ -1,0 +1,84 @@
+@import "constants";
+
+/* Карточка. */
+
+.flashcard {
+  display: block;
+  text-decoration: none;
+  min-height: 120px;
+  margin-bottom: $margin-standard;
+  margin-top: $margin-standard;
+  white-space: pre;
+  white-space: pre-wrap;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.flashcard-hidden {
+  display: none;
+}
+
+.flashcard-learned {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+@media (max-width: $before-breakpoint) {
+  .flashcard {
+    padding: 15px 22px;
+    font-size: 14px;
+    line-height: 23px;
+    font-weight: normal;
+    min-height: 100px;
+  }
+  
+  .form-actions {
+    padding: 10px;
+  }
+}
+
+.wrapper {
+  background-color: #f5f5f5;
+  border-bottom: 20px solid white;
+}
+
+.form-actions {
+  margin: 0;
+  border-top: none;
+}
+
+/* Ссылка на удаление в форме редактирования карточки. */
+
+@media (min-width: $after-breakpoint) {
+/* Чтобы на большом разрешении
+ * ссылка удаления была справа от кнопки сохранения.
+ */
+  .destroy-link-div {
+    position: relative;
+    top: -55px;
+  }
+}
+
+.destroy-link {
+  line-height: 30px;
+}
+
+/* Блок для восстановления удалённых карточек. */
+.deleted-today-oneline {
+  display: none;
+  margin: 20px 0;
+
+  a {
+    color: gray;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+
+    &.just-deleted {
+      color: white;
+      background-color: #468847;
+    }
+  }
+}

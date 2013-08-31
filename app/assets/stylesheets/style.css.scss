@@ -205,31 +205,8 @@ ol li {
 .hero-unit {
   padding: 30px;
 }
-
-
-
-/* Карточка. */
-
-a.hero-unit {
-  display: block;
-  text-decoration: none;
-  min-height: 120px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.form-left {
-  display: inline-block;
-  width: 50%;
-}
-
-.form-right {
-  display: inline-block;
-  width: 30%;
-  float: right;
-}
-
-
+  
+  
 @media (max-width: 767px) {
   .hero-unit {
     padding: 15px 22px;
@@ -243,17 +220,7 @@ a.hero-unit {
       margin-top: 0;
     }
   }
-  
-  a.hero-unit {
-    min-height: 100px;
-  }
-  
-  .form-actions {
-    padding: 10px;
-  }
-  
-  
-  
+
   /* Это чтобы на маленьком экране телефона
    * всё верхнее меню умещалось в одну строчку.
    * Размеры padding-ов взяты, чтобы меню было выровнено
@@ -298,67 +265,4 @@ a.hero-unit {
 
 .btn-save-settings {
   margin-top: 30px;
-}
-
-
-
-.flashcard {
-  white-space: pre;
-  white-space: pre-wrap;
-}
-
-a.hero-unit.flashcard-hidden {
-  display: none;
-}
-
-.flashcard-learned {
-  color: #468847;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-}
-
-.wrapper {
-  background-color: #f5f5f5;
-  border-bottom: 20px solid white;
-}
-
-.form-actions {
-  margin: 0;
-  border-top: none;
-}
-
-
-
-/* Ссылка на удаление в форме редактирования карточки. */
-
-@media (min-width: 768px) {
-/* Чтобы на большом разрешении
- * ссылка удаления была справа от кнопки сохранения.
- */
-  .destroy-link-div {
-    position: relative;
-    top: -55px;
-  }
-}
-
-.destroy-link {
-  line-height: 30px;
-}
-
-/* Блок для восстановления удалённых карточек. */
-.deleted-today-oneline {
-  display: none;
-  margin: 20px 0;
-
-  a {
-    color: gray;
-    background-color: white;
-    padding: 10px;
-    border-radius: 4px;
-
-    &.just-deleted {
-      color: white;
-      background-color: #468847;
-    }
-  }
 }
