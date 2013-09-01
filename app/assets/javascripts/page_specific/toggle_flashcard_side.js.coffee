@@ -1,11 +1,11 @@
 $ ->
-	$('.flashcard-repeat, .flashcard-hidden').click (event) ->
+	$('.flashcard, .hidden').click (event) ->
 		visibleSide = $(event.currentTarget)
-		invisibleSide = $('.flashcard-hidden')
+		invisibleSide = $('.hidden')
 		visibleSide.
-			removeClass('flashcard-repeat').
-			addClass('flashcard-hidden')
+			removeClass('flashcard').
+			addClass('hidden')
 		invisibleSide.
-			removeClass('flashcard-hidden').
-			addClass('flashcard-repeat')
+			removeClass('hidden').
+			addClass('flashcard')
 		false

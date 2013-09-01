@@ -1,23 +1,18 @@
 @import "constants";
 
-.footer {
+footer {
   position: relative;
-  text-align: center;
   padding: 30px 0;
   margin-top: 70px;
   border-top: 1px solid #E5E5E5;
   background-color: $gray-lighter;
-
-  /* Внешний вид футера зависит от ширины экрана.
-   * Если он уже 768 пикселей, надписи становятся друг под другом,
-   * и высота футера увеличивается.
-   */
-
+  @media (max-width: $before-breakpoint700) {
+    text-align: center;
+  }
   @media (min-width: $after-breakpoint700) {
     .copyright {
       float: left;
     }
-    
     .email {
       float: right;
     }

@@ -25,8 +25,6 @@ development:
   encoding: unicode
   database: wh_rails_development
   pool: 5
-  username: wh_rails
-  password: secretpassword
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -37,8 +35,6 @@ test:
   encoding: unicode
   database: wh_rails_test
   pool: 5
-  username: wh_rails_test
-  password: secretpassword
 
 # production:
 #  adapter: mysql2
