@@ -1,0 +1,91 @@
+@import "constants";
+
+.menu-item {
+  span {
+    display: block;
+  }
+  &.to-do {
+    color: $universal-green !important;
+    text-shadow: 0 1px 0 $universal-green-shadow !important;
+    font-weight: bold;
+  }
+  &.inactive {
+    color: #999999 !important;
+  }
+}
+
+
+/* "Толстое" верхнее меню. Из-за того, что оно стало двухстрочным,
+ * стандартные стили Bootstrap'а поехали.
+ */
+
+.toggle-dropdown {
+  margin-top: 15px !important;
+}
+
+
+/* Этот огород нагорожен из-за IE8.
+ * Сначала считываются стили для высокого разрешения,
+ * затем они переопределяются для маленьких
+ * (только в браузерах, поддерживающих media queries). */
+
+.fat-menu-center a, #user-menu-no-dropdown a {
+  @media (max-width: $before-breakpoint900) {
+    padding-top: 9px !important;
+    padding-bottom: 9px !important;
+  }
+  @media (min-width: $after-breakpoint900) {
+    padding-top: 20px !important;
+    padding-bottom: 21px !important;
+  }
+}
+
+/* Это стили для меню. Решены две задачи.
+ * 1. При отсутствии Яваскрипта
+ *    всегда отображается единое меню, без дропдаунов.
+ * 2. Если Яваскрипт работает, то на меньших разрешениях
+ *    (где всё меню схлопывается до одной кнопки)
+ *    оно становится линейным, без дополнительного дропдауна
+ *    с именем пользователя.
+ * Сейчас без Яваскрипта и на маленьких разрешениях
+ * нельзя увидеть имя пользователя. Эту проблему предстоит решить.
+ */
+
+@media (max-width: $before-breakpoint900) {
+  #user-dropdown-menu {
+    display: none;
+  }
+}
+
+#user-menu-no-dropdown {
+  display: none;
+  .no-js & {
+    display: block;
+  }
+  .js & {
+    @media (max-width: $before-breakpoint900) {
+      display: block;
+    }    
+  }
+}
+
+@media (max-width: $before-breakpoint700) {
+  /* Это чтобы на маленьком экране телефона
+   * всё верхнее меню умещалось в одну строчку.
+   */
+  
+  div.navbar-inner {
+    padding-left: 7px;
+    padding-right: 17px;
+  }
+  
+  .navbar {
+    .brand {
+      padding-left: 15px;
+    }
+  
+    .nav {
+      margin-right: 0px;
+    }
+  }   
+}

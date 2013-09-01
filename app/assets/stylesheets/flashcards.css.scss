@@ -13,6 +13,13 @@
   &:hover {
     text-decoration: none;
   }
+  @media (max-width: $before-breakpoint700) {
+    padding: 15px 22px;
+    font-size: 14px;
+    line-height: 23px;
+    font-weight: normal;
+    min-height: 100px;
+  }
 }
 
 .flashcard-hidden {
@@ -20,49 +27,36 @@
 }
 
 .flashcard-learned {
-  color: #468847;
+  color: $universal-green;
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
 
-@media (max-width: $before-breakpoint) {
-  .flashcard {
-    padding: 15px 22px;
-    font-size: 14px;
-    line-height: 23px;
-    font-weight: normal;
-    min-height: 100px;
-  }
-  
-  .form-actions {
-    padding: 10px;
-  }
-}
-
-.wrapper {
-  background-color: #f5f5f5;
+.responses {
+  background-color: $gray-lighter;
   border-bottom: 20px solid white;
-}
-
-.form-actions {
-  margin: 0;
-  border-top: none;
+  .form-actions {
+    margin: 0;
+    border-top: none;
+    @media (max-width: $before-breakpoint700) {
+      padding: 10px;
+    }
+  }
 }
 
 /* Ссылка на удаление в форме редактирования карточки. */
 
-@media (min-width: $after-breakpoint) {
-/* Чтобы на большом разрешении
- * ссылка удаления была справа от кнопки сохранения.
- */
-  .destroy-link-div {
+.destroy-link-div {
+  @media (min-width: $after-breakpoint700) {
+    /* Чтобы на большом разрешении
+     * ссылка удаления была справа от кнопки сохранения.
+     */
     position: relative;
     top: -55px;
   }
-}
-
-.destroy-link {
-  line-height: 30px;
+  .destroy {
+    line-height: 30px;
+  }
 }
 
 /* Блок для восстановления удалённых карточек. */
@@ -78,7 +72,7 @@
 
     &.just-deleted {
       color: white;
-      background-color: #468847;
+      background-color: $universal-green;
     }
   }
 }

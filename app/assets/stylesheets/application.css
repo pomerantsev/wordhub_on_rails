@@ -10,6 +10,9 @@
  *
  *= require bootstrap.min
  *= require bootstrap-responsive.min
- *= require style
+ *= require global
+ *= require menu
+ *= require footer
+ *= require pages
  *= require flashcards
  */

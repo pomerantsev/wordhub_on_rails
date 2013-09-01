@@ -1,5 +1,5 @@
 %h4.no-margin-top Вход на сайт
-= form_tag attempt_login_path, html: { id: "login-form" } do
+= form_tag attempt_login_path, id: "login-form" do
   = label_tag :email, "Email:"
   = email_field_tag :email, nil, required: true
   = label_tag :password, "Пароль:"

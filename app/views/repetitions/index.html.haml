@@ -3,7 +3,7 @@
   = link_to @current_text, repetitions_path(repetition_id: @current_repetition.id, view: @reverse_view), class: "hero-unit flashcard flashcard-repeat"
   = link_to @reverse_text, repetitions_path(repetition_id: @current_repetition.id, ivew: @current_view), class: "flashcard-hidden"
   .clearfix
-  .wrapper
+  .responses
     = form_for @current_repetition, html: { class: "form-actions pull-left" } do |f|
       = f.hidden_field :id
       = hidden_field_tag :successful, false
