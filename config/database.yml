@@ -35,6 +35,7 @@ test:
   encoding: unicode
   database: wh_rails_test
   pool: 5
+  username: postgres
 
 # production:
 #  adapter: mysql2
