@@ -1,6 +1,8 @@
 language: ruby
 rvm:
   - "2.0.0"
-script: bundle exec rspec
+script:
+  - rake db:schema:load
+  - bundle exec rspec
 before_script:
   - psql -c 'create database wh_rails_test;' -U postgres
