@@ -29,7 +29,7 @@ end
 group :test do
 	gem 'faker'
 	gem 'capybara', github: 'jnicklas/capybara'
-	gem 'selenium-webdriver', '~> 2.33.0'
+	gem "poltergeist", '~> 1.4.1'
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'timecop', '~> 0.6.2.2'
