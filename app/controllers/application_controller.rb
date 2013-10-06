@@ -60,7 +60,9 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-    I18n.locale = current_user.try(:interface_language) || I18n.default_locale
+    I18n.locale = current_user.try(:interface_language) ||
+                    extract_locale_from_tld ||
+                      I18n.default_locale
   end
 
   # Чтобы всё приложение вычисляло дату единым образом, используется одна переменная сессии, которая обновляется перед каждым действием.
@@ -73,6 +75,14 @@ class ApplicationController < ActionController::Base
     if current_user
       flashcards_deleted_before_today = current_user.flashcards.deleted_before(current_date)
       flashcards_deleted_before_today.each { |flashcard| flashcard.destroy }
+    end
+  end
+
+  def extract_locale_from_tld
+    tld = request.host.split('.').last
+    case tld
+    when "com", "org" then :en
+    when "ru" then :ru
     end
   end
   

@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20131006093520) do
     t.text     "front_text"
     t.text     "back_text"
     t.integer  "consecutive_successful_repetitions", default: 0
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "deleted",                            default: false
     t.date     "learned_on"
   end
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20131006093520) do
     t.date     "actual_date"
     t.boolean  "run",          default: false
     t.boolean  "successful"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20131006093520) do
     t.string   "salt",                  limit: 40
     t.boolean  "is_admin",                          default: false
     t.integer  "daily_limit",                       default: 10
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "interface_language_cd",             default: 0
   end
 
