@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Locales" do
-  after { Capybara.app_host = Capybara.default_host }
+  after { Capybara.app_host = nil }
 
   context "when not logged in" do
     context "when tld is 'ru'" do
