@@ -22,6 +22,42 @@ en:
     logout: Logout
     author: Pavel Pomerantsev
     author_link: http://facebook.com/pomerantsevp
+  application:
+    index:
+      header: A simple way to memorize foreign words
+      subheader: "Just like paper flashcards, but much more convenient."
+      who:
+        header: Who needs this website
+        if_you: "If:"
+        if_options:
+          - "you are used to reading in a foreign language,"
+          - "your skills are not perfect and you sometimes encounter unfamiliar words,"
+          - "you still don’t know how to expand your vocabulary,"
+        then_learn: "then just memorize several words a day. Wordhub is here to help."
+      what:
+        header: How it works
+        paragraphs:
+          - "You create flashcards with words and their meanings."
+          - "Then you repeat them. Wordhub knows when a flashcard should be repeated, and the harder for you is to memorize a particular word, the more often you see it."
+          - "You won’t find predefined dictionaries here, but Wordhub is easily customizable to your needs: you can create flashcards in any languages, you can memorize not only words, but also facts meaningful to you (i.e., what you need for work or education)."
+          - "It’s best to create new flashcards and repeat old ones each day. Say, if you add 30 flashcards a day to your collection (not so many, really), you can memorize 10 thousand words in just a year. Two to three years of such training — and your vocabulary is close to that of native speakers."
+      why:
+        header: "Why it is convenient to study on the Web"
+        same_with_paper: "You can do the same with paper flashcards. But Wordhub has several advantages:"
+        advantages:
+          - "Faster. You can copy and paste words and phrases from other websites. For those who type fast on the keyboard, it’s even easier."
+          - "More reliable and accessible. Just have and Internet connection handy — and your whole flashcard collection is with you."
+          - "Easier to grasp. You needn’t invent a system for your repetitions: the harder the word is for you to memorize, the more often you have to repeat it."
+          - "Cheaper. It’s 100% free. You wouldn’t even have to pay for your paper :)."
+      learn_more_or_sign_up: "You can %{learn_more} or %{sign_up}."
+      learn_more: learn more
+      sign_up: sign up
+      login_form:
+        header: Sign In
+        email: Email
+        password: Password
+        login: Sign in
+        sign_up: Become a member
   users:
     edit:
       title: Settings

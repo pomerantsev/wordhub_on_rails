@@ -3,7 +3,7 @@
 module ApplicationHelper
 
   def full_title(title = nil)
-    base_title = "Вордхаб"
+    base_title = I18n.t("nav.wordhub")
     if title.nil? or title.blank?
       base_title
     else
