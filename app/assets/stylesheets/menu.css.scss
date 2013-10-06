@@ -4,6 +4,9 @@
   span {
     display: block;
   }
+  small span {
+    display: inline;
+  }
   &.to-do {
     color: $universal-green !important;
     text-shadow: 0 1px 0 $universal-green-shadow !important;

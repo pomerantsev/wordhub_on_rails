@@ -1,16 +1,15 @@
-- @page_title = "Настройки"
+- @page_title = t("pages.settings.title")
 %h2= @page_title
 = form_for @user do |f|
-  %h4 Дневной лимит на создание карточек
-  %p Его необязательно соблюдать, но это #{link_to "очень подстёгивает", about_path(anchor: "everyDay")}.
+  %h4= t("pages.settings.daily_limit")
+  %p!= t("pages.settings.daily_limit_hint", motivating: link_to(t("pages.settings.motivating"), about_path(anchor: "everyDay")))
   = f.number_field :daily_limit
 
-  %h4 Имя
+  %h4= t("pages.settings.name")
   = f.text_field :name
 
-  %h4 Язык интерфейса
-  = f.select :interface_language_cd,
-             [['Русский', User.russian], ['Английский', User.english]]
+  %h4= t("pages.settings.interface_language")
+  = f.select :interface_language, User.interface_languages_for_select
   %span.help-block
 
   = f.submit "Сохранить", class: "btn btn-primary btn-save-settings"

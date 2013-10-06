@@ -5,21 +5,27 @@
 %ul.nav.pull-left#elementBeforeDropdown
   %li.menu-item{ class: [active_class(new_flashcard_path), create_class] }
     = link_to new_flashcard_path do
-      %span Создать
+      %span= t("nav.create")
       %span
-        %small= "#{current_user.flashcards.created_on(current_date).size} из #{current_user.daily_limit}"
+        %small
+          %span= current_user.flashcards.created_on(current_date).size
+          %span= t("nav.of")
+          %span= current_user.daily_limit
   %li.menu-item{ class: [active_class(repetitions_path), repeat_class] }
     = link_to repetitions_path do
-      %span Повторить
+      %span= t("nav.repeat")
       %span
-        %small= "#{current_user.repetitions.run.on(current_date).size} из #{current_user.repetitions.for(current_date).size}"
+        %small
+          %span= current_user.repetitions.run.on(current_date).size
+          %span= t("nav.of")
+          %snap= current_user.repetitions.for(current_date).size
 
 -# Этот ul Яваскриптом обрамляется в div, чтобы в случае, если Яваскрипт не работает, меню работало, хоть и выглядело бы некрасиво.
 
 -# Класс fat-menu-center - чтобы пункты меню в "толстом" меню не были приклеены к верху, а появлялись посередине.
 %ul.fat-menu-center.nav.pull-right#dropdownMenu
   %li.menu-item{ class: active_class(flashcards_path) }
-    = link_to "Все карточки", flashcards_path
+    = link_to t("nav.all_flashcards"), flashcards_path
   = render "layouts/about"
   -# Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него.
   %li.menu-item.dropdown.no-js-hide#user-dropdown-menu

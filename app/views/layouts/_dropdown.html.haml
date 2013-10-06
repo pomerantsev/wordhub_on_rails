@@ -1,8 +1,8 @@
 %li{ class: active_class(stats_path) }
-  = link_to "Статистика",  stats_path
+  = link_to t("nav.stats"),  stats_path
 %li.divider
 %li{ class: active_class(settings_path) }
-  = link_to "Настройки", settings_path
+  = link_to t("nav.settings"), settings_path
 %li.divider
 %li
-  = link_to "Выйти", logout_path
+  = link_to t("nav.logout"), logout_path

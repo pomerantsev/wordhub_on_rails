@@ -1,4 +1,4 @@
-= link_to "Вордхаб", root_path, class: "brand"
+= link_to t("nav.wordhub"), root_path, class: "brand"
 %ul.nav.pull-right
   = render "layouts/about"
-  %li= link_to "Вход", root_path(anchor: "login")
+  %li= link_to t("nav.login"), root_path(anchor: "login")

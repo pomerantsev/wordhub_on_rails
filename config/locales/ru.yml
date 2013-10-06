@@ -1,0 +1,28 @@
+ru:
+  activerecord:
+    enums:
+      user:
+        interface_languages:
+          ru: Русский
+          en: Английский
+  nav:
+    wordhub: Вордхаб
+    create: Создать
+    repeat: Повторить
+    of: из
+    all_flashcards: Все карточки
+    about: О сайте
+    stats: Статистика
+    settings: Настройки
+    login: Вход
+    logout: Выйти
+    author: Павел Померанцев
+    author_link: http://pomerantsev.moikrug.ru
+  pages:
+    settings:
+      title: Настройки
+      daily_limit: Дневной лимит на создание карточек
+      daily_limit_hint: "Его необязательно соблюдать, но это %{motivating}."
+      motivating: очень подстёгивает
+      name: Имя
+      interface_language: Язык интерфейса

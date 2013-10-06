@@ -18,7 +18,7 @@
 
 class User < ActiveRecord::Base
 
-  as_enum :interface_language, russian: 0, english: 1
+  as_enum :interface_language, ru: 0, en: 1
 
   has_many :flashcards, dependent: :destroy do
     

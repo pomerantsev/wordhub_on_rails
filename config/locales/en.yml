@@ -1,5 +1,28 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  activerecord:
+    enums:
+      user:
+        interface_languages:
+          ru: Russian
+          en: English
+  nav:
+    wordhub: Wordhub
+    create: Create
+    repeat: Repeat
+    of: of
+    all_flashcards: All flashcards
+    about: About
+    stats: Statistics
+    settings: Settings
+    login: Login
+    logout: Logout
+    author: Pavel Pomerantsev
+    author_link: http://facebook.com/pomerantsevp
+  pages:
+    settings:
+      title: Settings
+      daily_limit: Daily limit for new flashcards
+      daily_limit_hint: "You shouldn’t treat it like something strict, but it's still %{motivating}."
+      motivating: very motivating
+      name: Name
+      interface_language: Interface language

@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  before_action :set_locale
   before_action :adjust_current_date
   before_action :wipe_deleted_flashcards
   
@@ -57,6 +58,10 @@ class ApplicationController < ActionController::Base
 
 
   private
+
+  def set_locale
+    I18n.locale = current_user.try(:interface_language) || I18n.default_locale
+  end
 
   # Чтобы всё приложение вычисляло дату единым образом, используется одна переменная сессии, которая обновляется перед каждым действием.
   def adjust_current_date
