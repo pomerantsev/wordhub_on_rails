@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect_to home_page
     else
-      @user = User.new(user_params)
+      @user = User.new(user_params.merge(interface_language: I18n.locale))
       if @user.save
         session[:user_id] = @user.id
         redirect_to home_page
