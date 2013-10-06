@@ -80,6 +80,7 @@ class UsersController < ApplicationController
 private
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :daily_limit)
+		params.require(:user).permit(:name, :email, :password,
+																 :daily_limit, :interface_language_cd)
 	end
 end

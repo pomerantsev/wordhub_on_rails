@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130603130739) do
+ActiveRecord::Schema.define(version: 20131006093520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20130603130739) do
     t.text     "front_text"
     t.text     "back_text"
     t.integer  "consecutive_successful_repetitions", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.boolean  "deleted",                            default: false
     t.date     "learned_on"
   end
@@ -33,19 +33,20 @@ ActiveRecord::Schema.define(version: 20130603130739) do
     t.date     "actual_date"
     t.boolean  "run",          default: false
     t.boolean  "successful"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",            limit: 25
-    t.string   "email",           limit: 100
-    t.string   "hashed_password", limit: 40
-    t.string   "salt",            limit: 40
-    t.boolean  "is_admin",                    default: false
-    t.integer  "daily_limit",                 default: 10
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "name",                  limit: 25
+    t.string   "email",                 limit: 100
+    t.string   "hashed_password",       limit: 40
+    t.string   "salt",                  limit: 40
+    t.boolean  "is_admin",                          default: false
+    t.integer  "daily_limit",                       default: 10
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.integer  "interface_language_cd",             default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
