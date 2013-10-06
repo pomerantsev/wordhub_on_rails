@@ -6,7 +6,7 @@ feature "Signin" do
 
 	scenario "with invalid information" do
 		visit root_path
-		click_button "Войти"
+		click_button I18n.t("application.index.login_form.login")
 		expect(current_path).to eq root_path
 	end
 
