@@ -1,5 +1,9 @@
 en:
   activerecord:
+    attributes:
+      flashcard:
+        front_text: Word
+        back_text: Meaning
     enums:
       user:
         interface_languages:
@@ -18,8 +22,8 @@ en:
     logout: Logout
     author: Pavel Pomerantsev
     author_link: http://facebook.com/pomerantsevp
-  pages:
-    settings:
+  users:
+    edit:
       title: Settings
       daily_limit: Daily limit for new flashcards
       daily_limit_hint: "You shouldn’t treat it like something strict, but it's still %{motivating}."

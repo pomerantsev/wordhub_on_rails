@@ -1,5 +1,17 @@
 ru:
   activerecord:
+    models:
+      user: Пользователь
+      flashcard: Карточка
+      repetition: Повтор
+    attributes:
+      flashcard:
+        front_text: Слово
+        back_text: Значение
+    errors:
+      models:
+        flashcard:
+          blank: не может быть пустым.
     enums:
       user:
         interface_languages:
@@ -18,8 +30,8 @@ ru:
     logout: Выйти
     author: Павел Померанцев
     author_link: http://pomerantsev.moikrug.ru
-  pages:
-    settings:
+  users:
+    edit:
       title: Настройки
       daily_limit: Дневной лимит на создание карточек
       daily_limit_hint: "Его необязательно соблюдать, но это %{motivating}."
