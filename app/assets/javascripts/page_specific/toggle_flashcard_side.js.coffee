@@ -1,5 +1,5 @@
 $ ->
-	$('.flashcard, .hidden').click (event) ->
+	$('.flashcard-toggleable .flashcard, .flashcard-toggleable .hidden').click (event) ->
 		visibleSide = $(event.currentTarget)
 		invisibleSide = $('.hidden')
 		visibleSide.

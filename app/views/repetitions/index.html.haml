@@ -1,7 +1,14 @@
 - @page_title = "Повтор слов"
 - if @current_repetition
-  = link_to @current_text, repetitions_path(repetition_id: @current_repetition.id, view: @reverse_view), class: "flashcard"
-  = link_to @reverse_text, repetitions_path(repetition_id: @current_repetition.id, view: @current_view), class: "hidden"
+  .flashcard-toggleable
+    = link_to @current_text,
+              repetitions_path(repetition_id: @current_repetition.id,
+                               view: @reverse_view),
+              class: "flashcard"
+    = link_to @reverse_text,
+              repetitions_path(repetition_id: @current_repetition.id,
+                               view: @current_view),
+              class: "hidden"
   .clearfix
   .responses
     = form_for @current_repetition, html: { class: "dont-remember" } do |f|
