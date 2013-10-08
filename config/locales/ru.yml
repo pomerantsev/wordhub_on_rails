@@ -8,6 +8,10 @@ ru:
       flashcard:
         front_text: Слово
         back_text: Значение
+      user:
+        email: Email
+        password: Пароль
+        name: Имя
     errors:
       models:
         flashcard:
@@ -66,6 +70,20 @@ ru:
         password: Пароль
         login: Войти
         sign_up: Зарегистрироваться
+  flashcards:
+    index:
+      show_just_deleted: "Показать удалённые карточки (%{count}) — завтра будут совсем удалены"
+      just_deleted: Удалённые сегодня
+      undelete: Восстановить
+    form:
+      create: Создать
+      update: Сохранить
+      delete: Удалить
+  repetitions:
+    index:
+      word_repetition: Повтор слов
+      dont_remember: Не помню
+      remember: Помню
   users:
     edit:
       title: Настройки
@@ -74,3 +92,23 @@ ru:
       motivating: очень подстёгивает
       name: Имя
       interface_language: Язык интерфейса
+      update: Сохранить
+    new:
+      new_user: Регистрация
+      not_going_to_share: Мы ни с кем не будем делиться вашим адресом.
+      any_combination: "Любая комбинация цифр (0-9) и латинских букв (a-z, A-Z) без пробелов, не короче 6 символов. РеГисТР имеет значение."
+      how_to_address: "Можете указать, как к вам обращаться (не длиннее 25 символов)."
+      sign_up: Зарегистрироваться
+    show:
+      general: Общая
+      monthly: За месяц
+      daily: Сегодня
+      total_flashcards: Всего карточек
+      learned: Из них выучено
+      total_repetitions_planned: Всего запланировано повторов
+      nearest_repetitions: Ближайшие повторы
+      planned_until: Запланировано повторов до
+      created: Создано
+      learned: Выучено
+      total_repetitions: Всего повторов
+      successful_repetitions: Из них успешных

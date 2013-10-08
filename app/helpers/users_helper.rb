@@ -1,26 +1,26 @@
 module UsersHelper
   def total_stats(stats)
-    [{ name: "Всего карточек:",
+    [{ name: t(".total_flashcards"),
        value: stats[:total_flashcards] },
-     { name: "Из них выучено:",
+     { name: t(".learned"),
        value: stats[:learned_flashcards] },
-     { name: "Всего запланировано повторов:",
+     { name: t(".total_repetitions_planned"),
        value: stats[:total_planned_repetitions] },
-     { name: "Ближайшие повторы:",
+     { name: t(".nearest_repetitions"),
        value: "#{stats[:planned_repetitions_for_nearest_date]} (#{stats[:nearest_date]})" },
-     { name: "Запланировано повторов до:",
+     { name: t(".planned_until"),
        value: stats[:last_date_with_planned_repetitions] }
     ]
   end
 
   def stats_for_period(stats)
-    [{ name: "Создано:",
+    [{ name: t(".created"),
        value: stats[:created] },
-     { name: "Выучено:",
+     { name: t(".learned"),
        value: stats[:learned] },
-     { name: "Всего повторов:",
+     { name: t(".total_repetitions"),
        value: stats[:repetitions_run] },
-     { name: "Из них успешных:",
+     { name: t(".successful_repetitions"),
        value: "#{stats[:successful_repetitions]} (#{stats[:successful_repetitions_percentage]}%)" }
      ]
   end

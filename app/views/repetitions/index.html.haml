@@ -1,4 +1,4 @@
-- @page_title = "Повтор слов"
+- @page_title = t(".word_repetition")
 - if @current_repetition
   .flashcard-toggleable
     = link_to @current_text,
@@ -14,11 +14,11 @@
     = form_for @current_repetition, html: { class: "dont-remember" } do |f|
       = f.hidden_field :id
       = hidden_field_tag :successful, false
-      = submit_tag "Не помню"
+      = submit_tag t(".dont_remember")
     = form_for @current_repetition, html: { class: "remember" } do |f|
       = f.hidden_field :id
       = hidden_field_tag :successful, true
-      = submit_tag "Помню"
+      = submit_tag t(".remember")
     .clearfix
   .progress
     .bar{ style: "width: #{current_user.repetitions.progress_today * 100}%" }

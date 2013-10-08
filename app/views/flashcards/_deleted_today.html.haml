@@ -1,12 +1,13 @@
 - unless @deleted_flashcards.empty?
   .deleted-today-oneline
     = link_to "#", class: (@just_deleted ? "just-deleted" : "") do
-      Показать удалённые карточки(#{@deleted_flashcards.count}) &mdash; завтра будут совсем удалены
+      = t("flashcards.index.show_just_deleted",
+          count: @deleted_flashcards.count)
   .deleted-today-full
-    %p Удалённые сегодня:
+    %p #{ t "flashcards.index.just_deleted" }:
     = form_tag undelete_flashcards_path, method: :patch do
       - @deleted_flashcards.each do |flashcard|
         = label_tag flashcard.id, class: "checkbox" do
           = check_box_tag "flashcards[]", flashcard.id, false, class: "checkbox-undelete"
           = first_line(flashcard.front_text)
-      = submit_tag "Восстановить", class: "btn btn-primary btn-undelete"
+      = submit_tag t("flashcards.index.undelete"), class: "btn btn-primary btn-undelete"

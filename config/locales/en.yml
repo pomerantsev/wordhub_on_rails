@@ -4,6 +4,10 @@ en:
       flashcard:
         front_text: Word
         back_text: Meaning
+      user:
+        email: Email
+        password: Password
+        name: Name
     enums:
       user:
         interface_languages:
@@ -58,6 +62,20 @@ en:
         password: Password
         login: Sign in
         sign_up: Become a member
+  flashcards:
+    index:
+      show_just_deleted: "Show deleted flashcards (%{count}) — will be removed completely tomorrow"
+      just_deleted: Deleted today
+      undelete: Undelete
+    form:
+      create: Create
+      update: Save
+      delete: Delete
+  repetitions:
+    index:
+      word_repetition: Word repetition
+      dont_remember: I don’t remember
+      remember: I remember
   users:
     edit:
       title: Settings
@@ -66,3 +84,23 @@ en:
       motivating: very motivating
       name: Name
       interface_language: Interface language
+      update: Save
+    new:
+      new_user: New user
+      not_going_to_share: "We will not share it with anyone, we promise."
+      any_combination: "Any digit and letter combination no less than six symbols will do. Case (upper or lower) matters."
+      how_to_address: "Here you can specify how you wish to be addressed. 25 symbols max."
+      sign_up: Sign up
+    show:
+      general: General
+      monthly: Last month
+      daily: Today
+      total_flashcards: Total flashcards
+      learned: Learned
+      total_repetitions_planned: Total repetitions planned
+      nearest_repetitions: Upcoming repetitions
+      planned_until: Repetitions planned until
+      created: Flashcards created
+      learned: Flashcards learned
+      total_repetitions: Total repetitions
+      successful_repetitions: Successful repetitions
