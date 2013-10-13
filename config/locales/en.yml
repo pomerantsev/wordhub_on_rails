@@ -77,7 +77,60 @@ en:
       dont_remember: I don’t remember
       remember: I remember
   static_pages:
+    about_header: About Wordhub
     about:
+      title: About
+      nav_title: About
+      what_to_read:
+        header: "What to read and how?"
+        paragraphs:
+          - "Just read what you find interesting. Texts that are not too hard for understanding. Where you occasionally bump into unfamiliar words. Underline them or copy to some dedicated document. This will be your basis for learning new words."
+          - "So, this way you learn only the words that you encounter in real life, not something abstract."
+      dictionary:
+        header: "What kind of dictionary to use?"
+        paragraph: "Any one that you feel appropriate for your needs. It can contain translations to your mother tongue or explanations in the language you are studying. It all depends on your personal preferences and your skill level."
+      every_day:
+        header: "Why is it best to study every day?"
+        paragraphs:
+          - "Any training should be regular. That’s how you keep fit and motivated. If you are studying a foreign language, just like in sports, rhythm should be maintained."
+          - "Try to memorize a hundred unknown words in five hours. How many will you remember in a month after that? It’ll probably be no more than 10%."
+          - "Or repeat each of these words several times in the course of the month, spending the same five hours overall (that’s what Wordhub keeps you doing). The percentage is going to be much higher."
+      leitner:
+        header: "How are words memorized?"
+        paragraph_with_links: "Our brain best remembers any information if it’s repeated in increasing intervals. This is the principle of spaced repetitions, which is the basis for the Leitner system (here are the %{link1} and %{link2} articles on Wikipedia)."
+        link1: "http://en.wikipedia.org/wiki/Spaced_repetition"
+        link1_text: "first"
+        link2: "http://en.wikipedia.org/wiki/Leitner_system"
+        link2_text: "second"
+        paragraphs:
+          - "You create a flashcard, and in several days (the first interval is one to three days) Wordhub outputs it for repetition. If you remember the meaning of the word, then next time you will repeat it in two to nine days. Then the interval till the third time is up to a month."
+          - "Every time you don’t remember the given word, its flashcard is going to be back again in one to three days. The series of three repetitions is reset and started anew. Believe it or not, but sooner or later you’ll memorize the words you need."
+      how_many:
+        header: "How many words a day is best to learn?"
+        paragraphs:
+          - "As many as you feel right for yourself."
+          - "If you create 10 new flashcards each day, you’ll end up repeating 30 to 40 flashcards a day. It’s about half an hour a day for creating and repeating. If you create 20 flashcards, you’ll spend double the time, and so on."
+          - "Choose a pace you can sustain. Anyway, you’ll learn everything you need in its own time."
+        paragraph_with_link: "That’s why it’s best to set a low limit in the %{link}. And then increase it, but not too fast."
+        link_text: "settings"
+      self_control:
+        header: "Self-control"
+        paragraphs:
+          - "Other websites offer different types of quizzes and grade your progress. It may be fun, but it takes much time, especially if your studies are on a regular basis and if you are planning to memorize a lot of words (and that’s why you’re here, right?)."
+          - "On Wordhub it’s much simpler. We’re sure that you know at a glance if you remember the word or not. You can flip the flashcard to check if you remember the word correctly. This won’t affect the result."
+          - "Wordhub compensates the lack of quizzes by helping you balance your load. You don’t need to think about what flashcards to repeat each day. The words that are easiest for you to memorize, you will only see three times. Those that at first cause mental strain, will pop up until you remember them properly."
+      convenient:
+        header: "It’s really convenient"
+        paragraphs:
+          - "It’s super easy to create several flashcards in a row. You don’t even need a mouse for that."
+          - "Wordhub is optimized for mobile devices, so you don’t need to sit at your desk while repeating your words."
+      what_else:
+        header: "What else can Wordhub be used for?"
+        paragraphs:
+          - "Learn languages. You’re not limited to the Latin alphabet, Chinese and Arabic will do, too."
+          - "Learn grammatic rules."
+          - "Learn any facts pertinent to your profession. Anything, actually."
+      work_in_progress: "The website is alive and breathing. Last updated on 13 October 2013."
     intro:
       title: Intro
       nav_title: Intro
