@@ -8,10 +8,27 @@ en:
         email: Email
         password: Password
         name: Name
+    errors:
+      models:
+        flashcard:
+          blank: can’t be blank.
+        user:
+          attributes:
+            daily_limit:
+              inclusion: should be in interval 1..100.
+            email:
+              invalid: "is invalid. Please check if you’ve entered it correctly."
+              too_long: is too long.
+              taken: "is already taken. You can login if it’s your email."
+            password:
+              too_short: too short. Should be 6 to 25 characters long.
+              too_long: too long. Should be 6 to 25 characters long.
+            name:
+              too_long: too long. Should be no longer than 25 characters.
     enums:
       user:
         interface_languages:
-          ru: Russian
+          ru: Русский
           en: English
   nav:
     wordhub: Wordhub

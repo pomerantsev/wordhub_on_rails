@@ -9,6 +9,7 @@ ru:
         front_text: Слово
         back_text: Значение
       user:
+        daily_limit: Дневной лимит
         email: Email
         password: Пароль
         name: Имя
@@ -16,11 +17,24 @@ ru:
       models:
         flashcard:
           blank: не может быть пустым.
+        user:
+          attributes:
+            daily_limit:
+              inclusion: должен быть от 1 до 100.
+            email:
+              invalid: "имеет неверный формат (проверьте, что вы правильно вводите свой email)."
+              too_long: слишком длинный.
+              taken: "уже зарегистрирован. Вы можете войти на сайт, если это ваш ящик."
+            password:
+              too_short: слишком короткий (должен быть не меньше 6 символов).
+              too_long: слишком длинный (должен быть не больше 25 символов).
+            name:
+              too_long: слишком длинное (должно быть не длиннее 25 символов).
     enums:
       user:
         interface_languages:
           ru: Русский
-          en: Английский
+          en: English
   nav:
     wordhub: Вордхаб
     create: Создать
