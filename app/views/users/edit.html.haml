@@ -2,7 +2,9 @@
 %h2= @page_title
 = form_for @user do |f|
   %h4= t(".daily_limit")
-  %p!= t(".daily_limit_hint", motivating: link_to(t(".motivating"), about_path(anchor: "everyDay")))
+  %p!= t ".daily_limit_hint",
+          motivating: link_to(t(".motivating"),
+                              about_path(anchor: "every_day"))
   = f.number_field :daily_limit
 
   %h4= t(".name")
