@@ -13,7 +13,7 @@ gem 'unicorn', '~> 4.6.3'
 
 gem 'validates_existence', github: 'perfectline/validates_existence'
 gem 'validates_timeliness', '~> 3.0'
-gem 'simple_enum', '~> 1.6.6'
+gem 'simple_enum', '~> 1.6.7'
 
 group :development do
 	gem 'annotate'
