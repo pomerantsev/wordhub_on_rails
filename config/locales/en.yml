@@ -90,7 +90,8 @@ en:
         sign_up: Become a member
   flashcards:
     index:
-      show_just_deleted: "Show deleted flashcards (%{count}) — will be removed completely tomorrow"
+      show_just_deleted: "Show deleted flashcards"
+      to_be_wiped_out_tomorrow: "will be removed completely tomorrow"
       just_deleted: Deleted today
       undelete: Undelete
     form:

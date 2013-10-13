@@ -55,7 +55,7 @@ feature "Locales" do
       visit signup_path
       fill_in "user_email", with: "email@example.foo.com"
       fill_in "user_password", with: "super_secret_password"
-      click_button "Зарегистрироваться"
+      click_button I18n.t("users.new.sign_up")
     end
 
     context "when tld is 'ru'" do

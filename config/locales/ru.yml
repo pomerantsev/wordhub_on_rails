@@ -95,7 +95,8 @@ ru:
         sign_up: Зарегистрироваться
   flashcards:
     index:
-      show_just_deleted: "Показать удалённые карточки (%{count}) — завтра будут совсем удалены"
+      show_just_deleted: "Показать удалённые карточки"
+      to_be_wiped_out_tomorrow: "завтра будут совсем удалены"
       just_deleted: Удалённые сегодня
       undelete: Восстановить
     form:

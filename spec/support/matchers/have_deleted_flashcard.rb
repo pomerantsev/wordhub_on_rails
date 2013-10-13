@@ -2,7 +2,7 @@
 
 RSpec::Matchers.define :have_deleted_flashcard do |flashcard|
 	match do |actual|
-		actual.has_button?("Восстановить") &&
+		actual.has_button?(I18n.t("flashcards.index.undelete")) &&
 			(flashcard.nil? || 
 			actual.has_selector?("label", text: first_line(flashcard.front_text)))
 	end

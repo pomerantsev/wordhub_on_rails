@@ -1,8 +1,9 @@
 - unless @deleted_flashcards.empty?
   .deleted-today-oneline
     = link_to "#", class: (@just_deleted ? "just-deleted" : "") do
-      = t("flashcards.index.show_just_deleted",
-          count: @deleted_flashcards.count)
+      = t("flashcards.index.show_just_deleted")
+      (#{@deleted_flashcards.count}) —
+      = t("flashcards.index.to_be_wiped_out_tomorrow")
   .deleted-today-full
     %p #{ t "flashcards.index.just_deleted" }:
     = form_tag undelete_flashcards_path, method: :patch do
