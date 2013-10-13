@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     else
       @user = User.find_by_id(params[:id])
       if @user != current_user
-        flash[:error] = "Вы не можете просматривать статистику других пользователей."
+        flash[:error] = I18n.t("flash.cannot_see_other_users_stats")
         redirect_to home_page
       end
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     else
       @user = User.find_by_id(params[:id])
       if @user != current_user
-        flash[:error] = "Вы не можете менять настройки для чужой учётной записи."
+        flash[:error] = I18n.t("flash.cannot_edit_other_users_settings")
         redirect_to home_page
       end
     end
@@ -60,13 +60,13 @@ class UsersController < ApplicationController
     else
       @user = User.find_by_id(params[:id])
       if @user != current_user
-        flash[:error] = "Вы не можете менять настройки для чужой учётной записи."
+        flash[:error] = I18n.t("flash.cannot_edit_other_users_settings")
         redirect_to home_page
       end
     end
     if @user == current_user
       if @user.update_attributes(user_params)
-        flash[:success] = "Настройки сохранены."
+        flash[:success] = I18n.t("flash.settings_saved")
         redirect_to edit_user_path
       else
         flash.now[:error] = errors(@user)

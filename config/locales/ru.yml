@@ -35,6 +35,15 @@ ru:
         interface_languages:
           ru: Русский
           en: English
+  flash:
+    user_not_registered: "Неверный логин / пароль."
+    sign_in: "Пожалуйста, авторизуйтесь."
+    no_access_to_flashcards: "У вас нет доступа к некоторым из карточек."
+    no_access_to_single_flashcard: "У вас нет доступа к этой карточке."
+    invalid_param: "Вы передали неверный параметр."
+    cannot_see_other_users_stats: "Вы не можете просматривать статистику других пользователей."
+    cannot_edit_other_users_settings: "Вы не можете менять настройки для чужой учётной записи."
+    settings_saved: "Настройки сохранены."
   nav:
     wordhub: Вордхаб
     create: Создать
@@ -90,6 +99,8 @@ ru:
       just_deleted: Удалённые сегодня
       undelete: Восстановить
     form:
+      new: Новая карточка
+      edit: Редактирование карточки
       create: Создать
       update: Сохранить
       delete: Удалить

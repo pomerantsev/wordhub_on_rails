@@ -17,7 +17,7 @@ class FlashcardsController < ApplicationController
   
   def new
     @flashcard = current_user.flashcards.new
-    @page_title = "Новая карточка"
+    @page_title = I18n.t("flashcards.form.new")
     render :form
   end
   
@@ -34,7 +34,7 @@ class FlashcardsController < ApplicationController
     
 
   def edit
-    @page_title = "Редактирование карточки"
+    @page_title = I18n.t("flashcards.form.edit")
     render :form
   end
   
@@ -70,7 +70,7 @@ class FlashcardsController < ApplicationController
         end
         redirect_to flashcards_path
       else
-        flash[:error] = "У вас нет доступа к некоторым из карточек."
+        flash[:error] = I18n.t("flash.no_access_to_flashcards")
         redirect_to home_page
       end
     else
@@ -85,7 +85,7 @@ protected
   def get_flashcard
     @flashcard = Flashcard.find_by_id(params[:id])
     if @flashcard.nil? || @flashcard.user != current_user
-      flash[:error] = "У вас нет доступа к этой карточке."
+      flash[:error] = I18n.t("flash.no_access_to_single_flashcard")
       redirect_to home_page
       return false
     end

@@ -8,7 +8,7 @@ class AccessController < ApplicationController
       session[:user_id] = authorized_user.id
       redirect_to new_flashcard_path
     else
-      flash[:error] = "Неверный логин / пароль."
+      flash[:error] = I18n.t("flash.user_not_registered")
       redirect_to root_url
     end
   end

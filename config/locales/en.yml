@@ -30,6 +30,15 @@ en:
         interface_languages:
           ru: Русский
           en: English
+  flash:
+    user_not_registered: "User with such email and password is not registered."
+    sign_in: "Please sign in."
+    no_access_to_flashcards: "You don’t have access to some of these flashcards."
+    no_access_to_single_flashcard: "You don’t have access to this flashcard."
+    invalid_param: "Invalid parameter."
+    cannot_see_other_users_stats: "You cannot see other users’ stats."
+    cannot_edit_other_users_settings: "You cannot edit other users’ preferences."
+    settings_saved: "Settings saved."
   nav:
     wordhub: Wordhub
     create: Create
@@ -85,6 +94,8 @@ en:
       just_deleted: Deleted today
       undelete: Undelete
     form:
+      new: New flashcard
+      edit: Edit flashcard
       create: Create
       update: Save
       delete: Delete
