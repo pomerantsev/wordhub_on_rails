@@ -76,6 +76,31 @@ en:
       word_repetition: Word repetition
       dont_remember: I don’t remember
       remember: I remember
+  static_pages:
+    about:
+    intro:
+      title: Intro
+      nav_title: Intro
+      li_read: "%{li_read_link} and underline unfamiliar words."
+      li_read_link_text: Read something interesting
+      li_dictionary: "Have %{li_dictionary_link1} handy and create flashcards. On a regular basis. %{li_dictionary_link2}."
+      li_dictionary_link1_text: a dictionary
+      li_dictionary_link2_text: Every day
+      li_repeat: "And then repeat them. Also %{li_repeat_link}."
+      li_repeat_link_text: every day
+      li_answer: "No quizzes. When presented with a word, just press ‘Remember’ or ‘Don’t remember’. %{li_answer_link}."
+      li_answer_link_text: "Nobody but you checks your knowledge"
+      li_look_up: "You can look words up while repeating. It won’t affect your results. You’ll memorize it anyway."
+      li_intervals: "For a word to be properly memorized, it’s sufficient to repeat it several times with %{li_intervals_link}. For example, in a day, then in three days, and in ten days."
+      li_intervals_link_text: increasing intervals
+      li_three: "If you press ‘Remember’ three times in a row, it is considered learned. These three times are %{li_three_link}."
+      li_three_link_text: "in the course of a month"
+      li_context: "To memorize words better, write it down with its context."
+      li_day: "You should just repeat words once a day, and then you can forget about them until next day. %{li_day_link}."
+      li_day_link_text: "You’ll memorize them anyway"
+      li_vocab: "You’ll be surprised how your vocabulary has grown in just a month. You should just add %{li_vocab_link} to your flashcard collections. Wordhub does the rest."
+      li_vocab_link_text: "several new words"
+      free: "And it’s all absolutely free."
   users:
     edit:
       title: Settings

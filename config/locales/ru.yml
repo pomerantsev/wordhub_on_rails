@@ -84,6 +84,31 @@ ru:
       word_repetition: Повтор слов
       dont_remember: Не помню
       remember: Помню
+  static_pages:
+    about:
+    intro:
+      title: О сайте коротко
+      nav_title: Коротко
+      li_read: "%{li_read_link} и&nbsp;подчёркивайте слова, в переводе которых не уверены."
+      li_read_link_text: Читайте интересные тексты
+      li_dictionary: "Вооружитесь %{li_dictionary_link1}&nbsp;&mdash; и&nbsp;создавайте карточки. Регулярно. %{li_dictionary_link2}."
+      li_dictionary_link1_text: словарём
+      li_dictionary_link2_text: Каждый день
+      li_repeat: "И&nbsp;повторяйте. Тоже %{li_repeat_link}."
+      li_repeat_link_text: каждый день
+      li_answer: "Никаких тестов. Видите слово&nbsp;&mdash; просто отвечайте &laquo;Помню&raquo; или &laquo;Не&nbsp;помню&raquo;. %{li_answer_link}."
+      li_answer_link_text: "Вы&nbsp;сами контролируете свои знания"
+      li_look_up: "Можно подсматривать. На&nbsp;результате это не&nbsp;скажется. Всё равно выучите."
+      li_intervals: "Чтобы слово запомнилось, достаточно повторить его несколько раз через %{li_intervals_link}. Например, через день, через три дня и&nbsp;через десять."
+      li_intervals_link_text: увеличивающиеся промежутки времени
+      li_three: "Три раза подряд отвечаете, что помните слово&nbsp;&mdash; и&nbsp;оно считается выученным. Это не&nbsp;сразу, а&nbsp;%{li_three_link} :)."
+      li_three_link_text: "на&nbsp;протяжении месяца"
+      li_context: "Чтобы лучше запоминалось, записывайте слово вместе с&nbsp;контекстом."
+      li_day: "Один раз в&nbsp;день повторили старые слова&nbsp;&mdash; и&nbsp;до&nbsp;следующего дня об&nbsp;этом можно забыть. %{li_day_link}."
+      li_day_link_text: "Всё равно всё запомните"
+      li_vocab: "Через месяц увидите, как вырос ваш словарный запас. Достаточно каждый день вписывать на&nbsp;карточки %{li_vocab_link}. Остальное&nbsp;&mdash; дело техники."
+      li_vocab_link_text: "несколько новых слов"
+      free: "И&nbsp;всё это&nbsp;&mdash; совершенно бесплатно."
   users:
     edit:
       title: Настройки

@@ -1,14 +1,24 @@
-- @page_title = "О сайте коротко"
+- @page_title = t(".title")
 = render "about_header"
 %ol
-  %li #{link_to "Читайте интересные тексты", about_path(anchor: "what_to_read")} и&nbsp;подчёркивайте слова, в переводе которых не уверены.
-  %li Вооружитесь #{link_to "словарём", about_path(anchor: "dictionary")}&nbsp;&mdash; и&nbsp;создавайте карточки. Регулярно. #{link_to "Каждый день", about_path(anchor: "every_day")}.
-  %li И&nbsp;повторяйте. Тоже #{link_to "каждый день", about_path(anchor: "every_day")}.
-  %li Никаких тестов. Видите слово&nbsp;&mdash; просто отвечайте &laquo;Помню&raquo; или &laquo;Не&nbsp;помню&raquo;. #{link_to "Вы&nbsp;сами контролируете свои знания".html_safe, about_path(anchor: "self_control")}.
-  %li Можно подсматривать. На&nbsp;результате это не&nbsp;скажется. Всё равно выучите.
-  %li Чтобы слово запомнилось, достаточно повторить его несколько раз через #{link_to "увеличивающиеся промежутки времени", about_path(anchor: "leitner")}. Например, через день, через три дня и&nbsp;через десять.
-  %li Три раза подряд отвечаете, что помните слово&nbsp;&mdash; и&nbsp;оно считается выученным. Это не&nbsp;сразу, а&nbsp;#{link_to "на&nbsp;протяжении месяца".html_safe, about_path(anchor: "leitner")} :).
-  %li Чтобы лучше запоминалось, записывайте слово вместе с&nbsp;контекстом.
-  %li Один раз в&nbsp;день повторили старые слова&nbsp;&mdash; и&nbsp;до&nbsp;следующего дня об&nbsp;этом можно забыть. #{link_to "Всё равно всё запомните", about_path(anchor: "leitner")}.
-  %li Через месяц увидите, как вырос ваш словарный запас. Достаточно каждый день вписывать на&nbsp;карточки #{link_to "несколько новых слов", about_path(anchor: "how_many")}. Остальное&nbsp;&mdash; дело техники.
-%h4 И&nbsp;всё это&nbsp;&mdash; совершенно бесплатно.
+  %li!= t ".li_read", li_read_link: link_to(t(".li_read_link_text"),
+                                            about_path(anchor: "what_to_read"))
+  %li!= t ".li_dictionary", li_dictionary_link1: link_to(t(".li_dictionary_link1_text"),
+                                                          about_path(anchor: "dictionary")),
+                            li_dictionary_link2: link_to(t(".li_dictionary_link2_text"),
+                                                          about_path(anchor: "every_day"))
+  %li!= t ".li_repeat", li_repeat_link: link_to(t(".li_repeat_link_text"),
+                                                about_path(anchor: "every_day"))
+  %li!= t ".li_answer", li_answer_link: link_to(t(".li_answer_link_text").html_safe,
+                                                about_path(anchor: "self_control"))
+  %li!= t ".li_look_up"
+  %li!= t ".li_intervals", li_intervals_link: link_to(t(".li_intervals_link_text"),
+                                                      about_path(anchor: "leitner"))
+  %li!= t ".li_three", li_three_link: link_to(t(".li_three_link_text").html_safe,
+                                              about_path(anchor: "leitner"))
+  %li!= t ".li_context"
+  %li!= t ".li_day", li_day_link: link_to(t(".li_day_link_text").html_safe,
+                                          about_path(anchor: "leitner"))
+  %li!= t ".li_vocab", li_vocab_link: link_to(t(".li_vocab_link_text").html_safe,
+                                              about_path(anchor: "how_many"))
+%h4!= t ".free"
