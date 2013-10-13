@@ -81,5 +81,3 @@ class RepetitionsController < ApplicationController
 
   
 end
-
-
