@@ -1,24 +1,23 @@
-.row
-  .span9
-    .hero-unit
-      %h2= t(".header")
-      %p= t(".subheader")
-  .span3
+.homepage-header
+  .homepage-main
+    %h2= t(".header")
+    %p= t(".subheader")
+  .homepage-login-form
     %a#login
     = render "login_form"
-.row
-  .span4
+.homepage-info
+  .homepage-info-column
     %h4!= t(".who.header")
     %p!= t(".who.if_you")
     %ul
       - t(".who.if_options").each do |option|
         %li!= option
     %p!= t(".who.then_learn")
-  .span4
+  .homepage-info-column
     %h4!= t(".what.header")
     - t(".what.paragraphs").each do |paragraph|
       %p!= paragraph
-  .span4
+  .homepage-info-column
     %h4!= t(".why.header")
     %p!= t(".why.same_with_paper")
     %ul

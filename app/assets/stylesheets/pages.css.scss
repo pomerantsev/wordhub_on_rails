@@ -1,41 +1,39 @@
-/* Стили для более гармоничного отображения текста
- * и используемых заголовков.
- */
-
-h4 {
-  margin-top: 40px;
-
-  &.first-header {
-    margin-top: 0px;
-  }
+.homepage-header {
+  @extend .row-fluid;
 }
 
-ol li {
-  margin-bottom: 10px;
+.homepage-main {
+  @extend .span9;
+  @extend [class*="span"];
+  @extend .hero-unit;
 }
 
-/* Форма входа на главной странице.
- * Хак для формы, помещённой в span3.
- */
-
-@media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint900) {
-  #login-form {
-    input[type="email"],
-    input[type="password"] {
+.homepage-login-form {
+  @extend .span3;
+  @extend [class*="span"];
+  input[type="email"],
+  input[type="password"] {
+    @media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint900) {
       width: 152px;
+    }
+  }
+  a {
+    @extend .btn;
+    @extend .btn-link;
+    @media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint1200) {
+      padding-left: 0;
+      margin-top: 10px;
     }
   }
 }
 
-/* Это чтобы ссылка "Регистрация"
- * на некоторых разрешениях правильно отображалась.
- */
+.homepage-info {
+  @extend .row-fluid;
+}
 
-@media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint1200) {
-  .register-link {
-    padding-left: 0;
-    margin-top: 10px;
-  }
+.homepage-info-column {
+  @extend .span4;
+  @extend [class*="span"];
 }
 
 /* Чтобы кнопка на странице настроек

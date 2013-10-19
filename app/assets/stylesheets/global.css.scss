@@ -16,3 +16,15 @@ body {
 .alert ul {
   margin-bottom: 0;
 }
+
+h4 {
+  margin-top: 40px;
+
+  &.first-header {
+    margin-top: 0px;
+  }
+}
+
+ol li {
+  margin-bottom: 10px;
+}

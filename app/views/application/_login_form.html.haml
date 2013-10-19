@@ -1,11 +1,9 @@
 %h4.first-header= t("application.index.login_form.header")
-= form_tag attempt_login_path, id: "login-form" do
+= form_tag attempt_login_path do
   = label_tag :email, "#{ t "application.index.login_form.email" }:"
   = email_field_tag :email, nil, required: true
   = label_tag :password, "#{ t "application.index.login_form.password" }:"
   = password_field_tag :password, nil, required: true
   %span.help-block
   = submit_tag t("application.index.login_form.login"), class: "btn"
-  = link_to t("application.index.login_form.sign_up"),
-            signup_path,
-            class: "btn btn-link register-link"
+  = link_to t("application.index.login_form.sign_up"), signup_path
