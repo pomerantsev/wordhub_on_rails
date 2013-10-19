@@ -53,5 +53,3 @@ production:
   encoding: unicode
   database: wh_rails_production
   pool: 5
-  username: wh_rails
-  password: secretpassword
