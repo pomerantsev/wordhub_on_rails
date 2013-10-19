@@ -11,6 +11,6 @@ $ ->
 	(браузер не поддерживат media qeuries).
 	###
 	try
-		menuDiv = $('<div class = "nav-collapse collapse">').insertAfter $('#elementBeforeDropdown')
+		menuDiv = $('<div class = "navbar-collapse collapse">').insertAfter $('#elementBeforeDropdown')
 		menuDiv.append dropdownMenu 
 	  

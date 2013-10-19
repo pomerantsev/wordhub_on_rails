@@ -1,16 +1,14 @@
 .homepage-header {
-  @extend .row-fluid;
+  @extend .row;
 }
 
 .homepage-main {
-  @extend .span9;
-  @extend [class*="span"];
-  @extend .hero-unit;
+  @extend .col-md-9;
+  @extend .jumbotron;
 }
 
 .homepage-login-form {
-  @extend .span3;
-  @extend [class*="span"];
+  @extend .col-md-3;
   input[type="email"],
   input[type="password"] {
     @media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint900) {
@@ -19,6 +17,7 @@
   }
   a {
     @extend .btn;
+    @extend .btn-default;
     @extend .btn-link;
     @media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint1200) {
       padding-left: 0;
@@ -28,12 +27,11 @@
 }
 
 .homepage-info {
-  @extend .row-fluid;
+  @extend .row;
 }
 
 .homepage-info-column {
-  @extend .span4;
-  @extend [class*="span"];
+  @extend .col-md-4;
 }
 
 /* Чтобы кнопка на странице настроек
@@ -44,12 +42,12 @@
   margin-top: 30px;
 }
 
-.hero-unit {
+.jumbotron {
   padding: 30px;
 }
 
 @media (max-width: $before-breakpoint700) {
-  .hero-unit {
+  .jumbotron {
     padding: 15px 22px;
     font-size: 14px;
     line-height: 23px;
