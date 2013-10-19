@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery.ui.effect
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap-dropdown
+//= require bootstrap-collapse
+//= require bootstrap-transition
 //= require_tree .
