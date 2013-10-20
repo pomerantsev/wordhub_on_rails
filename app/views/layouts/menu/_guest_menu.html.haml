@@ -1,4 +1,4 @@
 = link_to t("nav.wordhub"), root_path, class: "menu-brand"
-%ul.nav.navbar-nav.pull-right
+%ul.guest-secondary-menu
   = render "layouts/menu/about"
   %li= link_to t("nav.login"), root_path(anchor: "login-form-anchor")

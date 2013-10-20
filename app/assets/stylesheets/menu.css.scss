@@ -1,27 +1,51 @@
+.menu {
+  @extend .navbar;
+  @extend .navbar-default;
+}
+
 .menu-brand {
   @extend .navbar-brand;
+}
+
+.guest-secondary-menu {
+  @extend .nav;
+  @extend .navbar-nav;
+  @extend .pull-right;
 }
 
 .logged-in-primary-menu {
   @extend .nav;
   @extend .navbar-nav;
   @extend .pull-left;
+  & > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 .logged-in-secondary-menu {
   @extend .nav;
   @extend .navbar-nav;
   @extend .pull-right;
-  a {
-    @media (max-width: $before-breakpoint900) {
+  & > li > a {
+    @media (max-width: $before-breakpoint700) {
       padding-top: 9px !important;
       padding-bottom: 9px !important;
     }
-    @media (min-width: $after-breakpoint900) {
-      padding-top: 25px !important;
-      padding-bottom: 26px !important;
+    @media (min-width: $after-breakpoint700) {
+      padding-top: 20px !important;
+      padding-bottom: 21px !important;
     }
   }
+}
+
+.logged-in-dropdown-menu {
+  @extend .dropdown-menu;
+}
+
+.logged-in-no-js-dropdown-menu {
+  @extend .nav;
+  @extend .navbar-nav;
 }
 
 .menu-item {
@@ -41,30 +65,12 @@
   }
 }
 
-
 /* "Толстое" верхнее меню. Из-за того, что оно стало двухстрочным,
  * стандартные стили Bootstrap'а поехали.
  */
 
 .navbar-toggle {
   margin-top: 15px !important;
-}
-
-
-/* Этот огород нагорожен из-за IE8.
- * Сначала считываются стили для высокого разрешения,
- * затем они переопределяются для маленьких
- * (только в браузерах, поддерживающих media queries). */
-
-#user-menu-no-dropdown a {
-  @media (max-width: $before-breakpoint900) {
-    padding-top: 9px !important;
-    padding-bottom: 9px !important;
-  }
-  @media (min-width: $after-breakpoint900) {
-    padding-top: 25px !important;
-    padding-bottom: 26px !important;
-  }
 }
 
 /* Это стили для меню. Решены две задачи.
@@ -78,40 +84,31 @@
  * нельзя увидеть имя пользователя. Эту проблему предстоит решить.
  */
 
-@media (max-width: $before-breakpoint900) {
-  #user-dropdown-menu {
+@media (max-width: $before-breakpoint700) {
+  .user-dropdown-menu {
     display: none;
   }
 }
 
-#user-menu-no-dropdown {
-  display: none;
+.user-menu-no-dropdown {
+  display: none !important;
   .no-js & {
-    display: block;
+    display: block !important;
   }
   .js & {
-    @media (max-width: $before-breakpoint900) {
-      display: block;
+    @media (max-width: $before-breakpoint700) {
+      display: block !important;
     }    
   }
 }
 
 @media (max-width: $before-breakpoint700) {
-  /* Это чтобы на маленьком экране телефона
-   * всё верхнее меню умещалось в одну строчку.
-   */
-  
-  div.navbar-inner {
-    padding-left: 7px;
-    padding-right: 17px;
-  }
-  
   .navbar {
     .navbar-brand {
       padding-left: 15px;
     }
   
-    .nav {
+    .navbar-nav {
       margin-right: 0px;
     }
   }   

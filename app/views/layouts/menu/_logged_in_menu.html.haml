@@ -24,10 +24,10 @@
     = link_to t("nav.all_flashcards"), flashcards_path
   = render "layouts/menu/about"
   -# Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него.
-  %li.menu-item.dropdown.no-js-hide#user-dropdown-menu
+  %li.menu-item.dropdown.no-js-hide.user-dropdown-menu
     = render "layouts/menu/dropdown_toggle", label: username(current_user)
-    %ul.dropdown-menu
+    %ul.logged-in-dropdown-menu
       = render "layouts/menu/dropdown"
-  %li#user-menu-no-dropdown
-    %ul.nav
+  %li.user-menu-no-dropdown
+    %ul.logged-in-no-js-dropdown-menu
       =render "layouts/menu/dropdown"
