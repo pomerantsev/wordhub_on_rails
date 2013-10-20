@@ -2,7 +2,7 @@ $ ->
 	deletedTodayFull = $ '.deleted-today-full'
 	deletedTodayFull.hide()
 
-	btnUndelete = $ '.btn-undelete'
+	btnUndelete = $ '.js-btn-undelete'
 	btnUndelete.attr 'disabled', true
 
 	$('.deleted-today-oneline').show()

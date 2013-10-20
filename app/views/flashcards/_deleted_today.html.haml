@@ -1,6 +1,6 @@
 - unless @deleted_flashcards.empty?
   .deleted-today-oneline
-    = link_to "#", class: (@just_deleted ? "just-deleted" : "") do
+    = link_to "#", class: (@just_deleted && "just-deleted") do
       = t("flashcards.index.show_just_deleted")
       (#{@deleted_flashcards.count}) —
       = t("flashcards.index.to_be_wiped_out_tomorrow")
@@ -11,4 +11,4 @@
         = label_tag flashcard.id, class: "checkbox" do
           = check_box_tag "flashcards[]", flashcard.id, false, class: "checkbox-undelete"
           = first_line(flashcard.front_text)
-      = submit_tag t("flashcards.index.undelete"), class: "btn btn-default btn-primary btn-undelete"
+      = submit_tag t("flashcards.index.undelete"), class: "btn-undelete js-btn-undelete"

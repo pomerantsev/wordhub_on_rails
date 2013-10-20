@@ -49,17 +49,21 @@
   }
 }
 
-/* Ссылка на удаление в форме редактирования карточки. */
-
-.destroy-link-div {
-  @media (min-width: $after-breakpoint700) {
-    /* Чтобы на большом разрешении
-     * ссылка удаления была справа от кнопки сохранения.
-     */
-    position: relative;
+.flashcard-form {
+  input[type="submit"] {
+    @extend .btn;
+    @extend .btn-default;
   }
-  .destroy {
-    line-height: 30px;
+  .new-submit {
+    @extend .btn-block;
+  }
+  .edit-submit {
+    @media (min-width: $after-breakpoint700) {
+      @extend .col-md-10;
+    }
+    @media (max-width: $before-breakpoint700) {
+      @extend .btn-block;
+    }
   }
 }
 
@@ -79,4 +83,10 @@
       background-color: $universal-green;
     }
   }
+}
+
+.btn-undelete {
+  @extend .btn;
+  @extend .btn-default;
+  @extend .btn-primary;
 }
