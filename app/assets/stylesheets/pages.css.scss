@@ -9,20 +9,21 @@
 
 .homepage-login-form {
   @extend .col-md-3;
+  .email, .password {
+    @extend .form-group;
+  }
   input[type="email"],
   input[type="password"] {
-    @media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint900) {
-      width: 152px;
-    }
+    @extend .form-control;
   }
-  a {
+  input[type="submit"] {
     @extend .btn;
     @extend .btn-default;
+  }
+  .register-link {
+    @extend .btn;
     @extend .btn-link;
-    @media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint1200) {
-      padding-left: 0;
-      margin-top: 10px;
-    }
+    @extend .pull-right;
   }
 }
 

@@ -1,8 +1,8 @@
-%a.btn.btn-default.navbar-btn.toggle-dropdown.no-js-hide{ data: { toggle: "collapse", target: ".navbar-collapse" } }
-  %span.glyphicon.glyphicon-bar
-  %span.glyphicon.glyphicon-bar
-  %span.glyphicon.glyphicon-bar
-%ul.nav.pull-left#elementBeforeDropdown
+%button.navbar-toggle.no-js-hide{ data: { toggle: "collapse", target: ".navbar-collapse" } }
+  %span.icon-bar
+  %span.icon-bar
+  %span.icon-bar
+%ul.logged-in-primary-menu#elementBeforeDropdown
   %li.menu-item{ class: [active_class(new_flashcard_path), create_class] }
     = link_to new_flashcard_path do
       %span= t("nav.create")
@@ -23,14 +23,14 @@
 -# Этот ul Яваскриптом обрамляется в div, чтобы в случае, если Яваскрипт не работает, меню работало, хоть и выглядело бы некрасиво.
 
 -# Класс fat-menu-center - чтобы пункты меню в "толстом" меню не были приклеены к верху, а появлялись посередине.
-%ul.fat-menu-center.nav.pull-right#dropdownMenu
+%ul.logged-in-secondary-menu#dropdownMenu
   %li.menu-item{ class: active_class(flashcards_path) }
     = link_to t("nav.all_flashcards"), flashcards_path
   = render "layouts/about"
   -# Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него.
   %li.menu-item.dropdown.no-js-hide#user-dropdown-menu
     %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" } }
-      = current_user.name.blank? ? current_user.email : current_user.name
+      = username(current_user)
       %b.caret
     %ul.dropdown-menu
       = render "layouts/dropdown"

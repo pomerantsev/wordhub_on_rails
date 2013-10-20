@@ -1,19 +1,18 @@
 = form_for @flashcard, html: { id: "flashcardInputForm" } do |f|
-  .row
-    .col-md-12
-      = f.label :front_text, "#{ t 'activerecord.attributes.flashcard.front_text'}:"
-      = f.text_area :front_text,
-                    class: "input-block-level",
-                    rows: 6,
-                    id: "frontTextInput",
-                    required: true
-    .col-md-12
-      = f.label :back_text, "#{ t 'activerecord.attributes.flashcard.back_text'}:"
-      = f.text_area :back_text,
-                    class: "input-block-level",
-                    rows: 6,
-                    id: "backTextInput",
-                    required: true
+  .form-group
+    = f.label :front_text, "#{ t 'activerecord.attributes.flashcard.front_text'}:"
+    = f.text_area :front_text,
+                  class: "form-control",
+                  rows: 6,
+                  id: "frontTextInput",
+                  required: true
+  .form-group
+    = f.label :back_text, "#{ t 'activerecord.attributes.flashcard.back_text'}:"
+    = f.text_area :back_text,
+                  class: "form-control",
+                  rows: 6,
+                  id: "backTextInput",
+                  required: true
   - if request.fullpath == new_flashcard_path
     = submit_tag t(".create"), class: "btn btn-default btn-block"
   - else
