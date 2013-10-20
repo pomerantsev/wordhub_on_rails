@@ -82,9 +82,9 @@ describe FlashcardsController do
 				expect(assigns(:flashcard)).to be_a_new(Flashcard)
 			end
 
-			it "renders the :form view" do
+			it "renders the :new view" do
 				get :new
-				expect(response).to render_template :form
+				expect(response).to render_template :new
 			end
 		end
 
@@ -103,9 +103,9 @@ describe FlashcardsController do
 					end.to_not change(Flashcard, :count)
 				end
 
-				it "re-renders the :form view" do
+				it "re-renders the :new view" do
 					post :create, flashcard: invalid_attributes
-					expect(response).to render_template :form
+					expect(response).to render_template :new
 				end
 			end
 
@@ -152,9 +152,9 @@ describe FlashcardsController do
 					expect(assigns(:flashcard)).to eq flashcard
 				end
 
-				it "renders the :form view" do
+				it "renders the :edit view" do
 					get :edit, id: flashcard
-					expect(response).to render_template :form
+					expect(response).to render_template :edit
 				end
 			end
 		end
@@ -183,8 +183,8 @@ describe FlashcardsController do
 						expect(flashcard.reload.back_text).to_not eq "blah-blah"
 					end
 
-					it "re-renders the :form view" do
-						expect(response).to render_template :form
+					it "re-renders the :edit view" do
+						expect(response).to render_template :edit
 					end
 				end
 
