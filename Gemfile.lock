@@ -23,13 +23,6 @@ GIT
       rails (>= 3.0.0, < 5)
       spork (>= 1.0rc0)
 
-GIT
-  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 6cc04bda62ed7ccf71d445fa82e706cb696b4fdb
-  specs:
-    bootstrap-sass (3.0.0.0)
-      sass (~> 3.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -62,6 +55,8 @@ GEM
       rake
     arel (4.0.0)
     atomic (1.1.10)
+    bootstrap-sass (2.3.2.2)
+      sass (~> 3.2)
     builder (3.1.4)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
@@ -230,7 +225,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootstrap-sass!
+  bootstrap-sass (~> 2.3.2.2)
   capybara!
   coffee-rails (~> 4.0.0)
   database_cleaner
