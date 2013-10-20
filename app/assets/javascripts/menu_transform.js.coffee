@@ -1,5 +1,5 @@
 $ ->
-	dropdownMenu = $('#dropdownMenu').show()
+	dropdownMenu = $('#js-dropdown-menu').show()
 	###
 	Этот код находится в try-catch,
 	потому что в IE8 insertAfter вызывает ошибку
@@ -11,6 +11,6 @@ $ ->
 	(браузер не поддерживат media qeuries).
 	###
 	try
-		menuDiv = $('<div class = "navbar-collapse collapse">').insertAfter $('#elementBeforeDropdown')
+		menuDiv = $('<div class = "navbar-collapse collapse">').insertAfter $('#js-element-before-dropdown')
 		menuDiv.append dropdownMenu 
 	  

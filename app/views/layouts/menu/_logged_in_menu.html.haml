@@ -1,5 +1,5 @@
 = render "layouts/menu/navbar_toggle", target: ".navbar-collapse"
-%ul.logged-in-primary-menu#elementBeforeDropdown
+%ul.logged-in-primary-menu#js-element-before-dropdown
   %li.menu-item{ class: [active_class(new_flashcard_path), create_class] }
     = link_to new_flashcard_path do
       %span= t("nav.create")
@@ -19,8 +19,7 @@
 
 -# Этот ul Яваскриптом обрамляется в div, чтобы в случае, если Яваскрипт не работает, меню работало, хоть и выглядело бы некрасиво.
 
--# Класс fat-menu-center - чтобы пункты меню в "толстом" меню не были приклеены к верху, а появлялись посередине.
-%ul.logged-in-secondary-menu#dropdownMenu
+%ul.logged-in-secondary-menu#js-dropdown-menu
   %li.menu-item{ class: active_class(flashcards_path) }
     = link_to t("nav.all_flashcards"), flashcards_path
   = render "layouts/menu/about"
