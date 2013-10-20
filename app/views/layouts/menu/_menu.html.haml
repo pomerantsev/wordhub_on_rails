@@ -1,0 +1,5 @@
+.navbar.navbar-default
+  - if logged_in?
+    = render "layouts/menu/logged_in_menu"
+  - else
+    = render "layouts/menu/guest_menu"

@@ -1,7 +1,4 @@
-%button.navbar-toggle.no-js-hide{ data: { toggle: "collapse", target: ".navbar-collapse" } }
-  %span.icon-bar
-  %span.icon-bar
-  %span.icon-bar
+= render "layouts/menu/navbar_toggle", target: ".navbar-collapse"
 %ul.logged-in-primary-menu#elementBeforeDropdown
   %li.menu-item{ class: [active_class(new_flashcard_path), create_class] }
     = link_to new_flashcard_path do
@@ -26,14 +23,12 @@
 %ul.logged-in-secondary-menu#dropdownMenu
   %li.menu-item{ class: active_class(flashcards_path) }
     = link_to t("nav.all_flashcards"), flashcards_path
-  = render "layouts/about"
+  = render "layouts/menu/about"
   -# Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него.
   %li.menu-item.dropdown.no-js-hide#user-dropdown-menu
-    %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" } }
-      = username(current_user)
-      %b.caret
+    = render "layouts/menu/dropdown_toggle", label: username(current_user)
     %ul.dropdown-menu
-      = render "layouts/dropdown"
+      = render "layouts/menu/dropdown"
   %li#user-menu-no-dropdown
     %ul.nav
-      =render "layouts/dropdown"
+      =render "layouts/menu/dropdown"
