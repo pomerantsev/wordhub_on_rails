@@ -1,0 +1,9 @@
+= form_for @flashcard do |f|
+  = render "flashcard_inputs", f: f
+  = submit_tag t(".update"), class: "btn btn-default col-md-10"
+
+.destroy-link-div.col-md-2.pull-right
+  = button_to t(".delete"),
+              @flashcard,
+              method: :delete,
+              class: "btn btn-default btn-link destroy"

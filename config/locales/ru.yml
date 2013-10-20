@@ -99,10 +99,11 @@ ru:
       to_be_wiped_out_tomorrow: "завтра будут совсем удалены"
       just_deleted: Удалённые сегодня
       undelete: Восстановить
-    form:
-      new: Новая карточка
-      edit: Редактирование карточки
+    new:
+      title: Новая карточка
       create: Создать
+    edit:
+      title: Редактирование карточки
       update: Сохранить
       delete: Удалить
   repetitions:
