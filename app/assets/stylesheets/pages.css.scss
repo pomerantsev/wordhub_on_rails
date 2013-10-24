@@ -3,8 +3,7 @@
 }
 
 .homepage-main {
-  @extend .col-md-9;
-  @extend .jumbotron;
+  @extend .col-md-9, .jumbotron;
 }
 
 .homepage-login-form {
@@ -17,13 +16,10 @@
     @extend .form-control;
   }
   input[type="submit"] {
-    @extend .btn;
-    @extend .btn-default;
+    @extend .btn, .btn-default;
   }
   .register-link {
-    @extend .btn;
-    @extend .btn-link;
-    @extend .pull-right;
+    @extend .btn, .btn-link, .pull-right;
   }
 }
 

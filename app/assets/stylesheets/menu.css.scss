@@ -1,6 +1,13 @@
 .menu {
-  @extend .navbar;
-  @extend .navbar-default;
+  @extend .navbar, .navbar-default;
+}
+
+.primary-menu {
+  @extend .nav, .navbar-nav, .pull-left;
+}
+
+.secondary-menu {
+  @extend .nav, .navbar-nav, .pull-right;
 }
 
 .menu-brand {
@@ -8,15 +15,11 @@
 }
 
 .guest-secondary-menu {
-  @extend .nav;
-  @extend .navbar-nav;
-  @extend .pull-right;
+  @extend .secondary-menu;
 }
 
 .logged-in-primary-menu {
-  @extend .nav;
-  @extend .navbar-nav;
-  @extend .pull-left;
+  @extend .primary-menu;
   & > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -24,9 +27,7 @@
 }
 
 .logged-in-secondary-menu {
-  @extend .nav;
-  @extend .navbar-nav;
-  @extend .pull-right;
+  @extend .secondary-menu;
   & > li > a {
     @media (max-width: $before-breakpoint700) {
       padding-top: 9px !important;
@@ -44,8 +45,7 @@
 }
 
 .logged-in-no-js-dropdown-menu {
-  @extend .nav;
-  @extend .navbar-nav;
+  @extend .primary-menu;
 }
 
 .menu-item {

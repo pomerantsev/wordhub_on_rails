@@ -86,7 +86,5 @@
 }
 
 .btn-undelete {
-  @extend .btn;
-  @extend .btn-default;
-  @extend .btn-primary;
+  @extend .btn, .btn-default, .btn-primary;
 }
