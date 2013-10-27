@@ -85,6 +85,10 @@
   }
 }
 
+.flashcard-side-form-group {
+  @extend .form-group;
+}
+
 .btn-undelete {
   @extend .btn, .btn-default, .btn-primary;
 }
