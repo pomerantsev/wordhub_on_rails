@@ -55,23 +55,37 @@ describe FlashcardsController do
 
 		describe "GET #index" do
 			let(:yesterdays_flashcard) { create(:flashcard, user: user) }
+			let(:other_todays_flashcards) do
+				Array.new(Kaminari.config.default_per_page).map { create(:flashcard, user: user) }
+			end
 			before(:each) do
 				# TODO: как избавиться от этой строчки?
 				yesterdays_flashcard.update_attribute(:created_at, 1.day.ago)
-				get :index
 			end
 
-			it "populates the @flashcards_grouped_by_date array" do
+			it "populates the first page of the output" do
+				other_todays_flashcards
+				get :index
+				expect(assigns(:flashcards_grouped_by_date)).to eq({
+					Date.today => other_todays_flashcards.reverse
+				})
+			end
+
+			it "populates the second page of the output" do
+				other_todays_flashcards
+				get :index, page: 2
 				expect(assigns(:flashcards_grouped_by_date)).to eq({
 					1.day.ago.localtime.to_date => [yesterdays_flashcard],
 					Date.today => [flashcard] })
 			end
 
 			it "populates the @deleted_flashcards array" do
+				get :index
 				expect(assigns(:deleted_flashcards)).to eq [deleted_flashcard]
 			end
 
 			it "renders the :index view" do
+				get :index
 				expect(response).to render_template :index
 			end
 		end
