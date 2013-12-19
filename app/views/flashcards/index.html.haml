@@ -2,7 +2,7 @@
 = render "deleted_today"
 - @flashcards_grouped_by_date.keys.sort.reverse.each do |date|
   %p.lead #{date}:
-  - @flashcards_grouped_by_date[date].reverse.each do |flashcard|
+  - @flashcards_grouped_by_date[date].each do |flashcard|
     %a{ id: flashcard.id }
     = link_to edit_flashcard_path(flashcard),
               class: ["flashcard",

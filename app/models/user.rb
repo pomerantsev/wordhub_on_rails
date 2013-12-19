@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
     def grouped_by_date
       flashcards_by_date = {}
-      order("id ASC").each do |flashcard|
+      each do |flashcard|
         date = flashcard.created_at.localtime.to_date
         flashcards_by_date[date] ||= [] # Если nil?, то становится пустым массивом.
         flashcards_by_date[date] << flashcard
