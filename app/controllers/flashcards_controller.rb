@@ -6,8 +6,8 @@ class FlashcardsController < ApplicationController
   before_action :get_flashcard, only: [:edit, :update, :destroy]
   
   def index
-    @flashcards_grouped_by_date =
-      current_user.flashcards.order(id: :desc).page(params[:page]).grouped_by_date
+    @flashcards = current_user.flashcards.order(id: :desc).page(params[:page])
+    @flashcards_grouped_by_date = @flashcards.grouped_by_date
     @deleted_flashcards = current_user.flashcards.deleted
     # just_deleted - boolean-значение, используемое, чтобы определить,
     # нужно ли подсвечивать блок удалённых карточек.
