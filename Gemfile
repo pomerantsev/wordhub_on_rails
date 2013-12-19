@@ -21,17 +21,17 @@ group :development do
 end
 
 group :development, :test do
-	gem 'rspec-rails', '~> 2.13'
-	gem 'factory_girl_rails'
-	gem 'guard-rspec', '~> 3.0.2'
-	gem 'spork-rails', github: 'sporkrb/spork-rails'
-	gem 'guard-spork', '~> 1.5.1'
+	gem 'rspec-rails', '2.14.0'
+	gem 'factory_girl_rails', '4.3.0'
+	gem 'guard-rspec', '4.2.0'
+	gem 'spork-rails', '4.0.0'
+	gem 'guard-spork', '1.5.1'
 end
 
 group :test do
 	gem 'faker'
-	gem 'capybara', github: 'jnicklas/capybara'
-	gem "poltergeist", '~> 1.4.1'
+	gem 'capybara', '2.2.0'
+	gem "poltergeist", '1.5.0'
 	gem 'database_cleaner'
 	gem 'launchy'
 	gem 'timecop', '~> 0.6.2.2'
@@ -49,6 +49,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+gem 'kaminari', '0.15.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
