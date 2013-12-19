@@ -44,6 +44,13 @@ ru:
     cannot_see_other_users_stats: "Вы не можете просматривать статистику других пользователей."
     cannot_edit_other_users_settings: "Вы не можете менять настройки для чужой учётной записи."
     settings_saved: "Настройки сохранены."
+  views:
+    pagination:
+      first: "&laquo;&laquo;"
+      last: "&raquo;&raquo;"
+      previous: "&laquo;"
+      next: "&raquo;"
+      truncate: "..."
   nav:
     wordhub: Вордхаб
     create: Создать

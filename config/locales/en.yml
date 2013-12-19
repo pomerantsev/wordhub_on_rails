@@ -39,6 +39,13 @@ en:
     cannot_see_other_users_stats: "You cannot see other users’ stats."
     cannot_edit_other_users_settings: "You cannot edit other users’ preferences."
     settings_saved: "Settings saved."
+  views:
+    pagination:
+      first: "&laquo;&laquo;"
+      last: "&raquo;&raquo;"
+      previous: "&laquo;"
+      next: "&raquo;"
+      truncate: "..."
   nav:
     wordhub: Wordhub
     create: Create
