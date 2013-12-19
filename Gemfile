@@ -51,6 +51,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'kaminari', '0.15.0'
+gem 'kaminari-bootstrap', '0.1.3'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
