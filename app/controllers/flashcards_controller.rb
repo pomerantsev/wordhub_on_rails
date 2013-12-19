@@ -7,6 +7,11 @@ class FlashcardsController < ApplicationController
   
   def index
     @flashcards = current_user.flashcards.order(id: :desc).page(params[:page])
+    if search_string = params[:search]
+      @flashcards = @flashcards.where(
+        Flashcard.arel_table[:front_text].matches("%#{search_string}%").or(
+        Flashcard.arel_table[:back_text].matches("%#{search_string}%")))
+    end
     @flashcards_grouped_by_date = @flashcards.grouped_by_date
     @deleted_flashcards = current_user.flashcards.deleted
     # just_deleted - boolean-значение, используемое, чтобы определить,
