@@ -103,6 +103,8 @@ ru:
   flashcards:
     index:
       search: Найти
+      filtered: "Отфильтровано по «%{search_string}» (%{show_all})"
+      show_all: показать все
       show_just_deleted: "Показать удалённые карточки"
       to_be_wiped_out_tomorrow: "завтра будут совсем удалены"
       just_deleted: Удалённые сегодня

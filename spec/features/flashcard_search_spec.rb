@@ -26,4 +26,12 @@ feature "Flashcard search" do
     search "Maybe"
     expect(page).to_not have_content("front")
   end
+
+  scenario "shows the link to all flashcards when search is on" do
+    expect(page).to_not have_link(I18n.t("flashcards.index.show_all"))
+
+    search "Something"
+    expect(page).to have_content("Something")
+    expect(page).to have_link(I18n.t("flashcards.index.show_all"))
+  end
 end

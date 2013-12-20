@@ -98,6 +98,8 @@ en:
   flashcards:
     index:
       search: Search
+      filtered: "Filtered by «%{search_string}» (%{show_all})"
+      show_all: show all
       show_just_deleted: "Show deleted flashcards"
       to_be_wiped_out_tomorrow: "will be removed completely tomorrow"
       just_deleted: Deleted today
