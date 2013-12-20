@@ -6,7 +6,7 @@ class FlashcardsController < ApplicationController
   before_action :get_flashcard, only: [:edit, :update, :destroy]
   
   def index
-    @flashcards = current_user.flashcards.order(id: :desc).page(params[:page])
+    @flashcards = current_user.flashcards.order(created_at: :desc).page(params[:page])
     if search_string = params[:search]
       @flashcards = @flashcards.where(
         Flashcard.arel_table[:front_text].matches("%#{search_string}%").or(
