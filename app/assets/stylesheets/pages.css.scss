@@ -1,39 +1,42 @@
 .homepage-header {
-  @extend .row-fluid;
+  @extend .row;
 }
 
 .homepage-main {
-  @extend .span9;
-  @extend [class*="span"];
-  @extend .hero-unit;
+  @extend .col-md-8;
+  .homepage-jumbotron {
+    @extend .jumbotron;
+  }
 }
 
 .homepage-login-form {
-  @extend .span3;
-  @extend [class*="span"];
+  @extend .col-md-4;
+  .email, .password {
+    @extend .form-group;
+  }
   input[type="email"],
   input[type="password"] {
-    @media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint900) {
-      width: 152px;
-    }
+    @extend .form-control;
   }
-  a {
-    @extend .btn;
-    @extend .btn-link;
-    @media (min-width: $after-breakpoint700) and (max-width: $before-breakpoint1200) {
-      padding-left: 0;
-      margin-top: 10px;
-    }
+  input[type="submit"] {
+    @extend .btn, .btn-default;
+  }
+  .register-link {
+    @extend .btn, .btn-link, .pull-right;
   }
 }
 
 .homepage-info {
-  @extend .row-fluid;
+  @extend .row;
 }
 
 .homepage-info-column {
-  @extend .span4;
-  @extend [class*="span"];
+  @extend .col-md-4;
+}
+
+.about-nav {
+  @extend .nav, .nav-pills;
+  margin-bottom: 20px;
 }
 
 /* Чтобы кнопка на странице настроек
@@ -41,24 +44,10 @@
  */
 
 .btn-save-settings {
-  margin-top: 30px;
+  @extend .btn, .btn-primary, .btn-block;
+  margin-top: 40px;
 }
 
-.hero-unit {
-  padding: 30px;
-}
-
-@media (max-width: $before-breakpoint700) {
-  .hero-unit {
-    padding: 15px 22px;
-    font-size: 14px;
-    line-height: 23px;
-    font-weight: normal;
-
-    h2 {
-      font-size: 17.5px;
-      line-height: 28px;
-      margin-top: 0;
-    }
-  }
+.btn-register {
+  @extend .btn, .btn-primary, .btn-block;
 }

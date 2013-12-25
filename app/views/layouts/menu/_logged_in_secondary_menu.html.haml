@@ -1,0 +1,11 @@
+%ul.logged-in-secondary-menu.user-dropdown-menu
+  = render "layouts/menu/items/flashcards"
+  = render "layouts/menu/items/about"
+  %li.dropdown
+    = render "layouts/menu/dropdown_toggle", label: username(current_user)
+    %ul.logged-in-dropdown-menu
+      = render "layouts/menu/items/stats"
+      %li.divider
+      = render "layouts/menu/items/settings"
+      %li.divider
+      = render "layouts/menu/items/logout"

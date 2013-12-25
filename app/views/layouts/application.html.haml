@@ -1,5 +1,5 @@
 !!! 5
-%html.no-js
+%html
   %head
     %title= full_title(@page_title)
     %meta{ name: "Viewport", content: "width=device-width, initial-scale=1.0" }
@@ -8,7 +8,7 @@
     = csrf_meta_tags
   %body
     .container
-      = render "layouts/menu"
+      = render "layouts/menu/menu"
       = render "layouts/alerts"
       = yield
       .push

@@ -1,0 +1,3 @@
+= form_for @flashcard, html: { class: "flashcard-form" } do |f|
+  = render "flashcard_inputs", f: f
+  = submit_tag t(".create"), class: "new-submit"

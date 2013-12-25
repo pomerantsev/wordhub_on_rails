@@ -1,4 +1,8 @@
 module UsersHelper
+  def username(user)
+    user.name.blank? ? user.email : user.name
+  end
+
   def total_stats(stats)
     [{ name: t(".total_flashcards"),
        value: stats[:total_flashcards] },

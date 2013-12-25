@@ -1,0 +1,21 @@
+.navbar-header
+  = render "layouts/menu/navbar_toggle", target: ".collapsing-menu", custom_class: "logged-in-menu-navbar-toggle"
+  .logged-in-primary-menu
+    = link_to new_flashcard_path, class: "#{active_class(new_flashcard_path)} #{create_class}" do
+      %span= t("nav.create")
+      %span
+        %small
+          %span= current_user.flashcards.created_on(current_date).size
+          %span= t("nav.of")
+          %span= current_user.daily_limit
+    = link_to repetitions_path, class: "#{active_class(repetitions_path)} #{repeat_class}" do
+      %span= t("nav.repeat")
+      %span
+        %small
+          %span= current_user.repetitions.run.on(current_date).size
+          %span= t("nav.of")
+          %snap= current_user.repetitions.for(current_date).size
+
+.collapsing-menu
+  = render "layouts/menu/logged_in_secondary_menu"
+  = render "layouts/menu/collapsed_logged_in_secondary_menu"

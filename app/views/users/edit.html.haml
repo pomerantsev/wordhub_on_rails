@@ -5,13 +5,16 @@
   %p!= t ".daily_limit_hint",
           motivating: link_to(t(".motivating"),
                               about_path(anchor: "every_day"))
-  = f.number_field :daily_limit
+  .form-group
+    = f.number_field :daily_limit, class: "form-control"
 
   %h4= t(".name")
-  = f.text_field :name
+  .form-group
+    = f.text_field :name, class: "form-control"
 
   %h4= t(".interface_language")
-  = f.select :interface_language, User.interface_languages_for_select
+  .form-group
+    = f.select :interface_language, User.interface_languages_for_select, {}, { class: "form-control" }
   %span.help-block
 
-  = f.submit t(".update"), class: "btn btn-primary btn-save-settings"
+  = f.submit t(".update"), class: "btn-save-settings"

@@ -1,0 +1,13 @@
+.flashcard-side-form-group
+  = f.label :front_text, "#{ t 'activerecord.attributes.flashcard.front_text'}:"
+  = f.text_area :front_text,
+                class: "form-control",
+                rows: 6,
+                id: "js_front_text_input",
+                required: true
+.flashcard-side-form-group
+  = f.label :back_text, "#{ t 'activerecord.attributes.flashcard.back_text'}:"
+  = f.text_area :back_text,
+                class: "form-control",
+                rows: 6,
+                required: true

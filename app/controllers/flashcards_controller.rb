@@ -23,8 +23,7 @@ class FlashcardsController < ApplicationController
   
   def new
     @flashcard = current_user.flashcards.new
-    @page_title = I18n.t("flashcards.form.new")
-    render :form
+    @page_title = I18n.t("flashcards.new.title")
   end
   
   
@@ -34,14 +33,13 @@ class FlashcardsController < ApplicationController
       redirect_to new_flashcard_path
     else
       flash.now[:error] = errors(@flashcard)
-      render :form
+      render :new
     end
   end
     
 
   def edit
-    @page_title = I18n.t("flashcards.form.edit")
-    render :form
+    @page_title = I18n.t("flashcards.edit.title")
   end
   
 
@@ -50,7 +48,7 @@ class FlashcardsController < ApplicationController
       redirect_to flashcards_path(anchor: @flashcard.id)
     else
       flash.now[:error] = errors(@flashcard)
-      render :form
+      render :edit
     end
   end
   
