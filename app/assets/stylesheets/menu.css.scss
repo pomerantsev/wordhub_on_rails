@@ -58,6 +58,10 @@
   @extend .dropdown-menu;
 }
 
+.collapsing-menu {
+  @extend .navbar-collapse, .collapse;
+}
+
 /* "Толстое" верхнее меню. Из-за того, что оно стало двухстрочным,
  * стандартные стили Bootstrap'а поехали.
  */

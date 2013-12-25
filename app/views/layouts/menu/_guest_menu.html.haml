@@ -1,4 +1,7 @@
-= link_to t("nav.wordhub"), root_path, class: "menu-brand"
-%ul.guest-secondary-menu
-  = render "layouts/menu/about"
-  %li= link_to t("nav.login"), root_path(anchor: "login-form-anchor")
+.navbar-header
+  = render "layouts/menu/navbar_toggle", target: ".collapsing-menu"
+  = link_to t("nav.wordhub"), root_path, class: "menu-brand"
+.collapsing-menu
+  %ul.guest-secondary-menu
+    = render "layouts/menu/items/about"
+    %li= link_to t("nav.login"), root_path(anchor: "login-form-anchor")

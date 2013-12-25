@@ -1,5 +1,5 @@
 .navbar-header
-  = render "layouts/menu/navbar_toggle", target: ".navbar-collapse"
+  = render "layouts/menu/navbar_toggle", target: ".collapsing-menu"
   .logged-in-primary-menu
     = link_to new_flashcard_path, class: "#{active_class(new_flashcard_path)} #{create_class}" do
       %span= t("nav.create")
@@ -16,6 +16,6 @@
           %span= t("nav.of")
           %snap= current_user.repetitions.for(current_date).size
 
-.navbar-collapse.collapse
+.collapsing-menu
   = render "layouts/menu/logged_in_secondary_menu"
   = render "layouts/menu/collapsed_logged_in_secondary_menu"
