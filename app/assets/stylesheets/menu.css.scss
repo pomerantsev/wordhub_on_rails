@@ -62,10 +62,6 @@
   @extend .dropdown-menu;
 }
 
-.logged-in-no-js-dropdown-menu {
-  @extend .primary-menu;
-}
-
 /* "Толстое" верхнее меню. Из-за того, что оно стало двухстрочным,
  * стандартные стили Bootstrap'а поехали.
  */
@@ -93,13 +89,8 @@
 
 .user-menu-no-dropdown {
   display: none !important;
-  .no-js & {
+  @media (max-width: $before-breakpoint700) {
     display: block !important;
-  }
-  .js & {
-    @media (max-width: $before-breakpoint700) {
-      display: block !important;
-    }    
   }
 }
 
