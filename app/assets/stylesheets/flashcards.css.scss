@@ -105,3 +105,10 @@
 .btn-undelete {
   @extend .btn, .btn-default, .btn-primary;
 }
+
+.flashcard-search-form {
+  @extend .col-md-4, .pull-right;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 20px;
+}

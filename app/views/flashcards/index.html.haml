@@ -1,9 +1,10 @@
 - @page_title = t("nav.all_flashcards")
 = render "deleted_today"
-= form_tag flashcards_path, method: :get, class: "form-search pull-right" do
-  .input-append
-    = text_field_tag :search, nil, class: "span2 search-query"
-    %button.btn= t(".search")
+= form_tag flashcards_path, method: :get, class: "flashcard-search-form" do
+  .input-group
+    = search_field_tag :search, nil, class: "form-control"
+    %span.input-group-btn
+      %button.btn.btn-primary= t(".search")
   - if @search_string
     %span.help-block
       != t ".filtered",
