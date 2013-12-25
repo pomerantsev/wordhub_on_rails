@@ -2,8 +2,8 @@
   = render "flashcard_inputs", f: f
   = submit_tag t(".update"), class: "edit-submit"
 
-.destroy-link-div.col-md-2.pull-right
+.flashcard-destroy-link-wrapper
   = button_to t(".delete"),
               @flashcard,
               method: :delete,
-              class: "btn btn-default destroy"
+              class: "flashcard-destroy-link"

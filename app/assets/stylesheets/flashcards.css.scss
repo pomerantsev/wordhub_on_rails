@@ -58,13 +58,24 @@
     @extend .btn-block;
   }
   .edit-submit {
-    @media (min-width: $after-breakpoint700) {
-      @extend .col-md-10;
-    }
-    @media (max-width: $before-breakpoint700) {
-      @extend .btn-block;
+    @extend .col-md-10;
+    @media(max-width: $before-column-breakpoint900) {
+      width: 100%;
     }
   }
+}
+
+.flashcard-destroy-link-wrapper {
+  @extend .col-md-2;
+  position: relative;
+  @media(max-width: $before-column-breakpoint900) {
+    margin-top: 20px;
+  }
+}
+
+.flashcard-destroy-link {
+  @extend .btn, .btn-link, .pull-right;
+  width: 100%;
 }
 
 /* Блок для восстановления удалённых карточек. */
