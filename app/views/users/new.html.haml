@@ -1,21 +1,24 @@
 - @page_title = t(".new_user")
 %h2= @page_title
 = form_for @user do |f|
-  = f.label :email do
-    #{ t "activerecord.attributes.user.email" }:
-    %span.text-error *
-  = f.email_field :email, required: true
-  %span.help-block= t(".not_going_to_share")
+  .form-group
+    = f.label :email do
+      #{ t "activerecord.attributes.user.email" }:
+      %span.text-error *
+    = f.email_field :email, required: true, class: "form-control"
+    %p.help-block= t(".not_going_to_share")
 
-  = f.label :password do
-    #{ t "activerecord.attributes.user.password" }:
-    %span.text-error *
-  = f.password_field :password, required: true
-  %span.help-block= t(".any_combination")
+  .form-group
+    = f.label :password do
+      #{ t "activerecord.attributes.user.password" }:
+      %span.text-error *
+    = f.password_field :password, required: true, class: "form-control"
+    %p.help-block= t(".any_combination")
 
-  = f.label :name do
-    #{ t 'activerecord.attributes.user.name' }:
-  = f.text_field :name
-  %span.help-block= t(".how_to_address")
+  .form-group
+    = f.label :name do
+      #{ t 'activerecord.attributes.user.name' }:
+    = f.text_field :name, class: "form-control"
+    %p.help-block= t(".how_to_address")
 
-  = f.submit t(".sign_up"), class: "btn btn-default btn-primary"
+  = f.submit t(".sign_up"), class: "btn-register"

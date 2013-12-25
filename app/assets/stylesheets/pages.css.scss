@@ -48,6 +48,10 @@
   margin-top: 40px;
 }
 
+.btn-register {
+  @extend .btn, .btn-primary, .btn-block;
+}
+
 .jumbotron {
   padding: 30px;
 }
