@@ -17,11 +17,11 @@
 
 .navbar-collapse.collapse
   %ul.logged-in-secondary-menu
-    %li.menu-item{ class: active_class(flashcards_path) }
+    %li{ class: active_class(flashcards_path) }
       = link_to t("nav.all_flashcards"), flashcards_path
     = render "layouts/menu/about"
     -# Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него.
-    %li.menu-item.dropdown.user-dropdown-menu
+    %li.dropdown.user-dropdown-menu
       = render "layouts/menu/dropdown_toggle", label: username(current_user)
       %ul.logged-in-dropdown-menu
         = render "layouts/menu/dropdown"

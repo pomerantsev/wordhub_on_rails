@@ -93,15 +93,3 @@
     display: block !important;
   }
 }
-
-@media (max-width: $before-breakpoint700) {
-  .navbar {
-    .navbar-brand {
-      padding-left: 15px;
-    }
-  
-    .navbar-nav {
-      margin-right: 0px;
-    }
-  }   
-}
