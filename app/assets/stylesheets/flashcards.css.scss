@@ -35,9 +35,7 @@
   background-color: $gray-lighter;
   border-bottom: 20px solid white;
   .dont-remember, .remember {
-    @extend .form-actions;
-    margin: 0;
-    border-top: none;
+    padding: 20px;
     @media (max-width: $before-breakpoint700) {
       padding: 10px;
     }
