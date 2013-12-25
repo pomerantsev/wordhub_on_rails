@@ -3,7 +3,8 @@
 .flashcard {
   @extend .jumbotron;
   display: block;
-  padding: 30px;
+  padding: 30px !important;
+  font-size: 18px !important;
   text-decoration: none;
   min-height: 120px;
   margin-bottom: $margin-standard;
@@ -24,6 +25,9 @@
     color: $universal-green;
     background-color: #dff0d8;
     border-color: #d6e9c6;
+  }
+  hr {
+    border-top: 1px solid white;
   }
 }
 
