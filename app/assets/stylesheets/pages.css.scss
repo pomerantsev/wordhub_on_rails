@@ -3,11 +3,14 @@
 }
 
 .homepage-main {
-  @extend .col-md-9, .jumbotron;
+  @extend .col-md-8;
+  .homepage-jumbotron {
+    @extend .jumbotron;
+  }
 }
 
 .homepage-login-form {
-  @extend .col-md-3;
+  @extend .col-md-4;
   .email, .password {
     @extend .form-group;
   }
