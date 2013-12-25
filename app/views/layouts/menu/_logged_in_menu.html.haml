@@ -1,27 +1,21 @@
-= render "layouts/menu/navbar_toggle", target: ".navbar-collapse"
-.logged-in-primary-menu
-  = link_to new_flashcard_path, class: "#{active_class(new_flashcard_path)} #{create_class}" do
-    %span= t("nav.create")
-    %span
-      %small
-        %span= current_user.flashcards.created_on(current_date).size
-        %span= t("nav.of")
-        %span= current_user.daily_limit
-  = link_to repetitions_path, class: "#{active_class(repetitions_path)} #{repeat_class}" do
-    %span= t("nav.repeat")
-    %span
-      %small
-        %span= current_user.repetitions.run.on(current_date).size
-        %span= t("nav.of")
-        %snap= current_user.repetitions.for(current_date).size
+.navbar-header
+  = render "layouts/menu/navbar_toggle", target: ".navbar-collapse"
+  .logged-in-primary-menu
+    = link_to new_flashcard_path, class: "#{active_class(new_flashcard_path)} #{create_class}" do
+      %span= t("nav.create")
+      %span
+        %small
+          %span= current_user.flashcards.created_on(current_date).size
+          %span= t("nav.of")
+          %span= current_user.daily_limit
+    = link_to repetitions_path, class: "#{active_class(repetitions_path)} #{repeat_class}" do
+      %span= t("nav.repeat")
+      %span
+        %small
+          %span= current_user.repetitions.run.on(current_date).size
+          %span= t("nav.of")
+          %snap= current_user.repetitions.for(current_date).size
 
 .navbar-collapse.collapse
-  %ul.logged-in-secondary-menu
-    %li{ class: active_class(flashcards_path) }
-      = link_to t("nav.all_flashcards"), flashcards_path
-    = render "layouts/menu/about"
-    -# Дропдаун подсвечивается как активный, когда выбран один из пунктов меню, входящих в него.
-    %li.dropdown.user-dropdown-menu
-      = render "layouts/menu/dropdown_toggle", label: username(current_user)
-      %ul.logged-in-dropdown-menu
-        = render "layouts/menu/dropdown"
+  = render "layouts/menu/logged_in_secondary_menu"
+  = render "layouts/menu/collapsed_logged_in_secondary_menu"
