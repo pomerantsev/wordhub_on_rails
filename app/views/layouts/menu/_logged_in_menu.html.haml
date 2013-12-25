@@ -1,21 +1,19 @@
 = render "layouts/menu/navbar_toggle", target: ".navbar-collapse"
-%ul.logged-in-primary-menu#js-element-before-dropdown
-  %li.menu-item{ class: [active_class(new_flashcard_path), create_class] }
-    = link_to new_flashcard_path do
-      %span= t("nav.create")
-      %span
-        %small
-          %span= current_user.flashcards.created_on(current_date).size
-          %span= t("nav.of")
-          %span= current_user.daily_limit
-  %li.menu-item{ class: [active_class(repetitions_path), repeat_class] }
-    = link_to repetitions_path do
-      %span= t("nav.repeat")
-      %span
-        %small
-          %span= current_user.repetitions.run.on(current_date).size
-          %span= t("nav.of")
-          %snap= current_user.repetitions.for(current_date).size
+.logged-in-primary-menu#js-element-before-dropdown
+  = link_to new_flashcard_path, class: "#{active_class(new_flashcard_path)} #{create_class}" do
+    %span= t("nav.create")
+    %span
+      %small
+        %span= current_user.flashcards.created_on(current_date).size
+        %span= t("nav.of")
+        %span= current_user.daily_limit
+  = link_to repetitions_path, class: "#{active_class(repetitions_path)} #{repeat_class}" do
+    %span= t("nav.repeat")
+    %span
+      %small
+        %span= current_user.repetitions.run.on(current_date).size
+        %span= t("nav.of")
+        %snap= current_user.repetitions.for(current_date).size
 
 -# Этот ul Яваскриптом обрамляется в div, чтобы в случае, если Яваскрипт не работает, меню работало, хоть и выглядело бы некрасиво.
 
