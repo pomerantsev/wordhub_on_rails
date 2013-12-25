@@ -51,22 +51,3 @@
 .btn-register {
   @extend .btn, .btn-primary, .btn-block;
 }
-
-.jumbotron {
-  padding: 30px;
-}
-
-@media (max-width: $before-breakpoint700) {
-  .jumbotron {
-    padding: 15px 22px;
-    font-size: 14px;
-    line-height: 23px;
-    font-weight: normal;
-
-    h2 {
-      font-size: 17.5px;
-      line-height: 28px;
-      margin-top: 0;
-    }
-  }
-}
