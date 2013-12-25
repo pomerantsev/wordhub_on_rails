@@ -6,7 +6,7 @@ feature "Flashcard search" do
     create :flashcard, user: user, front_text: "Yes front", back_text: "No"
     create :flashcard, user: user, front_text: "No front", back_text: "Yes"
     create :flashcard, user: user, front_text: "Yes front", back_text: "Yes"
-    
+
     sign_in user
     visit flashcards_path
   end
