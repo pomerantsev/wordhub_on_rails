@@ -6,7 +6,7 @@
 }
 
 .secondary-menu {
-  @extend .nav, .navbar-nav, .pull-right;
+  @extend .nav, .navbar-nav, .navbar-right;
 }
 
 .menu-brand {
