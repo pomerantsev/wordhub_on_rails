@@ -13,6 +13,7 @@
   white-space: pre-wrap;
   &:hover {
     text-decoration: none;
+    color: $gray-dark;
   }
   @media (max-width: $before-breakpoint700) {
     padding: 15px 22px !important;
