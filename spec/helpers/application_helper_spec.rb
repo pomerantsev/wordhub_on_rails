@@ -14,5 +14,19 @@ describe ApplicationHelper do
 		end
 	end
 
+  describe "#copyright_years" do
+    subject { copyright_years }
+    let(:initial_year) { WhRails::Application.config.initial_year }
+    before { Timecop.travel(Time.local(current_year)) }
+    after { Timecop.return }
+    context "in initial year" do
+      let(:current_year) { initial_year }
+      it { should eq "#{initial_year}" }
+    end
+    context "later" do
+      let(:current_year) { initial_year + 1 }
+      it { should eq "#{initial_year} &mdash; #{current_year}" }
+    end
+  end
 
 end

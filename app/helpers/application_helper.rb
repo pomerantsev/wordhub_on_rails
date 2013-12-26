@@ -46,5 +46,15 @@ module ApplicationHelper
       object.errors.full_messages
     end
   end
+
+  def copyright_years
+    initial_year = WhRails::Application.config.initial_year
+    current_year = Time.now.year
+    if initial_year == current_year
+      "#{initial_year}"
+    else
+      "#{initial_year} &mdash; #{current_year}"
+    end
+  end
   
 end

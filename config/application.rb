@@ -58,5 +58,7 @@ module WhRails
 
     # Сколько повторов нужно для того, чтобы карточка считалась выученной.
     config.max_consecutive_successful_repetitions = 3
+
+    config.initial_year = 2013
   end
 end
