@@ -1,18 +1,15 @@
-# coding: UTF-8
-
 class RepetitionsController < ApplicationController
   
   before_action :confirm_logged_in
   before_action :confirm_repetition_validity, only: :update
-  
 
-  # Индексный метод служит для получения одного случайного повтора.
+  # The index method is used for getting one random repetition.
   def index
     @repetitions = current_user.repetitions.planned.for(current_date)
     if params[:repetition_id].present?
       @current_repetition = Repetition.find_by_id(params[:repetition_id])
       if @repetitions.include?(@current_repetition)
-        # На случай, если view не передано в params, передаём в метод дефолтное значение.
+        # If there is no :view in params, using 'front' by default.
         set_texts_and_views(params[:view] || "front")
       else
         init_default_view
@@ -21,12 +18,12 @@ class RepetitionsController < ApplicationController
       init_default_view
     end
   end
-  
 
-  # Сохраняет повтор как успешный или неуспешный.
+  # Saves the repetition as successful or unsuccessful.
   def update
-    # Если передавать не в виде строк, а в виде boolean-значений, работать не будет.
-    # Boolean-значения здесь сохранены для тестов.
+    # If boolean values are passed, it doesn't work.
+    # They are left here only for tests.
+    # TODO: remove this duplication.
     if [true, false, 'true', 'false'].include?(params[:successful])
       @current_repetition.successful = params[:successful]
       @current_repetition.save
@@ -40,8 +37,8 @@ class RepetitionsController < ApplicationController
 
   private
 
-  # current_side будет чаще равняться "front", это дефолтный случай для браузера со включённым JS-ом.
-  # Второй вариант (без JS) предполагает передачу стороны карточки в параметрах адреса.
+  # current_side is 'front' by default (for a JS-enabled browser).
+  # TODO: remove functionality for non-JS-enabled browsers.
   def set_texts_and_views(current_side)
     if current_side == "front"
       @current_text = @current_repetition.flashcard.front_text
@@ -57,8 +54,8 @@ class RepetitionsController < ApplicationController
   end
 
 
-  # Выбирает случайный повтор из всех запланированных на сегодня.
-  # Если повторов нет - редиректит на список карточек.
+  # Selects a random repetition among all planned for today.
+  # If no repetitions are available, it redirects to the stats page.
   def init_default_view
     if (!@repetitions.empty?)
       @current_repetition = @repetitions[rand(0...@repetitions.size)]
@@ -67,9 +64,9 @@ class RepetitionsController < ApplicationController
       redirect_to stats_path
     end
   end
-  
-  
-  # При обновлении информации о повторе (повтор выполнен) проверяется, запланирован ли он на сегодня.
+
+  # When updating the repetition, we must check
+  # if it's planned for today.
   def confirm_repetition_validity
     @current_repetition = Repetition.find_by_id(params[:id])
     unless current_user.repetitions.planned.for(current_date).include?(@current_repetition)
@@ -78,6 +75,4 @@ class RepetitionsController < ApplicationController
     end
     return true
   end
-
-  
 end

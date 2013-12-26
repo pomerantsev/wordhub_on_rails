@@ -24,4 +24,3 @@ guard :rspec, all_on_start: false, all_after_pass: false do
 
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
 end
-

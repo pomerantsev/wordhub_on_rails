@@ -1,8 +1,4 @@
-# coding: UTF-8
-
 class ApplicationController < ActionController::Base
-  
-  # Чтобы хелперы были доступны во всех контроллерах.
   include ApplicationHelper
 
   protect_from_forgery
@@ -10,19 +6,18 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :adjust_current_date
   before_action :wipe_deleted_flashcards
-  
-  # Для использования этих методов внутри view.
+
   helper_method :current_user
   helper_method :logged_in?
   helper_method :current_date
   helper_method :home_page
-  
+
   def index
     if logged_in?
       redirect_to new_flashcard_path
     end
   end
-  
+
   def logged_in?
     not session[:user_id].nil?
   end
@@ -35,13 +30,12 @@ class ApplicationController < ActionController::Base
     new_flashcard_url
   end
 
-
-  
   protected
-  
+
   def confirm_logged_in
     if logged_in?
-      # При каждом действии, если пользователь залогинен, сдвигаем все повторы, если хоть один остался с предыдущих дат.
+      # If any repetitions are left from previous dates,
+      # we are moving all repetitions.
       current_user.repetitions.adjust_dates(current_date)
       return true
     else
@@ -65,7 +59,8 @@ class ApplicationController < ActionController::Base
                       I18n.default_locale
   end
 
-  # Чтобы всё приложение вычисляло дату единым образом, используется одна переменная сессии, которая обновляется перед каждым действием.
+  # We update the current date and store it in the session,
+  # to be sure that all application uses the same date.
   def adjust_current_date
     session[:date] = Date.today
     return true
@@ -85,5 +80,5 @@ class ApplicationController < ActionController::Base
     when "ru" then :ru
     end
   end
-  
+
 end

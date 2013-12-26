@@ -1,2 +1,2 @@
 $ ->
-	$('#js_front_text_input').focus()
+  $('#js_front_text_input').focus()

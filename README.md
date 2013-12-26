@@ -1,10 +1,10 @@
-# Вордхаб: простое приложение для запоминания иностранных слов
+# Wordhub: a simple app for memorizing foreign words
 
-Приложение помогает организовать заучивание слов по карточкам.
-Пользователь создаёт карточки со словами, значения которых он хочет запомнить, и простой алгоритм планирует повторы слов в соответствии с принципом [интервальных повторений](http://ru.wikipedia.org/wiki/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5_%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D0%B5%D0%BD%D0%B8%D1%8F).
-Программа предполагает ежедневное создание новых карточек и повтор старых. Полезна будет тем, кто хорошо знает язык, читает на нём, но не всё понимает и хочет расширить словарный запас.
-Преимущество перед другими подобными сервисами в том, что даже при большом количестве созданных карточек повторять нужно не больше нескольких десятков слов в день, причём все карточки в итоге оказываются охваченными. Пользователь чаще видит те карточки, запоминание которых даётся ему труднее.
+The app is used for learning words using flashcards.
+Users create flashcards for words that they wish to memorize, and the dates of repetitions are planned according to the principle of [spaced repetition](http://en.wikipedia.org/wiki/Spaced_repetition).
+The app is intended for everyday use. It is useful for people who read in a foreign language but who find their vocabulary insufficient.
+The main advantage of this service over others is that even if the flashcard base is large, the number of flashcards planned for repetition on a given date is limited. But nevertheless all of them get learned.
 
-Дизайн простой, но полностью отзывчивый: на маленьких разрешениях и пальцами управлять не менее удобно, чем на большом экране мышкой.
+The visual design is basic (Bootstrap's styles were altered only when necessary), but it's fully responsive: it's not harder to navigate on a phone than on a big screen.
 
-Автор — [Павел Померанцев](http://pomerantsev.moikrug.ru/).
+The working app can be found on [wordhub.org](http://wordhub.org)
