@@ -31,6 +31,11 @@
   }
 }
 
+.flashcard-date {
+  @extend .lead;
+  clear: both;
+}
+
 .responses {
   background-color: $gray-lighter;
   border-bottom: 20px solid white;
