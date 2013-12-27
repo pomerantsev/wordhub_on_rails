@@ -3,7 +3,8 @@
 angular.module('wordhubApp', [
   'ngCookies',
   'ngResource',
-  'ngRoute'
+  'ngRoute',
+  'pascalprecht.translate'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -14,4 +15,13 @@ angular.module('wordhubApp', [
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .config(function ($translateProvider) {
+    $translateProvider.translations('ru', {
+      NAV: {
+        CREATE: 'Создать',
+        OF: 'из'
+      }
+    });
+    $translateProvider.preferredLanguage('ru');
   });
