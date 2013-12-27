@@ -1,0 +1,49 @@
+.homepage-header {
+  @extend .row;
+}
+
+.homepage-main {
+  @extend .col-md-8;
+  .homepage-jumbotron {
+    @extend .jumbotron;
+  }
+}
+
+.homepage-login-form {
+  @extend .col-md-4;
+  .email, .password {
+    @extend .form-group;
+  }
+  input[type="email"],
+  input[type="password"] {
+    @extend .form-control;
+  }
+  input[type="submit"] {
+    @extend .btn, .btn-default;
+  }
+  .register-link {
+    @extend .btn, .btn-link, .pull-right;
+  }
+}
+
+.homepage-info {
+  @extend .row;
+}
+
+.homepage-info-column {
+  @extend .col-md-4;
+}
+
+.about-nav {
+  @extend .nav, .nav-pills;
+  margin-bottom: 20px;
+}
+
+.btn-save-settings {
+  @extend .btn, .btn-primary, .btn-block;
+  margin-top: 40px;
+}
+
+.btn-register {
+  @extend .btn, .btn-primary, .btn-block;
+}

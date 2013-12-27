@@ -1,0 +1,42 @@
+footer {
+  position: relative;
+  padding: 30px 0;
+  margin-top: 70px;
+  border-top: 1px solid #E5E5E5;
+  background-color: $gray-lighter;
+  @media (max-width: $before-breakpoint700) {
+    text-align: center;
+  }
+  @media (min-width: $after-breakpoint700) {
+    .copyright {
+      float: left;
+    }
+    .email {
+      float: right;
+    }
+  }
+}
+
+/* Sticky footer */
+html, body {
+  height: 100%;
+}
+
+@mixin push($height) {
+  body > .container {
+    min-height: 100%;
+    margin-bottom: -$height;
+  }
+
+  .push {
+    height: $height;
+  }
+}
+
+@media(max-width: $before-breakpoint700) {
+  @include push(191px);
+}
+
+@media (min-width: $after-breakpoint700) {
+  @include push(161px);
+}

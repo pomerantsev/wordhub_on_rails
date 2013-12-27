@@ -1,0 +1,22 @@
+/* 270px is the least visually acceptable width. */
+body {
+  min-width: 270px;
+}
+
+/* Error message */
+
+.alert ul {
+  margin-bottom: 0;
+}
+
+h4 {
+  margin-top: 40px;
+
+  &.first-header {
+    margin-top: 0px;
+  }
+}
+
+ol li {
+  margin-bottom: 10px;
+}
