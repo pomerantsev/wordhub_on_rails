@@ -27,15 +27,15 @@ module.exports = function (grunt) {
     dist: '../public'
   };
 
+  try {
+    yeomanConfig.app = require('./bower.json').appPath || yeomanConfig.app;
+  } catch (e) {}
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
-    yeoman: {
-      // configurable paths
-      app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
-    },
+    yeoman: yeomanConfig,
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -75,8 +75,7 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
-        livereload: 35729
+        hostname: 'localhost'
       },
       proxies: [
         {
@@ -94,27 +93,26 @@ module.exports = function (grunt) {
               mountFolder(connect, '.tmp'),
               mountFolder(connect, yeomanConfig.app)
             ];
-          },
-          open: true,
-          base: [
-            '.tmp',
-            '<%= yeoman.app %>'
-          ]
+          }
         }
       },
       test: {
         options: {
-          port: 9001,
-          base: [
-            '.tmp',
-            'test',
-            '<%= yeoman.app %>'
-          ]
+          middleware: function (connect) {
+            return [
+              mountFolder(connect, '.tmp'),
+              mountFolder(connect, 'test')
+            ];
+          }
         }
       },
       dist: {
         options: {
-          base: '<%= yeoman.dist %>'
+          middleware: function (connect) {
+            return [
+              mountFolder(connect, yeomanConfig.dist)
+            ];
+          }
         }
       }
     },
