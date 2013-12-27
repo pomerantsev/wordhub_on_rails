@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
 
-  protect_from_forgery
+  protect_from_forgery with: :exception
+
+  after_action :set_csrf_cookie_for_ng
 
   before_action :set_locale
   before_action :adjust_current_date
@@ -79,6 +81,14 @@ class ApplicationController < ActionController::Base
     when "com", "org" then :en
     when "ru" then :ru
     end
+  end
+
+  def set_csrf_cookie_for_ng
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
+
+  def verified_request?
+    super || form_authenticity_token == request.headers['HTTP_X_XSRF_TOKEN']
   end
 
 end
