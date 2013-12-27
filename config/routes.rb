@@ -31,6 +31,10 @@ WhRails::Application.routes.draw do
   
   resources :repetitions, only: [:index, :update]
 
+  scope '/api' do
+    resources :users, only: [:index]
+  end
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
