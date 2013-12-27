@@ -22,6 +22,18 @@ angular.module('wordhubApp', [
         CREATE: 'Создать',
         OF: 'из'
       }
+    }).translations('en', {
+      NAV: {
+        CREATE: 'Create',
+        OF: 'of'
+      }
     });
-    $translateProvider.preferredLanguage('ru');
+  })
+  .run(function ($location, $translate) {
+    var host = $location.host();
+    if (host === 'localhost') {
+      $translate.uses('ru');
+    } else {
+      $translate.uses('en');
+    }
   });
