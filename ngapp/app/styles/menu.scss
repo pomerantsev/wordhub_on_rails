@@ -1,0 +1,81 @@
+.menu {
+  @extend .navbar, .navbar-default;
+}
+
+.secondary-menu {
+  @extend .nav, .navbar-nav, .navbar-right;
+}
+
+.menu-brand {
+  @extend .navbar-brand;
+}
+
+.guest-secondary-menu {
+  @extend .secondary-menu;
+}
+
+.logged-in-primary-menu {
+  & > a {
+    @extend .navbar-brand;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    span {
+      display: block;
+    }
+    small span {
+      display: inline;
+    }
+    &.to-do {
+      color: $universal-green;
+      text-shadow: 0 1px 0 $universal-green-shadow;
+      font-weight: bold;
+    }
+    &.inactive {
+      color: #999999;
+    }
+    &.active, &.active:hover {
+      background-color: $navbar-default-link-active-bg;
+    }
+  }
+}
+
+.logged-in-secondary-menu {
+  @extend .secondary-menu;
+  & > li > a {
+    @media (min-width: $after-breakpoint700) {
+      padding-top: 20px !important;
+      padding-bottom: 21px !important;
+    }
+  }
+}
+
+.logged-in-dropdown-menu {
+  @extend .dropdown-menu;
+}
+
+.collapsing-menu {
+  @extend .navbar-collapse, .collapse;
+}
+
+.guest-menu-navbar-toggle {
+  @extend .navbar-toggle;
+}
+
+.logged-in-menu-navbar-toggle {
+  @extend .navbar-toggle;
+  margin-top: 13px;
+}
+
+@media (max-width: $before-breakpoint700) {
+  .user-dropdown-menu {
+    display: none !important;
+  }
+}
+
+.user-menu-no-dropdown {
+  display: none !important;
+  @media (max-width: $before-breakpoint700) {
+    display: block !important;
+  }
+}
