@@ -1,6 +1,13 @@
 // Generated on 2013-12-25 using generator-angular 0.6.0
 'use strict';
 
+var LIVERELOAD_PORT = 35729;
+var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
+var mountFolder = function (connect, dir) {
+  return connect.static(require('path').resolve(dir));
+};
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -14,6 +21,11 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+
+  var yeomanConfig = {
+    app: 'app',
+    dist: '../public'
+  };
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -66,8 +78,23 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [
+        {
+          context: '/api',
+          host: 'localhost',
+          port: 3000
+        }
+      ],
       livereload: {
         options: {
+          middleware: function (connect) {
+            return [
+              proxySnippet,
+              lrSnippet,
+              mountFolder(connect, '.tmp'),
+              mountFolder(connect, yeomanConfig.app)
+            ];
+          },
           open: true,
           base: [
             '.tmp',
@@ -361,6 +388,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
+      'configureProxies',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -374,6 +402,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'configureProxies',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
