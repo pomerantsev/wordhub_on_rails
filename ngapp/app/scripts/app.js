@@ -18,14 +18,14 @@ angular.module('wordhubApp', [
   })
   .config(function ($translateProvider) {
     $translateProvider.translations('ru', {
-      NAV: {
-        CREATE: 'Создать',
-        OF: 'из'
+      nav: {
+        create: 'Создать',
+        of: 'из'
       }
     }).translations('en', {
-      NAV: {
-        CREATE: 'Create',
-        OF: 'of'
+      nav: {
+        create: 'Create',
+        of: 'of'
       }
     });
   })
