@@ -16,3 +16,6 @@
 
 # Ignore todo
 todo
+
+# Ignore the built angular app
+/public/angular

@@ -24,7 +24,7 @@ module.exports = function (grunt) {
 
   var yeomanConfig = {
     app: 'app',
-    dist: '../public'
+    dist: '../public/angular'
   };
 
   try {
