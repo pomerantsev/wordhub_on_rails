@@ -1,10 +1,8 @@
-# coding: UTF-8
-
 class FlashcardsController < ApplicationController
-  
+
   before_action :confirm_logged_in
   before_action :get_flashcard, only: [:edit, :update, :destroy]
-  
+
   def index
     @flashcards = current_user.flashcards.order(created_at: :desc).page(params[:page])
     if @search_string = params[:search]
@@ -14,19 +12,17 @@ class FlashcardsController < ApplicationController
     end
     @flashcards_grouped_by_date = @flashcards.grouped_by_date
     @deleted_flashcards = current_user.flashcards.deleted
-    # just_deleted - boolean-значение, используемое, чтобы определить,
-    # нужно ли подсвечивать блок удалённых карточек.
+    # just_deleted is a boolean value that is used to determine
+    # if the 'deleted flashcards' block should be highlighted.
     @just_deleted = session[:just_deleted]
     session[:just_deleted] = nil
   end
-  
   
   def new
     @flashcard = current_user.flashcards.new
     @page_title = I18n.t("flashcards.new.title")
   end
-  
-  
+
   def create
     @flashcard = current_user.flashcards.new(flashcard_params)
     if @flashcard.save
@@ -36,12 +32,10 @@ class FlashcardsController < ApplicationController
       render :new
     end
   end
-    
 
   def edit
     @page_title = I18n.t("flashcards.edit.title")
   end
-  
 
   def update
     if @flashcard.update_attributes(flashcard_params)
@@ -51,8 +45,7 @@ class FlashcardsController < ApplicationController
       render :edit
     end
   end
-  
-  
+
   def destroy
     @flashcard.update_attribute(:deleted, true)
     session[:just_deleted] = true
@@ -81,11 +74,9 @@ class FlashcardsController < ApplicationController
       redirect_to flashcards_path
     end
   end
-  
-  
 
 protected
-  
+
   def get_flashcard
     @flashcard = Flashcard.find_by_id(params[:id])
     if @flashcard.nil? || @flashcard.user != current_user
@@ -99,9 +90,9 @@ protected
 
 
 private
-  
+
   def flashcard_params
     params.require(:flashcard).permit(:front_text, :back_text, :deleted)
   end
-  
+
 end

@@ -1,5 +1,3 @@
-# coding: UTF-8
-
 module ApplicationHelper
 
   def full_title(title = nil)
@@ -11,40 +9,43 @@ module ApplicationHelper
     end
   end
 
-  # Хелпер для определения, активен ли определённый пункт меню.
+  # Is the menu item active
   def active_class(paths = [])
-    # На случай, если пользователь передал не массив, а строку.
+    # If the param is not an array but a string
     paths = [paths] if paths.class != Array
     return "active" if paths.include?(request.fullpath)
     return ""
   end
 
-  
-  # Класс для выделения цветом пункта меню "Создать", если на сегодня ещё не все карточки созданы.
+  # Highlights the 'create' menu item
+  # if the daily limit is not reached.
   def create_class
     return "to-do" if current_user.flashcards.created_on(current_date).size < current_user.daily_limit
     return ""
   end
 
-  
-  # Класс для выделения цветом пункта меню "Повторить" в зависимости от того, всё ли запланированное на сегодня повторено.
+  # Highlights the 'repeat' menu item
+  # if not all flashcards are repeated.
   def repeat_class
     return "to-do" if current_user.repetitions.planned.for(current_date).size > 0
     return "inactive"
   end
 
-
-  # Метод для дебага.
-  def planned_repetitions_count_by_date
-    Hash[current_user.repetitions.planned_count_by_date.sort] if current_user.present?
-  end
-
-
-  # Хелпер для вывода сообщения об ошибке сохранения в базу.
+  # Shorthand for object.errors.full_messages
   def errors(object)
     if object.present?
       object.errors.full_messages
     end
   end
-  
+
+  def copyright_years
+    initial_year = WhRails::Application.config.initial_year
+    current_year = Time.now.year
+    if initial_year == current_year
+      "#{initial_year}"
+    else
+      "#{initial_year} &mdash; #{current_year}"
+    end
+  end
+
 end

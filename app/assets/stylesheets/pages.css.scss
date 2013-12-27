@@ -39,10 +39,6 @@
   margin-bottom: 20px;
 }
 
-/* Чтобы кнопка на странице настроек
- * была с таким же margin-ом сверху, как и заголовки.
- */
-
 .btn-save-settings {
   @extend .btn, .btn-primary, .btn-block;
   margin-top: 40px;

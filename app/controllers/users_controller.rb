@@ -1,5 +1,3 @@
-# coding: UTF-8
-
 class UsersController < ApplicationController
 
   before_action :confirm_logged_in, except: [:new, :create]
@@ -74,8 +72,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-
 
 private
 

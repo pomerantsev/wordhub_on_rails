@@ -63,7 +63,7 @@ Spork.prefork do
     config.run_all_when_everything_filtered = true
   end
 
-Spork.each_run do
-  FactoryGirl.reload
-end
+  Spork.each_run do
+    FactoryGirl.reload
+  end
 end

@@ -2,9 +2,6 @@
   @extend .navbar, .navbar-default;
 }
 
-.primary-menu {
-}
-
 .secondary-menu {
   @extend .nav, .navbar-nav, .navbar-right;
 }
@@ -18,7 +15,6 @@
 }
 
 .logged-in-primary-menu {
-  @extend .primary-menu;
   & > a {
     @extend .navbar-brand;
     font-size: 14px;
@@ -62,10 +58,6 @@
   @extend .navbar-collapse, .collapse;
 }
 
-/* "Толстое" верхнее меню. Из-за того, что оно стало двухстрочным,
- * стандартные стили Bootstrap'а поехали.
- */
-
 .guest-menu-navbar-toggle {
   @extend .navbar-toggle;
 }
@@ -74,17 +66,6 @@
   @extend .navbar-toggle;
   margin-top: 13px;
 }
-
-/* Это стили для меню. Решены две задачи.
- * 1. При отсутствии Яваскрипта
- *    всегда отображается единое меню, без дропдаунов.
- * 2. Если Яваскрипт работает, то на меньших разрешениях
- *    (где всё меню схлопывается до одной кнопки)
- *    оно становится линейным, без дополнительного дропдауна
- *    с именем пользователя.
- * Сейчас без Яваскрипта и на маленьких разрешениях
- * нельзя увидеть имя пользователя. Эту проблему предстоит решить.
- */
 
 @media (max-width: $before-breakpoint700) {
   .user-dropdown-menu {

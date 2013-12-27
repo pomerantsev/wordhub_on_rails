@@ -1,12 +1,9 @@
-/* Значение выбрано экспериментальным путём,
- * чтобы ни при каких условиях вёрстка
- * не ехала.
- */
+/* 270px is the least visually acceptable width. */
 body {
   min-width: 270px;
 }
 
-/* Сообщение об ошибке. */
+/* Error message */
 
 .alert ul {
   margin-bottom: 0;

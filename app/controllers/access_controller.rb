@@ -1,7 +1,5 @@
-# coding: UTF-8
-
 class AccessController < ApplicationController
-  
+
   def attempt_login
     authorized_user = User.authenticate params[:email].downcase, params[:password]
     if authorized_user
@@ -12,10 +10,10 @@ class AccessController < ApplicationController
       redirect_to root_url
     end
   end
-  
+
   def logout
     session[:user_id] = nil
     redirect_to root_url
   end
-  
+
 end

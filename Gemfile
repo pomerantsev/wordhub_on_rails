@@ -17,28 +17,28 @@ gem 'simple_enum', '~> 1.6.7'
 gem 'newrelic_rpm'
 
 group :development do
-	gem 'annotate'
+  gem 'annotate'
 end
 
 group :development, :test do
-	gem 'rspec-rails', '2.14.0'
-	gem 'factory_girl_rails', '4.3.0'
-	gem 'guard-rspec', '4.2.0'
-	gem 'spork-rails', '4.0.0'
-	gem 'guard-spork', '1.5.1'
+  gem 'rspec-rails', '2.14.0'
+  gem 'factory_girl_rails', '4.3.0'
+  gem 'guard-rspec', '4.2.0'
+  gem 'spork-rails', '4.0.0'
+  gem 'guard-spork', '1.5.1'
 end
 
 group :test do
-	gem 'faker'
-	gem 'capybara', '2.2.0'
-	gem "poltergeist", '1.5.0'
-	gem 'database_cleaner'
-	gem 'launchy'
-	gem 'timecop', '~> 0.6.2.2'
+  gem 'faker'
+  gem 'capybara', '2.2.0'
+  gem "poltergeist", '1.5.0'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'timecop', '~> 0.6.2.2'
 end
 
 group :production do
-	gem 'rails_12factor'
+  gem 'rails_12factor'
 end
 
 gem 'haml', '4.0.4'
