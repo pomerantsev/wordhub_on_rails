@@ -52,7 +52,6 @@ var app = angular.module('wordhubApp', [
       }
     };
     var setAppRoot = function () {
-      console.log('Environment == ' + ENV);
       if (ENV === 'production') {
         $rootScope.appRoot = '/angular/';
       } else if (ENV === 'development') {
