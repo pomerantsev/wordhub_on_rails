@@ -41,9 +41,14 @@ class ApplicationController < ActionController::Base
       current_user.repetitions.adjust_dates(current_date)
       return true
     else
-      flash[:error] = I18n.t("flash.sign_in")
-      redirect_to root_url
-      return false
+      respond_to do |format|
+        format.html do
+          flash[:error] = I18n.t("flash.sign_in")
+          redirect_to root_url
+          return false
+        end
+        format.json { head :unauthorized }
+      end
     end
   end
 
