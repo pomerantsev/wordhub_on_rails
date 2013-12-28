@@ -14,7 +14,7 @@ var app = angular.module('wordhubApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl as main'
       })
       .when('/flashcards', {
         templateUrl: 'views/flashcardsIndex.html',
@@ -34,7 +34,14 @@ var app = angular.module('wordhubApp', [
       application: {
         index: {
           header: 'Простой способ учить иностранные слова',
-          subheader: 'Как бумажные карточки, только удобнее.'
+          subheader: 'Как бумажные карточки, только удобнее.',
+          loginForm: {
+            header: 'Вход на сайт',
+            email: 'Email',
+            password: 'Пароль',
+            login: 'Войти',
+            signup: 'Зарегистрироваться'
+          }
         }
       }
     }).translations('en', {
@@ -46,7 +53,14 @@ var app = angular.module('wordhubApp', [
       application: {
         index: {
           header: 'A simple way to memorize foreign words',
-          subheader: 'Just like paper flashcards, but much more convenient.'
+          subheader: 'Just like paper flashcards, but much more convenient.',
+          loginForm: {
+            header: 'Sign In',
+            email: 'Email',
+            password: 'Password',
+            login: 'Sign in',
+            signup: 'Become a member'
+          }
         }
       }
     });

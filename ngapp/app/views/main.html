@@ -5,4 +5,27 @@
       <p>{{ 'application.index.subheader' | translate }}</p>
     </div>
   </div>
+  <div class="homepage-login-form">
+    <a id="login-form-anchor"></a>
+    <h4 class="first-header">
+      {{ 'application.index.loginForm.header' | translate }}:
+    </h4>
+    <form ng-submit="main.login()">
+      <div class="email">
+        <label for="email">
+          {{ 'application.index.loginForm.email' | translate }}:
+        </label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="password">
+        <label for="password">
+          {{ 'application.index.loginForm.password' | translate }}:
+        </label>
+        <input type="password" name="password" required>
+      </div>
+      <input type="submit" value="{{ 'application.index.loginForm.login' | translate }}">
+      <a class="register-link" ng-href="{{linkRoot}}/signup">
+        {{ 'application.index.loginForm.signup' | translate }}
+      </a>
+    </form>
 </div>
