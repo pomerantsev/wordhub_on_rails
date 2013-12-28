@@ -16,6 +16,10 @@ class FlashcardsController < ApplicationController
     # if the 'deleted flashcards' block should be highlighted.
     @just_deleted = session[:just_deleted]
     session[:just_deleted] = nil
+    respond_to do |format|
+      format.html
+      format.json { render json: @flashcards }
+    end
   end
   
   def new

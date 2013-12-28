@@ -1,2 +1,4 @@
-<a id="1000"></a>
-<a class="flashcard" ng-repeat="flashcard in flashcardsIndex.flashcards"><span>{{flashcard.frontText}}</span><hr/><span>{{flashcard.backText}}</span></a>
+<div ng-repeat="flashcard in flashcardsIndex.flashcards">
+  <a id="{{flashcard.id}}"></a>
+  <a class="flashcard"><span>{{flashcard.frontText}}</span><hr/><span>{{flashcard.backText}}</span></a>
+</div>

@@ -32,7 +32,7 @@ WhRails::Application.routes.draw do
   resources :repetitions, only: [:index, :update]
 
   scope '/api' do
-    resources :users, only: [:index]
+    resources :flashcards, only: [:index]
   end
 
   # Sample resource route with options:
