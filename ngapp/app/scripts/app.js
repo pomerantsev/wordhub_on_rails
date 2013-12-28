@@ -30,19 +30,47 @@ var app = angular.module('wordhubApp', [
         create: 'Создать',
         of: 'из',
         allFlashcards: 'Все карточки'
+      },
+      application: {
+        index: {
+          header: 'Простой способ учить иностранные слова',
+          subheader: 'Как бумажные карточки, только удобнее.'
+        }
       }
     }).translations('en', {
       nav: {
         create: 'Create',
         of: 'of',
         allFlashcards: 'All flashcards'
+      },
+      application: {
+        index: {
+          header: 'A simple way to memorize foreign words',
+          subheader: 'Just like paper flashcards, but much more convenient.'
+        }
       }
     });
   })
   .config(function ($locationProvider) {
     $locationProvider.html5Mode(false).hashPrefix('!');
   })
+  .config(function ($httpProvider, $provide) {
+    $provide.factory('interceptor', ['$rootScope', '$q', function ($rootScope, $q) {
+      return {
+        responseError: function (rejection) {
+          if (rejection.status == 401) {
+            $rootScope.$broadcast('event:unauthorized');
+          }
+          return $q.reject(rejection);
+        }
+      };
+    }]);
+    $httpProvider.interceptors.push('interceptor');
+  })
   .run(function ($location, $translate, ENV, $rootScope) {
+    $rootScope.$on('event:unauthorized', function () {
+      $location.path('/');
+    });
     var setLocale = function () {
       var host = $location.host();
       if (host === 'localhost') {
