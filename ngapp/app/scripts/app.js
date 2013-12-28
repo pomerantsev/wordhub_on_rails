@@ -4,7 +4,11 @@ var app = angular.module('wordhubApp', [
   'ngCookies',
   'ngResource',
   'ngRoute',
-  'pascalprecht.translate'
+  'pascalprecht.translate',
+  // Add a config module for using different backends
+  // for development and production:
+  // http://stackoverflow.com/questions/16339595/angular-js-configuration-for-different-enviroments
+  'config'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -38,11 +42,23 @@ var app = angular.module('wordhubApp', [
   .config(function ($locationProvider) {
     $locationProvider.html5Mode(false).hashPrefix('!');
   })
-  .run(function ($location, $translate) {
-    var host = $location.host();
-    if (host === 'localhost') {
-      $translate.uses('ru');
-    } else {
-      $translate.uses('en');
-    }
+  .run(function ($location, $translate, ENV, $rootScope) {
+    var setLocale = function () {
+      var host = $location.host();
+      if (host === 'localhost') {
+        $translate.uses('ru');
+      } else {
+        $translate.uses('en');
+      }
+    };
+    var setAppRoot = function () {
+      console.log('Environment == ' + ENV);
+      if (ENV === 'production') {
+        $rootScope.appRoot = '/angular/';
+      } else if (ENV === 'development') {
+        $rootScope.appRoot = '/';
+      }
+    };
+    setLocale();
+    setAppRoot();
   });
