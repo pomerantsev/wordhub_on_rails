@@ -59,6 +59,10 @@ var app = angular.module('wordhubApp', [
         $rootScope.appRoot = '/';
       }
     };
+    var setLinkRoot = function () {
+      $rootScope.linkRoot = './#!';
+    };
     setLocale();
     setAppRoot();
+    setLinkRoot();
   });
