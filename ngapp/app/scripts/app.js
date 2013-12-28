@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('wordhubApp', [
+var app = angular.module('wordhubApp', [
   'ngCookies',
   'ngResource',
   'ngRoute',
@@ -12,6 +12,10 @@ angular.module('wordhubApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/flashcards', {
+        templateUrl: 'views/flashcardsIndex.html',
+        controller: 'FlashcardsIndexCtrl as flashcardsIndex'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -20,14 +24,19 @@ angular.module('wordhubApp', [
     $translateProvider.translations('ru', {
       nav: {
         create: 'Создать',
-        of: 'из'
+        of: 'из',
+        allFlashcards: 'Все карточки'
       }
     }).translations('en', {
       nav: {
         create: 'Create',
-        of: 'of'
+        of: 'of',
+        allFlashcards: 'All flashcards'
       }
     });
+  })
+  .config(function ($locationProvider) {
+    $locationProvider.html5Mode(false).hashPrefix('!');
   })
   .run(function ($location, $translate) {
     var host = $location.host();
