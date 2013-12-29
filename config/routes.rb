@@ -32,6 +32,8 @@ WhRails::Application.routes.draw do
   resources :repetitions, only: [:index, :update]
 
   scope '/api' do
+    post 'login', to: 'access#attempt_login'
+    delete 'logout', to: 'access#logout'
     resources :flashcards, only: [:index]
   end
 
