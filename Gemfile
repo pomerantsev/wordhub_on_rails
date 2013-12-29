@@ -16,6 +16,8 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'simple_enum', '~> 1.6.7'
 gem 'newrelic_rpm'
 
+gem 'rabl', '0.9.3'
+
 group :development do
   gem 'annotate'
 end

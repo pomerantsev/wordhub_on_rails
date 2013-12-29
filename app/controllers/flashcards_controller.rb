@@ -18,7 +18,7 @@ class FlashcardsController < ApplicationController
     session[:just_deleted] = nil
     respond_to do |format|
       format.html
-      format.json { render json: @flashcards }
+      format.json { render 'flashcards/index' }
     end
   end
   
