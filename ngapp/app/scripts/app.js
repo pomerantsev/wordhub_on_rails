@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('wordhubApp', [
+window.app = angular.module('wordhubApp', [
   'ngCookies',
   'ngResource',
   'ngRoute',
@@ -72,7 +72,7 @@ var app = angular.module('wordhubApp', [
     $provide.factory('interceptor', ['$rootScope', '$q', function ($rootScope, $q) {
       return {
         responseError: function (rejection) {
-          if (rejection.status == 401) {
+          if (rejection.status === 401) {
             $rootScope.$broadcast('event:unauthorized');
           }
           return $q.reject(rejection);

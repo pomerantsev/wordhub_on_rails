@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('FlashcardsIndexCtrl', function ($http) {
+window.app.controller('FlashcardsIndexCtrl', function ($http) {
   var ctrl = this;
   ctrl.flashcards = [];
   $http.get('/api/flashcards.json')

@@ -1,6 +1,6 @@
 'use strict';
 
-app.directive('whHeader', function () {
+window.app.directive('whHeader', function () {
   return {
     restrict: 'E',
     replace: true,
