@@ -13,7 +13,6 @@ angular.module('wordhubApp')
           });
       },
       signOut: function () {
-        console.log('Before sending a DELETE request to the server');
         return $http.delete('/api/logout.json')
           .success(function (data) {
             Session.signOut();
