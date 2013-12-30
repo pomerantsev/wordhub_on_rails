@@ -16,7 +16,7 @@
   <div class="collapsing-menu">
     <ul class="logged-in-secondary-menu user-dropdown-menu">
       <li>
-        <a ng-href="{{linkRoot}}/flashcards">{{ 'nav.allFlashcards' | translate }}</a>
+        <a href ng-click="signOut()" ng-if="isSignedIn">{{ 'nav.logout' | translate }}</a>
       </li>
     </ul>
   </div>

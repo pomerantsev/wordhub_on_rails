@@ -31,7 +31,10 @@ class AccessController < ApplicationController
 
   def logout
     session[:user_id] = nil
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.json { head :no_content }
+    end
   end
 
 end

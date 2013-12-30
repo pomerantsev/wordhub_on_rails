@@ -1,10 +1,11 @@
 'use strict';
 
-window.app.factory('Session', function ($cookies) {
+window.app.factory('Session', function ($cookies, $rootScope) {
   var sessionKey = 'wordhubAngularSession';
   return {
     signIn: function (user) {
       $cookies[sessionKey] = JSON.stringify(user);
+      $rootScope.$broadcast('event:signedIn');
     },
     currentUser: function () {
       if (this.isSignedIn()) {
@@ -18,6 +19,7 @@ window.app.factory('Session', function ($cookies) {
     },
     signOut: function () {
       delete $cookies[sessionKey];
+      $rootScope.$broadcast('event:signedOut');
     }
   };
 });

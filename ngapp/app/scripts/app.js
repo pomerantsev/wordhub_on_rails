@@ -10,18 +10,29 @@ window.app = angular.module('wordhubApp', [
   // http://stackoverflow.com/questions/16339595/angular-js-configuration-for-different-enviroments
   'config'
 ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, SETTINGS) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl as main'
+        controller: 'MainCtrl as main',
+        resolve: {
+          isNotSignedIn: ['$q', 'Session', '$location',
+            function ($q, Session, $location) {
+              var defer = $q.defer();
+              if (Session.isSignedIn()) {
+                $location.path(SETTINGS.defaultSignedInRoute);
+              }
+              defer.resolve();
+              return defer.promise;
+            }]
+        }
       })
       .when('/flashcards', {
         templateUrl: 'views/flashcardsIndex.html',
         controller: 'FlashcardsIndexCtrl as flashcardsIndex'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: SETTINGS.defaultRoute
       });
   })
   .config(function ($translateProvider) {
@@ -29,7 +40,8 @@ window.app = angular.module('wordhubApp', [
       nav: {
         create: 'Создать',
         of: 'из',
-        allFlashcards: 'Все карточки'
+        allFlashcards: 'Все карточки',
+        logout: 'Выйти'
       },
       application: {
         index: {
@@ -48,7 +60,8 @@ window.app = angular.module('wordhubApp', [
       nav: {
         create: 'Create',
         of: 'of',
-        allFlashcards: 'All flashcards'
+        allFlashcards: 'All flashcards',
+        logout: 'Sign out'
       },
       application: {
         index: {
@@ -81,9 +94,15 @@ window.app = angular.module('wordhubApp', [
     }]);
     $httpProvider.interceptors.push('interceptor');
   })
-  .run(function ($location, $translate, ENV, $rootScope) {
+  .run(function ($location, $translate, ENV, $rootScope, Session, SETTINGS) {
     $rootScope.$on('event:unauthorized', function () {
-      $location.path('/');
+      Session.signOut();
+    });
+    $rootScope.$on('event:signedIn', function () {
+      $location.path(SETTINGS.defaultSignedInRoute);
+    });
+    $rootScope.$on('event:signedOut', function () {
+      $location.path(SETTINGS.defaultRoute);
     });
     var setLocale = function () {
       var host = $location.host();
