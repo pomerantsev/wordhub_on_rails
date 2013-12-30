@@ -1,6 +1,6 @@
 'use strict';
 
-window.app = angular.module('wordhubApp', [
+angular.module('wordhubApp', [
   'ngCookies',
   'ngResource',
   'ngRoute',
