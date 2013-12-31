@@ -6,15 +6,16 @@ angular.module('wordhubApp')
       signIn: function (credentials) {
         return $http.post('/api/login.json',
           {email: credentials.email, password: credentials.password})
-          .success(function (data) {
-            if (data.success) {
-              Session.signIn(data.user);
+          .then(function (response) {
+            if (response.data.success) {
+              Session.signIn(response.data.user);
             }
+            return response.data;
           });
       },
       signOut: function () {
         return $http.delete('/api/logout.json')
-          .success(function (data) {
+          .then(function () {
             Session.signOut();
           });
       }

@@ -3,7 +3,7 @@
 angular.module('wordhubApp')
   .controller('MainCtrl', function (Auth) {
     this.credentials = {};
-    this.login = function () {
+    this.signIn = function () {
       Auth.signIn(this.credentials);
     };
   });

@@ -13,10 +13,18 @@ describe('Service: Auth', function () {
   }));
 
   describe('#signIn', function () {
+    var credentials = {email: 'fake@example.com', password: 'secret'};
     it('sends a POST request', function () {
-      var credentials = {email: 'fake@example.com', password: 'secret'};
       $httpBackend.expectPOST('/api/login.json').respond(200);
       Auth.signIn(credentials);
+      $httpBackend.flush();
+    });
+  });
+
+  describe('#signOut', function () {
+    it('sends a DELETE request', function () {
+      $httpBackend.expectDELETE('/api/logout.json').respond(204);
+      Auth.signOut();
       $httpBackend.flush();
     });
   });
