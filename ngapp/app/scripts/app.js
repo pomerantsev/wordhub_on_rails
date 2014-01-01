@@ -36,7 +36,11 @@ angular.module('wordhubApp', [
       });
   })
   .config(function ($translateProvider) {
+    // TODO: extract translations to constants or values
     $translateProvider.translations('ru', {
+      flash: {
+        userNotRegistered: 'Неверный логин / пароль.'
+      },
       nav: {
         create: 'Создать',
         of: 'из',
@@ -57,6 +61,9 @@ angular.module('wordhubApp', [
         }
       }
     }).translations('en', {
+      flash: {
+        userNotRegistered: 'User with such email and password is not registered.'
+      },
       nav: {
         create: 'Create',
         of: 'of',
