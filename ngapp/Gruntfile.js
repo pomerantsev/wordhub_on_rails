@@ -112,7 +112,8 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               proxySnippet,
-              lrSnippet,
+              // TODO: why is this line causing double html output?
+              // lrSnippet,
               mountFolder(connect, '.tmp'),
               mountFolder(connect, yeomanConfig.app)
             ];
