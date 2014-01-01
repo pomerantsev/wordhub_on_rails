@@ -3,5 +3,6 @@
 angular.module('wordhubApp')
   .constant('SETTINGS', {
     defaultRoute: '/',
-    defaultSignedInRoute: '/flashcards'
+    defaultSignedInRoute: '/flashcards',
+    initialYear: 2013
   });

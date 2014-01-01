@@ -9,7 +9,9 @@ angular.module('wordhubApp')
       create: 'Создать',
       of: 'из',
       allFlashcards: 'Все карточки',
-      logout: 'Выйти'
+      logout: 'Выйти',
+      author: 'Павел Померанцев',
+      authorLink: 'http://pomerantsev.moikrug.ru'
     },
     application: {
       index: {
