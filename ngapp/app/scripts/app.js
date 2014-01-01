@@ -35,55 +35,10 @@ angular.module('wordhubApp', [
         redirectTo: SETTINGS.defaultRoute
       });
   })
-  .config(function ($translateProvider) {
-    // TODO: extract translations to constants or values
-    $translateProvider.translations('ru', {
-      flash: {
-        userNotRegistered: 'Неверный логин / пароль.'
-      },
-      nav: {
-        create: 'Создать',
-        of: 'из',
-        allFlashcards: 'Все карточки',
-        logout: 'Выйти'
-      },
-      application: {
-        index: {
-          header: 'Простой способ учить иностранные слова',
-          subheader: 'Как бумажные карточки, только удобнее.',
-          loginForm: {
-            header: 'Вход на сайт',
-            email: 'Email',
-            password: 'Пароль',
-            login: 'Войти',
-            signup: 'Зарегистрироваться'
-          }
-        }
-      }
-    }).translations('en', {
-      flash: {
-        userNotRegistered: 'User with such email and password is not registered.'
-      },
-      nav: {
-        create: 'Create',
-        of: 'of',
-        allFlashcards: 'All flashcards',
-        logout: 'Sign out'
-      },
-      application: {
-        index: {
-          header: 'A simple way to memorize foreign words',
-          subheader: 'Just like paper flashcards, but much more convenient.',
-          loginForm: {
-            header: 'Sign In',
-            email: 'Email',
-            password: 'Password',
-            login: 'Sign in',
-            signup: 'Become a member'
-          }
-        }
-      }
-    });
+  .config(function ($translateProvider, EN_TRANSLATIONS, RU_TRANSLATIONS) {
+    $translateProvider
+      .translations('en', EN_TRANSLATIONS)
+      .translations('ru', RU_TRANSLATIONS);
   })
   .config(function ($locationProvider) {
     $locationProvider.html5Mode(false).hashPrefix('!');
