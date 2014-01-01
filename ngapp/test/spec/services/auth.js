@@ -1,9 +1,12 @@
 'use strict';
 
 describe('Service: Auth', function () {
-
+  var Session;
   // load the service's module
-  beforeEach(module('wordhubApp'));
+  beforeEach(module('wordhubApp', function ($provide) {
+    Session = jasmine.createSpyObj('Session', ['signIn', 'signOut']);
+    $provide.value('Session', Session);
+  }));
 
   // instantiate service
   var Auth, $httpBackend;
@@ -19,13 +22,28 @@ describe('Service: Auth', function () {
       Auth.signIn(credentials);
       $httpBackend.flush();
     });
+    it('doesn\'t call Session.signIn if response.data.success isn\'t true', function () {
+      $httpBackend.expectPOST('/api/login.json')
+        .respond(200, {success: false});
+      Auth.signIn(credentials);
+      $httpBackend.flush();
+      expect(Session.signIn).not.toHaveBeenCalled();
+    });
+    it('calls Session.signIn if response.data.success is true', function () {
+      $httpBackend.expectPOST('/api/login.json')
+        .respond(200, {success: true});
+      Auth.signIn(credentials);
+      $httpBackend.flush();
+      expect(Session.signIn).toHaveBeenCalled();
+    });
   });
 
   describe('#signOut', function () {
-    it('sends a DELETE request', function () {
+    it('sends a DELETE request and calls Session.signOut', function () {
       $httpBackend.expectDELETE('/api/logout.json').respond(204);
       Auth.signOut();
       $httpBackend.flush();
+      expect(Session.signOut).toHaveBeenCalled();
     });
   });
 
