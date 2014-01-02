@@ -57,21 +57,32 @@ angular.module('wordhubApp', [
     $httpProvider.interceptors.push('interceptor');
   })
   .run(function ($location, $translate, ENV, $rootScope, Session, SETTINGS) {
+    var setLocaleByCurrentUser = function () {
+      $translate.uses(Session.currentUser().interfaceLanguage);
+    };
+    var setLocaleByDomain = function () {
+      if ($location.host() === 'localhost') {
+        $translate.uses('ru');
+      } else {
+        $translate.uses('en');
+      }
+    };
     $rootScope.$on('event:unauthorized', function () {
       Session.signOut();
     });
     $rootScope.$on('event:signedIn', function () {
+      setLocaleByCurrentUser();
       $location.path(SETTINGS.defaultSignedInRoute);
     });
     $rootScope.$on('event:signedOut', function () {
+      setLocaleByDomain();
       $location.path(SETTINGS.defaultRoute);
     });
-    var setLocale = function () {
-      var host = $location.host();
-      if (host === 'localhost') {
-        $translate.uses('ru');
+    var setInitialLocale = function () {
+      if (Session.isSignedIn()) {
+        setLocaleByCurrentUser();
       } else {
-        $translate.uses('en');
+        setLocaleByDomain();
       }
     };
     var setAppRoot = function () {
@@ -84,7 +95,7 @@ angular.module('wordhubApp', [
     var setLinkRoot = function () {
       $rootScope.linkRoot = './#!';
     };
-    setLocale();
+    setInitialLocale();
     setAppRoot();
     setLinkRoot();
   });

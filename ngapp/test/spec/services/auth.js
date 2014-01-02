@@ -1,18 +1,15 @@
 'use strict';
 
 describe('Service: Auth', function () {
-  var Session;
   // load the service's module
-  beforeEach(module('wordhubApp', function ($provide) {
-    Session = jasmine.createSpyObj('Session', ['signIn', 'signOut']);
-    $provide.value('Session', Session);
-  }));
+  beforeEach(module('wordhubApp'));
 
   // instantiate service
-  var Auth, $httpBackend;
-  beforeEach(inject(function (_Auth_, _$httpBackend_) {
+  var Auth, $httpBackend, Session;
+  beforeEach(inject(function (_Auth_, _$httpBackend_, _Session_) {
     Auth = _Auth_;
     $httpBackend = _$httpBackend_;
+    Session = _Session_;
   }));
 
   describe('#signIn', function () {
@@ -25,6 +22,7 @@ describe('Service: Auth', function () {
     it('doesn\'t call Session.signIn if response.data.success isn\'t true', function () {
       $httpBackend.expectPOST('/api/login.json')
         .respond(200, {success: false});
+      spyOn(Session, 'signIn');
       Auth.signIn(credentials);
       $httpBackend.flush();
       expect(Session.signIn).not.toHaveBeenCalled();
@@ -32,6 +30,7 @@ describe('Service: Auth', function () {
     it('calls Session.signIn if response.data.success is true', function () {
       $httpBackend.expectPOST('/api/login.json')
         .respond(200, {success: true});
+      spyOn(Session, 'signIn');
       Auth.signIn(credentials);
       $httpBackend.flush();
       expect(Session.signIn).toHaveBeenCalled();
@@ -44,6 +43,7 @@ describe('Service: Auth', function () {
   describe('#signOut', function () {
     it('sends a DELETE request and calls Session.signOut', function () {
       $httpBackend.expectDELETE('/api/logout.json').respond(204);
+      spyOn(Session, 'signOut');
       Auth.signOut();
       $httpBackend.flush();
       expect(Session.signOut).toHaveBeenCalled();
