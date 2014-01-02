@@ -36,6 +36,9 @@ describe('Service: Auth', function () {
       $httpBackend.flush();
       expect(Session.signIn).toHaveBeenCalled();
     });
+    it('returns a promise', function () {
+      expect(typeof Auth.signIn(credentials).then).toBe('function');
+    });
   });
 
   describe('#signOut', function () {
@@ -44,6 +47,9 @@ describe('Service: Auth', function () {
       Auth.signOut();
       $httpBackend.flush();
       expect(Session.signOut).toHaveBeenCalled();
+    });
+    it('returns a promise', function () {
+      expect(typeof Auth.signOut().then).toBe('function');
     });
   });
 
