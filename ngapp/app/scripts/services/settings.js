@@ -5,5 +5,8 @@ angular.module('wordhubApp')
     sessionCookie: 'wordhubAngularSession',
     defaultRoute: '/',
     defaultSignedInRoute: '/flashcards',
+    devAppRoot: '/',
+    productionAppRoot: '/angular/',
+    linkRoot: './#!',
     initialYear: 2013
   });

@@ -57,6 +57,7 @@ angular.module('wordhubApp', [
     $httpProvider.interceptors.push('interceptor');
   })
   .run(function ($location, $translate, ENV, $rootScope, Session, SETTINGS) {
+    /* Private helper methods */
     var setLocaleByCurrentUser = function () {
       $translate.uses(Session.currentUser().interfaceLanguage);
     };
@@ -67,6 +68,24 @@ angular.module('wordhubApp', [
         $translate.uses('en');
       }
     };
+
+    /* Initializers */
+    // Set initial locale
+    if (Session.isSignedIn()) {
+      setLocaleByCurrentUser();
+    } else {
+      setLocaleByDomain();
+    }
+    // Set app root
+    if (ENV === 'production') {
+      $rootScope.appRoot = SETTINGS.productionAppRoot;
+    } else if (ENV === 'development') {
+      $rootScope.appRoot = SETTINGS.devAppRoot;
+    }
+    // Set link root (in case $locationProvider settings change)
+    $rootScope.linkRoot = SETTINGS.linkRoot;
+
+    /* Event handlers */
     $rootScope.$on('event:unauthorized', function () {
       Session.signOut();
     });
@@ -78,24 +97,4 @@ angular.module('wordhubApp', [
       setLocaleByDomain();
       $location.path(SETTINGS.defaultRoute);
     });
-    var setInitialLocale = function () {
-      if (Session.isSignedIn()) {
-        setLocaleByCurrentUser();
-      } else {
-        setLocaleByDomain();
-      }
-    };
-    var setAppRoot = function () {
-      if (ENV === 'production') {
-        $rootScope.appRoot = '/angular/';
-      } else if (ENV === 'development') {
-        $rootScope.appRoot = '/';
-      }
-    };
-    var setLinkRoot = function () {
-      $rootScope.linkRoot = './#!';
-    };
-    setInitialLocale();
-    setAppRoot();
-    setLinkRoot();
   });
