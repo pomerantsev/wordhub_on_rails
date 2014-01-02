@@ -5,7 +5,7 @@
       %span= t("nav.create")
       %span
         %small
-          %span= current_user.flashcards.created_on(current_date).size
+          %span= created_today_by current_user
           %span= t("nav.of")
           %span= current_user.daily_limit
     = link_to repetitions_path, class: "#{active_class(repetitions_path)} #{repeat_class}" do

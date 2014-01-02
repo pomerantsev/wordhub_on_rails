@@ -1,5 +1,21 @@
 module ApplicationHelper
 
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
+
+  def logged_in?
+    not session[:user_id].nil?
+  end
+
+  def current_date
+    session[:date]
+  end
+
+  def home_page
+    new_flashcard_url
+  end
+
   def full_title(title = nil)
     base_title = I18n.t("nav.wordhub")
     if title.nil? or title.blank?
@@ -46,6 +62,10 @@ module ApplicationHelper
     else
       "#{initial_year} &mdash; #{current_year}"
     end
+  end
+
+  def created_today_by(user)
+    user.flashcards.created_on(current_date).size
   end
 
 end

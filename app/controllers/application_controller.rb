@@ -9,27 +9,10 @@ class ApplicationController < ActionController::Base
   before_action :adjust_current_date
   before_action :wipe_deleted_flashcards
 
-  helper_method :current_user
-  helper_method :logged_in?
-  helper_method :current_date
-  helper_method :home_page
-
   def index
     if logged_in?
       redirect_to new_flashcard_path
     end
-  end
-
-  def logged_in?
-    not session[:user_id].nil?
-  end
-
-  def current_date
-    session[:date]
-  end
-
-  def home_page
-    new_flashcard_url
   end
 
   protected
@@ -51,12 +34,6 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
-  def current_user
-    User.find_by_id session[:user_id]
-  end  
-
-
 
   private
 

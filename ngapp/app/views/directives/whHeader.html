@@ -5,7 +5,7 @@
         <span>{{ 'nav.create' | translate }}</span>
         <span>
           <small>
-            <span>2</span>
+            <span>{{ currentUser.createdToday }}</span>
             <span>{{ 'nav.of' | translate }}</span>
             <span>{{ currentUser.dailyLimit }}</span>
           </small>
