@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Session', function ($cookies, $rootScope) {
-    var sessionKey = 'wordhubAngularSession';
+  .factory('Session', function ($cookies, $rootScope, SETTINGS) {
+    var sessionKey = SETTINGS.sessionCookie;
     return {
       signIn: function (user) {
         $cookies[sessionKey] = JSON.stringify(user);
