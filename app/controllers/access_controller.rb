@@ -1,11 +1,11 @@
 class AccessController < ApplicationController
 
   def attempt_login
-    authorized_user = User.authenticate params[:email].downcase, params[:password]
-    session[:user_id] = authorized_user.id if authorized_user
+    @user = User.authenticate params[:email].downcase, params[:password]
+    session[:user_id] = @user.id if @user
     respond_to do |format|
       format.html do
-        if authorized_user
+        if @user
           redirect_to new_flashcard_path
         else
           flash[:error] = I18n.t("flash.user_not_registered")
@@ -13,17 +13,11 @@ class AccessController < ApplicationController
         end
       end
       format.json do
-        if authorized_user
-          render status: :ok,
-            json: {
-              success: true,
-              user: authorized_user
-            }
+        response.status = :ok
+        if @user
+          render 'access/success'
         else
-          render status: :ok,
-            json: {
-              success: false
-            }
+          render 'access/failure'
         end
       end
     end
