@@ -1,13 +1,13 @@
 <div class="menu">
   <div class="navbar-header">
     <div class="logged-in-primary-menu">
-      <a ng-href="{{linkRoot}}" class="active">
+      <a ng-href="{{linkRoot}}" class="active" ng-if="isSignedIn">
         <span>{{ 'nav.create' | translate }}</span>
         <span>
           <small>
             <span>2</span>
             <span>{{ 'nav.of' | translate }}</span>
-            <span>5</span>
+            <span>{{ currentUser.dailyLimit }}</span>
           </small>
         </span>
       </a>

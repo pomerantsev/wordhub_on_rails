@@ -9,6 +9,9 @@ angular.module('wordhubApp')
       link: function (scope) {
         var updateSignedInStatus = function () {
           scope.isSignedIn = Session.isSignedIn();
+          if (scope.isSignedIn) {
+            scope.currentUser = Session.currentUser();
+          }
         };
         updateSignedInStatus();
         scope.$on('event:signedIn', updateSignedInStatus);
