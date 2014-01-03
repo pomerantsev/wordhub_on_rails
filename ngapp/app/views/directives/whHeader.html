@@ -1,7 +1,7 @@
 <div class="menu">
   <div class="navbar-header">
     <div class="logged-in-primary-menu">
-      <a ng-href="{{linkRoot}}" class="active" ng-if="isSignedIn">
+      <a ng-href="{{linkRoot + routes.newFlashcardPath}}" ng-class="{active: pathIsNewFlashcard()}" ng-if="isSignedIn">
         <span>{{ 'nav.create' | translate }}</span>
         <span>
           <small>
@@ -15,6 +15,11 @@
   </div>
   <div class="collapsing-menu">
     <ul class="logged-in-secondary-menu user-dropdown-menu">
+      <li ng-class="{active: pathIsFlashcards()}" ng-if="isSignedIn">
+        <a ng-href="{{linkRoot + routes.flashcardsPath}}">
+          {{ 'nav.allFlashcards' | translate }}
+        </a>
+      </li>
       <li>
         <a href ng-click="signOut()" ng-if="isSignedIn">{{ 'nav.logout' | translate }}</a>
       </li>
