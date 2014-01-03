@@ -29,11 +29,23 @@ class FlashcardsController < ApplicationController
 
   def create
     @flashcard = current_user.flashcards.new(flashcard_params)
-    if @flashcard.save
-      redirect_to new_flashcard_path
-    else
-      flash.now[:error] = errors(@flashcard)
-      render :new
+    respond_to do |format|
+      format.html do
+        if @flashcard.save
+          redirect_to new_flashcard_path
+        else
+          flash.now[:error] = errors(@flashcard)
+          render :new
+        end
+      end
+      format.json do
+        if @flashcard.save
+          response.status = :created
+          render 'flashcards/show'
+        else
+          render json: @flashcard.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
