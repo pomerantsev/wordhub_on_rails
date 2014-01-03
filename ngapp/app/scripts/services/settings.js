@@ -5,7 +5,7 @@ angular.module('wordhubApp')
     sessionCookie: 'wordhubAngularSession',
     defaultRoute: '/',
     // TODO: substitute with a named route
-    defaultSignedInRoute: '/flashcards',
+    defaultSignedInRoute: '/flashcards/new',
     routes: {
       flashcardsPath: '/flashcards',
       newFlashcardPath: '/flashcards/new'
