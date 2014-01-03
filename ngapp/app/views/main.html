@@ -15,15 +15,15 @@
         <label for="email">
           {{ 'application.index.loginForm.email' | translate }}:
         </label>
-        <input type="email" name="email" ng-model = "main.credentials.email" required>
+        <input type="email" name="email" ng-model = "main.credentials.email" required ng-disabled="main.submitting">
       </div>
       <div class="password">
         <label for="password">
           {{ 'application.index.loginForm.password' | translate }}:
         </label>
-        <input type="password" name="password" ng-model = "main.credentials.password" required>
+        <input type="password" name="password" ng-model = "main.credentials.password" required ng-disabled="main.submitting">
       </div>
-      <input type="submit" value="{{ 'application.index.loginForm.login' | translate }}">
+      <input type="submit" value="{{ 'application.index.loginForm.login' | translate }}" ng-disabled="main.submitting">
       <a class="register-link" ng-href="{{linkRoot}}/signup">
         {{ 'application.index.loginForm.signup' | translate }}
       </a>
