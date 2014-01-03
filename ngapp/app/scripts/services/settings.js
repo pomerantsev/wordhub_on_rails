@@ -8,5 +8,13 @@ angular.module('wordhubApp')
     devAppRoot: '/',
     productionAppRoot: '/angular/',
     linkRoot: './#!',
-    initialYear: 2013
+    initialYear: 2013,
+    customErrorEvent: 'event:customError',
+    broadcastBackendError: function (scope, translate) {
+      return function () {
+        // TODO: substitute event name with a reference
+        // to SETTINGS.customErrorEvent.
+        scope.$broadcast('event:customError', translate('flash.networkError'));
+      };
+    }
   });

@@ -3,7 +3,8 @@
 angular.module('wordhubApp')
   .constant('EN_TRANSLATIONS', {
     flash: {
-      userNotRegistered: 'User with such email and password is not registered.'
+      userNotRegistered: 'User with such email and password is not registered.',
+      networkError: 'No Internet connection'
     },
     nav: {
       create: 'Create',

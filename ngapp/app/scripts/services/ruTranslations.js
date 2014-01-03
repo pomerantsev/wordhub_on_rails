@@ -3,7 +3,8 @@
 angular.module('wordhubApp')
   .constant('RU_TRANSLATIONS', {
     flash: {
-      userNotRegistered: 'Неверный логин / пароль.'
+      userNotRegistered: 'Неверный логин / пароль.',
+      networkError: 'Нет соединения с интернетом'
     },
     nav: {
       create: 'Создать',
