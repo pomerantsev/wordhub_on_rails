@@ -4,7 +4,12 @@ angular.module('wordhubApp')
   .constant('SETTINGS', {
     sessionCookie: 'wordhubAngularSession',
     defaultRoute: '/',
+    // TODO: substitute with a named route
     defaultSignedInRoute: '/flashcards',
+    routes: {
+      flashcardsPath: '/flashcards',
+      newFlashcardPath: '/flashcards/new'
+    },
     devAppRoot: '/',
     productionAppRoot: '/angular/',
     linkRoot: './#!',

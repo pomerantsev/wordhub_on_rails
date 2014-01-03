@@ -27,12 +27,12 @@ angular.module('wordhubApp', [
             }]
         }
       })
-      .when('/flashcards', {
+      .when(SETTINGS.routes.flashcardsPath, {
         templateUrl: 'views/flashcardsIndex.html',
         controller: 'FlashcardsIndexCtrl as flashcardsIndex'
         // TODO: use a resolve object here too
       })
-      .when('/flashcards/new', {
+      .when(SETTINGS.routes.newFlashcardPath, {
         templateUrl: 'views/newFlashcard.html',
         controller: 'NewFlashcardCtrl as newFlashcard'
         // TODO: use a resolve object here too
