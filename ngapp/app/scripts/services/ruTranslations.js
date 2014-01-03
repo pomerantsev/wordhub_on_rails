@@ -26,5 +26,12 @@ angular.module('wordhubApp')
           signup: 'Зарегистрироваться'
         }
       }
+    },
+    flashcards: {
+      frontText: 'Слово',
+      backText: 'Значение',
+      new: {
+        create: 'Создать'
+      }
     }
   });

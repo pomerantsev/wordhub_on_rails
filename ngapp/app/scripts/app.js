@@ -32,6 +32,11 @@ angular.module('wordhubApp', [
         controller: 'FlashcardsIndexCtrl as flashcardsIndex'
         // TODO: use a resolve object here too
       })
+      .when('/flashcards/new', {
+        templateUrl: 'views/newFlashcard.html',
+        controller: 'NewFlashcardCtrl as newFlashcard'
+        // TODO: use a resolve object here too
+      })
       .otherwise({
         redirectTo: SETTINGS.defaultRoute
       });

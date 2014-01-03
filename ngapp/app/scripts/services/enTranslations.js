@@ -26,5 +26,12 @@ angular.module('wordhubApp')
           signup: 'Become a member'
         }
       }
+    },
+    flashcards: {
+      frontText: 'Word',
+      backText: 'Meaning',
+      new: {
+        create: 'Create'
+      }
     }
   });
