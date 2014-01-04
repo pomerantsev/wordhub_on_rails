@@ -21,6 +21,10 @@ describe('Controller: NewFlashcardCtrl', function () {
         newFlashcardCtrl.create();
         $httpBackend.flush();
       });
+
+      it('sets "submitting" to false after getting the response', function () {
+        expect(newFlashcardCtrl.submitting).toBe(false);
+      });
     }
     describe('when successful', function () {
       var flashcard = {frontText: 'front', backText: 'back'};

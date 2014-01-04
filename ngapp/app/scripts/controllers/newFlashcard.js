@@ -5,9 +5,13 @@ angular.module('wordhubApp')
     var ctrl = this;
     ctrl.flashcard = {};
     ctrl.create = function () {
+      ctrl.submitting = true;
       Flashcard.save(ctrl.flashcard).$promise
         .then(function () {
           ctrl.flashcard = {};
+        })
+        .finally(function () {
+          ctrl.submitting = false;
         });
     };
   });

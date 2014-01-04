@@ -10,6 +10,7 @@ angular.module('wordhubApp')
         flObject: '=',
         flSubmitText: '@',
         flSubmitClass: '@',
+        flSubmitting: '=',
         flSubmit: '&'
       }
     };
