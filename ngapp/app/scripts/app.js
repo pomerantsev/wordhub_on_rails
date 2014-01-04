@@ -49,12 +49,14 @@ angular.module('wordhubApp', [
   .config(function ($locationProvider) {
     $locationProvider.html5Mode(false).hashPrefix('!');
   })
-  .config(function ($httpProvider, $provide) {
+  .config(function ($httpProvider, $provide, SETTINGS) {
     $provide.factory('interceptor', ['$rootScope', '$q', function ($rootScope, $q) {
       return {
         responseError: function (rejection) {
           if (rejection.status === 401) {
             $rootScope.$broadcast('event:unauthorized');
+          } else if (rejection.status === 500 || rejection.status === 422) {
+            $rootScope.$broadcast(SETTINGS.customErrorEvent, rejection);
           }
           return $q.reject(rejection);
         }
@@ -68,7 +70,11 @@ angular.module('wordhubApp', [
       $translate.uses(Session.currentUser().interfaceLanguage);
     };
     var setLocaleByDomain = function () {
-      if ($location.host() === 'localhost') {
+      var domains = $location.host().split('.');
+      var tld = domains[domains.length - 1];
+      if (tld === 'com' || tld === 'org') {
+        $translate.uses('en');
+      } else if (tld === 'ru') {
         $translate.uses('ru');
       } else {
         $translate.uses('en');
@@ -94,6 +100,7 @@ angular.module('wordhubApp', [
     /* Event handlers */
     $rootScope.$on('event:unauthorized', function () {
       Session.signOut();
+      $rootScope.$broadcast(SETTINGS.customErrorEvent, $translate('flash.unauthorized'));
     });
     $rootScope.$on('event:signedIn', function () {
       setLocaleByCurrentUser();
