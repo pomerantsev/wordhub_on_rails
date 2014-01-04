@@ -8,7 +8,11 @@ angular.module('wordhubApp')
     defaultSignedInRoute: '/flashcards/new',
     routes: {
       flashcardsPath: '/flashcards',
-      newFlashcardPath: '/flashcards/new'
+      newFlashcardPath: '/flashcards/new',
+      editFlashcardPathMask: '/flashcards/:id/edit',
+      editFlashcardPath: function (id) {
+        return '/flashcards/' + id + '/edit';
+      }
     },
     devAppRoot: '/',
     productionAppRoot: '/angular/',

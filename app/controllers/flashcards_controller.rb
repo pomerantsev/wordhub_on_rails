@@ -1,7 +1,7 @@
 class FlashcardsController < ApplicationController
 
   before_action :confirm_logged_in
-  before_action :get_flashcard, only: [:edit, :update, :destroy]
+  before_action :get_flashcard, only: [:show, :edit, :update, :destroy]
 
   def index
     @flashcards = current_user.flashcards.order(created_at: :desc).page(params[:page])
@@ -46,6 +46,12 @@ class FlashcardsController < ApplicationController
           render json: @flashcard.errors, status: :unprocessable_entity
         end
       end
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.json { render 'flashcards/show' }
     end
   end
 

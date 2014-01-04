@@ -32,6 +32,9 @@ angular.module('wordhubApp')
       backText: 'Значение',
       new: {
         create: 'Создать'
+      },
+      edit: {
+        update: 'Сохранить'
       }
     }
   });

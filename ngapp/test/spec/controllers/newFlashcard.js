@@ -5,12 +5,15 @@ describe('Controller: NewFlashcardCtrl', function () {
   // load the controller's module
   beforeEach(module('wordhubApp'));
 
-  var newFlashcardCtrl, $httpBackend;
+  var newFlashcardCtrl, $httpBackend, mockFlashcard;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, _$httpBackend_) {
+  beforeEach(inject(function ($controller, _$httpBackend_, _$resource_) {
     $httpBackend = _$httpBackend_;
-    newFlashcardCtrl = $controller('NewFlashcardCtrl');
+    mockFlashcard = _$resource_('/api/flashcards/:id.json');
+    newFlashcardCtrl = $controller('NewFlashcardCtrl', {
+      Flashcard: mockFlashcard
+    });
   }));
 
   describe('#create', function () {

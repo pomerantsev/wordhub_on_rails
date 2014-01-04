@@ -37,6 +37,11 @@ angular.module('wordhubApp', [
         controller: 'NewFlashcardCtrl as newFlashcard'
         // TODO: use a resolve object here too
       })
+      .when(SETTINGS.routes.editFlashcardPathMask, {
+        templateUrl: 'views/editFlashcard.html',
+        controller: 'EditFlashcardCtrl as editFlashcard'
+        // TODO: use a resolve object here too
+      })
       .otherwise({
         redirectTo: SETTINGS.defaultRoute
       });
