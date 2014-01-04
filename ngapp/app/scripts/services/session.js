@@ -3,14 +3,26 @@
 angular.module('wordhubApp')
   .factory('Session', function ($cookies, $rootScope, SETTINGS) {
     var sessionKey = SETTINGS.sessionCookie;
+    var getCurrentUser = function () {
+      return JSON.parse($cookies[sessionKey]);
+    };
+    var saveCurrentUser = function (user) {
+      $cookies[sessionKey] = JSON.stringify(user);
+    };
+    $rootScope.$on('event:flashcardCreated', function () {
+      var user = getCurrentUser();
+      user.createdToday++;
+      saveCurrentUser(user);
+      $rootScope.$broadcast('event:userInfoChanged');
+    });
     return {
       signIn: function (user) {
-        $cookies[sessionKey] = JSON.stringify(user);
+        saveCurrentUser(user);
         $rootScope.$broadcast('event:signedIn');
       },
       currentUser: function () {
         if (this.isSignedIn()) {
-          return JSON.parse($cookies[sessionKey]);
+          return getCurrentUser();
         } else {
           return null;
         }

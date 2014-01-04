@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Flashcard', function ($resource) {
+  .factory('Flashcard', function ($resource, $rootScope) {
     return $resource('/api/flashcards/:id.json', {}, {
       save: {
         method: 'POST',
@@ -13,6 +13,12 @@ angular.module('wordhubApp')
             }
           };
           return JSON.stringify(data);
+        },
+        interceptor: {
+          response: function (response) {
+            $rootScope.$broadcast('event:flashcardCreated');
+            return response;
+          }
         }
       }
     });

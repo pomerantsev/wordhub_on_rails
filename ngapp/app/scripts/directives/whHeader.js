@@ -16,6 +16,7 @@ angular.module('wordhubApp')
         updateSignedInStatus();
         scope.$on('event:signedIn', updateSignedInStatus);
         scope.$on('event:signedOut', updateSignedInStatus);
+        scope.$on('event:userInfoChanged', updateSignedInStatus);
         scope.routes = SETTINGS.routes;
         scope.pathIsNewFlashcard = function () {
           return $location.path() === SETTINGS.routes.newFlashcardPath;
