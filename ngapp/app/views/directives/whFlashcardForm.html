@@ -1,7 +1,7 @@
 <form name="flashcardForm" class="flashcard-form" ng-submit="flSubmit()">
   <div class="flashcard-side-form-group">
     <label for="flashcard-front-text">{{ 'flashcards.frontText' | translate }}:</label>
-    <textarea class="form-control" id="flashcard-front-text" required rows="6" ng-model="flObject.frontText" ng-disabled="flSubmitting"></textarea>
+    <textarea class="form-control" id="flashcard-front-text" required rows="6" ng-model="flObject.frontText" wh-disabled-with-focus="flSubmitting"></textarea>
   </div>
   <div class="flashcard-side-form-group">
     <label for="flashcard-back-text">{{ 'flashcards.backText' | translate }}:</label>
