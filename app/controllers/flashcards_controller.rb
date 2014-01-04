@@ -54,11 +54,22 @@ class FlashcardsController < ApplicationController
   end
 
   def update
-    if @flashcard.update_attributes(flashcard_params)
-      redirect_to flashcards_path(anchor: @flashcard.id)
-    else
-      flash.now[:error] = errors(@flashcard)
-      render :edit
+    respond_to do |format|
+      format.html do
+        if @flashcard.update_attributes(flashcard_params)
+          redirect_to flashcards_path(anchor: @flashcard.id)
+        else
+          flash.now[:error] = errors(@flashcard)
+          render :edit
+        end
+      end
+      format.json do
+        if @flashcard.update_attributes(flashcard_params)
+          head :no_content
+        else
+          render json: @flashcard.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
@@ -96,11 +107,14 @@ protected
   def get_flashcard
     @flashcard = Flashcard.find_by_id(params[:id])
     if @flashcard.nil? || @flashcard.user != current_user
-      flash[:error] = I18n.t("flash.no_access_to_single_flashcard")
-      redirect_to home_page
-      return false
+      respond_to do |format|
+        format.html do
+          flash[:error] = I18n.t("flash.no_access_to_single_flashcard")
+          redirect_to home_page
+        end
+        format.json { head :unauthorized }
+      end
     end
-    return true
   end
 
 
