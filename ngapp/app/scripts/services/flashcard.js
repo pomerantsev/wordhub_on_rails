@@ -2,7 +2,7 @@
 
 angular.module('wordhubApp')
   .factory('Flashcard', function ($resource, $rootScope) {
-    return $resource('/api/flashcards/:id.json', {}, {
+    return $resource('/api/flashcards/:id.json', {id: '@id'}, {
       save: {
         method: 'POST',
         transformRequest: function (data) {
@@ -23,7 +23,6 @@ angular.module('wordhubApp')
       },
       patch: {
         method: 'PATCH',
-        params: {id: "@id"},
         transformRequest: function (data) {
           data = {
             flashcard: {

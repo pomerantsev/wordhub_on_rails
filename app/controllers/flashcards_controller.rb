@@ -81,8 +81,13 @@ class FlashcardsController < ApplicationController
 
   def destroy
     @flashcard.update_attribute(:deleted, true)
-    session[:just_deleted] = true
-    redirect_to flashcards_path
+    respond_to do |format|
+      format.html do
+        session[:just_deleted] = true
+        redirect_to flashcards_path
+      end
+      format.json { head :no_content }
+    end
   end
 
 

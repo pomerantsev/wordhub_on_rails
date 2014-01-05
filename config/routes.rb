@@ -34,7 +34,7 @@ WhRails::Application.routes.draw do
   scope '/api' do
     post 'login', to: 'access#attempt_login'
     delete 'logout', to: 'access#logout'
-    resources :flashcards, only: [:index, :show, :create, :update]
+    resources :flashcards, only: [:index, :show, :create, :update, :destroy]
   end
 
   # Sample resource route with options:

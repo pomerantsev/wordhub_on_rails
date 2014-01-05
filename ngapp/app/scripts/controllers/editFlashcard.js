@@ -14,4 +14,10 @@ angular.module('wordhubApp')
           ctrl.submitting = false;
         });
     };
+    ctrl.delete = function () {
+      ctrl.flashcard.$delete()
+        .then(function () {
+          $location.path(SETTINGS.routes.flashcardsPath);
+        });
+    };
   });

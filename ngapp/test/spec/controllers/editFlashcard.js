@@ -12,8 +12,8 @@ describe('Controller: EditFlashcardCtrl', function () {
   beforeEach(inject(function ($controller, _$httpBackend_, _$resource_, _$location_) {
     $httpBackend = _$httpBackend_;
     $location = _$location_;
-    mockFlashcard = _$resource_('/api/flashcards/:id.json', {}, {
-      patch: { method: 'PATCH', params: { id: '@id' } }
+    mockFlashcard = _$resource_('/api/flashcards/:id.json', {id: '@id'}, {
+      patch: { method: 'PATCH' }
     });
     mockRouteParams = { id: flashcardId };
     $httpBackend.expectGET('/api/flashcards/' + flashcardId + '.json').respond(200, {
@@ -51,6 +51,18 @@ describe('Controller: EditFlashcardCtrl', function () {
     });
     describe('when unsuccessful', function () {
       sharedBehaviorForUpdate(422);
+    });
+  });
+
+  describe('#delete', function () {
+    beforeEach(function () {
+      $httpBackend.expectDELETE('/api/flashcards/' + flashcardId + '.json').respond(204);
+      editFlashcardCtrl.delete();
+      $httpBackend.flush();
+    });
+
+    it('changes the location', function () {
+      expect($location.path()).toBe('/flashcards');
     });
   });
 
