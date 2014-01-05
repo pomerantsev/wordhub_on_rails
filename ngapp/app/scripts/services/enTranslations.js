@@ -38,5 +38,11 @@ angular.module('wordhubApp')
         update: 'Save',
         delete: 'Delete'
       }
+    },
+    repetitions: {
+      index: {
+        dontRemember: 'I don’t remember',
+        remember: 'I remember'
+      }
     }
   });

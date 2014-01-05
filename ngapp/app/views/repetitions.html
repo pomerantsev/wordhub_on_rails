@@ -1,1 +1,11 @@
-{{ repetitions.repetitions }}
+<div class="flashcard-toggleable">
+  <a href class="flashcard" ng-click="repetitions.turnAround()">
+    {{ repetitions.currentText }}
+  </a>
+</div>
+<div class="clearfix"></div>
+<div class="responses">
+  <input type="submit" class="dont-remember" ng-click="repetitions.dontRemember()" value="{{ 'repetitions.index.dontRemember' | translate }}">
+  <input type="submit" class="remember" ng-click="repetitions.remember()" value="{{ 'repetitions.index.remember' | translate }}">
+  <div class="clearfix"></div>
+</div>

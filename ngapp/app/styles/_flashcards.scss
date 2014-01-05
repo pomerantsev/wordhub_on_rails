@@ -41,12 +41,10 @@
   background-color: $gray-lighter;
   border-bottom: 20px solid white;
   .dont-remember, .remember {
+    @extend .btn-link;
     padding: 20px;
     @media (max-width: $before-breakpoint700) {
       padding: 10px;
-    }
-    input[type="submit"] {
-      @extend .btn-link;
     }
   }
   .dont-remember {
