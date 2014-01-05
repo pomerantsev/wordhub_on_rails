@@ -20,6 +20,19 @@ angular.module('wordhubApp')
             return response;
           }
         }
+      },
+      patch: {
+        method: 'PATCH',
+        params: {id: "@id"},
+        transformRequest: function (data) {
+          data = {
+            flashcard: {
+              front_text: data.frontText,
+              back_text: data.backText
+            }
+          };
+          return JSON.stringify(data);
+        }
       }
     });
   });

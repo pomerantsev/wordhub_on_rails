@@ -4,3 +4,6 @@
                    fl-submitting="editFlashcard.submitting"
                    fl-submit="editFlashcard.update()">
 </wh-flashcard-form>
+<div class="flashcard-destroy-link-wrapper">
+  <input type="submit" class="flashcard-destroy-link" value="{{ 'flashcards.edit.delete' | translate }}" ng-click="editFlashcard.delete()">
+</div>

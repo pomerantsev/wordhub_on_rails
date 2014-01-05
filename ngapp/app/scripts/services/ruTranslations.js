@@ -34,7 +34,8 @@ angular.module('wordhubApp')
         create: 'Создать'
       },
       edit: {
-        update: 'Сохранить'
+        update: 'Сохранить',
+        delete: 'Удалить'
       }
     }
   });
