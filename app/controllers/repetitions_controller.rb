@@ -6,16 +6,16 @@ class RepetitionsController < ApplicationController
   # The index method is used for getting one random repetition.
   def index
     @repetitions = current_user.repetitions.planned.for(current_date)
-    if params[:repetition_id].present?
-      @current_repetition = Repetition.find_by_id(params[:repetition_id])
-      if @repetitions.include?(@current_repetition)
-        # If there is no :view in params, using 'front' by default.
-        set_texts_and_views(params[:view] || "front")
-      else
-        init_default_view
+    respond_to do |format|
+      format.html do
+        if (!@repetitions.empty?)
+          @current_repetition = @repetitions[rand(0...@repetitions.size)]
+          @current_flashcard = @current_repetition.flashcard
+        else
+          redirect_to stats_path
+        end
       end
-    else
-      init_default_view
+      format.json { render 'repetitions/index' }
     end
   end
 
@@ -36,34 +36,6 @@ class RepetitionsController < ApplicationController
 
 
   private
-
-  # current_side is 'front' by default (for a JS-enabled browser).
-  # TODO: remove functionality for non-JS-enabled browsers.
-  def set_texts_and_views(current_side)
-    if current_side == "front"
-      @current_text = @current_repetition.flashcard.front_text
-      @current_view = "front"
-      @reverse_text = @current_repetition.flashcard.back_text
-      @reverse_view = "back"
-    elsif current_side == "back"
-      @current_text = @current_repetition.flashcard.back_text
-      @current_view = "back"
-      @reverse_text = @current_repetition.flashcard.front_text
-      @reverse_view = "front"
-    end
-  end
-
-
-  # Selects a random repetition among all planned for today.
-  # If no repetitions are available, it redirects to the stats page.
-  def init_default_view
-    if (!@repetitions.empty?)
-      @current_repetition = @repetitions[rand(0...@repetitions.size)]
-      set_texts_and_views("front")
-    else
-      redirect_to stats_path
-    end
-  end
 
   # When updating the repetition, we must check
   # if it's planned for today.

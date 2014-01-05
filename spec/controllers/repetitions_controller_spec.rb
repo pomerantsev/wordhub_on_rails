@@ -57,33 +57,10 @@ describe RepetitionsController do
           ]
         end
 
-        context "when a valid repetition id is supplied" do
-          it "assigns the @current_repetition variable" do
-            get :index, repetition_id: first_repetition
-            expect(assigns(:current_repetition)).to eq first_repetition
-          end
-        end
-
-        context "when an invalid repetition id is supplied" do
-          it "assigns a randomly selected value to the @current_repetition variable" do
-            get :index, repetition_id: first_repetition.id + 100
-            expect([first_repetition, second_repetition]).
-              to include assigns(:current_repetition)
-          end
-        end
-
-        context "when a repetition id is not supplied" do
-          it "assigns a randomly selected value to the @current_repetition variable" do
-            get :index
-            expect([first_repetition, second_repetition]).
-              to include assigns(:current_repetition)
-          end
-        end
-
-        it "sets the current_text and current_view variables" do
+        it "assigns a randomly selected value to the @current_repetition variable" do
           get :index
-          expect(assigns(:current_text)).to_not be_empty
-          expect(assigns(:current_view)).to eq "front"
+          expect([first_repetition, second_repetition]).
+            to include assigns(:current_repetition)
         end
 
         it "renders the :index view" do

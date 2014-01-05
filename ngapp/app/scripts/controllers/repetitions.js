@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('RepetitionsCtrl', function () {
+  .controller('RepetitionsCtrl', function (Repetition) {
     var ctrl = this;
-    ctrl.repetitions = [];
+    ctrl.repetitions = Repetition.query();
   });

@@ -35,6 +35,7 @@ WhRails::Application.routes.draw do
     post 'login', to: 'access#attempt_login'
     delete 'logout', to: 'access#logout'
     resources :flashcards, only: [:index, :show, :create, :update, :destroy]
+    resources :repetitions, only: [:index, :update]
   end
 
   # Sample resource route with options:

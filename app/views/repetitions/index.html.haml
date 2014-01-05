@@ -1,24 +1,17 @@
 - @page_title = t(".word_repetition")
-- if @current_repetition
-  .flashcard-toggleable
-    = link_to @current_text,
-              repetitions_path(repetition_id: @current_repetition.id,
-                               view: @reverse_view),
-              class: "flashcard"
-    = link_to @reverse_text,
-              repetitions_path(repetition_id: @current_repetition.id,
-                               view: @current_view),
-              class: "hidden"
+.flashcard-toggleable
+  = link_to @current_flashcard.front_text, '', class: "flashcard"
+  = link_to @current_flashcard.back_text, '', class: "hidden"
+.clearfix
+.responses
+  = form_for @current_repetition, html: { class: "dont-remember" } do |f|
+    = f.hidden_field :id
+    = hidden_field_tag :successful, false
+    = submit_tag t(".dont_remember")
+  = form_for @current_repetition, html: { class: "remember" } do |f|
+    = f.hidden_field :id
+    = hidden_field_tag :successful, true
+    = submit_tag t(".remember")
   .clearfix
-  .responses
-    = form_for @current_repetition, html: { class: "dont-remember" } do |f|
-      = f.hidden_field :id
-      = hidden_field_tag :successful, false
-      = submit_tag t(".dont_remember")
-    = form_for @current_repetition, html: { class: "remember" } do |f|
-      = f.hidden_field :id
-      = hidden_field_tag :successful, true
-      = submit_tag t(".remember")
-    .clearfix
-  .progress
-    .progress-bar{ style: "width: #{current_user.repetitions.progress_today * 100}%" }
+.progress
+  .progress-bar{ style: "width: #{current_user.repetitions.progress_today * 100}%" }
