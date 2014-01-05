@@ -8,6 +8,7 @@ angular.module('wordhubApp')
     },
     nav: {
       create: 'Create',
+      repeat: 'Repeat',
       of: 'of',
       allFlashcards: 'All flashcards',
       logout: 'Sign out',

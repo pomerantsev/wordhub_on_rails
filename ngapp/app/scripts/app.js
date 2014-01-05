@@ -42,6 +42,11 @@ angular.module('wordhubApp', [
         controller: 'EditFlashcardCtrl as editFlashcard'
         // TODO: use a resolve object here too
       })
+      .when(SETTINGS.routes.repetitionsPath, {
+        templateUrl: 'views/repetitions.html',
+        controller: 'RepetitionsCtrl as repetitions'
+        // TODO: use a resolve object here too
+      })
       .otherwise({
         redirectTo: SETTINGS.defaultRoute
       });

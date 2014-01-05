@@ -11,6 +11,16 @@
           </small>
         </span>
       </a>
+      <a ng-href="{{linkRoot + routes.repetitionsPath}}" ng-class="{active: pathIsRepetitions()}" ng-if="isSignedIn">
+        <span>{{ 'nav.repeat' | translate }}</span>
+        <span>
+          <small>
+            <span>{{ currentUser.runToday }}</span>
+            <span>{{ 'nav.of' | translate }}</span>
+            <span>{{ currentUser.plannedForToday }}</span>
+          </small>
+        </span>
+      </a>
     </div>
   </div>
   <div class="collapsing-menu">

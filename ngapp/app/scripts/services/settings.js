@@ -12,7 +12,8 @@ angular.module('wordhubApp')
       editFlashcardPathMask: '/flashcards/:id/edit',
       editFlashcardPath: function (id) {
         return '/flashcards/' + id + '/edit';
-      }
+      },
+      repetitionsPath: '/repetitions'
     },
     devAppRoot: '/',
     productionAppRoot: '/angular/',

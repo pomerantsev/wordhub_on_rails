@@ -24,6 +24,9 @@ angular.module('wordhubApp')
         scope.pathIsFlashcards = function () {
           return $location.path() === SETTINGS.routes.flashcardsPath;
         };
+        scope.pathIsRepetitions = function () {
+          return $location.path() === SETTINGS.routes.repetitionsPath;
+        };
         scope.signOut = function () {
           Auth.signOut();
         };
