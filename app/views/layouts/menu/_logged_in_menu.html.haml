@@ -12,9 +12,9 @@
       %span= t("nav.repeat")
       %span
         %small
-          %span= current_user.repetitions.run.on(current_date).size
+          %span= run_today_by current_user
           %span= t("nav.of")
-          %snap= current_user.repetitions.for(current_date).size
+          %snap= planned_for_today_by current_user
 
 .collapsing-menu
   = render "layouts/menu/logged_in_secondary_menu"

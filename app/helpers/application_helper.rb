@@ -68,4 +68,12 @@ module ApplicationHelper
     user.flashcards.created_on(current_date).size
   end
 
+  def run_today_by(user)
+    user.repetitions.run.on(current_date).size
+  end
+
+  def planned_for_today_by(user)
+    user.repetitions.for(current_date).size
+  end
+
 end
