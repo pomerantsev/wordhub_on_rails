@@ -11,7 +11,8 @@ angular.module('wordhubApp')
           if (ctrl.repetitions.length === 0) {
             $location.path(SETTINGS.defaultSignedInRoute);
           } else {
-            ctrl.currentRepetition = ctrl.repetitions[0];
+            ctrl.currentRepetition =
+              ctrl.repetitions[Math.floor(Math.random() * ctrl.repetitions.length)];
             ctrl.currentText = ctrl.currentRepetition.flashcard.frontText;
           }
         });
