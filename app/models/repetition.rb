@@ -22,11 +22,13 @@ class Repetition < ActiveRecord::Base
   validates :run, inclusion: { in: [false] },
                   if: lambda { |r| r.actual_date.present? and r.actual_date > Date.today }
 
-  validates :successful, inclusion: { in: [true, false, nil] }
-
   belongs_to :flashcard
 
-  before_update { self.run = true unless successful.nil? }
+  before_update do
+    # Don't let updating of already run repetitions.
+    return false if run
+    self.run = true unless successful.nil?
+  end
 
   after_update { flashcard.set_next_repetition if run }
 
