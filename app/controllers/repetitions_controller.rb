@@ -34,7 +34,7 @@ class RepetitionsController < ApplicationController
           @repetition.update_attributes(repetition_params)
           head :no_content
         else
-          head :unprocessable_entity
+          render json: @repetition.errors, status: :unprocessable_entity
         end
       end
     end
