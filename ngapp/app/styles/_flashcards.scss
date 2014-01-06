@@ -43,6 +43,7 @@
   .dont-remember, .remember {
     @extend .btn-link;
     padding: 20px;
+    outline: none !important;
     @media (max-width: $before-breakpoint700) {
       padding: 10px;
     }
