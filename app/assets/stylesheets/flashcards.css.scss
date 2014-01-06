@@ -42,6 +42,7 @@
   border-bottom: 20px solid white;
   .dont-remember, .remember {
     padding: 20px;
+    outline: none !important;
     @media (max-width: $before-breakpoint700) {
       padding: 10px;
     }
