@@ -7,16 +7,12 @@ angular.module('wordhubApp')
       replace: true,
       templateUrl: 'views/directives/whHeader.html',
       link: function (scope) {
-        var updateSignedInStatus = function () {
+        scope.$watch(function () {
+          return Session.currentUser();
+        }, function (currentUser) {
           scope.isSignedIn = Session.isSignedIn();
-          if (scope.isSignedIn) {
-            scope.currentUser = Session.currentUser();
-          }
-        };
-        updateSignedInStatus();
-        scope.$on('event:signedIn', updateSignedInStatus);
-        scope.$on('event:signedOut', updateSignedInStatus);
-        scope.$on('event:userInfoChanged', updateSignedInStatus);
+          scope.currentUser = Session.currentUser();
+        });
         scope.routes = SETTINGS.routes;
         scope.pathIsNewFlashcard = function () {
           return $location.path() === SETTINGS.routes.newFlashcardPath;

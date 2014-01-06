@@ -3,23 +3,23 @@
 angular.module('wordhubApp')
   .factory('Session', function ($cookies, $rootScope, SETTINGS) {
     var sessionKey = SETTINGS.sessionCookie;
+    var _currentUser;
     var getCurrentUser = function () {
-      return JSON.parse($cookies[sessionKey]);
+      return _currentUser || (_currentUser = JSON.parse($cookies[sessionKey]));
     };
     var saveCurrentUser = function (user) {
       $cookies[sessionKey] = JSON.stringify(user);
     };
+    // TODO: probably better to $watch something than to listen to events.
     $rootScope.$on('event:flashcardCreated', function () {
       var user = getCurrentUser();
       user.createdToday++;
       saveCurrentUser(user);
-      $rootScope.$broadcast('event:userInfoChanged');
     });
     $rootScope.$on('event:repetitionRun', function () {
       var user = getCurrentUser();
       user.runToday++;
       saveCurrentUser(user);
-      $rootScope.$broadcast('event:userInfoChanged');
     });
     return {
       signIn: function (user) {
