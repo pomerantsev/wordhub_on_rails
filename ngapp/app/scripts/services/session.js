@@ -15,6 +15,12 @@ angular.module('wordhubApp')
       saveCurrentUser(user);
       $rootScope.$broadcast('event:userInfoChanged');
     });
+    $rootScope.$on('event:repetitionRun', function () {
+      var user = getCurrentUser();
+      user.runToday++;
+      saveCurrentUser(user);
+      $rootScope.$broadcast('event:userInfoChanged');
+    });
     return {
       signIn: function (user) {
         saveCurrentUser(user);

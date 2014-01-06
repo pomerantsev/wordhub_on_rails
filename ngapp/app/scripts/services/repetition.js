@@ -7,7 +7,9 @@ angular.module('wordhubApp')
         method: 'PATCH',
         transformRequest: function (data) {
           data = {
-            successful: data.successful
+            repetition: {
+              successful: data.successful
+            }
           };
           return JSON.stringify(data);
         },
