@@ -20,9 +20,12 @@ angular.module('wordhubApp')
 
     var update = function (successful) {
       ctrl.currentRepetition.successful = successful;
+      ctrl.submitting = true;
       ctrl.currentRepetition.$patch()
         .then(function () {
           query();
+        }).finally(function () {
+          ctrl.submitting = false;
         });
     };
 

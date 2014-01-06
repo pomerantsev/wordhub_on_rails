@@ -3,7 +3,7 @@
 </div>
 <div class="clearfix"></div>
 <div class="responses">
-  <input type="submit" class="dont-remember" ng-click="repetitions.dontRemember()" value="{{ 'repetitions.index.dontRemember' | translate }}">
-  <input type="submit" class="remember" ng-click="repetitions.remember()" value="{{ 'repetitions.index.remember' | translate }}">
+  <input type="submit" class="dont-remember" ng-click="repetitions.dontRemember()" ng-disabled="repetitions.submitting" value="{{ 'repetitions.index.dontRemember' | translate }}">
+  <input type="submit" class="remember" ng-click="repetitions.remember()" ng-disabled="repetitions.submitting" value="{{ 'repetitions.index.remember' | translate }}">
   <div class="clearfix"></div>
 </div>
