@@ -1,7 +1,7 @@
 class RepetitionsController < ApplicationController
   
   before_action :confirm_logged_in
-  before_action :confirm_repetition_validity, only: :update
+  before_action :load_and_authorize, only: :update
 
   # The index method is used for getting one random repetition.
   def index
@@ -21,30 +21,40 @@ class RepetitionsController < ApplicationController
 
   # Saves the repetition as successful or unsuccessful.
   def update
-    # If boolean values are passed, it doesn't work.
-    # They are left here only for tests.
-    # TODO: remove this duplication.
-    if [true, false, 'true', 'false'].include?(params[:successful])
-      @current_repetition.successful = params[:successful]
-      @current_repetition.save
-    else
-      flash[:error] = I18n.t("flash.invalid_param")
+    valid_for_update = current_user.repetitions.planned.for(current_date).include?(@repetition)
+    respond_to do |format|
+      format.html do
+        if valid_for_update
+          @repetition.update_attributes(repetition_params)
+        end
+        redirect_to repetitions_path
+      end
+      format.json do
+        if valid_for_update
+          @repetition.update_attributes(repetition_params)
+          head :no_content
+        else
+          head :unprocessable_entity
+        end
+      end
     end
-    redirect_to repetitions_path
   end
 
 
 
   private
 
-  # When updating the repetition, we must check
-  # if it's planned for today.
-  def confirm_repetition_validity
-    @current_repetition = Repetition.find_by_id(params[:id])
-    unless current_user.repetitions.planned.for(current_date).include?(@current_repetition)
-      redirect_to repetitions_path
-      return false
+  def repetition_params
+    params.require(:repetition).permit(:successful)
+  end
+
+  def load_and_authorize
+    @repetition = Repetition.find_by(id: params[:id])
+    unless current_user.repetitions.include?(@repetition)
+      respond_to do |format|
+        format.html { redirect_to repetitions_path }
+        format.json { head :unauthorized }
+      end
     end
-    return true
   end
 end

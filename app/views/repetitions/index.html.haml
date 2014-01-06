@@ -6,12 +6,12 @@
 .responses
   = form_for @current_repetition, html: { class: "dont-remember" } do |f|
     = f.hidden_field :id
-    = hidden_field_tag :successful, false
-    = submit_tag t(".dont_remember")
+    = f.hidden_field :successful, value: false
+    = f.submit t(".dont_remember")
   = form_for @current_repetition, html: { class: "remember" } do |f|
     = f.hidden_field :id
-    = hidden_field_tag :successful, true
-    = submit_tag t(".remember")
+    = f.hidden_field :successful, value: true
+    = f.submit t(".remember")
   .clearfix
 .progress
   .progress-bar{ style: "width: #{current_user.repetitions.progress_today * 100}%" }
