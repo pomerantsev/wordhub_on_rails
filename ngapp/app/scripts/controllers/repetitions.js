@@ -13,4 +13,10 @@ angular.module('wordhubApp')
           ctrl.currentText = ctrl.currentRepetition.flashcard.frontText;
         }
       });
+    ctrl.turnAround = function () {
+      var flashcard = ctrl.currentRepetition.flashcard;
+      ctrl.currentText =
+        ctrl.currentText === flashcard.frontText ?
+        flashcard.backText : flashcard.frontText;
+    };
   });
