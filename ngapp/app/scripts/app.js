@@ -5,6 +5,8 @@ angular.module('wordhubApp', [
   'ngResource',
   'ngRoute',
   'pascalprecht.translate',
+  'ui.bootstrap.collapse',
+  'ui.bootstrap.dropdownToggle',
   // Add a config module for using different backends
   // for development and production:
   // http://stackoverflow.com/questions/16339595/angular-js-configuration-for-different-enviroments
