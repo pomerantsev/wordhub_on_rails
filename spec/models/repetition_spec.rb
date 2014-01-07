@@ -61,12 +61,12 @@ describe Repetition do
     end
     
     it "is valid with an actual date today" do
-      repetition.actual_date = repetition.planned_date = Date.today
+      repetition.actual_date = repetition.planned_date = Time.now.localtime.to_date
       expect(repetition).to be_valid
     end
     
     it "is valid with an actual date in the past" do
-      repetition.actual_date = repetition.planned_date = Date.today - 1.day
+      repetition.actual_date = repetition.planned_date = Time.now.localtime.to_date - 1.day
       expect(repetition).to be_valid
     end
   end
