@@ -34,6 +34,7 @@ WhRails::Application.routes.draw do
   scope '/api' do
     post 'login', to: 'access#attempt_login'
     delete 'logout', to: 'access#logout'
+    get 'session', to: 'users#show'
     resources :flashcards, only: [:index, :show, :create, :update, :destroy]
     resources :repetitions, only: [:index, :update]
   end

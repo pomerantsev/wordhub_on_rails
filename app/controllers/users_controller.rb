@@ -29,15 +29,27 @@ class UsersController < ApplicationController
     if params[:id].nil?
       @user = current_user
     else
-      @user = User.find_by_id(params[:id])
-      if @user != current_user
-        flash[:error] = I18n.t("flash.cannot_see_other_users_stats")
-        redirect_to home_page
+      @user = User.find_by(id: params[:id])
+    end
+    respond_to do |format|
+      format.html do
+        if @user == current_user
+          @total_stats = @user.total_stats
+          @stats_for_last_month = @user.stats_for_period(30.days)
+          @stats_for_today = @user.stats_for_period(1.day)
+        else
+          flash[:error] = I18n.t("flash.cannot_see_other_users_stats")
+          redirect_to home_page
+        end
+      end
+      format.json do
+        if @user == current_user
+          render 'users/user'
+        else
+          head :unauthorized
+        end
       end
     end
-    @total_stats = @user.total_stats
-    @stats_for_last_month = @user.stats_for_period(30.days)
-    @stats_for_today = @user.stats_for_period(1.day)
   end
 
   def edit
