@@ -7,6 +7,8 @@ angular.module('wordhubApp')
       replace: true,
       templateUrl: 'views/directives/whHeader.html',
       link: function (scope) {
+        scope.status = scope.status || {};
+        scope.status.collapsingMenuCollapsed = true;
         scope.$watch(function () {
           return Session.currentUser();
         }, function (currentUser) {

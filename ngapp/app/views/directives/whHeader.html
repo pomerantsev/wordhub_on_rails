@@ -1,5 +1,10 @@
 <div class="menu">
   <div class="navbar-header">
+    <button class="logged-in-menu-navbar-toggle" ng-click="status.collapsingMenuCollapsed = !status.collapsingMenuCollapsed">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
     <div class="logged-in-primary-menu">
       <a ng-href="{{linkRoot + routes.newFlashcardPath}}" ng-class="{active: pathIsNewFlashcard()}" ng-if="isSignedIn">
         <span>{{ 'nav.create' | translate }}</span>
@@ -23,7 +28,17 @@
       </a>
     </div>
   </div>
-  <div class="collapsing-menu">
+  <div class="collapse navbar-collapse" collapse="status.collapsingMenuCollapsed">
+    <ul class="logged-in-secondary-menu user-menu-no-dropdown">
+      <li ng-class="{active: pathIsFlashcards()}" ng-if="isSignedIn">
+        <a ng-href="{{linkRoot + routes.flashcardsPath}}">
+          {{ 'nav.allFlashcards' | translate }}
+        </a>
+      </li>
+      <li>
+        <a href ng-click="signOut()" ng-if="isSignedIn">{{ 'nav.logout' | translate }}</a>
+      </li>
+    </ul>
     <ul class="logged-in-secondary-menu user-dropdown-menu">
       <li ng-class="{active: pathIsFlashcards()}" ng-if="isSignedIn">
         <a ng-href="{{linkRoot + routes.flashcardsPath}}">

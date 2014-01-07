@@ -54,10 +54,6 @@
   @extend .dropdown-menu;
 }
 
-.collapsing-menu {
-  @extend .navbar-collapse, .collapse;
-}
-
 .guest-menu-navbar-toggle {
   @extend .navbar-toggle;
 }
