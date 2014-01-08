@@ -25,21 +25,23 @@ angular.module('wordhubApp', [
     var checkIfSignedIn = ['Auth', function (Auth) {
       return Auth.check();
     }];
+    var checkIfNotSignedIn = ['Auth', '$location', '$q', function (Auth, $location, $q) {
+      var defer = $q.defer();
+      Auth.check()
+        .then(function () {
+          $location.path(SETTINGS.defaultSignedInRoute);
+        }, function () {
+          defer.resolve();
+        });
+      return defer.promise;
+    }];
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl as main',
         resolve: {
           xsrfToken: getXsrfToken,
-          isNotSignedIn: ['$q', 'Session', '$location',
-            function ($q, Session, $location) {
-              var defer = $q.defer();
-              if (Session.isSignedIn()) {
-                $location.path(SETTINGS.defaultSignedInRoute);
-              }
-              defer.resolve();
-              return defer.promise;
-            }]
+          isNotSignedIn: checkIfNotSignedIn
         }
       })
       .when(SETTINGS.routes.flashcardsPath, {
