@@ -13,11 +13,21 @@ angular.module('wordhubApp', [
   'config'
 ])
   .config(function ($routeProvider, SETTINGS) {
+    var getXsrfToken = ['$cookies', '$http', '$q', function ($cookies, $http, $q) {
+      if($cookies['XSRF-TOKEN']) {
+        var defer = $q.defer();
+        defer.resolve();
+        return defer.promise;
+      } else {
+        return $http.get('/api/xsrf-token.json');
+      }
+    }];
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl as main',
         resolve: {
+          xsrfToken: getXsrfToken,
           isNotSignedIn: ['$q', 'Session', '$location',
             function ($q, Session, $location) {
               var defer = $q.defer();
@@ -31,23 +41,35 @@ angular.module('wordhubApp', [
       })
       .when(SETTINGS.routes.flashcardsPath, {
         templateUrl: 'views/flashcardsIndex.html',
-        controller: 'FlashcardsIndexCtrl as flashcardsIndex'
-        // TODO: use a resolve object here too
+        controller: 'FlashcardsIndexCtrl as flashcardsIndex',
+        resolve: {
+          xsrfToken: getXsrfToken
+        }
+        // TODO: use a resolve object here for signed-in status too
       })
       .when(SETTINGS.routes.newFlashcardPath, {
         templateUrl: 'views/newFlashcard.html',
-        controller: 'NewFlashcardCtrl as newFlashcard'
-        // TODO: use a resolve object here too
+        controller: 'NewFlashcardCtrl as newFlashcard',
+        resolve: {
+          xsrfToken: getXsrfToken
+        }
+        // TODO: use a resolve object here for signed-in status too
       })
       .when(SETTINGS.routes.editFlashcardPathMask, {
         templateUrl: 'views/editFlashcard.html',
-        controller: 'EditFlashcardCtrl as editFlashcard'
-        // TODO: use a resolve object here too
+        controller: 'EditFlashcardCtrl as editFlashcard',
+        resolve: {
+          xsrfToken: getXsrfToken
+        }
+        // TODO: use a resolve object here for signed-in status too
       })
       .when(SETTINGS.routes.repetitionsPath, {
         templateUrl: 'views/repetitions.html',
-        controller: 'RepetitionsCtrl as repetitions'
-        // TODO: use a resolve object here too
+        controller: 'RepetitionsCtrl as repetitions',
+        resolve: {
+          xsrfToken: getXsrfToken
+        }
+        // TODO: use a resolve object here for signed-in status too
       })
       .otherwise({
         redirectTo: SETTINGS.defaultRoute

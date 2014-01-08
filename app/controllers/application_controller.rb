@@ -15,6 +15,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def xsrf_token
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
+
   protected
 
   def confirm_logged_in

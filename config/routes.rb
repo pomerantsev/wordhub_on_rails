@@ -35,6 +35,7 @@ WhRails::Application.routes.draw do
     post 'login', to: 'access#attempt_login'
     delete 'logout', to: 'access#logout'
     get 'session', to: 'users#show'
+    get 'xsrf-token', to: 'application#xsrf_token'
     resources :flashcards, only: [:index, :show, :create, :update, :destroy]
     resources :repetitions, only: [:index, :update]
   end
