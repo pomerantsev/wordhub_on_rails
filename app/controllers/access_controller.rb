@@ -31,4 +31,17 @@ class AccessController < ApplicationController
     end
   end
 
+  def check_session
+    @user = current_user
+    respond_to do |format|
+      format.json do
+        if @user
+          render 'access/success'
+        else
+          render 'access/failure'
+        end
+      end
+    end
+  end
+
 end

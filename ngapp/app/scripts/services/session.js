@@ -1,14 +1,16 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Session', function ($cookies, $rootScope, SETTINGS) {
-    var sessionKey = SETTINGS.sessionCookie;
+  .factory('Session', function ($rootScope) {
     var _currentUser;
     var getCurrentUser = function () {
-      return _currentUser || (_currentUser = JSON.parse($cookies[sessionKey]));
+      return _currentUser;
     };
     var saveCurrentUser = function (user) {
-      $cookies[sessionKey] = JSON.stringify(user);
+      _currentUser = user;
+    };
+    var deleteCurrentUser = function () {
+      _currentUser = null;
     };
     // TODO: probably better to $watch something than to listen to events.
     $rootScope.$on('event:flashcardCreated', function () {
@@ -24,21 +26,15 @@ angular.module('wordhubApp')
     return {
       signIn: function (user) {
         saveCurrentUser(user);
-        $rootScope.$broadcast('event:signedIn');
       },
       currentUser: function () {
-        if (this.isSignedIn()) {
-          return getCurrentUser();
-        } else {
-          return null;
-        }
+        return getCurrentUser();
       },
       isSignedIn: function () {
-        return !!$cookies[sessionKey];
+        return !!getCurrentUser();
       },
       signOut: function () {
-        delete $cookies[sessionKey];
-        $rootScope.$broadcast('event:signedOut');
+        deleteCurrentUser();
       }
     };
   });

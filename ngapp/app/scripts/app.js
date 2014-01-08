@@ -22,6 +22,9 @@ angular.module('wordhubApp', [
         return $http.get('/api/xsrf-token.json');
       }
     }];
+    var checkIfSignedIn = ['Auth', function (Auth) {
+      return Auth.check();
+    }];
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -43,6 +46,7 @@ angular.module('wordhubApp', [
         templateUrl: 'views/flashcardsIndex.html',
         controller: 'FlashcardsIndexCtrl as flashcardsIndex',
         resolve: {
+          signedIn: checkIfSignedIn,
           xsrfToken: getXsrfToken
         }
         // TODO: use a resolve object here for signed-in status too
@@ -51,6 +55,7 @@ angular.module('wordhubApp', [
         templateUrl: 'views/newFlashcard.html',
         controller: 'NewFlashcardCtrl as newFlashcard',
         resolve: {
+          signedIn: checkIfSignedIn,
           xsrfToken: getXsrfToken
         }
         // TODO: use a resolve object here for signed-in status too
@@ -59,6 +64,7 @@ angular.module('wordhubApp', [
         templateUrl: 'views/editFlashcard.html',
         controller: 'EditFlashcardCtrl as editFlashcard',
         resolve: {
+          signedIn: checkIfSignedIn,
           xsrfToken: getXsrfToken
         }
         // TODO: use a resolve object here for signed-in status too
@@ -67,6 +73,7 @@ angular.module('wordhubApp', [
         templateUrl: 'views/repetitions.html',
         controller: 'RepetitionsCtrl as repetitions',
         resolve: {
+          signedIn: checkIfSignedIn,
           xsrfToken: getXsrfToken
         }
         // TODO: use a resolve object here for signed-in status too

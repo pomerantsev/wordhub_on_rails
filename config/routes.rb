@@ -34,7 +34,7 @@ WhRails::Application.routes.draw do
   scope '/api' do
     post 'login', to: 'access#attempt_login'
     delete 'logout', to: 'access#logout'
-    get 'session', to: 'users#show'
+    get 'session', to: 'access#check_session'
     get 'xsrf-token', to: 'application#xsrf_token'
     resources :flashcards, only: [:index, :show, :create, :update, :destroy]
     resources :repetitions, only: [:index, :update]

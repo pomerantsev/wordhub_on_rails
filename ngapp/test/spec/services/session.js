@@ -9,20 +9,17 @@ describe('Service: Session', function () {
   var Session, $cookies,
     sessionKey = 'wordhubAngularSession',
     user = {email: 'some@example.com'};
-  beforeEach(inject(function (_Session_, _$cookies_) {
+  beforeEach(inject(function (_Session_) {
     Session = _Session_;
-    $cookies = _$cookies_;
   }));
 
   describe('signin and signout', function () {
-    it('stores the user in a cookie', function () {
+    it('stores the current user', function () {
       Session.signIn(user);
-      expect($cookies[sessionKey]).toEqual(JSON.stringify(user));
       expect(Session.currentUser()).toEqual(user);
       expect(Session.isSignedIn()).toBe(true);
 
       Session.signOut();
-      expect($cookies[sessionKey]).toBeUndefined();
       expect(Session.currentUser()).toEqual(null);
       expect(Session.isSignedIn()).toBe(false);
     });
