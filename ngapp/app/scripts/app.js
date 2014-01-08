@@ -145,12 +145,15 @@ angular.module('wordhubApp', [
       Session.signOut();
       $rootScope.$broadcast(SETTINGS.customErrorEvent, $translate('flash.unauthorized'));
     });
-    $rootScope.$on('event:signedIn', function () {
-      setLocaleByCurrentUser();
-      $location.path(SETTINGS.defaultSignedInRoute);
-    });
-    $rootScope.$on('event:signedOut', function () {
-      setLocaleByDomain();
-      $location.path(SETTINGS.defaultRoute);
+    $rootScope.$watch(function () {
+      return Session.isSignedIn();
+    }, function (isSignedIn) {
+      if (isSignedIn) {
+        setLocaleByCurrentUser();
+        $location.path(SETTINGS.defaultSignedInRoute);
+      } else {
+        setLocaleByDomain();
+        $location.path(SETTINGS.defaultRoute);
+      }
     });
   });

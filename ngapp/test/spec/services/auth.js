@@ -29,7 +29,7 @@ describe('Service: Auth', function () {
     });
     it('calls Session.signIn if response.data.success is true', function () {
       $httpBackend.expectPOST('/api/login.json')
-        .respond(200, {success: true});
+        .respond(200, {success: true, user: {id: 1}});
       spyOn(Session, 'signIn');
       Auth.signIn(credentials);
       $httpBackend.flush();

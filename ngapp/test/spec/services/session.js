@@ -6,8 +6,7 @@ describe('Service: Session', function () {
   beforeEach(module('wordhubApp'));
 
   // instantiate service
-  var Session, $cookies,
-    sessionKey = 'wordhubAngularSession',
+  var Session,
     user = {email: 'some@example.com'};
   beforeEach(inject(function (_Session_) {
     Session = _Session_;
