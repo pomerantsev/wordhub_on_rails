@@ -17,7 +17,7 @@ angular.module('wordhubApp')
     var update = function (successful) {
       ctrl.currentRepetition.successful = successful;
       ctrl.submitting = true;
-      ctrl.currentRepetition.$patch()
+      Repetition.update(ctrl.currentRepetition)
         .then(function () {
           getRandom();
         }).finally(function () {

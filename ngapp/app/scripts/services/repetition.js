@@ -33,5 +33,9 @@ angular.module('wordhubApp')
         });
     };
 
+    resource.update = function (repetition) {
+      return repetition.$patch();
+    };
+
     return resource;
   });
