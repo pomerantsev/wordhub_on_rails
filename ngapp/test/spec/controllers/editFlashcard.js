@@ -46,7 +46,6 @@ describe('Controller: EditFlashcardCtrl', function () {
 
       it('changes the location', function () {
         expect($location.path()).toBe('/flashcards');
-        expect($location.hash()).toBe(flashcardId);
       });
     });
     describe('when unsuccessful', function () {
