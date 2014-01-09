@@ -6,7 +6,7 @@
       <span class="icon-bar"></span>
     </button>
     <div class="logged-in-primary-menu">
-      <a ng-href="{{linkRoot + routes.newFlashcardPath}}" ng-class="{active: pathIsNewFlashcard()}" ng-if="isSignedIn">
+      <a ng-href="{{linkRoot + routes.newFlashcardPath}}" ng-class="{active: pathIs(routes.newFlashcardPath)}" ng-if="isSignedIn">
         <span>{{ 'nav.create' | translate }}</span>
         <span>
           <small>
@@ -16,7 +16,7 @@
           </small>
         </span>
       </a>
-      <a ng-href="{{linkRoot + routes.repetitionsPath}}" ng-class="{active: pathIsRepetitions()}" ng-if="isSignedIn">
+      <a ng-href="{{linkRoot + routes.repetitionsPath}}" ng-class="{active: pathIs(routes.repetitionsPath)}" ng-if="isSignedIn">
         <span>{{ 'nav.repeat' | translate }}</span>
         <span>
           <small>
@@ -30,7 +30,7 @@
   </div>
   <div class="collapse navbar-collapse" collapse="status.collapsingMenuCollapsed">
     <ul class="logged-in-secondary-menu user-menu-no-dropdown">
-      <li ng-class="{active: pathIsFlashcards()}" ng-if="isSignedIn">
+      <li ng-class="{active: pathIs(routes.flashcardsPath)}" ng-if="isSignedIn">
         <a ng-href="{{linkRoot + routes.flashcardsPath}}">
           {{ 'nav.allFlashcards' | translate }}
         </a>
@@ -40,7 +40,7 @@
       </li>
     </ul>
     <ul class="logged-in-secondary-menu user-dropdown-menu">
-      <li ng-class="{active: pathIsFlashcards()}" ng-if="isSignedIn">
+      <li ng-class="{active: pathIs(routes.flashcardsPath)}" ng-if="isSignedIn">
         <a ng-href="{{linkRoot + routes.flashcardsPath}}">
           {{ 'nav.allFlashcards' | translate }}
         </a>

@@ -16,14 +16,8 @@ angular.module('wordhubApp')
           scope.currentUser = Session.currentUser();
         });
         scope.routes = SETTINGS.routes;
-        scope.pathIsNewFlashcard = function () {
-          return $location.path() === SETTINGS.routes.newFlashcardPath;
-        };
-        scope.pathIsFlashcards = function () {
-          return $location.path() === SETTINGS.routes.flashcardsPath;
-        };
-        scope.pathIsRepetitions = function () {
-          return $location.path() === SETTINGS.routes.repetitionsPath;
+        scope.pathIs = function (path) {
+          return $location.path() === path;
         };
         scope.signOut = function () {
           Auth.signOut();
