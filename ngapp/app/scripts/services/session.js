@@ -18,9 +18,9 @@ angular.module('wordhubApp')
       user.createdToday++;
       saveCurrentUser(user);
     });
-    $rootScope.$on('event:repetitionRun', function () {
+    $rootScope.$on('event:repetitionCountChange', function (event, repetitionsLeft) {
       var user = getCurrentUser();
-      user.runToday++;
+      user.runToday = user.plannedForToday - repetitionsLeft;
       saveCurrentUser(user);
     });
     return {

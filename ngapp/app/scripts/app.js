@@ -98,7 +98,7 @@ angular.module('wordhubApp', [
         responseError: function (rejection) {
           if (rejection.status === 401) {
             $rootScope.$broadcast('event:unauthorized');
-          } else if (rejection.status === 500 || rejection.status === 422) {
+          } else if (rejection.status === 500) {
             $rootScope.$broadcast(SETTINGS.customErrorEvent, rejection);
           }
           return $q.reject(rejection);

@@ -14,6 +14,7 @@ angular.module('wordhubApp')
               repetitionStore.splice(index, 1);
             }
           });
+          $rootScope.$broadcast('event:repetitionCountChange', repetitionStore.length);
           data = {
             repetition: {
               successful: data.successful
@@ -22,13 +23,25 @@ angular.module('wordhubApp')
           return JSON.stringify(data);
         },
         interceptor: {
-          response: function (response) {
-            $rootScope.$broadcast('event:repetitionRun');
-            return response;
+          responseError: function (rejection) {
+            if (rejection.status === 422) {
+              return queryLeftRepetitions();
+            } else {
+              return $q.reject(rejection);
+            }
           }
         }
       }
     });
+
+    function queryLeftRepetitions() {
+      return resource.query().$promise
+        .then(function (data) {
+          repetitionStore = data;
+          $rootScope.$broadcast('event:repetitionCountChange', repetitionStore.length);
+          return data;
+        });
+    }
 
     var repetitionsPromise = function () {
       if (repetitionStore) {
@@ -36,12 +49,7 @@ angular.module('wordhubApp')
         defer.resolve(repetitionStore);
         return defer.promise;
       } else {
-        return resource.query().$promise
-          .then(function (data) {
-            console.log(data);
-            repetitionStore = data;
-            return data;
-          });
+        return queryLeftRepetitions();
       }
     };
 
