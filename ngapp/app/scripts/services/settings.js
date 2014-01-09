@@ -7,6 +7,7 @@ angular.module('wordhubApp')
     // TODO: substitute with a named route
     defaultSignedInRoute: '/flashcards/new',
     routes: {
+      rootPath: '/',
       flashcardsPath: '/flashcards',
       newFlashcardPath: '/flashcards/new',
       editFlashcardPathMask: '/flashcards/:id/edit',

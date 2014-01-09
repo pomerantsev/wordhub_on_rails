@@ -5,8 +5,8 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <div class="logged-in-primary-menu">
-      <a ng-href="{{linkRoot + routes.newFlashcardPath}}" ng-class="{active: pathIs(routes.newFlashcardPath)}" ng-if="isSignedIn">
+    <div class="logged-in-primary-menu" ng-if="isSignedIn">
+      <a ng-href="{{linkRoot + routes.newFlashcardPath}}" ng-class="{active: pathIs(routes.newFlashcardPath)}">
         <span>{{ 'nav.create' | translate }}</span>
         <span>
           <small>
@@ -16,7 +16,7 @@
           </small>
         </span>
       </a>
-      <a ng-href="{{linkRoot + routes.repetitionsPath}}" ng-class="{active: pathIs(routes.repetitionsPath)}" ng-if="isSignedIn">
+      <a ng-href="{{linkRoot + routes.repetitionsPath}}" ng-class="{active: pathIs(routes.repetitionsPath)}">
         <span>{{ 'nav.repeat' | translate }}</span>
         <span>
           <small>
@@ -29,24 +29,31 @@
     </div>
   </div>
   <div class="collapse navbar-collapse" collapse="status.collapsingMenuCollapsed">
-    <ul class="logged-in-secondary-menu user-menu-no-dropdown">
-      <li ng-class="{active: pathIs(routes.flashcardsPath)}" ng-if="isSignedIn">
+    <ul class="guest-secondary-menu" ng-if="!isSignedIn">
+      <li>
+        <a ng-href="{{linkRoot + routes.rootPath}}?scrollTo=login-form-anchor">
+          {{ 'nav.login' | translate }}
+        </a>
+      </li>
+    </ul>
+    <ul class="logged-in-secondary-menu user-menu-no-dropdown" ng-if="isSignedIn">
+      <li ng-class="{active: pathIs(routes.flashcardsPath)}">
         <a ng-href="{{linkRoot + routes.flashcardsPath}}" wh-collapse-when-clicked>
           {{ 'nav.allFlashcards' | translate }}
         </a>
       </li>
       <li>
-        <a href ng-click="signOut()" ng-if="isSignedIn" wh-collapse-when-clicked>{{ 'nav.logout' | translate }}</a>
+        <a href ng-click="signOut()" wh-collapse-when-clicked>{{ 'nav.logout' | translate }}</a>
       </li>
     </ul>
-    <ul class="logged-in-secondary-menu user-dropdown-menu">
-      <li ng-class="{active: pathIs(routes.flashcardsPath)}" ng-if="isSignedIn">
+    <ul class="logged-in-secondary-menu user-dropdown-menu" ng-if="isSignedIn">
+      <li ng-class="{active: pathIs(routes.flashcardsPath)}">
         <a ng-href="{{linkRoot + routes.flashcardsPath}}">
           {{ 'nav.allFlashcards' | translate }}
         </a>
       </li>
       <li>
-        <a href ng-click="signOut()" ng-if="isSignedIn">{{ 'nav.logout' | translate }}</a>
+        <a href ng-click="signOut()">{{ 'nav.logout' | translate }}</a>
       </li>
     </ul>
   </div>

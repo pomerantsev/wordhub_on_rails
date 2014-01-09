@@ -107,7 +107,7 @@ angular.module('wordhubApp', [
     }]);
     $httpProvider.interceptors.push('interceptor');
   })
-  .run(function ($location, $translate, ENV, $rootScope, Session, SETTINGS) {
+  .run(function ($location, $translate, ENV, $rootScope, Session, SETTINGS, $routeParams, $anchorScroll) {
     /* Private helper methods */
     var setLocaleByCurrentUser = function () {
       $translate.uses(Session.currentUser().interfaceLanguage);
@@ -144,6 +144,10 @@ angular.module('wordhubApp', [
     $rootScope.$on('event:unauthorized', function () {
       Session.signOut();
       $rootScope.$broadcast(SETTINGS.customErrorEvent, $translate('flash.unauthorized'));
+    });
+    $rootScope.$on('$routeChangeSuccess', function() {
+      $location.hash($routeParams.scrollTo);
+      $anchorScroll();
     });
     $rootScope.$watch(function () {
       return Session.isSignedIn();

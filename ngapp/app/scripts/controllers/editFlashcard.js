@@ -8,7 +8,7 @@ angular.module('wordhubApp')
       ctrl.submitting = true;
       ctrl.flashcard.$patch()
         .then(function () {
-          $location.path(SETTINGS.routes.flashcardsPath).hash(ctrl.flashcard.id);
+          $location.path(SETTINGS.routes.flashcardsPath).search('scrollTo', ctrl.flashcard.id);
         })
         .finally(function () {
           ctrl.submitting = false;

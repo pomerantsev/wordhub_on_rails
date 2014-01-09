@@ -11,6 +11,7 @@ angular.module('wordhubApp')
       repeat: 'Повторить',
       of: 'из',
       allFlashcards: 'Все карточки',
+      login: 'Вход',
       logout: 'Выйти',
       author: 'Павел Померанцев',
       authorLink: 'http://pomerantsev.moikrug.ru'
