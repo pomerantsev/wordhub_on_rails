@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('RepetitionsCtrl', function (Repetition, $location, SETTINGS) {
+  .controller('RepetitionsCtrl', function (Repetition, $location, SETTINGS, Session, $scope) {
     var ctrl = this;
 
     var query = function () {
@@ -44,4 +44,17 @@ angular.module('wordhubApp')
     ctrl.remember = function () {
       update(true);
     };
+
+    var getProgressToday = function () {
+      var currentUser = Session.currentUser();
+      return currentUser.runToday / currentUser.plannedForToday;
+    };
+
+    ctrl.progressToday = getProgressToday();
+
+    $scope.$watch(function () {
+      return getProgressToday();
+    }, function (progress) {
+      ctrl.progressToday = progress;
+    });
   });

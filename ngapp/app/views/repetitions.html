@@ -7,3 +7,6 @@
   <input type="submit" class="remember" ng-click="repetitions.remember()" ng-disabled="repetitions.submitting" value="{{ 'repetitions.index.remember' | translate }}">
   <div class="clearfix"></div>
 </div>
+<div class="progress">
+  <div class="progress-bar" ng-style="{width: repetitions.progressToday * 100 + '%'}"></div>
+</div>
