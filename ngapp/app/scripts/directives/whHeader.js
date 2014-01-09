@@ -22,6 +22,9 @@ angular.module('wordhubApp')
         scope.signOut = function () {
           Auth.signOut();
         };
+        scope.toggleDropdown = function () {
+          scope.status.collapsingMenuCollapsed = !scope.status.collapsingMenuCollapsed;
+        };
       }
     };
   });
