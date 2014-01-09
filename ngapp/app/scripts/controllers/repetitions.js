@@ -4,17 +4,13 @@ angular.module('wordhubApp')
   .controller('RepetitionsCtrl', function (Repetition, $location, SETTINGS, Session, $scope) {
     var ctrl = this;
 
-    var query = function () {
-      ctrl.repetitions = Repetition.query();
-      ctrl.repetitions.$promise
-        .then(function() {
-          if (ctrl.repetitions.length === 0) {
-            $location.path(SETTINGS.defaultSignedInRoute);
-          } else {
-            ctrl.currentRepetition =
-              ctrl.repetitions[Math.floor(Math.random() * ctrl.repetitions.length)];
-            ctrl.currentText = ctrl.currentRepetition.flashcard.frontText;
-          }
+    var getRandom = function () {
+      Repetition.getRandom()
+        .then(function (repetition) {
+          ctrl.currentRepetition = repetition;
+          ctrl.currentText = repetition.flashcard.frontText;
+        }, function () {
+          $location.path(SETTINGS.defaultSignedInRoute);
         });
     };
 
@@ -23,13 +19,13 @@ angular.module('wordhubApp')
       ctrl.submitting = true;
       ctrl.currentRepetition.$patch()
         .then(function () {
-          query();
+          getRandom();
         }).finally(function () {
           ctrl.submitting = false;
         });
     };
 
-    query();
+    getRandom();
 
     ctrl.turnAround = function () {
       var flashcard = ctrl.currentRepetition.flashcard;
