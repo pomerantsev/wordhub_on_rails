@@ -7,6 +7,7 @@ angular.module('wordhubApp')
       unauthorized: 'Your action is unauthorized. Please sign in.'
     },
     nav: {
+      wordhub: 'Wordhub',
       create: 'Create',
       repeat: 'Repeat',
       of: 'of',

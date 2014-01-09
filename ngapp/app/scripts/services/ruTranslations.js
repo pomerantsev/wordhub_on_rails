@@ -7,6 +7,7 @@ angular.module('wordhubApp')
       unauthorized: 'Вы не авторизованы. Пожалуйста, войдите на сайт.'
     },
     nav: {
+      wordhub: 'Вордхаб',
       create: 'Создать',
       repeat: 'Повторить',
       of: 'из',
