@@ -8,13 +8,6 @@ angular.module('wordhubApp')
       patch: {
         method: 'PATCH',
         transformRequest: function (data) {
-          // Delete the repetition from the store
-          angular.forEach(repetitionStore, function (repetition, index) {
-            if (repetition.id === data.id) {
-              repetitionStore.splice(index, 1);
-            }
-          });
-          $rootScope.$broadcast('event:repetitionCountChange', repetitionStore.length);
           data = {
             repetition: {
               successful: data.successful
@@ -65,6 +58,13 @@ angular.module('wordhubApp')
     };
 
     resource.update = function (repetition) {
+      // Delete the repetition from the store
+      angular.forEach(repetitionStore, function (value, index) {
+        if (value.id === repetition.id) {
+          repetitionStore.splice(index, 1);
+        }
+      });
+      $rootScope.$broadcast('event:repetitionCountChange', repetitionStore.length);
       return repetition.$patch();
     };
 
