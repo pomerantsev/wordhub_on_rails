@@ -61,6 +61,7 @@
 .logged-in-menu-navbar-toggle {
   @extend .navbar-toggle;
   margin-top: 13px;
+  outline: none;
 }
 
 @media (max-width: $before-breakpoint700) {
