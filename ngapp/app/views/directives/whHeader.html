@@ -9,7 +9,7 @@
       {{ 'nav.wordhub' | translate }}
     </a>
     <div class="logged-in-primary-menu" ng-if="isSignedIn">
-      <a ng-href="{{linkRoot + routes.newFlashcardPath}}" ng-class="{active: pathIs(routes.newFlashcardPath)}">
+      <a ng-href="{{linkRoot + routes.newFlashcardPath}}" ng-class="{active: pathIs(routes.newFlashcardPath), 'to-do': shouldCreate()}">
         <span>{{ 'nav.create' | translate }}</span>
         <span>
           <small>
@@ -19,7 +19,7 @@
           </small>
         </span>
       </a>
-      <a ng-href="{{linkRoot + routes.repetitionsPath}}" ng-class="{active: pathIs(routes.repetitionsPath)}">
+      <a ng-href="{{linkRoot + routes.repetitionsPath}}" ng-class="{active: pathIs(routes.repetitionsPath), 'to-do': shouldRepeat(), 'inactive': !shouldRepeat()}">
         <span>{{ 'nav.repeat' | translate }}</span>
         <span>
           <small>

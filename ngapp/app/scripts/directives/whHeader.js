@@ -25,6 +25,12 @@ angular.module('wordhubApp')
         scope.toggleDropdown = function () {
           scope.status.collapsingMenuCollapsed = !scope.status.collapsingMenuCollapsed;
         };
+        scope.shouldCreate = function () {
+          return scope.currentUser.createdToday < scope.currentUser.dailyLimit;
+        };
+        scope.shouldRepeat = function () {
+          return scope.currentUser.runToday < scope.currentUser.plannedForToday;
+        };
       }
     };
   });
