@@ -1,13 +1,35 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Auth', function ($http, Session, RepetitionStore, $q, $rootScope) {
+  .factory('Auth', function ($http, Session, RepetitionStore, $q, $rootScope, $timeout) {
     var performSignIn = function (data) {
       Session.signIn(data.user);
       RepetitionStore.saveAll(data.repetitions);
     };
 
-    return {
+    // Experimental. Checks for session status updates.
+    // Better to implement long polling.
+    var scheduleSessionQuery = function () {
+      $timeout(function () {
+        querySession();
+        scheduleSessionQuery();
+      }, 60000);
+    };
+
+    var querySession = function () {
+      return $http.get('/api/session.json')
+        .then(function (response) {
+          if (response.data && response.data.success) {
+            performSignIn(response.data);
+            return response;
+          } else {
+            Session.signOut();
+            return $q.reject();
+          }
+        });
+    };
+
+    var service = {
       signIn: function (credentials) {
         return $http.post('/api/login.json',
           {email: credentials.email, password: credentials.password})
@@ -26,21 +48,14 @@ angular.module('wordhubApp')
       },
       check: function () {
         if (Session.isSignedIn()) {
-          var defer = $q.defer();
-          defer.resolve();
-          return defer.promise;
+          return $q.when();
         } else {
-          return $http.get('/api/session.json')
-            .then(function (response) {
-              if (response.data && response.data.success) {
-                performSignIn(response.data);
-                return response;
-              } else {
-                Session.signOut();
-                return $q.reject();
-              }
-            });
+          return querySession();
         }
       }
     };
+
+    scheduleSessionQuery();
+
+    return service;
   });

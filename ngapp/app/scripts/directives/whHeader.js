@@ -26,10 +26,14 @@ angular.module('wordhubApp')
           scope.status.collapsingMenuCollapsed = !scope.status.collapsingMenuCollapsed;
         };
         scope.shouldCreate = function () {
-          return scope.currentUser.createdToday < scope.currentUser.dailyLimit;
+          if (scope.currentUser) {
+            return scope.currentUser.createdToday < scope.currentUser.dailyLimit;
+          }
         };
         scope.shouldRepeat = function () {
-          return scope.currentUser.runToday < scope.currentUser.plannedForToday;
+          if (scope.currentUser) {
+            return scope.currentUser.runToday < scope.currentUser.plannedForToday;
+          }
         };
       }
     };
