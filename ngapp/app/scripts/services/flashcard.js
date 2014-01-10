@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Flashcard', function ($resource, $rootScope) {
-    return $resource('/api/flashcards/:id.json', {id: '@id'}, {
+  .factory('Flashcard', function ($resource, $rootScope, Session) {
+    var resource = $resource('/api/flashcards/:id.json', {id: '@id'}, {
       save: {
         method: 'POST',
         transformRequest: function (data) {
+          Session.changeCreatedTodayBy(1);
           data = {
             flashcard: {
               front_text: data.frontText,
@@ -13,12 +14,6 @@ angular.module('wordhubApp')
             }
           };
           return JSON.stringify(data);
-        },
-        interceptor: {
-          response: function (response) {
-            $rootScope.$broadcast('event:flashcardCreated');
-            return response;
-          }
         }
       },
       patch: {
@@ -34,4 +29,13 @@ angular.module('wordhubApp')
         }
       }
     });
+
+    resource.deleteFlashcard = function (flashcard) {
+      if (flashcard.isCreatedToday) {
+        Session.changeCreatedTodayBy(-1);
+      }
+      return flashcard.$delete();
+    };
+
+    return resource;
   });

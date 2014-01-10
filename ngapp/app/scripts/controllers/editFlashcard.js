@@ -15,7 +15,7 @@ angular.module('wordhubApp')
         });
     };
     ctrl.delete = function () {
-      ctrl.flashcard.$delete()
+      Flashcard.deleteFlashcard(ctrl.flashcard)
         .then(function () {
           $location.path(SETTINGS.routes.flashcardsPath);
         });

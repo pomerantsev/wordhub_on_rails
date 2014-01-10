@@ -12,12 +12,6 @@ angular.module('wordhubApp')
     var deleteCurrentUser = function () {
       _currentUser = null;
     };
-    // TODO: probably better to $watch something than to listen to events.
-    $rootScope.$on('event:flashcardCreated', function () {
-      var user = getCurrentUser();
-      user.createdToday++;
-      saveCurrentUser(user);
-    });
     $rootScope.$watch(function () {
       return RepetitionStore.getLength();
     }, function (repetitionsLeft) {
@@ -37,6 +31,11 @@ angular.module('wordhubApp')
       },
       signOut: function () {
         deleteCurrentUser();
+      },
+      changeCreatedTodayBy: function (amount) {
+        if (_currentUser) {
+          _currentUser.createdToday += amount;
+        }
       }
     };
   });

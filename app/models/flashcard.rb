@@ -95,4 +95,8 @@ class Flashcard < ActiveRecord::Base
   # This is here only for migration's purposes.
   scope :learned, -> { where("consecutive_successful_repetitions >= ?", WhRails::Application.config.max_consecutive_successful_repetitions) }
 
+  def created_today?
+    created_at >= Date.today.to_time
+  end
+
 end
