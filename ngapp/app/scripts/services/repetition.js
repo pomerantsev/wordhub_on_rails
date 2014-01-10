@@ -16,7 +16,7 @@ angular.module('wordhubApp')
         interceptor: {
           responseError: function (rejection) {
             if (rejection.status === 422) {
-              return queryLeftRepetitions();
+              return queryRemainingRepetitions();
             } else {
               return $q.reject(rejection);
             }
@@ -25,7 +25,7 @@ angular.module('wordhubApp')
       }
     });
 
-    function queryLeftRepetitions() {
+    function queryRemainingRepetitions() {
       return resource.query().$promise
         .then(function (data) {
           RepetitionStore.saveAll(data);
@@ -36,11 +36,9 @@ angular.module('wordhubApp')
 
     var repetitionsPromise = function () {
       if (RepetitionStore.query()) {
-        var defer = $q.defer();
-        defer.resolve(RepetitionStore.query());
-        return defer.promise;
+        return $q.when(RepetitionStore.query());
       } else {
-        return queryLeftRepetitions();
+        return queryRemainingRepetitions();
       }
     };
 
