@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Session', function ($rootScope) {
+  .factory('Session', function ($rootScope, RepetitionStore) {
     var _currentUser;
     var getCurrentUser = function () {
       return _currentUser;
@@ -18,10 +18,10 @@ angular.module('wordhubApp')
       user.createdToday++;
       saveCurrentUser(user);
     });
-    $rootScope.$on('event:repetitionCountChange', function (event, repetitionsLeft) {
-      var user = getCurrentUser();
-      user.runToday = user.plannedForToday - repetitionsLeft;
-      saveCurrentUser(user);
+    $rootScope.$watch(function () {
+      return RepetitionStore.getLength();
+    }, function (repetitionsLeft) {
+      _currentUser.runToday = _currentUser.plannedForToday - repetitionsLeft;
     });
     return {
       signIn: function (user) {

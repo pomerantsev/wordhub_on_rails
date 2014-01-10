@@ -1,7 +1,23 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Repetition', function ($resource, $rootScope, $q, RepetitionStore) {
+  .factory('Repetition', function ($resource, $q, RepetitionStore) {
+    var repetitionsPromise = function () {
+      if (RepetitionStore.query()) {
+        return $q.when(RepetitionStore.query());
+      } else {
+        return queryRemainingRepetitions();
+      }
+    };
+
+    var queryRemainingRepetitions = function () {
+      return resource.query().$promise
+        .then(function (data) {
+          RepetitionStore.saveAll(data);
+          return data;
+        });
+    };
+
     var resource = $resource('/api/repetitions/:id.json', {id: '@id'}, {
       patch: {
         method: 'PATCH',
@@ -25,23 +41,6 @@ angular.module('wordhubApp')
       }
     });
 
-    function queryRemainingRepetitions() {
-      return resource.query().$promise
-        .then(function (data) {
-          RepetitionStore.saveAll(data);
-          $rootScope.$broadcast('event:repetitionCountChange', RepetitionStore.getLength());
-          return data;
-        });
-    }
-
-    var repetitionsPromise = function () {
-      if (RepetitionStore.query()) {
-        return $q.when(RepetitionStore.query());
-      } else {
-        return queryRemainingRepetitions();
-      }
-    };
-
     resource.getRandom = function () {
       return repetitionsPromise()
         .then(function (data) {
@@ -55,7 +54,6 @@ angular.module('wordhubApp')
 
     resource.update = function (repetition) {
       RepetitionStore.removeRepetition(repetition);
-      $rootScope.$broadcast('event:repetitionCountChange', RepetitionStore.getLength());
       return repetition.$patch();
     };
 
