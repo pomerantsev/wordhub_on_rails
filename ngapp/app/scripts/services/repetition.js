@@ -1,9 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Repetition', function ($resource, $rootScope, $q) {
-    var repetitionStore;
-
+  .factory('Repetition', function ($resource, $rootScope, $q, RepetitionStore) {
     var resource = $resource('/api/repetitions/:id.json', {id: '@id'}, {
       patch: {
         method: 'PATCH',
@@ -30,16 +28,16 @@ angular.module('wordhubApp')
     function queryLeftRepetitions() {
       return resource.query().$promise
         .then(function (data) {
-          repetitionStore = data;
-          $rootScope.$broadcast('event:repetitionCountChange', repetitionStore.length);
+          RepetitionStore.saveAll(data);
+          $rootScope.$broadcast('event:repetitionCountChange', RepetitionStore.getLength());
           return data;
         });
     }
 
     var repetitionsPromise = function () {
-      if (repetitionStore) {
+      if (RepetitionStore.query()) {
         var defer = $q.defer();
-        defer.resolve(repetitionStore);
+        defer.resolve(RepetitionStore.query());
         return defer.promise;
       } else {
         return queryLeftRepetitions();
@@ -58,13 +56,8 @@ angular.module('wordhubApp')
     };
 
     resource.update = function (repetition) {
-      // Delete the repetition from the store
-      angular.forEach(repetitionStore, function (value, index) {
-        if (value.id === repetition.id) {
-          repetitionStore.splice(index, 1);
-        }
-      });
-      $rootScope.$broadcast('event:repetitionCountChange', repetitionStore.length);
+      RepetitionStore.removeRepetition(repetition);
+      $rootScope.$broadcast('event:repetitionCountChange', RepetitionStore.getLength());
       return repetition.$patch();
     };
 
