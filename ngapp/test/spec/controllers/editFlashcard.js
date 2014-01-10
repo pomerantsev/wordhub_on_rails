@@ -15,6 +15,9 @@ describe('Controller: EditFlashcardCtrl', function () {
     mockFlashcard = _$resource_('/api/flashcards/:id.json', {id: '@id'}, {
       patch: { method: 'PATCH' }
     });
+    mockFlashcard.deleteFlashcard = function (flashcard) {
+      return flashcard.$delete();
+    };
     mockRouteParams = { id: flashcardId };
     $httpBackend.expectGET('/api/flashcards/' + flashcardId + '.json').respond(200, {
       id: flashcardId,
