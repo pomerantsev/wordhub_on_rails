@@ -15,9 +15,7 @@ angular.module('wordhubApp', [
   .config(function ($routeProvider, SETTINGS) {
     var getXsrfToken = ['$cookies', '$http', '$q', function ($cookies, $http, $q) {
       if($cookies['XSRF-TOKEN']) {
-        var defer = $q.defer();
-        defer.resolve();
-        return defer.promise;
+        return $q.when();
       } else {
         return $http.get('/api/xsrf-token.json');
       }
