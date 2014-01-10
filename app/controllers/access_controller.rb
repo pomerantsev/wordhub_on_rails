@@ -15,7 +15,7 @@ class AccessController < ApplicationController
       format.json do
         response.status = :ok
         if @user
-          render 'access/success'
+          render_user_and_repetitions
         else
           render 'access/failure'
         end
@@ -36,12 +36,19 @@ class AccessController < ApplicationController
     respond_to do |format|
       format.json do
         if @user
-          render 'access/success'
+          render_user_and_repetitions
         else
           render 'access/failure'
         end
       end
     end
+  end
+
+  private
+
+  def render_user_and_repetitions
+    @repetitions = @user.repetitions.planned.for(current_date)
+    render 'access/success'
   end
 
 end

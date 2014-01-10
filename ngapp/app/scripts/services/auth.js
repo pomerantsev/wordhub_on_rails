@@ -1,15 +1,19 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Auth', function ($http, Session, $q, $rootScope) {
+  .factory('Auth', function ($http, Session, RepetitionStore, $q, $rootScope) {
+    var performSignIn = function (data) {
+      Session.signIn(data.user);
+      RepetitionStore.saveAll(data.repetitions);
+    };
+
     return {
       signIn: function (credentials) {
         return $http.post('/api/login.json',
           {email: credentials.email, password: credentials.password})
           .then(function (response) {
             if (response.data && response.data.success) {
-              Session.signIn(response.data.user);
-              $rootScope.$broadcast('event:signedIn');
+              performSignIn(response.data);
             }
             return response.data;
           });
@@ -18,7 +22,6 @@ angular.module('wordhubApp')
         return $http.delete('/api/logout.json')
           .then(function () {
             Session.signOut();
-            $rootScope.$broadcast('event:signedOut');
           });
       },
       check: function () {
@@ -30,7 +33,7 @@ angular.module('wordhubApp')
           return $http.get('/api/session.json')
             .then(function (response) {
               if (response.data && response.data.success) {
-                Session.signIn(response.data.user);
+                performSignIn(response.data);
                 return response;
               } else {
                 Session.signOut();

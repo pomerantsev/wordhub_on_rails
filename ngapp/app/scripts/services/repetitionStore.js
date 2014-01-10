@@ -18,7 +18,7 @@ angular.module('wordhubApp')
         });
       },
       getLength: function () {
-        return _store.length;
+        return _store && _store.length;
       }
     };
   });

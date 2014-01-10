@@ -54,7 +54,7 @@ angular.module('wordhubApp')
 
     resource.update = function (repetition) {
       RepetitionStore.removeRepetition(repetition);
-      return repetition.$patch();
+      return resource.patch(repetition).$promise;
     };
 
     return resource;

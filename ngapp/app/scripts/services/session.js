@@ -21,7 +21,9 @@ angular.module('wordhubApp')
     $rootScope.$watch(function () {
       return RepetitionStore.getLength();
     }, function (repetitionsLeft) {
-      _currentUser.runToday = _currentUser.plannedForToday - repetitionsLeft;
+      if (_currentUser) {
+        _currentUser.runToday = _currentUser.plannedForToday - repetitionsLeft;
+      }
     });
     return {
       signIn: function (user) {
