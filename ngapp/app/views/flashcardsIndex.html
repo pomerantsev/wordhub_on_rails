@@ -7,6 +7,11 @@
       </button>
     </span>
   </div>
+  <span class="help-block" ng-if="flashcardsIndex.submittedSearchString">
+    {{ 'flashcards.index.filtered' | translate }}
+    «{{ flashcardsIndex.submittedSearchString }}»
+    (<a href ng-click="flashcardsIndex.clearSearch()">{{ 'flashcards.index.showAll' | translate }}</a>)
+  </span>
 </form>
 
 <div ng-repeat="flashcard in flashcardsIndex.flashcards">

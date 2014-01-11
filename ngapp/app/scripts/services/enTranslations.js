@@ -34,7 +34,9 @@ angular.module('wordhubApp')
       frontText: 'Word',
       backText: 'Meaning',
       index: {
-        search: 'Search'
+        search: 'Search',
+        filtered: 'Filtered by',
+        showAll: 'show all'
       },
       new: {
         create: 'Create'

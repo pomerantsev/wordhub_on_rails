@@ -34,7 +34,9 @@ angular.module('wordhubApp')
       frontText: 'Слово',
       backText: 'Значение',
       index: {
-        search: 'Найти'
+        search: 'Найти',
+        filtered: 'Отфильтровано по',
+        showAll: 'показать все'
       },
       new: {
         create: 'Создать'

@@ -7,11 +7,19 @@ angular.module('wordhubApp')
       ctrl.flashcards = Flashcard.query({search: ctrl.searchString});
     };
     ctrl.routes = SETTINGS.routes;
-    ctrl.searchString = $routeParams.search;
+    ctrl.submittedSearchString = ctrl.searchString = $routeParams.search;
     queryFlashcards();
 
     ctrl.search = function () {
+      ctrl.submittedSearchString = ctrl.searchString;
       $location.search({search: ctrl.searchString});
       queryFlashcards();
     };
+
+    ctrl.clearSearch = function () {
+      ctrl.submittedSearchString = ctrl.searchString = null;
+      $location.search({});
+      queryFlashcards();
+    };
+
   });
