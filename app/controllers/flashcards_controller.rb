@@ -4,7 +4,10 @@ class FlashcardsController < ApplicationController
   before_action :get_flashcard, only: [:show, :edit, :update, :destroy]
 
   def index
-    @flashcards = current_user.flashcards.order(created_at: :desc).page(params[:page])
+    all_flashcards = current_user.flashcards.order(created_at: :desc)
+    @total = all_flashcards.count
+    @batch_size = Kaminari.config.default_per_page
+    @flashcards = all_flashcards.page(params[:page])
     if @search_string = params[:search]
       @flashcards = @flashcards.where(
         Flashcard.arel_table[:front_text].matches("%#{@search_string}%").or(

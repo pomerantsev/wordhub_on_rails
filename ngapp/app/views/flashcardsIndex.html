@@ -14,7 +14,11 @@
   </span>
 </form>
 
-<div ng-repeat="flashcard in flashcardsIndex.flashcards">
-  <a id="{{flashcard.id}}"></a>
-  <a class="flashcard" ng-href="{{linkRoot + flashcardsIndex.routes.editFlashcardPath(flashcard.id)}}"><span>{{flashcard.frontText}}</span><hr/><span>{{flashcard.backText}}</span></a>
+<div ng-repeat="batch in flashcardsIndex.batches">
+  <div ng-repeat="flashcard in batch">
+    <a id="{{flashcard.id}}"></a>
+    <a class="flashcard" ng-href="{{linkRoot + flashcardsIndex.routes.editFlashcardPath(flashcard.id)}}"><span>{{flashcard.frontText}}</span><hr/><span>{{flashcard.backText}}</span></a>
+  </div>
 </div>
+
+<a href ng-click="flashcardsIndex.queryNextBatch()">Next batch</a>

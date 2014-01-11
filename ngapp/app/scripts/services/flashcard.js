@@ -3,6 +3,10 @@
 angular.module('wordhubApp')
   .factory('Flashcard', function ($resource, $rootScope, Session) {
     var resource = $resource('/api/flashcards/:id.json', {id: '@id'}, {
+      query: {
+        method: 'GET',
+        isArray: false
+      },
       save: {
         method: 'POST',
         transformRequest: function (data) {
