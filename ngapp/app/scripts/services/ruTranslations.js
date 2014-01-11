@@ -33,6 +33,9 @@ angular.module('wordhubApp')
     flashcards: {
       frontText: 'Слово',
       backText: 'Значение',
+      index: {
+        search: 'Найти'
+      },
       new: {
         create: 'Создать'
       },

@@ -1,3 +1,14 @@
+<form name="flashcardsIndex.searchForm" class="flashcard-search-form" ng-submit="flashcardsIndex.search()">
+  <div class="input-group">
+    <input type="search" name="search" class="form-control" ng-model="flashcardsIndex.searchString">
+    <span class="input-group-btn">
+      <button class="btn btn-primary">
+        {{ 'flashcards.index.search' | translate }}
+      </button>
+    </span>
+  </div>
+</form>
+
 <div ng-repeat="flashcard in flashcardsIndex.flashcards">
   <a id="{{flashcard.id}}"></a>
   <a class="flashcard" ng-href="{{linkRoot + flashcardsIndex.routes.editFlashcardPath(flashcard.id)}}"><span>{{flashcard.frontText}}</span><hr/><span>{{flashcard.backText}}</span></a>
