@@ -106,13 +106,20 @@ class FlashcardsController < ApplicationController
             flashcard.update_attribute(:deleted, false)
           end
         end
-        redirect_to flashcards_path
       else
         flash[:error] = I18n.t("flash.no_access_to_flashcards")
-        redirect_to home_page
       end
-    else
-      redirect_to flashcards_path
+    end
+
+    respond_to do |format|
+      format.html do
+        if params[:flashcards].blank? || all_flashcards_belong_to_current_user
+          redirect_to flashcards_path
+        else
+          redirect_to home_page
+        end
+      end
+      format.json { head :no_content }
     end
   end
 
