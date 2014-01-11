@@ -4,15 +4,15 @@ class FlashcardsController < ApplicationController
   before_action :get_flashcard, only: [:show, :edit, :update, :destroy]
 
   def index
-    all_flashcards = current_user.flashcards.order(created_at: :desc)
-    @total = all_flashcards.count
     @batch_size = Kaminari.config.default_per_page
-    @flashcards = all_flashcards.page(params[:page])
+    @flashcards = current_user.flashcards.order(created_at: :desc)
     if @search_string = params[:search]
       @flashcards = @flashcards.where(
         Flashcard.arel_table[:front_text].matches("%#{@search_string}%").or(
         Flashcard.arel_table[:back_text].matches("%#{@search_string}%")))
     end
+    @total = @flashcards.count
+    @flashcards = @flashcards.page(params[:page])
     @flashcards_grouped_by_date = @flashcards.grouped_by_date
     @deleted_flashcards = current_user.flashcards.deleted
     # just_deleted is a boolean value that is used to determine
