@@ -17,6 +17,6 @@
 <div ng-repeat="batch in flashcardsIndex.batches track by $index" wh-scroll-to-bottom="flashcardsIndex.queryNextBatch()">
   <div ng-repeat="flashcard in batch">
     <a id="{{flashcard.id}}"></a>
-    <a class="flashcard" ng-href="{{linkRoot + flashcardsIndex.routes.editFlashcardPath(flashcard.id)}}"><span>{{flashcard.frontText}}</span><hr/><span>{{flashcard.backText}}</span></a>
+    <a class="flashcard" ng-class="{learned: flashcard.isLearned}" ng-href="{{linkRoot + flashcardsIndex.routes.editFlashcardPath(flashcard.id)}}"><span>{{flashcard.frontText}}</span><hr/><span>{{flashcard.backText}}</span></a>
   </div>
 </div>
