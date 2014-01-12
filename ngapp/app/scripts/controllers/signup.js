@@ -5,6 +5,10 @@ angular.module('wordhubApp')
     var ctrl = this;
     ctrl.newUser = {};
     ctrl.signup = function () {
-      User.save(ctrl.newUser);
+      ctrl.submitting = true;
+      User.save(ctrl.newUser).$promise
+        .finally(function () {
+          ctrl.submitting = false;
+        });
     };
   });

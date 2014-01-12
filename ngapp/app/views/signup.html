@@ -51,5 +51,5 @@
     </div>
   </div>
 
-  <input type="submit" class="btn-register" value="{{ 'users.new.signUp' | translate }}" ng-disabled="newUserForm.$invalid">
+  <input type="submit" class="btn-register" value="{{ 'users.new.signUp' | translate }}" ng-disabled="newUserForm.$invalid || signup.submitting">
 </form>
