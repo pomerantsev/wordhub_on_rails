@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('EditFlashcardCtrl', function (Flashcard, $routeParams, $location, SETTINGS) {
+  .controller('EditFlashcardCtrl', function (Flashcard, $routeParams, $location, SETTINGS, $translate, Page) {
+    Page.setTitle($translate('flashcards.edit.title'));
     var ctrl = this;
     ctrl.flashcard = Flashcard.get({id: $routeParams.id});
     ctrl.update = function () {

@@ -43,15 +43,18 @@ angular.module('wordhubApp')
         undelete: 'Восстановить'
       },
       new: {
+        title: 'Новая карточка',
         create: 'Создать'
       },
       edit: {
+        title: 'Редактирование карточки',
         update: 'Сохранить',
         delete: 'Удалить'
       }
     },
     repetitions: {
       index: {
+        title: 'Повтор слов',
         dontRemember: 'Не помню',
         remember: 'Помню'
       }

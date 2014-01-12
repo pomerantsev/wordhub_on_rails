@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('FlashcardsIndexCtrl', function (Flashcard, SETTINGS, $routeParams, $location, filterFilter, $scope, ViewHelpers) {
+  .controller('FlashcardsIndexCtrl', function (Flashcard, SETTINGS, $routeParams, $location, filterFilter, $scope, ViewHelpers, $translate, Page) {
+    Page.setTitle($translate('nav.allFlashcards'));
     var ctrl = this;
     var totalFlashcards, batchSize;
     var anyFlashcardsLeft = function () {

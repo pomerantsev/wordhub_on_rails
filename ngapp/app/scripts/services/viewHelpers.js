@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('ViewHelpers', function (SETTINGS) {
+  .factory('ViewHelpers', function (SETTINGS, $translate) {
     return {
       getCopyrightYears: function (currentYear) {
         var initialYear = SETTINGS.initialYear;
@@ -13,6 +13,14 @@ angular.module('wordhubApp')
       },
       firstLine: function (text) {
         return text.replace(/$(.|[\r\n])+/m, '...');
+      },
+      fullTitle: function (title) {
+        var baseTitle = $translate('nav.wordhub');
+        if (title) {
+          return title + ' — ' + baseTitle;
+        } else {
+          return baseTitle;
+        }
       }
     };
   });

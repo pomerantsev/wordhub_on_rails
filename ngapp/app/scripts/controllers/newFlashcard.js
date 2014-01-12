@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('NewFlashcardCtrl', function (Flashcard) {
+  .controller('NewFlashcardCtrl', function (Flashcard, Page, $translate) {
+    Page.setTitle($translate('flashcards.new.title'));
     var ctrl = this;
     ctrl.flashcard = {};
     ctrl.create = function () {

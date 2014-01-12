@@ -43,15 +43,18 @@ angular.module('wordhubApp')
         undelete: 'Восстановить'
       },
       new: {
+        title: 'New flashcard',
         create: 'Create'
       },
       edit: {
+        title: 'Edit flashcard',
         update: 'Save',
         delete: 'Delete'
       }
     },
     repetitions: {
       index: {
+        title: 'Word repetition',
         dontRemember: 'I don’t remember',
         remember: 'I remember'
       }

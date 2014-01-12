@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('RepetitionsCtrl', function (Repetition, $location, SETTINGS, Session, $scope) {
+  .controller('RepetitionsCtrl', function (Repetition, $location, SETTINGS, Session, $scope, $translate, Page) {
+    Page.setTitle($translate('repetitions.index.title'));
     var ctrl = this;
 
     var getRandom = function () {

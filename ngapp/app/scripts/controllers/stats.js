@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('StatsCtrl', function (Session) {
+  .controller('StatsCtrl', function (Session, $translate, Page) {
+    Page.setTitle($translate('nav.stats'));
+
     var transformStats = function (stats) {
       stats.totalStats.plannedRepetitionsForNearestDate +=
         ' (' + stats.totalStats.nearestDate + ')';

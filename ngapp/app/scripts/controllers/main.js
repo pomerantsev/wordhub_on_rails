@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('MainCtrl', function (Auth, $rootScope, $translate, SETTINGS) {
+  .controller('MainCtrl', function (Auth, $rootScope, $translate, SETTINGS, Page) {
+    Page.setTitle('');
     var ctrl = this;
     ctrl.credentials = {};
     ctrl.routes = SETTINGS.routes;

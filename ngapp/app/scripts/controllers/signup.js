@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('SignupCtrl', function (User) {
+  .controller('SignupCtrl', function (User, $translate, Page) {
+    Page.setTitle($translate('users.new.newUser'));
     var ctrl = this;
     ctrl.newUser = {};
     ctrl.signup = function () {
