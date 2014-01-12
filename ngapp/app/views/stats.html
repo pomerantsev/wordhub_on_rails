@@ -1,1 +1,16 @@
-{{ stats.stats }}
+<h2>{{ 'nav.stats' | translate }}</h2>
+<div class="row">
+  <div class="col-md-4" ng-repeat="(statsGroup, values) in stats.stats">
+    <h3>{{ 'stats.' + statsGroup | translate }}</h3>
+    <table class="table">
+      <tr ng-repeat="(key, value) in values">
+        <td>{{ 'stats.' + key | translate }}</td>
+        <td>
+          <span class="text-success">
+            <strong>{{ value }}</strong>
+          </span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -56,6 +56,20 @@ angular.module('wordhubApp')
         remember: 'I remember'
       }
     },
+    stats: {
+      totalStats: 'General',
+      statsForMonth: 'Last month',
+      statsForToday: 'Today',
+      totalFlashcards: 'Total flashcards',
+      learnedFlashcards: 'Flashcards learned',
+      totalPlannedRepetitions: 'Total repetitions planned',
+      plannedRepetitionsForNearestDate: 'Upcoming repetitions',
+      lastDateWithPlannedRepetitions: 'Repetitions planned until',
+      created: 'Flashcards created',
+      learned: 'Flashcards learned',
+      repetitionsRun: 'Total repetitions',
+      successfulRepetitions: 'Successful repetitions'
+    },
     users: {
       email: 'Email',
       password: 'Password',

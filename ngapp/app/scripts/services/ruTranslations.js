@@ -56,6 +56,20 @@ angular.module('wordhubApp')
         remember: 'Помню'
       }
     },
+    stats: {
+      totalStats: 'Общая',
+      statsForMonth: 'За месяц',
+      statsForToday: 'Сегодня',
+      totalFlashcards: 'Всего карточек',
+      learnedFlashcards: 'Карточек выучено',
+      totalPlannedRepetitions: 'Всего запланировано повторов',
+      plannedRepetitionsForNearestDate: 'Ближайшие повторы',
+      lastDateWithPlannedRepetitions: 'Запланировано повторов до',
+      created: 'Создано',
+      learned: 'Выучено',
+      repetitionsRun: 'Всего повторов',
+      successfulRepetitions: 'Успешных повторов'
+    },
     users: {
       email: 'Email',
       password: 'Пароль',
