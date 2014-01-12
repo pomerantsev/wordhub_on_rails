@@ -36,7 +36,10 @@ angular.module('wordhubApp')
       index: {
         search: 'Найти',
         filtered: 'Отфильтровано по',
-        showAll: 'показать все'
+        showAll: 'показать все',
+        showDeleted: 'Показать удалённые карточки ({{count}}) — завтра будут совсем удалены',
+        justDeleted: 'Удалённые сегодня',
+        undelete: 'Восстановить'
       },
       new: {
         create: 'Создать'

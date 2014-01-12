@@ -36,7 +36,10 @@ angular.module('wordhubApp')
       index: {
         search: 'Search',
         filtered: 'Filtered by',
-        showAll: 'show all'
+        showAll: 'show all',
+        showDeleted: 'Show deleted flashcards ({{count}}) — will be removed completely tomorrow',
+        justDeleted: 'Deleted today',
+        undelete: 'Восстановить'
       },
       new: {
         create: 'Create'

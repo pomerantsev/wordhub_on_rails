@@ -1,3 +1,23 @@
+<div class="deleted-today-oneline" ng-if="flashcardsIndex.deletedFlashcards">
+  <a href ng-click="flashcardsIndex.showDeletedFlashcards()" ng-if="!flashcardsIndex.deletedFlashcardsShown">
+    {{ 'flashcards.index.showDeleted' | translate:{count: flashcardsIndex.deletedFlashcards.length} }}
+  </a>
+  <div ng-if="flashcardsIndex.deletedFlashcardsShown">
+    <p>{{ 'flashcards.index.justDeleted' | translate }}</p>
+    <form ng-submit="flashcardsIndex.undelete()">
+      <div ng-repeat="flashcard in flashcardsIndex.deletedFlashcards">
+        <label class="checkbox">
+          <input type="checkbox"
+                 value="{{flashcard.id}}"
+                 ng-model="flashcard.selected">
+          {{ flashcard.frontText }}
+        </label>
+      </div>
+      <input type="submit" class="btn-undelete" value="{{ 'flashcards.index.undelete' | translate }}">
+    </form>
+  </div>
+</div>
+
 <form name="flashcardsIndex.searchForm" class="flashcard-search-form" ng-submit="flashcardsIndex.search()">
   <div class="input-group">
     <input type="search" name="search" class="form-control" ng-model="flashcardsIndex.searchString">

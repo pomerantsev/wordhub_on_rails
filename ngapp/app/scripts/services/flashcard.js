@@ -2,7 +2,8 @@
 
 angular.module('wordhubApp')
   .factory('Flashcard', function ($resource, $rootScope, Session) {
-    var resource = $resource('/api/flashcards/:id.json', {id: '@id'}, {
+    var resourceRoot = '/api/flashcards';
+    var resource = $resource(resourceRoot + '/:id.json', {id: '@id'}, {
       query: {
         method: 'GET',
         isArray: false
@@ -31,6 +32,10 @@ angular.module('wordhubApp')
           };
           return JSON.stringify(data);
         }
+      },
+      undelete: {
+        method: 'PATCH',
+        url: resourceRoot + '/undelete.json'
       }
     });
 

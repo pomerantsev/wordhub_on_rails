@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('FlashcardsIndexCtrl', function (Flashcard, SETTINGS, $routeParams, $location) {
+  .controller('FlashcardsIndexCtrl', function (Flashcard, SETTINGS, $routeParams, $location, filterFilter) {
     var ctrl = this;
     var totalFlashcards, batchSize;
     var anyFlashcardsLeft = function () {
@@ -10,9 +10,11 @@ angular.module('wordhubApp')
       return ctrl.batches.length * batchSize < totalFlashcards;
     };
     ctrl.batches = [];
+    ctrl.deletedFlashcards = [];
     var queryFlashcards = function (page) {
       page = page || 1;
       ctrl.batches.length = page;
+      ctrl.deletedFlashcardsShown = false;
       Flashcard.query({
         search: ctrl.searchString,
         page: page
@@ -20,6 +22,7 @@ angular.module('wordhubApp')
         ctrl.batches[page-1] = data.flashcards;
         totalFlashcards = data.total;
         batchSize = data.batchSize;
+        ctrl.deletedFlashcards = data.deletedFlashcards;
       });
     };
     ctrl.routes = SETTINGS.routes;
@@ -42,6 +45,20 @@ angular.module('wordhubApp')
       if (anyFlashcardsLeft()) {
         queryFlashcards(ctrl.batches.length + 1);
       }
+    };
+
+    ctrl.showDeletedFlashcards = function () {
+      ctrl.deletedFlashcardsShown = true;
+    };
+
+    ctrl.undelete = function () {
+      var deletedFlashcardsSelection =
+        filterFilter(ctrl.deletedFlashcards, {selected: true});
+      Flashcard.undelete({flashcards: deletedFlashcardsSelection.map(function (flashcard) {
+        return flashcard.id;
+      })}).$promise.then(function () {
+        queryFlashcards();
+      });
     };
 
   });
