@@ -60,6 +60,21 @@ angular.module('wordhubApp')
       password: 'Password',
       name: 'Name',
       dailyLimit: 'Daily limit',
+      errors: {
+        email: {
+          required: 'Email is required.',
+          email: 'Invalid email. Please check if it’s correct.',
+          maxlength: 'Email too long.'
+        },
+        password: {
+          required: 'Password is required.',
+          minlength: 'Password too short.',
+          maxlength: 'Password too long.'
+        },
+        name: {
+          maxlength: 'Name too long.'
+        }
+      },
       new: {
         newUser: 'New user',
         notGoingToShare: 'We will not share it with anyone, we promise.',

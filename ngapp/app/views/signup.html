@@ -3,19 +3,39 @@
   <div class="form-group">
     <label for="email">
       {{ 'users.email' | translate }}:
-      <span class="text-danger">*</span>
     </label>
     <input type="email" id="email" name="email" ng-model="signup.newUser.email" ng-maxlength="100" class="form-control" required>
-    <p class="help-block">{{ 'users.new.notGoingToShare' | translate }}</p>
+    <div class="help-block">
+      {{ 'users.new.notGoingToShare' | translate }}
+      <div class="text-danger" ng-if="newUserForm.email.$error.required">
+        {{ 'users.errors.email.required' | translate }}
+      </div>
+      <div class="text-danger" ng-if="newUserForm.email.$error.email">
+        {{ 'users.errors.email.email' | translate }}
+      </div>
+      <div class="text-danger" ng-if="newUserForm.email.$error.maxlength">
+        {{ 'users.errors.email.maxlength' | translate }}
+      </div>
+    </div>
   </div>
 
   <div class="form-group">
     <label for="password">
       {{ 'users.password' | translate }}:
-      <span class="text-danger">*</span>
     </label>
     <input type="password" id="password" name="password" ng-model="signup.newUser.password" ng-minlength="6" ng-maxlength="25" class="form-control" required>
-    <p class="help-block">{{ 'users.new.anyCombination' | translate }}</p>
+    <div class="help-block">
+      {{ 'users.new.anyCombination' | translate }}
+      <div class="text-danger" ng-if="newUserForm.password.$error.required">
+        {{ 'users.errors.password.required' | translate }}
+      </div>
+      <div class="text-danger" ng-if="newUserForm.password.$error.minlength">
+        {{ 'users.errors.password.minlength' | translate }}
+      </div>
+      <div class="text-danger" ng-if="newUserForm.password.$error.maxlength">
+        {{ 'users.errors.password.maxlength' | translate }}
+      </div>
+    </div>
   </div>
 
   <div class="form-group">
@@ -23,7 +43,12 @@
       {{ 'users.name' | translate }}
     </label>
     <input type="text" id="name" name="name" ng-model="signup.newUser.name" ng-maxlength="25" class="form-control">
-    <p class="help-block">{{ 'users.new.howToAddress' | translate }}</p>
+    <div class="help-block">
+      {{ 'users.new.howToAddress' | translate }}
+      <div class="text-danger" ng-if="newUserForm.name.$error.maxlength">
+        {{ 'users.errors.name.maxlength' | translate }}
+      </div>
+    </div>
   </div>
 
   <input type="submit" class="btn-register" value="{{ 'users.new.signUp' | translate }}" ng-disabled="newUserForm.$invalid">
