@@ -20,8 +20,9 @@ angular.module('wordhubApp')
       }
     });
     return {
-      signIn: function (user) {
-        saveCurrentUser(user);
+      signIn: function (data) {
+        saveCurrentUser(data.user);
+        RepetitionStore.saveAll(data.repetitions);
       },
       currentUser: function () {
         return getCurrentUser();

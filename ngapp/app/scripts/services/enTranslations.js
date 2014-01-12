@@ -54,5 +54,18 @@ angular.module('wordhubApp')
         dontRemember: 'I don’t remember',
         remember: 'I remember'
       }
+    },
+    users: {
+      email: 'Email',
+      password: 'Password',
+      name: 'Name',
+      dailyLimit: 'Daily limit',
+      new: {
+        newUser: 'New user',
+        notGoingToShare: 'We will not share it with anyone, we promise.',
+        anyCombination: 'Any digit and letter combination no less than six symbols will do. Case (upper or lower) matters.',
+        howToAddress: 'Here you can specify how you wish to be addressed. 25 symbols max.',
+        signUp: 'Sign up'
+      }
     }
   });

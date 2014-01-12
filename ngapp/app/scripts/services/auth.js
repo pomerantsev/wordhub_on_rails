@@ -1,12 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .factory('Auth', function ($http, Session, RepetitionStore, $q, $rootScope, $timeout) {
-    var performSignIn = function (data) {
-      Session.signIn(data.user);
-      RepetitionStore.saveAll(data.repetitions);
-    };
-
+  .factory('Auth', function ($http, Session, $q, $rootScope, $timeout) {
     // Experimental. Checks for session status updates.
     // Better to implement long polling.
     var scheduleSessionQuery = function () {
@@ -20,7 +15,7 @@ angular.module('wordhubApp')
       return $http.get('/api/session.json')
         .then(function (response) {
           if (response.data && response.data.success) {
-            performSignIn(response.data);
+            Session.signIn(response.data);
             return response;
           } else {
             Session.signOut();
@@ -35,7 +30,7 @@ angular.module('wordhubApp')
           {email: credentials.email, password: credentials.password})
           .then(function (response) {
             if (response.data && response.data.success) {
-              performSignIn(response.data);
+              Session.signIn(response.data);
             }
             return response.data;
           });
