@@ -10,6 +10,9 @@ angular.module('wordhubApp')
         } else {
           return initialYear + '—' + currentYear;
         }
+      },
+      firstLine: function (text) {
+        return text.replace(/$(.|[\r\n])+/m, '...');
       }
     };
   });

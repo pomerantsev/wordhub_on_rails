@@ -10,7 +10,7 @@
           <input type="checkbox"
                  value="{{flashcard.id}}"
                  ng-model="flashcard.selected">
-          {{ flashcard.frontText }}
+          {{ flashcardsIndex.firstLine(flashcard.frontText) }}
         </label>
       </div>
       <input type="submit" class="btn-undelete" value="{{ 'flashcards.index.undelete' | translate }}" ng-disabled="!flashcardsIndex.undeleteFormValid">

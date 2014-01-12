@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('FlashcardsIndexCtrl', function (Flashcard, SETTINGS, $routeParams, $location, filterFilter, $scope) {
+  .controller('FlashcardsIndexCtrl', function (Flashcard, SETTINGS, $routeParams, $location, filterFilter, $scope, ViewHelpers) {
     var ctrl = this;
     var totalFlashcards, batchSize;
     var anyFlashcardsLeft = function () {
@@ -69,5 +69,7 @@ angular.module('wordhubApp')
         queryFlashcards();
       });
     };
+
+    ctrl.firstLine = ViewHelpers.firstLine;
 
   });
