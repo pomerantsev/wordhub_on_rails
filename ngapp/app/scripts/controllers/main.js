@@ -4,6 +4,7 @@ angular.module('wordhubApp')
   .controller('MainCtrl', function (Auth, $rootScope, $translate, SETTINGS) {
     var ctrl = this;
     ctrl.credentials = {};
+    ctrl.routes = SETTINGS.routes;
     ctrl.signIn = function () {
       ctrl.submitting = true;
       Auth.signIn(ctrl.credentials)

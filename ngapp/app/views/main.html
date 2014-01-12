@@ -24,7 +24,7 @@
         <input type="password" name="password" ng-model = "main.credentials.password" required ng-disabled="main.submitting">
       </div>
       <input type="submit" value="{{ 'application.index.loginForm.login' | translate }}" ng-disabled="main.submitting || !signInForm.$valid">
-      <a class="register-link" ng-href="{{linkRoot}}/signup">
+      <a class="register-link" ng-href="{{linkRoot + main.routes.signupPath}}">
         {{ 'application.index.loginForm.signup' | translate }}
       </a>
     </form>

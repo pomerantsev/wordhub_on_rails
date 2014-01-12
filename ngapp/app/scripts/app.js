@@ -38,8 +38,8 @@ angular.module('wordhubApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl as main',
         resolve: {
-          xsrfToken: getXsrfToken,
-          isNotSignedIn: checkIfNotSignedIn
+          isNotSignedIn: checkIfNotSignedIn,
+          xsrfToken: getXsrfToken
         }
       })
       .when(SETTINGS.routes.flashcardsPath, {
@@ -49,7 +49,6 @@ angular.module('wordhubApp', [
           signedIn: checkIfSignedIn,
           xsrfToken: getXsrfToken
         }
-        // TODO: use a resolve object here for signed-in status too
       })
       .when(SETTINGS.routes.newFlashcardPath, {
         templateUrl: 'views/newFlashcard.html',
@@ -58,7 +57,6 @@ angular.module('wordhubApp', [
           signedIn: checkIfSignedIn,
           xsrfToken: getXsrfToken
         }
-        // TODO: use a resolve object here for signed-in status too
       })
       .when(SETTINGS.routes.editFlashcardPathMask, {
         templateUrl: 'views/editFlashcard.html',
@@ -67,7 +65,6 @@ angular.module('wordhubApp', [
           signedIn: checkIfSignedIn,
           xsrfToken: getXsrfToken
         }
-        // TODO: use a resolve object here for signed-in status too
       })
       .when(SETTINGS.routes.repetitionsPath, {
         templateUrl: 'views/repetitions.html',
@@ -76,7 +73,14 @@ angular.module('wordhubApp', [
           signedIn: checkIfSignedIn,
           xsrfToken: getXsrfToken
         }
-        // TODO: use a resolve object here for signed-in status too
+      })
+      .when(SETTINGS.routes.signupPath, {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl as signup',
+        resolve: {
+          isNotSignedIn: checkIfNotSignedIn,
+          xsrfToken: getXsrfToken
+        }
       })
       .otherwise({
         redirectTo: SETTINGS.defaultRoute
