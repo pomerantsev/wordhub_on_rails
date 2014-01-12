@@ -48,6 +48,11 @@
           {{ 'nav.allFlashcards' | translate }}
         </a>
       </li>
+      <li ng-class="{active: pathIs(routes.statsPath)}">
+        <a ng-href="{{linkRoot + routes.statsPath}}" wh-collapse-when-clicked>
+          {{ 'nav.stats' | translate }}
+        </a>
+      </li>
       <li>
         <a href ng-click="signOut()" wh-collapse-when-clicked>{{ 'nav.logout' | translate }}</a>
       </li>
@@ -64,6 +69,11 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
+          <li>
+            <a ng-href="{{linkRoot + routes.statsPath}}">
+              {{ 'nav.stats' | translate }}
+            </a>
+          </li>
           <li>
             <a href ng-click="signOut()">{{ 'nav.logout' | translate }}</a>
           </li>

@@ -2,7 +2,7 @@
 
 angular.module('wordhubApp')
   .factory('Session', function ($rootScope, RepetitionStore) {
-    var _currentUser;
+    var _currentUser, _stats;
     var getCurrentUser = function () {
       return _currentUser;
     };
@@ -22,6 +22,7 @@ angular.module('wordhubApp')
     return {
       signIn: function (data) {
         saveCurrentUser(data.user);
+        _stats = data.stats;
         RepetitionStore.saveAll(data.repetitions);
       },
       currentUser: function () {
@@ -37,6 +38,9 @@ angular.module('wordhubApp')
         if (_currentUser) {
           _currentUser.createdToday += amount;
         }
+      },
+      stats: function () {
+        return _stats;
       }
     };
   });

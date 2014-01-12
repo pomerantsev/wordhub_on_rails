@@ -76,4 +76,12 @@ module ApplicationHelper
     user.repetitions.for(current_date).size
   end
 
+  def user_stats(user)
+    [
+      user.total_stats,
+      user.stats_for_period(30.days),
+      user.stats_for_period(1.day)
+    ]
+  end
+
 end

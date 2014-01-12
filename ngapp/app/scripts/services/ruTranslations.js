@@ -12,6 +12,7 @@ angular.module('wordhubApp')
       repeat: 'Повторить',
       of: 'из',
       allFlashcards: 'Все карточки',
+      stats: 'Статистика',
       login: 'Вход',
       logout: 'Выйти',
       author: 'Павел Померанцев',

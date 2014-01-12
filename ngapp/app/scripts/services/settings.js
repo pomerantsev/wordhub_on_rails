@@ -15,7 +15,8 @@ angular.module('wordhubApp')
         return '/flashcards/' + id + '/edit';
       },
       repetitionsPath: '/repetitions',
-      signupPath: '/signup'
+      signupPath: '/signup',
+      statsPath: '/stats'
     },
     devAppRoot: '/',
     productionAppRoot: '/angular/',

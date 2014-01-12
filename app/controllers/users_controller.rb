@@ -43,9 +43,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html do
         if @user == current_user
-          @total_stats = @user.total_stats
-          @stats_for_last_month = @user.stats_for_period(30.days)
-          @stats_for_today = @user.stats_for_period(1.day)
+          @total_stats, @stats_for_month, @stats_for_today = user_stats(@user)
         else
           flash[:error] = I18n.t("flash.cannot_see_other_users_stats")
           redirect_to home_page

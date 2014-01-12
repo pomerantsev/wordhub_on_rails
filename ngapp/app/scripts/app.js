@@ -82,6 +82,14 @@ angular.module('wordhubApp', [
           xsrfToken: getXsrfToken
         }
       })
+      .when(SETTINGS.routes.statsPath, {
+        templateUrl: 'views/stats.html',
+        controller: 'StatsCtrl as stats',
+        resolve: {
+          signedIn: checkIfSignedIn,
+          xsrfToken: getXsrfToken
+        }
+      })
       .otherwise({
         redirectTo: SETTINGS.defaultRoute
       });

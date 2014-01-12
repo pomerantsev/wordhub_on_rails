@@ -12,6 +12,7 @@ angular.module('wordhubApp')
       repeat: 'Repeat',
       of: 'of',
       allFlashcards: 'All flashcards',
+      stats: 'Stats',
       login: 'Sign in',
       logout: 'Sign out',
       author: 'Pavel Pomerantsev',

@@ -47,6 +47,7 @@ class AccessController < ApplicationController
   private
 
   def render_user_and_repetitions
+    @total_stats, @stats_for_month, @stats_for_today = user_stats(@user)
     @repetitions = @user.repetitions.planned.for(current_date)
     render 'access/success'
   end
