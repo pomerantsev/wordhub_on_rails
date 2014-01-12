@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wordhubApp')
-  .controller('FlashcardsIndexCtrl', function (Flashcard, SETTINGS, $routeParams, $location, filterFilter) {
+  .controller('FlashcardsIndexCtrl', function (Flashcard, SETTINGS, $routeParams, $location, filterFilter, $scope) {
     var ctrl = this;
     var totalFlashcards, batchSize;
     var anyFlashcardsLeft = function () {
@@ -51,10 +51,19 @@ angular.module('wordhubApp')
       ctrl.deletedFlashcardsShown = true;
     };
 
+    var getSelectedFlashcards = function () {
+      return filterFilter(ctrl.deletedFlashcards, {selected: true});
+    };
+
+    $scope.$watch(function () {
+      return getSelectedFlashcards();
+    }, function (flashcards) {
+      // TODO: use angular validators instead.
+      ctrl.undeleteFormValid = !!getSelectedFlashcards().length;
+    }, true);
+
     ctrl.undelete = function () {
-      var deletedFlashcardsSelection =
-        filterFilter(ctrl.deletedFlashcards, {selected: true});
-      Flashcard.undelete({flashcards: deletedFlashcardsSelection.map(function (flashcard) {
+      Flashcard.undelete({flashcards: getSelectedFlashcards().map(function (flashcard) {
         return flashcard.id;
       })}).$promise.then(function () {
         queryFlashcards();
