@@ -14,7 +14,7 @@ describe('Service: Session', function () {
 
   describe('signin and signout', function () {
     it('stores the current user', function () {
-      Session.signIn(user);
+      Session.signIn({user: user});
       expect(Session.currentUser()).toEqual(user);
       expect(Session.isSignedIn()).toBe(true);
 

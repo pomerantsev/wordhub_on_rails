@@ -109,10 +109,8 @@ describe UsersController do
           expect(assigns(:user)).to eq user
         end
 
-        it "sets three stats variables" do
+        it "sets stats variables" do
           expect(assigns(:total_stats)).to_not be_nil
-          expect(assigns(:stats_for_last_month)).to_not be_nil
-          expect(assigns(:stats_for_today)).to_not be_nil
         end
 
         it "renders the :show view" do
