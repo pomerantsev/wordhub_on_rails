@@ -7,4 +7,5 @@ The main advantage of this service over others is that even if the flashcard bas
 
 The visual design is basic (Bootstrap's styles were altered only when necessary), but it's fully responsive: it's not harder to navigate on a phone than on a big screen.
 
-The working app can be found on [wordhub.org](http://wordhub.org)
+This is the Angular.js branch of the project. Its backend has been completely separated from the frontend, with the intention to make some parts of the app to work offline.
+Right now, you can see this version in the beta mode on [wordhub.org/angular/](http://wordhub.org/angular/).
