@@ -2,7 +2,7 @@
 
 angular.module('wordhubApp')
   .service('Page', function (ViewHelpers) {
-    var title = 'Hello';
+    var title = '';
     return {
       title: function () {
         return ViewHelpers.fullTitle(title);
