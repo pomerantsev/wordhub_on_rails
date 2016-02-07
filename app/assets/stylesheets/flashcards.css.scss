@@ -57,6 +57,11 @@
   }
 }
 
+.responses-hotkey {
+  text-align: center;
+  font-size: 10px;
+}
+
 .flashcard-form {
   input[type="submit"] {
     @extend .btn;
