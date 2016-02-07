@@ -100,7 +100,7 @@ describe FlashcardsController do
       context "with invalid attributes" do
         let(:invalid_attributes) { attributes_for(:flashcard, front_text: "") }
         
-        it "sets a flash[:error] message" do
+        it "sets a flash[:danger] message" do
           post :create, flashcard: invalid_attributes
           expect(flash.to_hash).to_not eq({ })
         end
@@ -134,7 +134,7 @@ describe FlashcardsController do
     end
 
     shared_examples "unavailable flashcard" do
-      it "sets a flash[:error] message" do
+      it "sets a flash[:danger] message" do
         expect(flash.to_hash).to_not eq({ })
       end
       it "redirects to the home page" do
@@ -183,7 +183,7 @@ describe FlashcardsController do
           let(:invalid_attributes) { attributes_for(:flashcard, front_text: "", back_text: "blah-blah") }
           before(:each) { patch :update, id: flashcard, flashcard: invalid_attributes }
 
-          it "sets a flash[:error] message" do
+          it "sets a flash[:danger] message" do
             expect(flash.to_hash).to_not eq({ })
           end
 

@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect_to home_page
       else
-        flash.now[:error] = errors(@user)
+        flash.now[:danger] = errors(@user)
         render :new
       end
     end
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
         flash[:success] = I18n.t("flash.settings_saved")
         redirect_to edit_user_path
       else
-        flash.now[:error] = errors(@user)
+        flash.now[:danger] = errors(@user)
         render :edit
       end
     end

@@ -131,7 +131,7 @@ describe RepetitionsController do
             end.to_not change(Repetition, :count)
           end
 
-          it "sets a flash[:error] message" do
+          it "sets a flash[:danger] message" do
             patch :update, id: first_repetition
             expect(flash.to_hash).to_not eq({ })
           end

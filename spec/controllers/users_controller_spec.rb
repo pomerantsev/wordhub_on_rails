@@ -40,7 +40,7 @@ describe UsersController do
 
         it "sets a flash error message" do
           post :create, user: attributes
-          expect(flash[:error]).to_not be_nil
+          expect(flash[:danger]).to_not be_nil
         end
 
         it "doesn't create a new User" do
@@ -134,9 +134,9 @@ describe UsersController do
           expect(response).to redirect_to home_page
         end
 
-        it "sets a flash[:error] message" do
+        it "sets a flash[:danger] message" do
           get :show, id: another_user
-          expect(flash[:error]).to_not be_nil
+          expect(flash[:danger]).to_not be_nil
         end
       end
 
@@ -200,9 +200,9 @@ describe UsersController do
           expect(response).to redirect_to home_page
         end
 
-        it "sets a flash[:error] message" do
+        it "sets a flash[:danger] message" do
           get :edit, id: another_user
-          expect(flash[:error]).to_not be_nil
+          expect(flash[:danger]).to_not be_nil
         end
       end
 
@@ -211,7 +211,7 @@ describe UsersController do
 
         it_behaves_like "editing the current user"
       end
-    end 
+    end
   end
 
   describe "PUT #update" do
@@ -278,13 +278,13 @@ describe UsersController do
             patch :update,
             id: user,
             user: { email: "" } }
-          
+
           it "doesn't update the user's info in the database" do
             expect(user.email).to_not eq ""
           end
 
-          it "sets a flash[:error] message" do
-            expect(flash[:error]).to_not be_nil
+          it "sets a flash[:danger] message" do
+            expect(flash[:danger]).to_not be_nil
           end
 
           it "re-renders the :edit view" do
@@ -301,8 +301,8 @@ describe UsersController do
           expect(response).to redirect_to home_page
         end
 
-        it "sets a flash[:error] message" do
-          expect(flash[:error]).to_not be_nil
+        it "sets a flash[:danger] message" do
+          expect(flash[:danger]).to_not be_nil
         end
       end
     end

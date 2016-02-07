@@ -28,7 +28,7 @@ class FlashcardsController < ApplicationController
     if @flashcard.save
       redirect_to new_flashcard_path
     else
-      flash.now[:error] = errors(@flashcard)
+      flash.now[:danger] = errors(@flashcard)
       render :new
     end
   end
@@ -41,7 +41,7 @@ class FlashcardsController < ApplicationController
     if @flashcard.update_attributes(flashcard_params)
       redirect_to flashcards_path(anchor: @flashcard.id)
     else
-      flash.now[:error] = errors(@flashcard)
+      flash.now[:danger] = errors(@flashcard)
       render :edit
     end
   end
