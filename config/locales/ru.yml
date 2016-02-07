@@ -103,6 +103,7 @@ ru:
   flashcards:
     index:
       search: Найти
+      two_columns: В два столбца
       filtered: "Отфильтровано по «%{search_string}» (%{show_all})"
       show_all: показать все
       show_just_deleted: "Показать удалённые карточки"

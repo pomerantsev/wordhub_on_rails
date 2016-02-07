@@ -98,6 +98,7 @@ en:
   flashcards:
     index:
       search: Search
+      two_columns: Two columns
       filtered: "Filtered by «%{search_string}» (%{show_all})"
       show_all: show all
       show_just_deleted: "Show deleted flashcards"
