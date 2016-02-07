@@ -28,7 +28,7 @@ class RepetitionsController < ApplicationController
       @current_repetition.successful = params[:successful]
       @current_repetition.save
     else
-      flash[:error] = I18n.t("flash.invalid_param")
+      flash[:danger] = I18n.t("flash.invalid_param")
     end
     redirect_to repetitions_path
   end

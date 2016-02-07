@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
       current_user.repetitions.adjust_dates(current_date)
       return true
     else
-      flash[:error] = I18n.t("flash.sign_in")
+      flash[:danger] = I18n.t("flash.sign_in")
       redirect_to root_url
       return false
     end

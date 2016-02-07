@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     else
       @user = User.find_by_id(params[:id])
       if @user != current_user
-        flash[:error] = I18n.t("flash.cannot_see_other_users_stats")
+        flash[:danger] = I18n.t("flash.cannot_see_other_users_stats")
         redirect_to home_page
       end
     end
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     else
       @user = User.find_by_id(params[:id])
       if @user != current_user
-        flash[:error] = I18n.t("flash.cannot_edit_other_users_settings")
+        flash[:danger] = I18n.t("flash.cannot_edit_other_users_settings")
         redirect_to home_page
       end
     end
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     else
       @user = User.find_by_id(params[:id])
       if @user != current_user
-        flash[:error] = I18n.t("flash.cannot_edit_other_users_settings")
+        flash[:danger] = I18n.t("flash.cannot_edit_other_users_settings")
         redirect_to home_page
       end
     end

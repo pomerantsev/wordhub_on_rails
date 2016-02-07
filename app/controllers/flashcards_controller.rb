@@ -67,7 +67,7 @@ class FlashcardsController < ApplicationController
         end
         redirect_to flashcards_path
       else
-        flash[:error] = I18n.t("flash.no_access_to_flashcards")
+        flash[:danger] = I18n.t("flash.no_access_to_flashcards")
         redirect_to home_page
       end
     else
@@ -80,7 +80,7 @@ protected
   def get_flashcard
     @flashcard = Flashcard.find_by_id(params[:id])
     if @flashcard.nil? || @flashcard.user != current_user
-      flash[:error] = I18n.t("flash.no_access_to_single_flashcard")
+      flash[:danger] = I18n.t("flash.no_access_to_single_flashcard")
       redirect_to home_page
       return false
     end
