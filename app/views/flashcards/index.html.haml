@@ -18,7 +18,6 @@
     = link_to edit_flashcard_path(flashcard),
               class: ["flashcard",
                       flashcard.learned? && "learned"] do
-      %span<>= flashcard.front_text
-      %hr
-      %span<>= flashcard.back_text
+      .flashcard-side<>= flashcard.front_text
+      .flashcard-side<>= flashcard.back_text
 = paginate @flashcards

@@ -27,8 +27,21 @@
     background-color: #dff0d8;
     border-color: #d6e9c6;
   }
-  hr {
-    border-top: 1px solid white;
+  .flashcard-side {
+    position: relative;
+
+    &:not(:first-child) {
+      margin-top: 40px;
+      &:before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: white;
+      }
+    }
   }
 }
 
