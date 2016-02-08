@@ -13,17 +13,20 @@ $ ->
     event.preventDefault()
     rotateFlashcard()
 
-  $(document).on 'keydown', (event) ->
-    if (event.shiftKey and
-        not event.ctrlKey and
-        not event.altKey and
-        not event.metaKey)
-      switch event.which
-        when 37 then $('.js-dont-remember').submit()
-        when 39 then $('.js-remember').submit()
-    if event.which is 32
-      event.preventDefault()
-      rotateFlashcard()
+  # Otherwise default would be prevented on pages
+  # where input is expected.
+  unless $('.flashcard-toggleable').size() is 0
+    $(document).on 'keydown', (event) ->
+      if (event.shiftKey and
+          not event.ctrlKey and
+          not event.altKey and
+          not event.metaKey)
+        switch event.which
+          when 37 then $('.js-dont-remember').submit()
+          when 39 then $('.js-remember').submit()
+      if event.which is 32
+        event.preventDefault()
+        rotateFlashcard()
 
   COLUMNS_KEY = 'wordhub_columns'
 
