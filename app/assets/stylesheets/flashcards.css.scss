@@ -120,6 +120,10 @@
 .responses-hotkey {
   text-align: center;
   font-size: 10px;
+
+  @media (max-width: $before-breakpoint700) {
+    display: none;
+  }
 }
 
 .flashcard-form {
