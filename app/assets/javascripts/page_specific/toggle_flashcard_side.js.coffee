@@ -1,14 +1,17 @@
+rotateFlashcard = () ->
+  visibleSide = $('.flashcard')
+  invisibleSide = $('.hidden')
+  visibleSide.
+    removeClass('flashcard').
+    addClass('hidden')
+  invisibleSide.
+    removeClass('hidden').
+    addClass('flashcard')
+
 $ ->
   $('.flashcard-toggleable .flashcard, .flashcard-toggleable .hidden').click (event) ->
-    visibleSide = $(event.currentTarget)
-    invisibleSide = $('.hidden')
-    visibleSide.
-      removeClass('flashcard').
-      addClass('hidden')
-    invisibleSide.
-      removeClass('hidden').
-      addClass('flashcard')
-    false
+    event.preventDefault()
+    rotateFlashcard()
 
   $(document).on 'keydown', (event) ->
     if (event.shiftKey and
@@ -18,6 +21,9 @@ $ ->
       switch event.which
         when 37 then $('.js-dont-remember').submit()
         when 39 then $('.js-remember').submit()
+    if event.which is 32
+      event.preventDefault()
+      rotateFlashcard()
 
   COLUMNS_KEY = 'wordhub_columns'
 

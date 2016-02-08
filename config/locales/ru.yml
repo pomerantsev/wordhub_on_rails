@@ -122,6 +122,7 @@ ru:
       word_repetition: Повтор слов
       dont_remember: Не помню
       remember: Помню
+      rotate: Перевернуть
   static_pages:
     about_header: О сайте
     about:

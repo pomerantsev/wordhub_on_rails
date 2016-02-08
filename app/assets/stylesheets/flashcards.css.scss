@@ -100,6 +100,7 @@
 .responses {
   background-color: $gray-lighter;
   border-bottom: 20px solid white;
+  position: relative;
   .dont-remember, .remember {
     padding: 20px;
     @media (max-width: $before-breakpoint700) {
@@ -120,6 +121,20 @@
 .responses-hotkey {
   text-align: center;
   font-size: 10px;
+
+  @media (max-width: $before-breakpoint700) {
+    display: none;
+  }
+}
+
+.responses-hotkey-center {
+  font-size: 10px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 
   @media (max-width: $before-breakpoint700) {
     display: none;
